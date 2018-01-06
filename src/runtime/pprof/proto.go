@@ -177,7 +177,7 @@ func (b *profileBuilder) pbMapping(tag int, id, base, limit, offset uint64, file
 	b.pb.uint64Opt(tagMapping_Offset, offset)
 	b.pb.int64Opt(tagMapping_Filename, b.stringIndex(file))
 	b.pb.int64Opt(tagMapping_BuildID, b.stringIndex(buildID))
-	// TODO: Set any of HasInlineFrames, HasFunctions, HasFilenames, HasLineNumbers?
+	// TODO: Set any of HasInlineFrames, HasFunctions, HasFilenames, HasLineNumbers? id:1049 gh:1057
 	// It seems like they should all be true, but they've never been set.
 	b.pb.endMessage(tag, start)
 }
@@ -390,8 +390,8 @@ func (b *profileBuilder) build() error {
 		b.pbSample(values, locs, labels)
 	}
 
-	// TODO: Anything for tagProfile_DropFrames?
-	// TODO: Anything for tagProfile_KeepFrames?
+	// TODO: Anything for tagProfile_DropFrames? id:1295 gh:1303
+	// TODO: Anything for tagProfile_KeepFrames? id:1040 gh:1048
 
 	b.pb.strings(tagProfile_StringTable, b.strings)
 	b.zw.Write(b.pb.data)
@@ -490,7 +490,7 @@ func parseProcSelfMaps(data []byte, addMapping func(lo, hi, offset uint64, file,
 			continue
 		}
 
-		// TODO: pprof's remapMappingIDs makes two adjustments:
+		// TODO: pprof's remapMappingIDs makes two adjustments: id:1427 gh:1435
 		// 1. If there is an /anon_hugepage mapping first and it is
 		// consecutive to a next mapping, drop the /anon_hugepage.
 		// 2. If start-offset = 0x400000, change start to 0x400000 and offset to 0.

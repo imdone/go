@@ -134,7 +134,7 @@ func adddynrel(ctxt *ld.Link, s *sym.Symbol, r *sym.Reloc) bool {
 		if targ.Type == sym.SDYNIMPORT {
 			ld.Errorf(s, "unexpected R_390_PCnn relocation for dynamic symbol %s", targ.Name)
 		}
-		// TODO(mwhudson): the test of VisibilityHidden here probably doesn't make
+		// TODO (mwhudson): the test of VisibilityHidden here probably doesn't make id:624 gh:625
 		// sense and should be removed when someone has thought about it properly.
 		if (targ.Type == 0 || targ.Type == sym.SXREF) && !targ.Attr.VisibilityHidden() {
 			ld.Errorf(s, "unknown symbol %s in pcrel", targ.Name)
@@ -279,7 +279,7 @@ func elfreloc1(ctxt *ld.Link, r *sym.Reloc, sectoff int64) bool {
 	case objabi.R_PCREL, objabi.R_PCRELDBL, objabi.R_CALL:
 		elfrel := elf.R_390_NONE
 		isdbl := r.Variant&sym.RV_TYPE_MASK == sym.RV_390_DBL
-		// TODO(mundaym): all DBL style relocations should be
+		// TODO (mundaym): all DBL style relocations should be id:978 gh:986
 		// signalled using the variant - see issue 14218.
 		switch r.Type {
 		case objabi.R_PCRELDBL, objabi.R_CALL:

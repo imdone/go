@@ -61,7 +61,7 @@ func Init() (*sys.Arch, ld.Arch) {
 		Trampoline:       trampoline,
 		Machoreloc1:      machoreloc1,
 
-		// TODO(austin): ABI v1 uses /usr/lib/ld.so.1,
+		// TODO (austin): ABI v1 uses /usr/lib/ld.so.1, id:410 gh:411
 		Linuxdynld: "/lib64/ld64.so.1",
 
 		Freebsddynld:   "XXX",
@@ -94,7 +94,7 @@ func archinit(ctxt *ld.Link) {
 
 	case objabi.Hlinux: /* ppc64 elf */
 		if ctxt.Arch == sys.ArchPPC64 {
-			*ld.FlagD = true // TODO(austin): ELF ABI v1 not supported yet
+			*ld.FlagD = true // TODO (austin): ELF ABI v1 not supported yet id:489 gh:490
 		}
 		ld.Elfinit(ctxt)
 		ld.HEADR = ld.ELFRESERVE

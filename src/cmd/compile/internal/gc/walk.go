@@ -499,7 +499,7 @@ opswitch:
 	case ONONAME, OINDREGSP, OEMPTY, OGETG:
 
 	case OTYPE, ONAME, OLITERAL:
-		// TODO(mdempsky): Just return n; see discussion on CL 38655.
+		// TODO (mdempsky): Just return n; see discussion on CL 38655. id:222 gh:223
 		// Perhaps refactor to use Node.mayBeShared for these instead.
 		// If these return early, make sure to still call
 		// stringsym for constant strings.
@@ -680,7 +680,7 @@ opswitch:
 		}
 
 		if n.Right == nil {
-			// TODO(austin): Check all "implicit zeroing"
+			// TODO (austin): Check all "implicit zeroing" id:145 gh:146
 			break
 		}
 
@@ -1075,7 +1075,7 @@ opswitch:
 		}
 
 		// rewrite 64-bit div and mod on 32-bit architectures.
-		// TODO: Remove this code once we can introduce
+		// TODO: Remove this code once we can introduce id:162 gh:163
 		// runtime calls late in SSA processing.
 		if Widthreg < 8 && (et == TINT64 || et == TUINT64) {
 			if n.Right.Op == OLITERAL {
@@ -1238,7 +1238,7 @@ opswitch:
 	case OCMPSTR:
 		// s + "badgerbadgerbadger" == "badgerbadgerbadger"
 		if (Op(n.Etype) == OEQ || Op(n.Etype) == ONE) && Isconst(n.Right, CTSTR) && n.Left.Op == OADDSTR && n.Left.List.Len() == 2 && Isconst(n.Left.List.Second(), CTSTR) && strlit(n.Right) == strlit(n.Left.List.Second()) {
-			// TODO(marvin): Fix Node.EType type union.
+			// TODO (marvin): Fix Node.EType type union. id:280 gh:281
 			r := nod(Op(n.Etype), nod(OLEN, n.Left.List.First(), nil), nodintconst(0))
 			r = typecheck(r, Erv)
 			r = walkexpr(r, init)
@@ -1270,7 +1270,7 @@ opswitch:
 			// So we can cover longer strings with the same amount of code.
 			canCombineLoads := false
 			combine64bit := false
-			// TODO: does this improve performance on any other architectures?
+			// TODO: does this improve performance on any other architectures? id:500 gh:501
 			switch thearch.LinkArch.Family {
 			case sys.AMD64:
 				// Larger compare require longer instructions, so keep this reasonably low.
@@ -1299,7 +1299,7 @@ opswitch:
 				if len(s) > 0 {
 					ncs = safeexpr(ncs, init)
 				}
-				// TODO(marvin): Fix Node.EType type union.
+				// TODO (marvin): Fix Node.EType type union. id:225 gh:226
 				r := nod(cmp, nod(OLEN, ncs, nil), nodintconst(int64(len(s))))
 				remains := len(s)
 				for i := 0; remains > 0; {
@@ -1352,7 +1352,7 @@ opswitch:
 		}
 
 		var r *Node
-		// TODO(marvin): Fix Node.EType type union.
+		// TODO (marvin): Fix Node.EType type union. id:150 gh:151
 		if Op(n.Etype) == OEQ || Op(n.Etype) == ONE {
 			// prepare for rewrite below
 			n.Left = cheapexpr(n.Left, init)
@@ -1371,7 +1371,7 @@ opswitch:
 
 			// quick check of len before full compare for == or !=.
 			// memequal then tests equality up to length len.
-			// TODO(marvin): Fix Node.EType type union.
+			// TODO (marvin): Fix Node.EType type union. id:164 gh:165
 			if Op(n.Etype) == OEQ {
 				// len(left) == len(right) && memequal(left, right, len)
 				r = nod(OANDAND, nod(OEQ, llen, rlen), r)
@@ -1386,7 +1386,7 @@ opswitch:
 		} else {
 			// sys_cmpstring(s1, s2) :: 0
 			r = mkcall("cmpstring", types.Types[TINT], init, conv(n.Left, types.Types[TSTRING]), conv(n.Right, types.Types[TSTRING]))
-			// TODO(marvin): Fix Node.EType type union.
+			// TODO (marvin): Fix Node.EType type union. id:283 gh:284
 			r = nod(Op(n.Etype), r, nodintconst(0))
 		}
 
@@ -1693,7 +1693,7 @@ opswitch:
 
 		// Check itable/type before full compare.
 		// Note: short-circuited because order matters.
-		// TODO(marvin): Fix Node.EType type union.
+		// TODO (marvin): Fix Node.EType type union. id:501 gh:502
 		var cmp *Node
 		if Op(n.Etype) == OEQ {
 			cmp = nod(OANDAND, nod(OEQ, lt, rt), call)
@@ -1763,7 +1763,7 @@ opswitch:
 	return n
 }
 
-// TODO(josharian): combine this with its caller and simplify
+// TODO (josharian): combine this with its caller and simplify id:228 gh:229
 func reduceSlice(n *Node) *Node {
 	low, high, max := n.SliceBounds()
 	if high != nil && high.Op == OLEN && samesafeexpr(n.Left, high.Left) {
@@ -1927,7 +1927,7 @@ func nodarg(t interface{}, fp int) *Node {
 	case *types.Field:
 		funarg = t.Funarg
 		if fp == 1 {
-			// NOTE(rsc): This should be using t.Nname directly,
+			// NOTE (rsc): This should be using t.Nname directly, id:154 gh:155
 			// except in the case where t.Nname.Sym is the blank symbol and
 			// so the assignment would be discarded during code generation.
 			// In that case we need to make a new node, and there is no harm
@@ -3661,7 +3661,7 @@ func usemethod(n *Node) {
 	//	Method(int) reflect.Method
 	//	MethodByName(string) (reflect.Method, bool)
 	//
-	// TODO(crawshaw): improve precision of match by working out
+	// TODO (crawshaw): improve precision of match by working out id:167 gh:168
 	//                 how to check the method name.
 	if n := t.NumParams(); n != 1 {
 		return

@@ -455,7 +455,7 @@ func valueOrDefault(value, def string) string {
 	return def
 }
 
-// NOTE: This is not intended to reflect the actual Go version being used.
+// NOTE: This is not intended to reflect the actual Go version being used. id:1281 gh:1289
 // It was changed at the time of Go 1.1 release because the former User-Agent
 // had ended up on a blacklist for some intrusion detection systems.
 // See https://codereview.appspot.com/7532043.
@@ -528,7 +528,7 @@ func (r *Request) write(w io.Writer, usingProxy bool, extraHeaders Header, waitF
 		// CONNECT requests normally give just the host and port, not a full URL.
 		ruri = host
 	}
-	// TODO(bradfitz): escape at least newlines in ruri?
+	// TODO (bradfitz): escape at least newlines in ruri? id:1279 gh:1287
 
 	// Wrap the writer in a bufio Writer if it's not already buffered.
 	// Don't always call NewWriter, as that forces a bytes.Buffer
@@ -639,7 +639,7 @@ func (r *Request) write(w io.Writer, usingProxy bool, extraHeaders Header, waitF
 type requestBodyReadError struct{ error }
 
 func idnaASCII(v string) (string, error) {
-	// TODO: Consider removing this check after verifying performance is okay.
+	// TODO: Consider removing this check after verifying performance is okay. id:898 gh:906
 	// Right now punycode verification, length checks, context checks, and the
 	// permissible character tests are all omitted. It also prevents the ToASCII
 	// call from salvaging an invalid IDN, when possible. As a result it may be
@@ -1125,7 +1125,7 @@ func parsePostForm(r *Request) (vs url.Values, err error) {
 		}
 	case ct == "multipart/form-data":
 		// handled by ParseMultipartForm (which is calling us, or should be)
-		// TODO(bradfitz): there are too many possible
+		// TODO (bradfitz): there are too many possible id:1161 gh:1169
 		// orders to call too many functions here.
 		// Clean this up and write more tests.
 		// request_test.go contains the start of this,

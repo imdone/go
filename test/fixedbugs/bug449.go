@@ -11,7 +11,7 @@
 // the comparison.
 // This program generates a lot of equality tests and hopes to
 // catch this.
-// NOTE: this program assumes comparing instance of T and T's
+// NOTE: this program assumes comparing instance of T and T's id:1363 gh:1371
 // underlying []byte will make gc emit calls to runtime.equal,
 // and if gc optimizes this case, then the test will no longer
 // be correct (in the sense that it no longer tests runtime.equal).

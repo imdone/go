@@ -456,7 +456,7 @@ func bsearch32(a []uint32, x uint32) int {
 	return i
 }
 
-// TODO: IsPrint is a local implementation of unicode.IsPrint, verified by the tests
+// TODO: IsPrint is a local implementation of unicode.IsPrint, verified by the tests id:1050 gh:1058
 // to give the same answer. It allows this package not to depend on unicode,
 // and therefore not pull in all the Unicode tables. If the linker were better
 // at tossing unused tables, we could get rid of this implementation.

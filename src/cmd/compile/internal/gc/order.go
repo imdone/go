@@ -28,12 +28,12 @@ import (
 // Arrange that receive expressions only appear in direct assignments
 // x = <-c or as standalone statements <-c, never in larger expressions.
 
-// TODO(rsc): The temporary introduction during multiple assignments
+// TODO (rsc): The temporary introduction during multiple assignments id:336 gh:337
 // should be moved into this file, so that the temporaries can be cleaned
 // and so that conversions implicit in the OAS2FUNC and OAS2RECV
 // nodes can be made explicit and then have their temporaries cleaned.
 
-// TODO(rsc): Goto and multilevel break/continue can jump over
+// TODO (rsc): Goto and multilevel break/continue can jump over id:188 gh:189
 // inserted VARKILL annotations. Work out a way to handle these.
 // The current implementation is safe, in that it will execute correctly.
 // But it won't reuse temporaries as aggressively as it might, and
@@ -188,7 +188,7 @@ func isaddrokay(n *Node) bool {
 // 	n.Left = orderaddrtemp(n.Left, order)
 func orderaddrtemp(n *Node, order *Order) *Node {
 	if consttype(n) > 0 {
-		// TODO: expand this to all static composite literal nodes?
+		// TODO: expand this to all static composite literal nodes? id:104 gh:105
 		n = defaultlit(n, nil)
 		dowidth(n.Type)
 		vstat := staticname(n.Type)
@@ -539,7 +539,7 @@ func orderstmt(n *Node, order *Order) {
 			tmp1.Etype = 0 // now an rvalue not an lvalue
 		}
 		tmp1 = ordercopyexpr(tmp1, n.Left.Type, order, 0)
-		// TODO(marvin): Fix Node.EType type union.
+		// TODO (marvin): Fix Node.EType type union. id:108 gh:109
 		n.Right = nod(Op(n.Etype), tmp1, n.Right)
 		n.Right = typecheck(n.Right, Erv)
 		n.Right = orderexpr(n.Right, order, nil)
@@ -753,7 +753,7 @@ func orderstmt(n *Node, order *Order) {
 
 		case TMAP:
 			// copy the map value in case it is a map literal.
-			// TODO(rsc): Make tmp = literal expressions reuse tmp.
+			// TODO (rsc): Make tmp = literal expressions reuse tmp. id:143 gh:144
 			// For maps tmp is just one word so it hardly matters.
 			r := n.Right
 			n.Right = ordercopyexpr(r, r.Type, order, 0)
@@ -839,7 +839,7 @@ func orderstmt(n *Node, order *Order) {
 
 					// Introduce temporary for receive and move actual copy into case body.
 					// avoids problems with target being addressed, as usual.
-					// NOTE: If we wanted to be clever, we could arrange for just one
+					// NOTE: If we wanted to be clever, we could arrange for just one id:341 gh:342
 					// temporary per distinct type, sharing the temp among all receives
 					// with that temp. Similarly one ok bool could be shared among all
 					// the x,ok receives. Not worth doing until there's a clear need.
@@ -933,7 +933,7 @@ func orderstmt(n *Node, order *Order) {
 		order.out = append(order.out, n)
 		cleantemp(t, order)
 
-	// TODO(rsc): Clean temporaries more aggressively.
+	// TODO (rsc): Clean temporaries more aggressively. id:190 gh:191
 	// Note that because walkswitch will rewrite some of the
 	// switch into a binary search, this is not as easy as it looks.
 	// (If we ran that code here we could invoke orderstmt on
@@ -1184,7 +1184,7 @@ func orderexpr(n *Node, order *Order, lhs *Node) *Node {
 
 	case ODOTTYPE, ODOTTYPE2:
 		n.Left = orderexpr(n.Left, order, nil)
-		// TODO(rsc): The isfat is for consistency with componentgen and walkexpr.
+		// TODO (rsc): The isfat is for consistency with componentgen and walkexpr. id:107 gh:108
 		// It needs to be removed in all three places.
 		// That would allow inlining x.(struct{*int}) the same as x.(*int).
 		if !isdirectiface(n.Type) || isfat(n.Type) || instrumenting {

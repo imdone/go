@@ -48,9 +48,9 @@ func allowedMismatchObjdump(text string, size int, inst *Inst, dec ExtInst) bool
 
 	switch inst.Op {
 	case BC, BCA, BL, BLA, BCL, BCLA, TDI, TWI, TW, TD:
-		return true // TODO(minux): we lack the support for extended opcodes here
+		return true // TODO (minux): we lack the support for extended opcodes here id:558 gh:559
 	case RLWNM, RLWNM_, RLDICL, RLDICL_, RLWINM, RLWINM_, RLDCL, RLDCL_:
-		return true // TODO(minux): we lack the support for extended opcodes here
+		return true // TODO (minux): we lack the support for extended opcodes here id:715 gh:716
 	case DCBTST, DCBT:
 		return true // objdump uses the embedded argument order, we use the server argument order
 	case MTFSF, MTFSF_: // objdump doesn't show the last two arguments
@@ -70,7 +70,7 @@ func allowedMismatchObjdump(text string, size int, inst *Inst, dec ExtInst) bool
 }
 
 // Instructions known to libopcodes (or xed) but not to us.
-// TODO(minux): those single precision instructions are missing from ppc64.csv
+// TODO (minux): those single precision instructions are missing from ppc64.csv id:504 gh:505
 // those data cache instructions are deprecated, but must be treated as no-ops, see 4.3.2.1 pg. 774.
 var unsupported = strings.Fields(`
 fmsubs

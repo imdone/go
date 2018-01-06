@@ -119,7 +119,7 @@ func checkChainSSLServerPolicy(c *Certificate, chainCtx *syscall.CertChainContex
 		return err
 	}
 
-	// TODO(mkrautz): use the lChainIndex and lElementIndex fields
+	// TODO (mkrautz): use the lChainIndex and lElementIndex fields id:735 gh:736
 	// of the CertChainPolicyStatus to provide proper context, instead
 	// using c.
 	if status.Error != 0 {
@@ -226,7 +226,7 @@ func (c *Certificate) systemVerify(opts *VerifyOptions) (chains [][]*Certificate
 }
 
 func loadSystemRoots() (*CertPool, error) {
-	// TODO: restore this functionality on Windows. We tried to do
+	// TODO: restore this functionality on Windows. We tried to do id:642 gh:643
 	// it in Go 1.8 but had to revert it. See Issue 18609.
 	// Returning (nil, nil) was the old behavior, prior to CL 30578.
 	return nil, nil

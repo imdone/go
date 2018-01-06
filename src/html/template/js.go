@@ -140,7 +140,7 @@ func jsValEscaper(args ...interface{}) string {
 		case JS:
 			return string(t)
 		case JSStr:
-			// TODO: normalize quotes.
+			// TODO: normalize quotes. id:831 gh:832
 			return `"` + string(t) + `"`
 		case json.Marshaler:
 			// Do not treat as a Stringer.
@@ -153,7 +153,7 @@ func jsValEscaper(args ...interface{}) string {
 		}
 		a = fmt.Sprint(args...)
 	}
-	// TODO: detect cycles before calling Marshal which loops infinitely on
+	// TODO: detect cycles before calling Marshal which loops infinitely on id:738 gh:739
 	// cyclic data. This may be an unacceptable DoS risk.
 
 	b, err := json.Marshal(a)
@@ -167,11 +167,11 @@ func jsValEscaper(args ...interface{}) string {
 		return fmt.Sprintf(" /* %s */null ", strings.Replace(err.Error(), "*/", "* /", -1))
 	}
 
-	// TODO: maybe post-process output to prevent it from containing
+	// TODO: maybe post-process output to prevent it from containing id:1170 gh:1178
 	// "<!--", "-->", "<![CDATA[", "]]>", or "</script"
 	// in case custom marshalers produce output containing those.
 
-	// TODO: Maybe abbreviate \u00ab to \xab to produce more compact output.
+	// TODO: Maybe abbreviate \u00ab to \xab to produce more compact output. id:1186 gh:1194
 	if len(b) == 0 {
 		// In, `x=y/{{.}}*z` a json.Marshaler that produces "" should
 		// not cause the output `x=y/*z`.

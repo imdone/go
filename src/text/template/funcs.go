@@ -326,7 +326,7 @@ func not(arg reflect.Value) bool {
 
 // Comparison.
 
-// TODO: Perhaps allow comparison between signed and unsigned integers.
+// TODO: Perhaps allow comparison between signed and unsigned integers. id:1321 gh:1329
 
 var (
 	errBadComparisonType = errors.New("invalid type for comparison")

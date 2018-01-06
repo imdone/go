@@ -703,7 +703,7 @@ const (
 )
 
 // fixedlit handles struct, array, and slice literals.
-// TODO: expand documentation.
+// TODO: expand documentation. id:118 gh:119
 func fixedlit(ctxt initContext, kind initKind, n *Node, var_ *Node, init *Nodes) {
 	var splitnode func(*Node) (a *Node, value *Node)
 	switch n.Op {
@@ -891,7 +891,7 @@ func slicelit(ctxt initContext, n *Node, var_ *Node, init *Nodes) {
 		a.SetBounded(true)
 		index++
 
-		// TODO need to check bounds?
+		// TODO need to check bounds? id:230 gh:231
 
 		switch value.Op {
 		case OSLICELIT:
@@ -953,7 +953,7 @@ func maplit(n *Node, m *Node, init *Nodes) {
 		tk := types.NewArray(n.Type.Key(), int64(len(stat)))
 		tv := types.NewArray(n.Type.Val(), int64(len(stat)))
 
-		// TODO(josharian): suppress alg generation for these types?
+		// TODO (josharian): suppress alg generation for these types? id:353 gh:354
 		dowidth(tk)
 		dowidth(tv)
 
@@ -1014,7 +1014,7 @@ func addMapEntries(m *Node, dyn []*Node, init *Nodes) {
 
 	// Build list of var[c] = expr.
 	// Use temporaries so that mapassign1 can have addressable key, val.
-	// TODO(josharian): avoid map key temporaries for mapfast_* assignments with literal keys.
+	// TODO (josharian): avoid map key temporaries for mapfast_* assignments with literal keys. id:198 gh:199
 	key := temp(m.Type.Key())
 	val := temp(m.Type.Val())
 

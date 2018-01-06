@@ -136,7 +136,7 @@ func (z *Float) scan(r io.ByteScanner, base int) (f *Float, b int, err error) {
 	// exp5 != 0
 
 	// apply 5**exp5
-	p := new(Float).SetPrec(z.Prec() + 64) // use more bits for p -- TODO(gri) what is the right number?
+	p := new(Float).SetPrec(z.Prec() + 64) // use more bits for p -- TODO (gri) what is the right number? id:1030 gh:1038
 	if exp5 < 0 {
 		z.Quo(z, p.pow5(uint64(-exp5)))
 	} else {
@@ -196,7 +196,7 @@ func (z *Float) pow5(n uint64) *Float {
 	n -= m
 
 	// use more bits for f than for z
-	// TODO(gri) what is the right number?
+	// TODO (gri) what is the right number? id:820 gh:821
 	f := new(Float).SetPrec(z.Prec() + 64).SetUint64(5)
 
 	for n > 0 {

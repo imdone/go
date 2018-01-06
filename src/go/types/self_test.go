@@ -33,7 +33,7 @@ func TestSelf(t *testing.T) {
 		// Importing go/constant doesn't work in the
 		// build dashboard environment. Don't report an error
 		// for now so that the build remains green.
-		// TODO(gri) fix this
+		// TODO (gri) fix this id:915 gh:923
 		t.Log(err) // replace w/ t.Fatal eventually
 		return
 	}

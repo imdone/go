@@ -1171,7 +1171,7 @@ var reorderTests = []struct {
 	{"%[5]d %[2]d %d", SE{1, 2, 3}, "%!d(BADINDEX) 2 3"},
 	{"%d %[3]d %d", SE{1, 2}, "1 %!d(BADINDEX) 2"}, // Erroneous index does not affect sequence.
 	{"%.[]", SE{}, "%!](BADINDEX)"},                // Issue 10675
-	{"%.-3d", SE{42}, "%!-(int=42)3d"},             // TODO: Should this set return better error messages?
+	{"%.-3d", SE{42}, "%!-(int=42)3d"},             // TODO: Should this set return better error messages? id:1130 gh:1138
 	{"%2147483648d", SE{42}, "%!(NOVERB)%!(EXTRA int=42)"},
 	{"%-2147483648d", SE{42}, "%!(NOVERB)%!(EXTRA int=42)"},
 	{"%.2147483648d", SE{42}, "%!(NOVERB)%!(EXTRA int=42)"},
@@ -1376,7 +1376,7 @@ var mallocTest = []struct {
 	{2, `Sprintf("%x")`, func() { Sprintf("%x", 7) }},
 	{2, `Sprintf("%s")`, func() { Sprintf("%s", "hello") }},
 	{3, `Sprintf("%x %x")`, func() { Sprintf("%x %x", 7, 112) }},
-	{2, `Sprintf("%g")`, func() { Sprintf("%g", float32(3.14159)) }}, // TODO: Can this be 1?
+	{2, `Sprintf("%g")`, func() { Sprintf("%g", float32(3.14159)) }}, // TODO: Can this be 1? id:616 gh:617
 	{1, `Fprintf(buf, "%s")`, func() { mallocBuf.Reset(); Fprintf(&mallocBuf, "%s", "hello") }},
 	// If the interface value doesn't need to allocate, amortized allocation overhead should be zero.
 	{0, `Fprintf(buf, "%x %x %x")`, func() {

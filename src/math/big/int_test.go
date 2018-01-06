@@ -42,7 +42,7 @@ var prodZZ = []argZZ{
 	{NewInt(0), NewInt(1), NewInt(0)},
 	{NewInt(1), NewInt(1), NewInt(1)},
 	{NewInt(-991 * 991), NewInt(991), NewInt(-991)},
-	// TODO(gri) add larger products
+	// TODO (gri) add larger products id:823 gh:824
 }
 
 func TestSignZ(t *testing.T) {

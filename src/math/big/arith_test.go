@@ -302,7 +302,7 @@ func testFunVWW(t *testing.T, msg string, f funVWW, a argVWW) {
 	}
 }
 
-// TODO(gri) mulAddVWW and divWVW are symmetric operations but
+// TODO (gri) mulAddVWW and divWVW are symmetric operations but id:765 gh:766
 //           their signature is not symmetric. Try to unify.
 
 type funWVW func(z []Word, xn Word, x []Word, y Word) (r Word)
@@ -363,7 +363,7 @@ var mulAddWWWTests = []struct {
 	x, y, c Word
 	q, r    Word
 }{
-	// TODO(agl): These will only work on 64-bit platforms.
+	// TODO (agl): These will only work on 64-bit platforms. id:1205 gh:1213
 	// {15064310297182388543, 0xe7df04d2d35d5d80, 13537600649892366549, 13644450054494335067, 10832252001440893781},
 	// {15064310297182388543, 0xdab2f18048baa68d, 13644450054494335067, 12869334219691522700, 14233854684711418382},
 	{_M, _M, 0, _M - 1, 1},

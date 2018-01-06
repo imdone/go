@@ -300,7 +300,7 @@ func (p *addrParser) parseAddress(handleGroup bool) ([]*Address, error) {
 
 	// addr-spec has a more restricted grammar than name-addr,
 	// so try parsing it first, and fallback to name-addr.
-	// TODO(dsymonds): Is this really correct?
+	// TODO (dsymonds): Is this really correct? id:1177 gh:1185
 	spec, err := p.consumeAddrSpec()
 	if err == nil {
 		var displayName string
@@ -431,7 +431,7 @@ func (p *addrParser) consumeAddrSpec() (spec string, err error) {
 	if p.empty() {
 		return "", errors.New("mail: no domain in addr-spec")
 	}
-	// TODO(dsymonds): Handle domain-literal
+	// TODO (dsymonds): Handle domain-literal id:936 gh:944
 	domain, err = p.consumeAtom(true, false)
 	if err != nil {
 		return "", err
@@ -589,7 +589,7 @@ func (p *addrParser) consumeDisplayNameComment() (string, error) {
 		return "", errors.New("mail: misformatted parenthetical comment")
 	}
 
-	// TODO(stapelberg): parse quoted-string within comment
+	// TODO (stapelberg): parse quoted-string within comment id:1346 gh:1354
 	words := strings.FieldsFunc(comment, func(r rune) bool { return r == ' ' || r == '\t' })
 	for idx, word := range words {
 		decoded, isEncoded, err := p.decodeRFC2047Word(word)

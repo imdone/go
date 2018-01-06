@@ -53,7 +53,7 @@ func LookupFieldOrMethod(T Type, addressable bool, pkg *Package, name string) (o
 	return lookupFieldOrMethod(T, addressable, pkg, name)
 }
 
-// TODO(gri) The named type consolidation and seen maps below must be
+// TODO (gri) The named type consolidation and seen maps below must be id:1166 gh:1174
 //           indexed by unique keys for a given type. Verify that named
 //           types always have only one representation (even when imported
 //           indirectly via different packages.)
@@ -151,7 +151,7 @@ func lookupFieldOrMethod(T Type, addressable bool, pkg *Package, name string) (o
 					// depth.
 					if obj == nil && f.anonymous {
 						typ, isPtr := deref(f.typ)
-						// TODO(gri) optimization: ignore types that can't
+						// TODO (gri) optimization: ignore types that can't id:786 gh:787
 						// have fields or methods (only Named, Struct, and
 						// Interface types need to be considered).
 						next = append(next, embeddedType{typ, concat(e.index, i), e.indirect || isPtr, e.multiples})
@@ -160,7 +160,7 @@ func lookupFieldOrMethod(T Type, addressable bool, pkg *Package, name string) (o
 
 			case *Interface:
 				// look for a matching method
-				// TODO(gri) t.allMethods is sorted - use binary search
+				// TODO (gri) t.allMethods is sorted - use binary search id:813 gh:814
 				if i, m := lookupMethod(t.allMethods, pkg, name); m != nil {
 					assert(m.typ != nil)
 					index = concat(e.index, i)
@@ -253,10 +253,10 @@ func MissingMethod(V Type, T *Interface, static bool) (method *Func, wrongType b
 		return
 	}
 
-	// TODO(gri) Consider using method sets here. Might be more efficient.
+	// TODO (gri) Consider using method sets here. Might be more efficient. id:726 gh:727
 
 	if ityp, _ := V.Underlying().(*Interface); ityp != nil {
-		// TODO(gri) allMethods is sorted - can do this more efficiently
+		// TODO (gri) allMethods is sorted - can do this more efficiently id:906 gh:914
 		for _, m := range T.allMethods {
 			_, obj := lookupMethod(ityp.allMethods, m.pkg, m.name)
 			switch {

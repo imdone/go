@@ -32,7 +32,7 @@ func ShortPath(path string) string {
 // made relative to the current directory if they would be shorter.
 func RelPaths(paths []string) []string {
 	var out []string
-	// TODO(rsc): Can this use Cwd from above?
+	// TODO (rsc): Can this use Cwd from above? id:420 gh:421
 	pwd, _ := os.Getwd()
 	for _, p := range paths {
 		rel, err := filepath.Rel(pwd, p)

@@ -200,7 +200,7 @@ func (p platform) vet() {
 	w.load(p.os, p.arch)
 
 	// 'go tool vet .' is considerably faster than 'go vet ./...'
-	// TODO: The unsafeptr checks are disabled for now,
+	// TODO: The unsafeptr checks are disabled for now, id:628 gh:629
 	// because there are so many false positives,
 	// and no clear way to improve vet to eliminate large chunks of them.
 	// And having them in the whitelists will just cause annoyance

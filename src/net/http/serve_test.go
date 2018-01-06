@@ -1862,7 +1862,7 @@ var handlerBodyCloseTests = [...]handlerBodyCloseTest{
 	// Small enough to slurp past to the next request +
 	// declares Connection: close,
 	// but chunked, so it might have trailers.
-	// TODO: maybe skip this search if no trailers were declared
+	// TODO: maybe skip this search if no trailers were declared id:1282 gh:1290
 	// in the headers.
 	3: {
 		bodySize:      20 << 10,
@@ -1891,7 +1891,7 @@ var handlerBodyCloseTests = [...]handlerBodyCloseTest{
 	},
 
 	// Big with Connection: close, but chunked, so search for trailers.
-	// TODO: maybe skip this search if no trailers were declared
+	// TODO: maybe skip this search if no trailers were declared id:901 gh:909
 	// in the headers.
 	6: {
 		bodySize:      1 << 20,
@@ -4209,7 +4209,7 @@ func TestCloseWrite(t *testing.T) {
 // This verifies that a handler can Flush and then Hijack.
 //
 // An similar test crashed once during development, but it was only
-// testing this tangentially and temporarily until another TODO was
+// testing this tangentially and temporarily until another TODO was id:1163 gh:1170
 // fixed.
 //
 // So add an explicit test for this.

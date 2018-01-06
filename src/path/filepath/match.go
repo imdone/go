@@ -339,6 +339,6 @@ func glob(dir, pattern string, matches []string) (m []string, e error) {
 // hasMeta reports whether path contains any of the magic characters
 // recognized by Match.
 func hasMeta(path string) bool {
-	// TODO(niemeyer): Should other magic characters be added here?
+	// TODO (niemeyer): Should other magic characters be added here? id:1196 gh:1204
 	return strings.ContainsAny(path, "*?[")
 }

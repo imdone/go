@@ -69,7 +69,7 @@ import (
 func TestAssembly(t *testing.T) {
 	testenv.MustHaveGoBuild(t)
 	if runtime.GOOS == "windows" {
-		// TODO: remove if we can get "go tool compile -S" to work on windows.
+		// TODO: remove if we can get "go tool compile -S" to work on windows. id:60 gh:61
 		t.Skipf("skipping test: recursive windows compile not working")
 	}
 	dir, err := ioutil.TempDir("", "TestAssembly")
@@ -1011,7 +1011,7 @@ var linuxAMD64Tests = []*asmTest{
 	},
 	{
 		fn: `
-		func f71(a,b unsafe.Pointer) bool { // This was a TODO in mapaccess1_faststr
+		func f71(a,b unsafe.Pointer) bool { // This was a TODO in mapaccess1_faststr id:45 gh:46
 		    return *((*[4]byte)(a)) != *((*[4]byte)(b))
 		}`,
 		pos: []string{"\tCMPL\t[A-Z]"},

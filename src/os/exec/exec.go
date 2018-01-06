@@ -617,7 +617,7 @@ type prefixSuffixSaver struct {
 	suffixOff int    // offset to write into suffix
 	skipped   int64
 
-	// TODO(bradfitz): we could keep one large []byte and use part of it for
+	// TODO (bradfitz): we could keep one large []byte and use part of it for id:1314 gh:1322
 	// the prefix, reserve space for the '... Omitting N bytes ...' message,
 	// then the ring buffer suffix, and just rearrange the ring buffer
 	// suffix when Bytes() is called, but it doesn't seem worth it for

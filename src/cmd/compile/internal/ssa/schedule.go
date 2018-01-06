@@ -60,7 +60,7 @@ func (h ValHeap) Less(i, j int) bool {
 // Schedule the Values in each Block. After this phase returns, the
 // order of b.Values matters and is the order in which those values
 // will appear in the assembly output. For now it generates a
-// reasonable valid schedule using a priority queue. TODO(khr):
+// reasonable valid schedule using a priority queue. TODO (khr): id:227 gh:228
 // schedule smarter.
 func schedule(f *Func) {
 	// For each value, the number of times it is used in the block
@@ -219,7 +219,7 @@ func schedule(f *Func) {
 
 			// Add it to the schedule.
 			// Do not emit tuple-reading ops until we're ready to emit the tuple-generating op.
-			//TODO: maybe remove ReadTuple score above, if it does not help on performance
+			//TODO: maybe remove ReadTuple score above, if it does not help on performance id:382 gh:383
 			switch {
 			case v.Op == OpSelect0:
 				if tuples[v.Args[0].ID] == nil {

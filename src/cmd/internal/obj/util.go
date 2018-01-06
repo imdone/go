@@ -31,7 +31,7 @@ func (p *Prog) InnermostLineNumber() string {
 // InnermostFilename returns a string containing the innermost
 // (in inlining) filename at p's position
 func (p *Prog) InnermostFilename() string {
-	// TODO For now, this is only used for debugging output, and if we need more/better information, it might change.
+	// TODO For now, this is only used for debugging output, and if we need more/better information, it might change. id:584 gh:585
 	// An example of what we might want to see is the full stack of positions for inlined code, so we get some visibility into what is recorded there.
 	pos := p.Ctxt.InnermostPos(p.Pos)
 	if !pos.IsKnown() {
@@ -181,7 +181,7 @@ func Dconv(p *Prog, a *Addr) string {
 		}
 
 	case TYPE_REG:
-		// TODO(rsc): This special case is for x86 instructions like
+		// TODO (rsc): This special case is for x86 instructions like id:920 gh:928
 		//	PINSRQ	CX,$1,X6
 		// where the $1 is included in the p->to Addr.
 		// Move into a new field.

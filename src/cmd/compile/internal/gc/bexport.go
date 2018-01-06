@@ -130,7 +130,7 @@ import (
 // lead to massively larger export data (by a factor of 2 to 3) and should only
 // be enabled during development and debugging.
 //
-// NOTE: This flag is the first flag to enable if importing dies because of
+// NOTE: This flag is the first flag to enable if importing dies because of id:166 gh:167
 // (suspected) format errors, and whenever a change is made to the format.
 const debugFormat = false // default: false
 
@@ -161,7 +161,7 @@ const exportInlined = true // default: true
 // Note that when a type is only seen once, as many unnamed types are,
 // it is less efficient to track it, since we then also record an index for it.
 // See CLs 41622 and 41623 for some data and discussion.
-// TODO(gri) enable selectively and remove once issues caused by it are fixed
+// TODO (gri) enable selectively and remove once issues caused by it are fixed id:128 gh:129
 const trackAllTypes = false
 
 type exporter struct {
@@ -242,7 +242,7 @@ func export(out *bufio.Writer, trace bool) int {
 			// Closures are added to exportlist, but with Exported
 			// already set. The export code below skips over them, so
 			// we have to here as well.
-			// TODO(mdempsky): Investigate why. This seems suspicious.
+			// TODO (mdempsky): Investigate why. This seems suspicious. id:49 gh:50
 			continue
 		}
 		p.markType(asNode(sym.Def).Type)
@@ -279,7 +279,7 @@ func export(out *bufio.Writer, trace bool) int {
 		}
 		sym.SetExported(true)
 
-		// TODO(gri) Closures have dots in their names;
+		// TODO (gri) Closures have dots in their names; id:62 gh:63
 		// e.g., TestFloatZeroValue.func1 in math/big tests.
 		if strings.Contains(sym.Name, ".") {
 			Fatalf("exporter: unexpected symbol: %v", sym)
@@ -289,7 +289,7 @@ func export(out *bufio.Writer, trace bool) int {
 			Fatalf("exporter: unknown export symbol: %v", sym)
 		}
 
-		// TODO(gri) Optimization: Probably worthwhile collecting
+		// TODO (gri) Optimization: Probably worthwhile collecting id:48 gh:49
 		// long runs of constants and export them "in bulk" (saving
 		// tags and types, and making import faster).
 
@@ -331,7 +331,7 @@ func export(out *bufio.Writer, trace bool) int {
 		n := exportlist[i]
 		sym := n.Sym
 
-		// TODO(gri) The rest of this loop body is identical with
+		// TODO (gri) The rest of this loop body is identical with id:168 gh:169
 		// the loop body above. Leave alone for now since there
 		// are different optimization opportunities, but factor
 		// eventually.
@@ -341,7 +341,7 @@ func export(out *bufio.Writer, trace bool) int {
 		}
 		sym.SetExported(true)
 
-		// TODO(gri) Closures have dots in their names;
+		// TODO (gri) Closures have dots in their names; id:130 gh:131
 		// e.g., TestFloatZeroValue.func1 in math/big tests.
 		if strings.Contains(sym.Name, ".") {
 			Fatalf("exporter: unexpected symbol: %v", sym)
@@ -351,7 +351,7 @@ func export(out *bufio.Writer, trace bool) int {
 			Fatalf("exporter: unknown export symbol: %v", sym)
 		}
 
-		// TODO(gri) Optimization: Probably worthwhile collecting
+		// TODO (gri) Optimization: Probably worthwhile collecting id:52 gh:53
 		// long runs of constants and export them "in bulk" (saving
 		// tags and types, and making import faster).
 
@@ -538,7 +538,7 @@ func (p *exporter) obj(sym *types.Sym) {
 	switch n.Op {
 	case OLITERAL:
 		// constant
-		// TODO(gri) determine if we need the typecheck call here
+		// TODO (gri) determine if we need the typecheck call here id:65 gh:66
 		n = typecheck(n, Erv)
 		if n == nil || n.Op != OLITERAL {
 			Fatalf("exporter: dumpexportconst: oconst nil: %v", sym)
@@ -546,7 +546,7 @@ func (p *exporter) obj(sym *types.Sym) {
 
 		p.tag(constTag)
 		p.pos(n)
-		// TODO(gri) In inlined functions, constants are used directly
+		// TODO (gri) In inlined functions, constants are used directly id:50 gh:51
 		// so they should never occur as re-exported objects. We may
 		// not need the qualified name here. See also comment above.
 		// Possible space optimization.
@@ -592,7 +592,7 @@ func (p *exporter) obj(sym *types.Sym) {
 			var f *Func
 			if inlineable && asNode(sym.Def).Func.ExportInline() {
 				f = asNode(sym.Def).Func
-				// TODO(gri) re-examine reexportdeplist:
+				// TODO (gri) re-examine reexportdeplist: id:170 gh:171
 				// Because we can trivially export types
 				// in-place, we don't need to collect types
 				// inside function bodies in the exportlist.
@@ -682,7 +682,7 @@ func isInlineable(n *Node) bool {
 		// Currently that can leave unresolved ONONAMEs in
 		// import-dot-ed packages in the wrong package.
 		//
-		// TODO(mdempsky): Having the ExportInline check here
+		// TODO (mdempsky): Having the ExportInline check here id:135 gh:136
 		// instead of the outer if statement means we end up
 		// exporting parameter names even for functions whose
 		// inline body won't be exported by this package. This
@@ -764,7 +764,7 @@ func (p *exporter) typ(t *types.Type) {
 		}
 
 		// sort methods for reproducible export format
-		// TODO(gri) Determine if they are already sorted
+		// TODO (gri) Determine if they are already sorted id:59 gh:60
 		// in which case we can drop this step.
 		var methods []*types.Field
 		methods = append(methods, t.Methods().Slice()...)
@@ -990,7 +990,7 @@ func (p *exporter) paramList(params *types.Type, numbered bool) {
 	// (look at the first parameter only since either all
 	// names are present or all are absent)
 	//
-	// TODO(gri) If we don't have an exported function
+	// TODO (gri) If we don't have an exported function id:67 gh:68
 	// body, the parameter names are irrelevant for the
 	// compiler (though they may be of use for other tools).
 	// Possible space optimization.
@@ -1020,7 +1020,7 @@ func (p *exporter) param(q *types.Field, n int, numbered bool) {
 			// have a proper name and package so we don't crash
 			// during import (see also issue #15470).
 			// (parName uses "" instead of "?" as in fmt.go)
-			// TODO(gri) review parameter name encoding
+			// TODO (gri) review parameter name encoding id:54 gh:55
 			name = "_"
 		}
 		p.string(name)
@@ -1033,7 +1033,7 @@ func (p *exporter) param(q *types.Field, n int, numbered bool) {
 			// the name. The _ (blank) parameter cannot be accessed, so
 			// we don't need to export a package.
 			//
-			// TODO(gri) This is compiler-specific. Try using importpkg
+			// TODO (gri) This is compiler-specific. Try using importpkg id:173 gh:174
 			// here and then update the symbols if we find an inlined
 			// body only. Otherwise, the parameter name is ignored and
 			// the package doesn't matter. This would remove an int
@@ -1041,7 +1041,7 @@ func (p *exporter) param(q *types.Field, n int, numbered bool) {
 			p.pkg(q.Sym.Pkg)
 		}
 	}
-	// TODO(gri) This is compiler-specific (escape info).
+	// TODO (gri) This is compiler-specific (escape info). id:138 gh:139
 	// Move into compiler-specific section eventually?
 	// (Not having escape info causes tests to fail, e.g. runtime GCInfoTest)
 	p.string(q.Note)
@@ -1179,7 +1179,7 @@ func (p *exporter) float(x *Mpflt) {
 // but instead of emitting the information textually, emit the node tree in
 // binary form.
 
-// TODO(gri) Improve tracing output. The current format is difficult to read.
+// TODO (gri) Improve tracing output. The current format is difficult to read. id:64 gh:65
 
 // stmtList may emit more (or fewer) than len(list) nodes.
 func (p *exporter) stmtList(list Nodes) {
@@ -1196,7 +1196,7 @@ func (p *exporter) stmtList(list Nodes) {
 		if p.trace {
 			p.tracef("\n")
 		}
-		// TODO inlining produces expressions with ninits. we can't export these yet.
+		// TODO inlining produces expressions with ninits. we can't export these yet. id:70 gh:71
 		// (from fmt.go:1461ff)
 		if opprec[n.Op] < 0 {
 			p.stmt(n)
@@ -1469,8 +1469,8 @@ func (p *exporter) expr(n *Node) {
 	case ODCLCONST:
 		// if exporting, DCLCONST should just be removed as its usage
 		// has already been replaced with literals
-		// TODO(gri) these should not be exported in the first place
-		// TODO(gri) why is this considered an expression in fmt.go?
+		// TODO (gri) these should not be exported in the first place id:58 gh:59
+		// TODO (gri) why is this considered an expression in fmt.go? id:175 gh:176
 		p.op(ODCLCONST)
 		p.pos(n)
 
@@ -1637,7 +1637,7 @@ func (p *exporter) fieldSym(s *types.Sym, short bool) {
 	}
 
 	// we should never see a _ (blank) here - these are accessible ("read") fields
-	// TODO(gri) can we assert this with an explicit check?
+	// TODO (gri) can we assert this with an explicit check? id:142 gh:143
 	p.string(name)
 	if !exportname(name) {
 		p.pkg(s.Pkg)

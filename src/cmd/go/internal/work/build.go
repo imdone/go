@@ -403,7 +403,7 @@ func libname(args []string, pkgs []*load.Package) (string, error) {
 	} else if haveNonMeta { // have both meta package and a non-meta one
 		return "", errors.New("mixing of meta and non-meta packages is not allowed")
 	}
-	// TODO(mwhudson): Needs to change for platforms that use different naming
+	// TODO (mwhudson): Needs to change for platforms that use different naming id:430 gh:431
 	// conventions...
 	return "lib" + libname + ".so", nil
 }
@@ -447,7 +447,7 @@ func InstallPackages(args []string, forGet bool) {
 	var tools []*Action
 	for _, p := range pkgs {
 		// During 'go get', don't attempt (and fail) to install packages with only tests.
-		// TODO(rsc): It's not clear why 'go get' should be different from 'go install' here. See #20760.
+		// TODO (rsc): It's not clear why 'go get' should be different from 'go install' here. See #20760. id:561 gh:562
 		if forGet && len(p.GoFiles)+len(p.CgoFiles) == 0 && len(p.TestGoFiles)+len(p.XTestGoFiles) > 0 {
 			continue
 		}

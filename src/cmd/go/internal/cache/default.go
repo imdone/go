@@ -63,7 +63,7 @@ func DefaultDir() string {
 	}
 
 	// Compute default location.
-	// TODO(rsc): This code belongs somewhere else,
+	// TODO (rsc): This code belongs somewhere else, id:551 gh:552
 	// like maybe ioutil.CacheDir or os.CacheDir.
 	switch runtime.GOOS {
 	case "windows":

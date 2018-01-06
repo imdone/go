@@ -20,7 +20,7 @@ var zoneSources = []string{
 }
 
 func initLocal() {
-	// TODO(elias.naur): getprop persist.sys.timezone
+	// TODO (elias.naur): getprop persist.sys.timezone id:1325 gh:1333
 	localLoc = *UTC
 }
 

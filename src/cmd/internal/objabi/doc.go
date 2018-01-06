@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// NOTE: There are *three* independent implementations of this object
+// NOTE: There are *three* independent implementations of this object id:470 gh:471
 // file format in the Go source tree:
 //
 //	- cmd/internal/goobj/read.go (used by cmd/addr2line, cmd/nm, cmd/objdump, cmd/pprof)
@@ -115,6 +115,6 @@
 //
 // The file layout and meaning of type integers are architecture-independent.
 //
-// TODO(rsc): The file format is good for a first pass but needs work.
+// TODO (rsc): The file format is good for a first pass but needs work. id:370 gh:371
 //	- There are SymID in the object file that should really just be strings.
 package objabi

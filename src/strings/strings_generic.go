@@ -6,7 +6,7 @@
 
 package strings
 
-// TODO: implements short string optimization on non amd64 platforms
+// TODO: implements short string optimization on non amd64 platforms id:1304 gh:1312
 // and get rid of strings_amd64.go
 
 // Index returns the index of the first instance of substr in s, or -1 if substr is not present in s.

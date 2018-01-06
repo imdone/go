@@ -7,7 +7,7 @@
 // encgen writes the helper functions for encoding. Intended to be
 // used with go generate; see the invocation in encode.go.
 
-// TODO: We could do more by being unsafe. Add a -unsafe flag?
+// TODO: We could do more by being unsafe. Add a -unsafe flag? id:1118 gh:1126
 
 package main
 
@@ -123,7 +123,7 @@ var types = []Type{
 		"uint",
 		"Uint",
 		`x := state.decodeUint()
-		/*TODO if math.MaxUint32 < x {
+		/*TODO if math.MaxUint32 < x { id:602 gh:603
 			error_(ovfl)
 		}*/
 		slice[i] = uint(x)`,
@@ -227,7 +227,7 @@ const sliceHelper = `
 func dec%[2]sSlice(state *decoderState, v reflect.Value, length int, ovfl error) bool {
 	slice, ok := v.Interface().([]%[1]s)
 	if !ok {
-		// It is kind %[1]s but not type %[1]s. TODO: We can handle this unsafely.
+		// It is kind %[1]s but not type %[1]s. TODO: We can handle this unsafely. id:763 gh:764
 		return false
 	}
 	for i := 0; i < length; i++ {

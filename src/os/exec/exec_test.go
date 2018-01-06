@@ -428,7 +428,7 @@ func TestExtraFilesFDShuffle(t *testing.T) {
 	t.Skip("flaky test; see https://golang.org/issue/5780")
 	switch runtime.GOOS {
 	case "darwin":
-		// TODO(cnicolaou): https://golang.org/issue/2603
+		// TODO (cnicolaou): https://golang.org/issue/2603 id:926 gh:934
 		// leads to leaked file descriptors in this test when it's
 		// run from a builder.
 		closeUnexpectedFds(t, "TestExtraFilesFDShuffle")
@@ -760,19 +760,19 @@ func TestHelperProcess(*testing.T) {
 		}
 		switch runtime.GOOS {
 		case "dragonfly":
-			// TODO(jsing): Determine why DragonFly is leaking
+			// TODO (jsing): Determine why DragonFly is leaking id:1185 gh:1193
 			// file descriptors...
 		case "darwin":
-			// TODO(bradfitz): broken? Sometimes.
+			// TODO (bradfitz): broken? Sometimes. id:948 gh:956
 			// https://golang.org/issue/2603
 			// Skip this additional part of the test for now.
 		case "netbsd":
-			// TODO(jsing): This currently fails on NetBSD due to
+			// TODO (jsing): This currently fails on NetBSD due to id:1354 gh:1362
 			// the cloned file descriptors that result from opening
 			// /dev/urandom.
 			// https://golang.org/issue/3955
 		case "solaris":
-			// TODO(aram): This fails on Solaris because libc opens
+			// TODO (aram): This fails on Solaris because libc opens id:1316 gh:1324
 			// its own files, as it sees fit. Darwin does the same,
 			// see: https://golang.org/issue/2603
 		default:

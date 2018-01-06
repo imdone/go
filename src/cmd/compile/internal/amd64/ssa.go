@@ -277,7 +277,7 @@ func ssaGenValue(s *gc.SSAGenState, v *ssa.Value) {
 		n2.To.Type = obj.TYPE_REG
 		n2.To.Reg = x86.REG_DX
 
-		// TODO(khr): issue only the -1 fixup code we need.
+		// TODO (khr): issue only the -1 fixup code we need. id:40 gh:41
 		// For instance, if only the quotient is used, no point in zeroing the remainder.
 
 		j1.To.Val = n1
@@ -411,7 +411,7 @@ func ssaGenValue(s *gc.SSAGenState, v *ssa.Value) {
 		p.From.Offset = v.AuxInt
 		p.To.Type = obj.TYPE_REG
 		p.To.Reg = r
-		// TODO: Teach doasm to compile the three-address multiply imul $c, r1, r2
+		// TODO: Teach doasm to compile the three-address multiply imul $c, r1, r2 id:55 gh:56
 		// then we don't need to use resultInArg0 for these ops.
 		//p.From3 = new(obj.Addr)
 		//p.From3.Type = obj.TYPE_REG
@@ -742,7 +742,7 @@ func ssaGenValue(s *gc.SSAGenState, v *ssa.Value) {
 		if v.Args[0].Reg() != v.Reg() {
 			v.Fatalf("MOVXconvert should be a no-op")
 		}
-	case ssa.OpCopy: // TODO: use MOVQreg for reg->reg copies instead of OpCopy?
+	case ssa.OpCopy: // TODO: use MOVQreg for reg->reg copies instead of OpCopy? id:39 gh:40
 		if v.Type.IsMemory() {
 			return
 		}
@@ -935,7 +935,7 @@ func ssaGenValue(s *gc.SSAGenState, v *ssa.Value) {
 		s.Prog(x86.AMOVSQ)
 	case ssa.OpAMD64LoweredNilCheck:
 		// Issue a load which will fault if the input is nil.
-		// TODO: We currently use the 2-byte instruction TESTB AX, (reg).
+		// TODO: We currently use the 2-byte instruction TESTB AX, (reg). id:160 gh:161
 		// Should we use the 3-byte TESTB $0, (reg) instead? It is larger
 		// but it doesn't have false dependency on AX.
 		// Or maybe allocate an output register and use MOVL (reg),reg2 ?

@@ -107,7 +107,7 @@ func dominators(f *Func) []*Block {
 	preds := func(b *Block) []Edge { return b.Preds }
 	succs := func(b *Block) []Edge { return b.Succs }
 
-	//TODO: benchmark and try to find criteria for swapping between
+	//TODO: benchmark and try to find criteria for swapping between id:189 gh:190
 	// dominatorsSimple and dominatorsLT
 	return f.dominatorsLTOrig(f.Entry, preds, succs)
 }
@@ -298,7 +298,7 @@ func dominatorsSimple(f *Func) []*Block {
 // intersect finds the closest dominator of both b and c.
 // It requires a postorder numbering of all the blocks.
 func intersect(b, c *Block, postnum []int, idom []*Block) *Block {
-	// TODO: This loop is O(n^2). It used to be used in nilcheck,
+	// TODO: This loop is O(n^2). It used to be used in nilcheck, id:307 gh:308
 	// see BenchmarkNilCheckDeep*.
 	for b != c {
 		if postnum[b.ID] < postnum[c.ID] {

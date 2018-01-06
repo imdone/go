@@ -681,19 +681,19 @@ func decodeArg(aop instArg, x uint32) Arg {
 		return Systemreg{uint8(op0), uint8(op1), uint8(CRn), uint8(CRm), uint8(op2)}
 
 	case arg_sysop_AT_SYS_CR_system:
-		//TODO: system instruction
+		//TODO: system instruction id:495 gh:496
 		return nil
 
 	case arg_sysop_DC_SYS_CR_system:
-		//TODO: system instruction
+		//TODO: system instruction id:647 gh:648
 		return nil
 
 	case arg_sysop_SYS_CR_system:
-		//TODO: system instruction
+		//TODO: system instruction id:990 gh:998
 		return nil
 
 	case arg_sysop_TLBI_SYS_CR_system:
-		//TODO: system instruction
+		//TODO: system instruction id:556 gh:557
 		return nil
 
 	case arg_Bt:

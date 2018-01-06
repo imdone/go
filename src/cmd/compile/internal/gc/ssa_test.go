@@ -16,7 +16,7 @@ import (
 	"testing"
 )
 
-// TODO: move all these tests elsewhere?
+// TODO: move all these tests elsewhere? id:127 gh:128
 // Perhaps teach test/run.go how to run them with a new action verb.
 func runTest(t *testing.T, filename string, flags ...string) {
 	t.Parallel()

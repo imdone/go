@@ -54,7 +54,7 @@ func (check *Checker) conversion(x *operand, T Type) {
 		//   not []byte as type for the constant "foo").
 		// - Keep untyped nil for untyped nil arguments.
 		// - For integer to string conversions, keep the argument type.
-		//   (See also the TODO below.)
+		//   (See also the TODO below.) id:782 gh:783
 		if IsInterface(T) || constArg && !isConstType(T) {
 			final = Default(x.typ)
 		} else if isInteger(x.typ) && isString(T) {
@@ -66,7 +66,7 @@ func (check *Checker) conversion(x *operand, T Type) {
 	x.typ = T
 }
 
-// TODO(gri) convertibleTo checks if T(x) is valid. It assumes that the type
+// TODO (gri) convertibleTo checks if T(x) is valid. It assumes that the type id:808 gh:809
 // of x is fully known, but that's not the case for say string(1<<s + 1.0):
 // Here, the type of 1<<s + 1.0 will be UntypedFloat which will lead to the
 // (correct!) refusal of the conversion. But the reported error is essentially
@@ -139,7 +139,7 @@ func isUintptr(typ Type) bool {
 }
 
 func isUnsafePointer(typ Type) bool {
-	// TODO(gri): Is this (typ.Underlying() instead of just typ) correct?
+	// TODO (gri): Is this (typ.Underlying() instead of just typ) correct? id:722 gh:723
 	//            The spec does not say so, but gc claims it is. See also
 	//            issue 6326.
 	t, ok := typ.Underlying().(*Basic)

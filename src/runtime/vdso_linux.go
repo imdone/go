@@ -272,7 +272,7 @@ func archauxv(tag, val uintptr) {
 			return
 		}
 		var info vdso_info
-		// TODO(rsc): I don't understand why the compiler thinks info escapes
+		// TODO (rsc): I don't understand why the compiler thinks info escapes id:1048 gh:1056
 		// when passed to the three functions below.
 		info1 := (*vdso_info)(noescape(unsafe.Pointer(&info)))
 		vdso_init_from_sysinfo_ehdr(info1, (*elfEhdr)(unsafe.Pointer(val)))

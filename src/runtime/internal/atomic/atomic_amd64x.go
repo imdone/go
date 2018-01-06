@@ -50,7 +50,7 @@ func And8(ptr *uint8, val uint8)
 //go:noescape
 func Or8(ptr *uint8, val uint8)
 
-// NOTE: Do not add atomicxor8 (XOR is not idempotent).
+// NOTE: Do not add atomicxor8 (XOR is not idempotent). id:997 gh:1005
 
 //go:noescape
 func Cas64(ptr *uint64, old, new uint64) bool

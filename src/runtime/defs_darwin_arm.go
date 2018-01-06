@@ -222,7 +222,7 @@ type regs32 struct {
 }
 
 type exceptionstate32 struct {
-	trapno     uint32 // NOTE: on 386, the trapno field is split into trapno and cpu
+	trapno     uint32 // NOTE: on 386, the trapno field is split into trapno and cpu id:989 gh:997
 	err        uint32
 	faultvaddr uint32
 }

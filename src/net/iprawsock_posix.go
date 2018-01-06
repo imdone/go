@@ -43,7 +43,7 @@ func (a *IPAddr) toLocal(net string) sockaddr {
 }
 
 func (c *IPConn) readFrom(b []byte) (int, *IPAddr, error) {
-	// TODO(cw,rsc): consider using readv if we know the family
+	// TODO (cw,rsc): consider using readv if we know the family id:1292 gh:1300
 	// type to avoid the header trim/copy
 	var addr *IPAddr
 	n, sa, err := c.fd.readFrom(b)

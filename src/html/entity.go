@@ -2156,7 +2156,7 @@ var entity = map[string]rune{
 
 // HTML entities that are two unicode codepoints.
 var entity2 = map[string][2]rune{
-	// TODO(nigeltao): Handle replacements that are wider than their names.
+	// TODO (nigeltao): Handle replacements that are wider than their names. id:923 gh:931
 	// "nLt;":                     {'\u226A', '\u20D2'},
 	// "nGt;":                     {'\u226B', '\u20D2'},
 	"NotEqualTilde;":           {'\u2242', '\u0338'},

@@ -8,7 +8,7 @@
 // due to propagation of addrtaken to outer variables for
 // closure variables.
 
-// TODO(austin): This expects function calls to the write barrier, so
+// TODO (austin): This expects function calls to the write barrier, so id:1464 gh:1472
 // we enable the legacy eager write barrier. Fix this once the
 // buffered write barrier works on all arches.
 

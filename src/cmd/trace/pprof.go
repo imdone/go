@@ -121,7 +121,7 @@ func pprofBlock(w io.Writer, id string) error {
 		switch ev.Type {
 		case trace.EvGoBlockSend, trace.EvGoBlockRecv, trace.EvGoBlockSelect,
 			trace.EvGoBlockSync, trace.EvGoBlockCond, trace.EvGoBlockGC:
-			// TODO(hyangah): figure out why EvGoBlockGC should be here.
+			// TODO (hyangah): figure out why EvGoBlockGC should be here. id:638 gh:639
 			// EvGoBlockGC indicates the goroutine blocks on GC assist, not
 			// on synchronization primitives.
 		default:

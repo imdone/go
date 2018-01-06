@@ -10,7 +10,7 @@ import (
 	"testing"
 )
 
-// TODO(mattn):
+// TODO (mattn): id:889 gh:897
 //	test ProxyAuth
 
 var UseProxyTests = []struct {

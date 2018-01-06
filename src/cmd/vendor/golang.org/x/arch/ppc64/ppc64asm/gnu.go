@@ -35,7 +35,7 @@ func GNUSyntax(inst Inst) string {
 }
 
 // gnuArg formats arg (which is the argIndex's arg in inst) according to GNU rules.
-// NOTE: because GNUSyntax is the only caller of this func, and it receives a copy
+// NOTE: because GNUSyntax is the only caller of this func, and it receives a copy id:993 gh:1001
 //       of inst, it's ok to modify inst.Args here.
 func gnuArg(inst *Inst, argIndex int, arg Arg) string {
 	// special cases for load/store instructions

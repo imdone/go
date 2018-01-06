@@ -99,7 +99,7 @@ type factsTable struct {
 	limitStack []limitFact // previous entries
 
 	// For each slice s, a map from s to a len(s)/cap(s) value (if any)
-	// TODO: check if there are cases that matter where we have
+	// TODO: check if there are cases that matter where we have id:523 gh:524
 	// more than one len(s) for a slice. We could keep a list if necessary.
 	lens map[ID]*Value
 	caps map[ID]*Value
@@ -149,7 +149,7 @@ func (ft *factsTable) get(v, w *Value, d domain) relation {
 				r = lt | eq
 			}
 		case unsigned:
-			// TODO: also use signed data if lim.min >= 0?
+			// TODO: also use signed data if lim.min >= 0? id:303 gh:304
 			var uc uint64
 			switch w.Op {
 			case OpConst64:
@@ -430,7 +430,7 @@ var (
 		OpGreater64:  {signed, gt},
 		OpGreater64U: {unsigned, gt},
 
-		// TODO: OpIsInBounds actually test 0 <= a < b. This means
+		// TODO: OpIsInBounds actually test 0 <= a < b. This means id:305 gh:306
 		// that the positive branch learns signed/LT and unsigned/LT
 		// but the negative branch only learns unsigned/GE.
 		OpIsInBounds:      {unsigned, lt},
@@ -567,7 +567,7 @@ func getBranch(sdom SparseTree, p *Block, b *Block) branch {
 	// no path from entry to b passes through p.Succs[1]. If p.Succs[0]
 	// has one predecessor then (apart from the degenerate case),
 	// there is no path from entry that can reach b through p.Succs[1].
-	// TODO: how about p->yes->b->yes, i.e. a loop in yes.
+	// TODO: how about p->yes->b->yes, i.e. a loop in yes. id:213 gh:214
 	if sdom.isAncestorEq(p.Succs[0].b, b) && len(p.Succs[0].b.Preds) == 1 {
 		return positive
 	}
@@ -732,7 +732,7 @@ func simplifyBlock(ft *factsTable, b *Block) branch {
 		}
 	}
 
-	// HACK: If the first argument of IsInBounds or IsSliceInBounds
+	// HACK: If the first argument of IsInBounds or IsSliceInBounds id:374 gh:375
 	// is a constant and we already know that constant is smaller (or equal)
 	// to the upper bound than this is proven. Most useful in cases such as:
 	// if len(a) <= 1 { return }

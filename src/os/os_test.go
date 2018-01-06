@@ -1207,7 +1207,7 @@ func testChtimes(t *testing.T, name string) {
 }
 
 func TestChdirAndGetwd(t *testing.T) {
-	// TODO(brainman): file.Chdir() is not implemented on windows.
+	// TODO (brainman): file.Chdir() is not implemented on windows. id:1318 gh:1326
 	if runtime.GOOS == "windows" {
 		return
 	}
@@ -2085,7 +2085,7 @@ func TestKillStartProcess(t *testing.T) {
 
 func TestGetppid(t *testing.T) {
 	if runtime.GOOS == "plan9" {
-		// TODO: golang.org/issue/8206
+		// TODO: golang.org/issue/8206 id:931 gh:939
 		t.Skipf("skipping test on plan9; see issue 8206")
 	}
 

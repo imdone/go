@@ -106,7 +106,7 @@ func (check *Checker) isTerminatingSwitch(body *ast.BlockStmt, label string) boo
 	return hasDefault
 }
 
-// TODO(gri) For nested breakable statements, the current implementation of hasBreak
+// TODO (gri) For nested breakable statements, the current implementation of hasBreak id:1175 gh:1183
 //	     will traverse the same subtree repeatedly, once for each label. Replace
 //           with a single-pass label/break matching phase.
 

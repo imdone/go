@@ -77,7 +77,7 @@ type loopnest struct {
 	po             []*Block
 	sdom           SparseTree
 	loops          []*loop
-	hasIrreducible bool // TODO current treatment of irreducible loops is very flaky, if accurate loops are needed, must punt at function level.
+	hasIrreducible bool // TODO current treatment of irreducible loops is very flaky, if accurate loops are needed, must punt at function level. id:360 gh:361
 
 	// Record which of the lazily initialized fields have actually been initialized.
 	initializedChildren, initializedDepth, initializedExits bool
@@ -146,7 +146,7 @@ func likelyadjust(f *Func) {
 			local[b.ID] = blRET
 			certain[b.ID] = blRET
 
-			// Calls. TODO not all calls are equal, names give useful clues.
+			// Calls. TODO not all calls are equal, names give useful clues. id:520 gh:521
 			// Any name-based heuristics are only relative to other calls,
 			// and less influential than inferences from loop structure.
 		case BlockDefer:
@@ -174,7 +174,7 @@ func likelyadjust(f *Func) {
 				prediction := b.Likely
 				// Weak loop heuristic -- both source and at least one dest are in loops,
 				// and there is a difference in the destinations.
-				// TODO what is best arrangement for nested loops?
+				// TODO what is best arrangement for nested loops? id:294 gh:295
 				if l != nil && l0 != l1 {
 					noprediction := false
 					switch {
@@ -331,7 +331,7 @@ func loopnestfor(f *Func) *loopnest {
 					fmt.Printf("loop finding    succ %s of %s is IRRED, in %s\n", bb.String(), b.String(), f.Name)
 				}
 			} else if l != nil {
-				// TODO handle case where l is irreducible.
+				// TODO handle case where l is irreducible. id:295 gh:296
 				// Perhaps a loop header is inherited.
 				// is there any loop containing our successor whose
 				// header dominates b?

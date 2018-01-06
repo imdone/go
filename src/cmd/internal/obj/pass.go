@@ -65,7 +65,7 @@ func checkaddr(ctxt *Link, p *Prog, a *Addr) {
 		return
 
 	case TYPE_CONST:
-		// TODO(rsc): After fixing SHRQ, check a.Index != 0 too.
+		// TODO (rsc): After fixing SHRQ, check a.Index != 0 too. id:449 gh:450
 		if a.Name != 0 || a.Sym != nil || a.Reg != 0 {
 			ctxt.Diag("argument is TYPE_CONST, should be TYPE_ADDR, in %v", p)
 			return
@@ -83,8 +83,8 @@ func checkaddr(ctxt *Link, p *Prog, a *Addr) {
 		return
 
 	case TYPE_REG:
-		// TODO(rsc): After fixing PINSRQ, check a.Offset != 0 too.
-		// TODO(rsc): After fixing SHRQ, check a.Index != 0 too.
+		// TODO (rsc): After fixing PINSRQ, check a.Offset != 0 too. id:580 gh:581
+		// TODO (rsc): After fixing SHRQ, check a.Index != 0 too. id:913 gh:921
 		if a.Scale != 0 || a.Name != 0 || a.Sym != nil {
 			break
 		}
@@ -136,7 +136,7 @@ func linkpatch(ctxt *Link, sym *LSym, newprog ProgAlloc) {
 			continue
 		}
 		if p.To.Val != nil {
-			// TODO: Remove To.Val.(*Prog) in favor of p->pcond.
+			// TODO: Remove To.Val.(*Prog) in favor of p->pcond. id:458 gh:459
 			p.Pcond = p.To.Val.(*Prog)
 			continue
 		}

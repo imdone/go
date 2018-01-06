@@ -25,7 +25,7 @@ type runtimeTimer struct {
 
 	when   int64
 	period int64
-	f      func(interface{}, uintptr) // NOTE: must not be closure
+	f      func(interface{}, uintptr) // NOTE: must not be closure id:1447 gh:1455
 	arg    interface{}
 	seq    uintptr
 }
@@ -490,7 +490,7 @@ var net = struct {
 	listener: make(map[netAddr]*netFile),
 }
 
-// TODO(rsc): Some day, do a better job with port allocation.
+// TODO (rsc): Some day, do a better job with port allocation. id:1418 gh:1426
 // For playground programs, incrementing is fine.
 var nextport = 2
 

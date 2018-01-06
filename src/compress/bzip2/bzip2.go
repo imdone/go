@@ -235,7 +235,7 @@ func (bz2 *reader) read(buf []byte) (int, error) {
 // readBlock reads a bzip2 block. The magic number should already have been consumed.
 func (bz2 *reader) readBlock() (err error) {
 	br := &bz2.br
-	bz2.wantBlockCRC = uint32(br.ReadBits64(32)) // skip checksum. TODO: check it if we can figure out what it is.
+	bz2.wantBlockCRC = uint32(br.ReadBits64(32)) // skip checksum. TODO: check it if we can figure out what it is. id:672 gh:673
 	bz2.blockCRC = 0
 	bz2.fileCRC = (bz2.fileCRC<<1 | bz2.fileCRC>>31) ^ bz2.wantBlockCRC
 	randomized := br.ReadBits(1)

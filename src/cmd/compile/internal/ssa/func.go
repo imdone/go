@@ -407,7 +407,7 @@ func (b *Block) NewValue4(pos src.XPos, op Op, t *types.Type, arg0, arg1, arg2, 
 
 // constVal returns a constant value for c.
 func (f *Func) constVal(pos src.XPos, op Op, t *types.Type, c int64, setAuxInt bool) *Value {
-	// TODO remove unused pos parameter, both here and in *func.ConstXXX callers.
+	// TODO remove unused pos parameter, both here and in *func.ConstXXX callers. id:221 gh:222
 	if f.constants == nil {
 		f.constants = make(map[int64][]*Value)
 	}

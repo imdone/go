@@ -4,9 +4,9 @@
 
 // This file contains tests for the printf checker.
 
-// TODO(rsc): The user-defined wrapper tests are commented out
+// TODO (rsc): The user-defined wrapper tests are commented out id:670 gh:671
 // because they produced too many false positives when vet was
-// enabled during go test. See the TODO in ../print.go for a plan
+// enabled during go test. See the TODO in ../print.go for a plan id:1020 gh:1028
 // to fix that; when it's fixed, uncomment the user-defined wrapper tests.
 
 package testdata

@@ -41,7 +41,7 @@ func initExceptionHandler() {
 func isgoexception(info *exceptionrecord, r *context) bool {
 	// Only handle exception if executing instructions in Go binary
 	// (not Windows library code).
-	// TODO(mwhudson): needs to loop to support shared libs
+	// TODO (mwhudson): needs to loop to support shared libs id:1057 gh:1065
 	if r.ip() < firstmoduledata.text || firstmoduledata.etext < r.ip() {
 		return false
 	}
@@ -214,7 +214,7 @@ func signame(sig uint32) string {
 }
 
 func crash() {
-	// TODO: This routine should do whatever is needed
+	// TODO: This routine should do whatever is needed id:1299 gh:1307
 	// to make the Windows program abort/crash as it
 	// would if Go was not intercepting signals.
 	// On Unix the routine would remove the custom signal

@@ -69,7 +69,7 @@ func sysMap(v unsafe.Pointer, n uintptr, reserved bool, sysStat *uint64) {
 	if !reserved {
 		flags := int32(_MAP_ANON | _MAP_PRIVATE)
 		if GOOS == "dragonfly" {
-			// TODO(jsing): For some reason DragonFly seems to return
+			// TODO (jsing): For some reason DragonFly seems to return id:1365 gh:1373
 			// memory at a different address than we requested, even when
 			// there should be no reason for it to do so. This can be
 			// avoided by using MAP_FIXED, but I'm not sure we should need

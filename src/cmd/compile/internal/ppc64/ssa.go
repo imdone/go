@@ -1103,7 +1103,7 @@ func ssaGenValue(s *gc.SSAGenState, v *ssa.Value) {
 	case ssa.OpPPC64FlagEQ, ssa.OpPPC64FlagLT, ssa.OpPPC64FlagGT:
 		v.Fatalf("Flag* ops should never make it to codegen %v", v.LongString())
 	case ssa.OpClobber:
-		// TODO: implement for clobberdead experiment. Nop is ok for now.
+		// TODO: implement for clobberdead experiment. Nop is ok for now. id:157 gh:158
 	default:
 		v.Fatalf("genValue not implemented: %s", v.LongString())
 	}
@@ -1121,7 +1121,7 @@ var blockJump = [...]struct {
 	ssa.BlockPPC64LE: {ppc64.ABLE, ppc64.ABGT, false, false},
 	ssa.BlockPPC64GT: {ppc64.ABGT, ppc64.ABLE, false, false},
 
-	// TODO: need to work FP comparisons into block jumps
+	// TODO: need to work FP comparisons into block jumps id:172 gh:173
 	ssa.BlockPPC64FLT: {ppc64.ABLT, ppc64.ABGE, false, false},
 	ssa.BlockPPC64FGE: {ppc64.ABGT, ppc64.ABLT, true, true}, // GE = GT or EQ; !GE = LT or UN
 	ssa.BlockPPC64FLE: {ppc64.ABLT, ppc64.ABGT, true, true}, // LE = LT or EQ; !LE = GT or UN
@@ -1178,7 +1178,7 @@ func ssaGenBlock(s *gc.SSAGenState, b, next *ssa.Block) {
 			p.To.Type = obj.TYPE_BRANCH
 			s.Branches = append(s.Branches, gc.Branch{P: p, B: b.Succs[1].Block()})
 			if jmp.invasmun {
-				// TODO: The second branch is probably predict-not-taken since it is for FP unordered
+				// TODO: The second branch is probably predict-not-taken since it is for FP unordered id:290 gh:291
 				q := s.Prog(ppc64.ABVS)
 				q.To.Type = obj.TYPE_BRANCH
 				s.Branches = append(s.Branches, gc.Branch{P: q, B: b.Succs[1].Block()})

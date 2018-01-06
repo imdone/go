@@ -9,7 +9,7 @@ import (
 	"fmt"
 )
 
-// TODO(gri) consider making this part of the parser code
+// TODO (gri) consider making this part of the parser code id:530 gh:531
 
 // checkBranches checks correct use of labels and branch
 // statements (break, continue, goto) in a function body.

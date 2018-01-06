@@ -381,7 +381,7 @@ func MergePackageFiles(pkg *Package, mode MergeMode) *File {
 					// For now, exclude multiple declarations of
 					// functions - keep the one with documentation.
 					//
-					// TODO(gri): Expand this filtering to other
+					// TODO (gri): Expand this filtering to other id:617 gh:618
 					//            entities (const, type, vars) if
 					//            multiple declarations are common.
 					if f, isFun := d.(*FuncDecl); isFun {
@@ -432,7 +432,7 @@ func MergePackageFiles(pkg *Package, mode MergeMode) *File {
 			f := pkg.Files[filename]
 			for _, imp := range f.Imports {
 				if path := imp.Path.Value; !seen[path] {
-					// TODO: consider handling cases where:
+					// TODO: consider handling cases where: id:775 gh:776
 					// - 2 imports exist with the same import path but
 					//   have different local names (one should probably
 					//   keep both of them)
@@ -460,6 +460,6 @@ func MergePackageFiles(pkg *Package, mode MergeMode) *File {
 		}
 	}
 
-	// TODO(gri) need to compute unresolved identifiers!
+	// TODO (gri) need to compute unresolved identifiers! id:681 gh:682
 	return &File{doc, pos, NewIdent(pkg.Name), decls, pkg.Scope, imports, nil, comments}
 }

@@ -10,7 +10,7 @@ package xml
 //    Annotated XML spec: http://www.xml.com/axml/testaxml.htm
 //    XML name spaces: http://www.w3.org/TR/REC-xml-names/
 
-// TODO(rsc):
+// TODO (rsc): id:773 gh:774
 //	Test error handling.
 
 import (
@@ -2037,7 +2037,7 @@ func emitCDATA(w io.Writer, s []byte) error {
 // procInst parses the `param="..."` or `param='...'`
 // value out of the provided string, returning "" if not found.
 func procInst(param, s string) string {
-	// TODO: this parsing is somewhat lame and not exact.
+	// TODO: this parsing is somewhat lame and not exact. id:677 gh:678
 	// It works for all actual cases, though.
 	param = param + "="
 	idx := strings.Index(s, param)

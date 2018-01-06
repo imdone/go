@@ -783,7 +783,7 @@ func (p *Package) needsPointerCheck(f *File, t ast.Expr, arg ast.Expr) bool {
 	// An untyped nil does not need a pointer check, and when
 	// _cgoCheckPointer returns the untyped nil the type assertion we
 	// are going to insert will fail.  Easier to just skip nil arguments.
-	// TODO: Note that this fails if nil is shadowed.
+	// TODO: Note that this fails if nil is shadowed. id:29 gh:30
 	if id, ok := arg.(*ast.Ident); ok && id.Name == "nil" {
 		return false
 	}
@@ -825,7 +825,7 @@ func (p *Package) hasPointer(f *File, t ast.Expr, top bool) bool {
 	case *ast.FuncType, *ast.InterfaceType, *ast.MapType, *ast.ChanType:
 		return true
 	case *ast.Ident:
-		// TODO: Handle types defined within function.
+		// TODO: Handle types defined within function. id:28 gh:29
 		for _, d := range p.Decl {
 			gd, ok := d.(*ast.GenDecl)
 			if !ok || gd.Tok != token.TYPE {
@@ -909,7 +909,7 @@ func (p *Package) checkAddrArgs(f *File, args []ast.Expr, x ast.Expr) []ast.Expr
 		// This is the address of something that is not an
 		// index expression. We only need to examine the
 		// single value to which it points.
-		// TODO: what if true is shadowed?
+		// TODO: what if true is shadowed? id:106 gh:107
 		return append(args, ast.NewIdent("true"))
 	}
 	if !p.hasSideEffects(f, index.X) {
@@ -952,7 +952,7 @@ func (p *Package) isType(t ast.Expr) bool {
 		}
 		return false
 	case *ast.Ident:
-		// TODO: This ignores shadowing.
+		// TODO: This ignores shadowing. id:32 gh:33
 		switch t.Name {
 		case "unsafe.Pointer", "bool", "byte",
 			"complex64", "complex128",
@@ -1583,7 +1583,7 @@ func (p *Package) gccDefines(stdin []byte) string {
 // the errors that gcc prints. That is, this function expects
 // gcc to fail.
 func (p *Package) gccErrors(stdin []byte) string {
-	// TODO(rsc): require failure
+	// TODO (rsc): require failure id:51 gh:52
 	args := p.gccCmd()
 
 	// Optimization options can confuse the error messages; remove them.
@@ -2019,7 +2019,7 @@ func (c *typeConv) Type(dtype dwarf.Type, pos token.Pos) *Type {
 			if t.C.Empty() {
 				t.C.Set("__typeof__(unsigned char[%d])", t.Size)
 			}
-			t.Align = 1 // TODO: should probably base this on field alignment.
+			t.Align = 1 // TODO: should probably base this on field alignment. id:31 gh:32
 			typedef[name.Name] = t
 		case "struct":
 			g, csyntax, align := c.Struct(dt, pos)
@@ -2091,7 +2091,7 @@ func (c *typeConv) Type(dtype dwarf.Type, pos token.Pos) *Type {
 			// If we've seen this typedef before, and it
 			// was an anonymous struct/union/class before
 			// too, use the old definition.
-			// TODO: it would be safer to only do this if
+			// TODO: it would be safer to only do this if id:33 gh:34
 			// we verify that the types are the same.
 			if oldType != nil && isStructUnionClass(oldType.Go) {
 				t.Go = oldType.Go
@@ -2380,7 +2380,7 @@ func (c *typeConv) Struct(dt *dwarf.StructType, pos token.Pos) (expr *ast.Struct
 			}
 		}
 
-		// TODO: Handle fields that are anonymous structs by
+		// TODO: Handle fields that are anonymous structs by id:112 gh:113
 		// promoting the fields of the inner struct.
 
 		t := c.Type(ft, pos)
@@ -2569,7 +2569,7 @@ func fieldPrefix(fld []*ast.Field) string {
 
 // badPointerTypedef reports whether t is a C typedef that should not be considered a pointer in Go.
 // A typedef is bad if C code sometimes stores non-pointers in this type.
-// TODO: Currently our best solution is to find these manually and list them as
+// TODO: Currently our best solution is to find these manually and list them as id:36 gh:37
 // they come up. A better solution is desired.
 func badPointerTypedef(dt *dwarf.TypedefType) bool {
 	if badCFType(dt) {

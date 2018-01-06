@@ -435,7 +435,7 @@ func (p *Profile) String() string {
 
 // Merge adds profile p adjusted by ratio r into profile p. Profiles
 // must be compatible (same Type and SampleType).
-// TODO(rsilvera): consider normalizing the profiles based on the
+// TODO (rsilvera): consider normalizing the profiles based on the id:1039 gh:1047
 // total samples collected.
 func (p *Profile) Merge(pb *Profile, r float64) error {
 	if err := p.Compatible(pb); err != nil {

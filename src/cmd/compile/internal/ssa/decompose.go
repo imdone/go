@@ -247,7 +247,7 @@ func decomposeUser(f *Func) {
 func decomposeUserArrayInto(f *Func, name LocalSlot, slots []LocalSlot) []LocalSlot {
 	t := name.Type
 	if t.NumElem() == 0 {
-		// TODO(khr): Not sure what to do here.  Probably nothing.
+		// TODO (khr): Not sure what to do here.  Probably nothing. id:218 gh:220
 		// Names for empty arrays aren't important.
 		return slots
 	}

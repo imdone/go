@@ -239,7 +239,7 @@ func (tools gccgoToolchain) link(b *Builder, root *Action, out, importcfg string
 		if cfg.BuildN || cfg.BuildX {
 			b.Showcmd("", "ar d %s _cgo_flags", newArchive)
 			if cfg.BuildN {
-				// TODO(rsc): We could do better about showing the right _cgo_flags even in -n mode.
+				// TODO (rsc): We could do better about showing the right _cgo_flags even in -n mode. id:279 gh:280
 				// Either the archive is already built and we can read them out,
 				// or we're printing commands to build the archive and can
 				// forward the _cgo_flags directly to this step.

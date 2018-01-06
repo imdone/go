@@ -100,7 +100,7 @@ CodewalkViewer.prototype.navigateToCode = function(url, opt_window) {
  * view.
  */
 CodewalkViewer.prototype.selectFirstComment = function() {
-  // TODO(rsc): handle case where there are no comments
+  // TODO (rsc): handle case where there are no comments id:0 gh:1
   var firstSourcererLink = this.context.find('.comment:first');
   this.changeSelectedComment(firstSourcererLink);
 };

@@ -320,7 +320,7 @@ func (enc *Encoder) encodeStruct(b *encBuffer, engine *encEngine, value reflect.
 		field := value.FieldByIndex(instr.index)
 		if instr.indir > 0 {
 			field = encIndirect(field, instr.indir)
-			// TODO: Is field guaranteed valid? If so we could avoid this check.
+			// TODO: Is field guaranteed valid? If so we could avoid this check. id:671 gh:672
 			if !valid(field) {
 				continue
 			}
@@ -343,7 +343,7 @@ func (enc *Encoder) encodeArray(b *encBuffer, value reflect.Value, op encOp, ele
 		elem := value.Index(i)
 		if elemIndir > 0 {
 			elem = encIndirect(elem, elemIndir)
-			// TODO: Is elem guaranteed valid? If so we could avoid this check.
+			// TODO: Is elem guaranteed valid? If so we could avoid this check. id:708 gh:709
 			if !valid(elem) {
 				errorf("encodeArray: nil element")
 			}
@@ -468,7 +468,7 @@ func isZero(val reflect.Value) bool {
 // encGobEncoder encodes a value that implements the GobEncoder interface.
 // The data is sent as a byte array.
 func (enc *Encoder) encodeGobEncoder(b *encBuffer, ut *userTypeInfo, v reflect.Value) {
-	// TODO: should we catch panics from the called method?
+	// TODO: should we catch panics from the called method? id:1124 gh:1132
 
 	var data []byte
 	var err error

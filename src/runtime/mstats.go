@@ -42,7 +42,7 @@ type mstats struct {
 	heap_released uint64 // bytes released to the os
 	heap_objects  uint64 // total number of allocated objects
 
-	// TODO(austin): heap_released is both useless and inaccurate
+	// TODO (austin): heap_released is both useless and inaccurate id:1023 gh:1031
 	// in its current form. It's useless because, from the user's
 	// and OS's perspectives, there's no difference between a page
 	// that has not yet been faulted in and a page that has been

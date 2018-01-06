@@ -564,7 +564,7 @@ func (check *Checker) stmt(ctxt stmtContext, s ast.Stmt) {
 		//
 		// The parser is checking syntactic correctness;
 		// remaining syntactic errors are considered AST errors here.
-		// TODO(gri) better factoring of error handling (invalid ASTs)
+		// TODO (gri) better factoring of error handling (invalid ASTs) id:792 gh:793
 		//
 		var lhs *ast.Ident // lhs identifier or nil
 		var rhs ast.Expr

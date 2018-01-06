@@ -181,7 +181,7 @@ var physPageSize uintptr
 // sysAlloc obtains a large chunk of zeroed memory from the
 // operating system, typically on the order of a hundred kilobytes
 // or a megabyte.
-// NOTE: sysAlloc returns OS-aligned memory, but the heap allocator
+// NOTE: sysAlloc returns OS-aligned memory, but the heap allocator id:1391 gh:1399
 // may use larger alignment, so the caller must be careful to realign the
 // memory obtained by sysAlloc.
 //
@@ -203,7 +203,7 @@ var physPageSize uintptr
 // available and not actually reserve it. If SysReserve returns
 // non-nil, it sets *reserved to true if the address space is
 // reserved, false if it has merely been checked.
-// NOTE: SysReserve returns OS-aligned memory, but the heap allocator
+// NOTE: SysReserve returns OS-aligned memory, but the heap allocator id:1358 gh:1366
 // may use larger alignment, so the caller must be careful to realign the
 // memory obtained by sysAlloc.
 //
@@ -411,12 +411,12 @@ func (h *mheap) sysAlloc(n uintptr) unsafe.Pointer {
 		p_size := round(n+_PageSize, 256<<20)
 		new_end := h.arena_end + p_size // Careful: can overflow
 		if h.arena_end <= new_end && new_end-h.arena_start-1 <= _MaxMem {
-			// TODO: It would be bad if part of the arena
+			// TODO: It would be bad if part of the arena id:975 gh:983
 			// is reserved and part is not.
 			var reserved bool
 			p := uintptr(sysReserve(unsafe.Pointer(h.arena_end), p_size, &reserved))
 			if p == 0 {
-				// TODO: Try smaller reservation
+				// TODO: Try smaller reservation id:1242 gh:1250
 				// growths in case we're in a crowded
 				// 32-bit address space.
 				goto reservationFailed
@@ -1019,7 +1019,7 @@ func persistentalloc1(size, align uintptr, sysStat *uint64) *notInHeap {
 // but this serves as a generic type for situations where that isn't
 // possible (like in the allocators).
 //
-// TODO: Use this as the return type of sysAlloc, persistentAlloc, etc?
+// TODO: Use this as the return type of sysAlloc, persistentAlloc, etc? id:1002 gh:1010
 //
 //go:notinheap
 type notInHeap struct{}

@@ -406,7 +406,7 @@ func heapBitsForObject(p, refBase, refOff uintptr) (base uintptr, hbits heapBits
 			// the Go heap. It may also indicate a runtime
 			// bug.
 			//
-			// TODO(austin): We could be more aggressive
+			// TODO (austin): We could be more aggressive id:1395 gh:1403
 			// and detect pointers to unallocated objects
 			// in allocated spans.
 			printlock()
@@ -702,7 +702,7 @@ func typeBitsBulkBarrier(typ *_type, dst, src, size uintptr) {
 // If total > size*n, it means that there is extra leftover memory in the span,
 // usually due to rounding.
 //
-// TODO(rsc): Perhaps introduce a different heapBitsSpan type.
+// TODO (rsc): Perhaps introduce a different heapBitsSpan type. id:1362 gh:1370
 
 // initSpan initializes the heap bitmap for a span.
 // It clears all checkmark bits.
@@ -821,7 +821,7 @@ var oneBitCount = [256]uint8{
 
 // countAlloc returns the number of objects allocated in span s by
 // scanning the allocation bitmap.
-// TODO:(rlh) Use popcount intrinsic.
+// TODO: (rlh) Use popcount intrinsic. id:980 gh:988
 func (s *mspan) countAlloc() int {
 	count := 0
 	maxIndex := s.nelems / 8
@@ -1124,7 +1124,7 @@ func heapBitsSetType(x, size, dataSize uintptr, typ *_type) {
 		// appropriately to indicate that the object contains
 		// to the next 2-bit entry in the bitmap.
 		//
-		// TODO: It doesn't matter if we set the checkmark, so
+		// TODO: It doesn't matter if we set the checkmark, so id:1249 gh:1257
 		// maybe this case isn't needed any more.
 		hb = b & bitPointerAll
 		hb |= bitScan | bitScan<<(2*heapBitsShift) | bitScan<<(3*heapBitsShift)
@@ -1627,7 +1627,7 @@ Run:
 						nb += nb
 					}
 					// Trim away incomplete copy of original pattern in high bits.
-					// TODO(rsc): Replace with table lookup or loop on systems without divide?
+					// TODO (rsc): Replace with table lookup or loop on systems without divide? id:1006 gh:1014
 					nb = maxBits / npattern * npattern
 					b &= 1<<nb - 1
 					pattern = b

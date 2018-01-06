@@ -397,7 +397,7 @@ func (d *Data) readType(name string, r typeReader, off Offset, typeCache map[Off
 		// Accumulate dimensions,
 		var dims []int64
 		for kid := next(); kid != nil; kid = next() {
-			// TODO(rsc): Can also be TagEnumerationType
+			// TODO (rsc): Can also be TagEnumerationType id:684 gh:685
 			// but haven't seen that in the wild yet.
 			switch kid.Tag {
 			case TagSubrangeType:
@@ -523,7 +523,7 @@ func (d *Data) readType(name string, r typeReader, off Offset, typeCache map[Off
 			}
 			switch loc := kid.Val(AttrDataMemberLoc).(type) {
 			case []byte:
-				// TODO: Should have original compilation
+				// TODO: Should have original compilation id:1111 gh:1119
 				// unit here, not unknownFormat.
 				b := makeBuf(d, unknownFormat{}, "location", 0, loc)
 				if b.uint8() != opPlusUconst {

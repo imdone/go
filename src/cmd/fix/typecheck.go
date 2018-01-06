@@ -27,7 +27,7 @@ import (
 // as far as it can, so that the caller can still tell the types
 // of expression relevant to a particular fix.
 //
-// TODO(rsc,gri): Replace with go/typechecker.
+// TODO (rsc,gri): Replace with go/typechecker. id:543 gh:544
 // Doing that could be an interesting test case for go/typechecker:
 // the constraints about working with partial information will
 // likely exercise it in interesting ways. The ideal interface would
@@ -627,7 +627,7 @@ func typecheck1(cfg *TypeConfig, f interface{}, typeof map[interface{}]string, a
 		case *ast.BinaryExpr:
 			// Propagate types across binary ops that require two args of the same type.
 			switch n.Op {
-			case token.EQL, token.NEQ: // TODO: more cases. This is enough for the cftype fix.
+			case token.EQL, token.NEQ: // TODO: more cases. This is enough for the cftype fix. id:373 gh:374
 				if typeof[n.X] != "" && typeof[n.Y] == "" {
 					typeof[n.Y] = typeof[n.X]
 				}

@@ -140,7 +140,7 @@ var dummyTypes Types
 
 func init() {
 	// Initialize just enough of the universe and the types package to make our tests function.
-	// TODO(josharian): move universe initialization to the types package,
+	// TODO (josharian): move universe initialization to the types package, id:513 gh:514
 	// so this test setup can share it.
 
 	types.Tconv = func(t *types.Type, flag, mode, depth int) string {

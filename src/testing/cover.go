@@ -13,7 +13,7 @@ import (
 )
 
 // CoverBlock records the coverage data for a single basic block.
-// NOTE: This struct is internal to the testing infrastructure and may change.
+// NOTE: This struct is internal to the testing infrastructure and may change. id:1430 gh:1438
 // It is not covered (yet) by the Go 1 compatibility guidelines.
 type CoverBlock struct {
 	Line0 uint32
@@ -26,7 +26,7 @@ type CoverBlock struct {
 var cover Cover
 
 // Cover records information about test coverage checking.
-// NOTE: This struct is internal to the testing infrastructure and may change.
+// NOTE: This struct is internal to the testing infrastructure and may change. id:1082 gh:1090
 // It is not covered (yet) by the Go 1 compatibility guidelines.
 type Cover struct {
 	Mode            string
@@ -59,7 +59,7 @@ func Coverage() float64 {
 }
 
 // RegisterCover records the coverage data accumulators for the tests.
-// NOTE: This function is internal to the testing infrastructure and may change.
+// NOTE: This function is internal to the testing infrastructure and may change. id:1319 gh:1327
 // It is not covered (yet) by the Go 1 compatibility guidelines.
 func RegisterCover(c Cover) {
 	cover = c

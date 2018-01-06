@@ -11,7 +11,7 @@ import (
 	"unsafe"
 )
 
-// TODO implement lock striping
+// TODO implement lock striping id:1355 gh:1363
 var lock struct {
 	state uint32
 	pad   [sys.CacheLineSize - 4]byte

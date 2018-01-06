@@ -49,7 +49,7 @@ func And8(ptr *uint8, val uint8)
 //go:noescape
 func Or8(ptr *uint8, val uint8)
 
-// NOTE: Do not add atomicxor8 (XOR is not idempotent).
+// NOTE: Do not add atomicxor8 (XOR is not idempotent). id:1239 gh:1247
 
 //go:noescape
 func Xadd(ptr *uint32, delta int32) uint32

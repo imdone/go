@@ -335,7 +335,7 @@ func (check *Checker) selector(x *operand, e *ast.SelectorExpr) {
 	if obj == nil {
 		switch {
 		case index != nil:
-			// TODO(gri) should provide actual type where the conflict happens
+			// TODO (gri) should provide actual type where the conflict happens id:649 gh:650
 			check.invalidOp(e.Pos(), "ambiguous selector %s", sel)
 		case indirect:
 			check.invalidOp(e.Pos(), "%s is not in method set of %s", sel, x.typ)
@@ -384,7 +384,7 @@ func (check *Checker) selector(x *operand, e *ast.SelectorExpr) {
 			x.typ = obj.typ
 
 		case *Func:
-			// TODO(gri) If we needed to take into account the receiver's
+			// TODO (gri) If we needed to take into account the receiver's id:804 gh:805
 			// addressability, should we report the type &(x.typ) instead?
 			check.recordSelection(e, MethodVal, x.typ, obj, index, indirect)
 
@@ -403,10 +403,10 @@ func (check *Checker) selector(x *operand, e *ast.SelectorExpr) {
 				}
 				// If we created a synthetic pointer type above, we will throw
 				// away the method set computed here after use.
-				// TODO(gri) Method set computation should probably always compute
+				// TODO (gri) Method set computation should probably always compute id:719 gh:719
 				// both, the value and the pointer receiver method set and represent
 				// them in a single structure.
-				// TODO(gri) Consider also using a method set cache for the lifetime
+				// TODO (gri) Consider also using a method set cache for the lifetime id:896 gh:904
 				// of checker once we rely on MethodSet lookup instead of individual
 				// lookup.
 				mset := NewMethodSet(typ)

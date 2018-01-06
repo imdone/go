@@ -754,7 +754,7 @@ func (p *printer) intersperseComments(next token.Position, tok token.Token) (wro
 		// as separator unless we have pending linebreaks, they are not
 		// disabled, and we are outside a composite literal, in which case
 		// we want a linebreak (issue 15137).
-		// TODO(gri) This has become overly complicated. We should be able
+		// TODO (gri) This has become overly complicated. We should be able id:887 gh:895
 		// to track whether we're inside an expression or statement and
 		// use that information to decide more directly.
 		needsLinebreak := false

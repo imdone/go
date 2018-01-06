@@ -36,7 +36,7 @@ type Block struct {
 
 	// Inverse of successors.
 	// The order is significant to Phi nodes in the block.
-	// TODO: predecessors is a pain to maintain. Can we somehow order phi
+	// TODO: predecessors is a pain to maintain. Can we somehow order phi id:161 gh:162
 	// arguments by block id and have this field computed explicitly when needed?
 	Preds []Edge
 

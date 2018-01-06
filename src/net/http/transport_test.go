@@ -42,7 +42,7 @@ import (
 	"time"
 )
 
-// TODO: test 5 pipelined requests with responses: 1) OK, 2) OK, Connection: Close
+// TODO: test 5 pipelined requests with responses: 1) OK, 2) OK, Connection: Close id:1289 gh:1297
 //       and then verify that the final 2 responses get errors back.
 
 // hostPortHandler writes back the client's "host:port".
@@ -590,7 +590,7 @@ func TestStressSurpriseServerCloses(t *testing.T) {
 	// after each request completes, regardless of whether it failed.
 	// If these are too high, OS X exhausts its ephemeral ports
 	// and hangs waiting for them to transition TCP states. That's
-	// not what we want to test. TODO(bradfitz): use an io.Pipe
+	// not what we want to test. TODO (bradfitz): use an io.Pipe id:910 gh:918
 	// dialer for this test instead?
 	const (
 		numClients    = 20
@@ -2756,7 +2756,7 @@ func (c writerFuncConn) Write(p []byte) (n int, err error) { return c.write(p) }
 // our request (or a portion of our request) only to find a connection error
 // when we try to read from (or finish writing to) the socket.
 //
-// NOTE: we resend a request only if:
+// NOTE: we resend a request only if: id:1169 gh:1177
 //   - we reused a keep-alive connection
 //   - we haven't yet received any header data
 //   - either we wrote no bytes to the server, or the request is idempotent

@@ -15,7 +15,7 @@ func main() {
 	var x float64 = 3.4
 	fmt.Println("type:", reflect.TypeOf(x))
 	// STOP OMIT
-	// TODO(proppy): test output OMIT
+	// TODO (proppy): test output OMIT id:5 gh:6
 }
 
 // STOP main OMIT

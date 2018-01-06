@@ -515,7 +515,7 @@ class GoIfaceCmd(gdb.Command):
 
 			print("{0}: {1}".format(obj.type, dtype))
 
-# TODO: print interface's methods and dynamic type's func pointers thereof.
+# TODO: print interface's methods and dynamic type's func pointers thereof. id:1053 gh:1061
 #rsc: "to find the number of entries in the itab's Fn field look at
 # itab.inter->numMethods
 # i am sure i have the names wrong but look at the interface type

@@ -665,7 +665,7 @@ func (c *gcControllerState) endCycle() float64 {
 //go:nowritebarrier
 func (c *gcControllerState) enlistWorker() {
 	// If there are idle Ps, wake one so it will run an idle worker.
-	// NOTE: This is suspected of causing deadlocks. See golang.org/issue/19112.
+	// NOTE: This is suspected of causing deadlocks. See golang.org/issue/19112. id:1399 gh:1407
 	//
 	//	if atomic.Load(&sched.npidle) != 0 && atomic.Load(&sched.nmspinning) == 0 {
 	//		wakep()
@@ -976,7 +976,7 @@ var work struct {
 	// should pass gcDrainBlock to gcDrain to block in the
 	// getfull() barrier. Otherwise, they should pass gcDrainNoBlock.
 	//
-	// TODO: This is a temporary fallback to work around races
+	// TODO: This is a temporary fallback to work around races id:1367 gh:1375
 	// that cause early mark termination.
 	helperDrainBlock bool
 
@@ -1418,7 +1418,7 @@ top:
 	// Disallow starting new workers so that any remaining workers
 	// in the current mark phase will drain out.
 	//
-	// TODO(austin): Should dedicated workers keep an eye on this
+	// TODO (austin): Should dedicated workers keep an eye on this id:986 gh:994
 	// and exit gcDrain promptly?
 	atomic.Xaddint64(&gcController.dedicatedMarkWorkersNeeded, -0xffffffff)
 	prevFractionalGoal := gcController.fractionalUtilizationGoal
@@ -1460,7 +1460,7 @@ top:
 		// enter mark 2 while some workers are still scanning
 		// stacks. The forEachP ensures these scans are done.
 		//
-		// TODO(austin): Figure out the race and fix this
+		// TODO (austin): Figure out the race and fix this id:1254 gh:1262
 		// properly.
 		gcMarkRootCheck()
 
@@ -1942,7 +1942,7 @@ func gcMarkWorkAvailable(p *p) bool {
 // gcMark runs the mark (or, for concurrent GC, mark termination)
 // All gcWork caches must be empty.
 // STW is in effect at this point.
-//TODO go:nowritebarrier
+//TODO go:nowritebarrier id:1011 gh:1019
 func gcMark(start_time int64) {
 	if debug.allocfreetrace > 0 {
 		tracegc()
@@ -1975,7 +1975,7 @@ func gcMark(start_time int64) {
 		// accidentally produce some work, we'll still process
 		// it, just not necessarily in parallel.
 		//
-		// TODO(austin): Fix the races and and remove
+		// TODO (austin): Fix the races and and remove id:1401 gh:1409
 		// work draining from mark termination so we don't
 		// need the fallback path.
 		work.helperDrainBlock = false

@@ -36,7 +36,7 @@ func TestRatGobEncoding(t *testing.T) {
 }
 
 // Sending a nil Rat pointer (inside a slice) on a round trip through gob should yield a zero.
-// TODO: top-level nils.
+// TODO: top-level nils. id:1222 gh:1230
 func TestGobEncodingNilRatInSlice(t *testing.T) {
 	buf := new(bytes.Buffer)
 	enc := gob.NewEncoder(buf)

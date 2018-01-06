@@ -428,7 +428,7 @@ func typecheck1(n *Node, top int) *Node {
 		if l.Type.NotInHeap() {
 			yyerror("chan of go:notinheap type not allowed")
 		}
-		t := types.NewChan(l.Type, types.ChanDir(n.Etype)) // TODO(marvin): Fix Node.EType type union.
+		t := types.NewChan(l.Type, types.ChanDir(n.Etype)) // TODO (marvin): Fix Node.EType type union. id:496 gh:497
 		n.Op = OTYPE
 		n.Type = t
 		n.Left = nil
@@ -539,7 +539,7 @@ func typecheck1(n *Node, top int) *Node {
 				n.Type = nil
 				return n
 			}
-			// TODO(marvin): Fix Node.EType type union.
+			// TODO (marvin): Fix Node.EType type union. id:214 gh:215
 			op = Op(n.Etype)
 		} else {
 			ok |= Erv
@@ -712,7 +712,7 @@ func typecheck1(n *Node, top int) *Node {
 
 		if et == TSTRING {
 			if iscmp[n.Op] {
-				// TODO(marvin): Fix Node.EType type union.
+				// TODO (marvin): Fix Node.EType type union. id:134 gh:135
 				n.Etype = types.EType(n.Op)
 				n.Op = OCMPSTR
 			} else if n.Op == OADD {
@@ -743,7 +743,7 @@ func typecheck1(n *Node, top int) *Node {
 			} else if r.Op == OLITERAL && r.Val().Ctype() == CTNIL {
 			} else // leave alone for back end
 			if r.Type.IsInterface() == l.Type.IsInterface() {
-				// TODO(marvin): Fix Node.EType type union.
+				// TODO (marvin): Fix Node.EType type union. id:152 gh:153
 				n.Etype = types.EType(n.Op)
 				n.Op = OCMPIFACE
 			}
@@ -1089,7 +1089,7 @@ func typecheck1(n *Node, top int) *Node {
 		}
 		n.Right = assignconv(r, t.Elem(), "send")
 
-		// TODO: more aggressive
+		// TODO: more aggressive id:250 gh:251
 		n.Etype = 0
 
 		n.Type = nil
@@ -1178,13 +1178,13 @@ func typecheck1(n *Node, top int) *Node {
 		l := n.Left
 
 		if l.Op == ONAME && l.Etype != 0 {
-			// TODO(marvin): Fix Node.EType type union.
+			// TODO (marvin): Fix Node.EType type union. id:497 gh:498
 			if n.Isddd() && Op(l.Etype) != OAPPEND {
 				yyerror("invalid use of ... with builtin %v", l)
 			}
 
 			// builtin: OLEN, OCAP, etc.
-			// TODO(marvin): Fix Node.EType type union.
+			// TODO (marvin): Fix Node.EType type union. id:217 gh:218
 			n.Op = Op(l.Etype)
 			n.Left = n.Right
 			n.Right = nil
@@ -2144,7 +2144,7 @@ func typecheck1(n *Node, top int) *Node {
 		return n
 	}
 
-	// TODO(rsc): simplify
+	// TODO (rsc): simplify id:137 gh:138
 	if (top&(Ecall|Erv|Etype) != 0) && top&Etop == 0 && ok&(Erv|Etype|Ecall) == 0 {
 		yyerror("%v used as value", n)
 		n.Type = nil
@@ -3501,7 +3501,7 @@ func copytype(n *Node, t *types.Type) {
 	ptrBase := n.Type.PtrBase
 	sliceOf := n.Type.SliceOf
 
-	// TODO(mdempsky): Fix Type rekinding.
+	// TODO (mdempsky): Fix Type rekinding. id:155 gh:156
 	*n.Type = *t
 
 	t = n.Type
@@ -3727,7 +3727,7 @@ func typecheckdef(n *Node) {
 		n.SetWalkdef(1)
 		n.Type = types.New(TFORW)
 		n.Type.Nod = asTypesNode(n)
-		n.Type.Sym = n.Sym // TODO(gri) this also happens in typecheckdeftype(n) - where should it happen?
+		n.Type.Sym = n.Sym // TODO (gri) this also happens in typecheckdeftype(n) - where should it happen? id:252 gh:253
 		nerrors0 := nerrors
 		typecheckdeftype(n)
 		if n.Type.Etype == TFORW && nerrors > nerrors0 {
@@ -3777,7 +3777,7 @@ func checkmake(t *types.Type, arg string, n *Node) bool {
 	}
 
 	// defaultlit is necessary for non-constants too: n might be 1.1<<k.
-	// TODO(gri) The length argument requirements for (array/slice) make
+	// TODO (gri) The length argument requirements for (array/slice) make id:498 gh:499
 	// are the same as for index expressions. Factor the code better;
 	// for instance, indexlit might be called here and incorporate some
 	// of the bounds checks done for make.
@@ -3852,7 +3852,7 @@ func (l Nodes) isterminating() bool {
 // statement list, is a terminating statement.
 func (n *Node) isterminating() bool {
 	switch n.Op {
-	// NOTE: OLABEL is treated as a separate statement,
+	// NOTE: OLABEL is treated as a separate statement, id:219 gh:219
 	// not a separate prefix, so skipping to the last statement
 	// in the block handles the labeled statement case by
 	// skipping over the label. No case OLABEL here.

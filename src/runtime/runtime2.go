@@ -356,7 +356,7 @@ type g struct {
 	stktopsp       uintptr        // expected sp at top of stack, to check in traceback
 	param          unsafe.Pointer // passed parameter on wakeup
 	atomicstatus   uint32
-	stackLock      uint32 // sigprof/scang lock; TODO: fold in to atomicstatus
+	stackLock      uint32 // sigprof/scang lock; TODO: fold in to atomicstatus id:1402 gh:1410
 	goid           int64
 	waitsince      int64  // approx time when the g become blocked
 	waitreason     string // if status==Gwaiting
@@ -365,7 +365,7 @@ type g struct {
 	paniconfault   bool     // panic (instead of crash) on unexpected fault address
 	preemptscan    bool     // preempted g does scan for gc
 	gcscandone     bool     // g has scanned stack; protected by _Gscan bit in status
-	gcscanvalid    bool     // false at start of gc cycle, true if G has not run since last scan; TODO: remove?
+	gcscanvalid    bool     // false at start of gc cycle, true if G has not run since last scan; TODO: remove? id:1055 gh:1063
 	throwsplit     bool     // must not split stack
 	raceignore     int8     // ignore race detection events
 	sysblocktraced bool     // StartTrace has emitted EvGoInSyscall about this goroutine
@@ -541,7 +541,7 @@ type p struct {
 
 	// wbBuf is this P's GC write barrier buffer.
 	//
-	// TODO: Consider caching this in the running G.
+	// TODO: Consider caching this in the running G. id:1298 gh:1306
 	wbBuf wbBuf
 
 	runSafePointFn uint32 // if 1, run sched.safePointFn at next safe point

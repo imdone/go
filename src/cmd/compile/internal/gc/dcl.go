@@ -214,13 +214,13 @@ func newnoname(s *types.Sym) *Node {
 }
 
 // newfuncname generates a new name node for a function or method.
-// TODO(rsc): Use an ODCLFUNC node instead. See comment in CL 7360.
+// TODO (rsc): Use an ODCLFUNC node instead. See comment in CL 7360. id:75 gh:76
 func newfuncname(s *types.Sym) *Node {
 	return newfuncnamel(lineno, s)
 }
 
 // newfuncnamel generates a new name node for a function or method.
-// TODO(rsc): Use an ODCLFUNC node instead. See comment in CL 7360.
+// TODO (rsc): Use an ODCLFUNC node instead. See comment in CL 7360. id:181 gh:182
 func newfuncnamel(pos src.XPos, s *types.Sym) *Node {
 	n := newnamel(pos, s)
 	n.Func = new(Func)
@@ -279,7 +279,7 @@ func oldname(s *types.Sym) *Node {
 	if Curfn != nil && n.Op == ONAME && n.Name.Funcdepth > 0 && n.Name.Funcdepth != funcdepth {
 		// Inner func is referring to var in outer func.
 		//
-		// TODO(rsc): If there is an outer variable x and we
+		// TODO (rsc): If there is an outer variable x and we id:156 gh:157
 		// are parsing x := 5 inside the closure, until we get to
 		// the := it looks like a reference to the outer x so we'll
 		// make x a closure variable unnecessarily.
@@ -458,7 +458,7 @@ func funcargs(nt *Node) {
 			gen++
 		}
 
-		// TODO: n->left->missing = 1;
+		// TODO: n->left->missing = 1; id:83 gh:84
 		n.Left.Op = ONAME
 
 		if isblank(n.Left) {
@@ -738,7 +738,7 @@ func interfacefield(n *Node) *types.Field {
 		f.Sym = asNode(f.Nname).Sym
 	} else {
 		// Placeholder ONAME just to hold Pos.
-		// TODO(mdempsky): Add Pos directly to Field instead.
+		// TODO (mdempsky): Add Pos directly to Field instead. id:78 gh:79
 		f.Nname = asTypesNode(newname(nblank.Sym))
 	}
 
@@ -910,7 +910,7 @@ func methodsym(nsym *types.Sym, t0 *types.Type, iface bool) *types.Sym {
 
 // methodname is a misnomer because this now returns a Sym, rather
 // than an ONAME.
-// TODO(mdempsky): Reconcile with methodsym.
+// TODO (mdempsky): Reconcile with methodsym. id:80 gh:81
 func methodname(s *types.Sym, recv *types.Type) *types.Sym {
 	star := false
 	if recv.IsPtr() {

@@ -48,7 +48,7 @@ func initPrintFlags() {
 	}
 }
 
-// TODO(rsc): Incorporate user-defined printf wrappers again.
+// TODO (rsc): Incorporate user-defined printf wrappers again. id:1016 gh:1024
 // The general plan is to allow vet of one package P to output
 // additional information to supply to later vets of packages
 // importing P. Then vet of P can record a list of printf wrappers

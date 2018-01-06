@@ -19,7 +19,7 @@ import (
 // in this package, followed by all other objects sorted in source
 // order.
 //
-// TODO(gri) Consider sorting all types by dependencies here, and
+// TODO (gri) Consider sorting all types by dependencies here, and id:909 gh:917
 // in the process check _and_ report type cycles. This may simplify
 // the full type-checking phase.
 //

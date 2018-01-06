@@ -9,7 +9,7 @@ import (
 	"unsafe"
 )
 
-// TODO(brainman): should not need those
+// TODO (brainman): should not need those id:1047 gh:1055
 const (
 	_NSIG = 65
 )

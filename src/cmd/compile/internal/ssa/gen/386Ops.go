@@ -336,13 +336,13 @@ func init() {
 		{name: "MOVWloadidx2", argLength: 3, reg: gploadidx, asm: "MOVWLZX", aux: "SymOff", symEffect: "Read"},                    // load 2 bytes from arg0+2*arg1+auxint+aux. arg2=mem
 		{name: "MOVLloadidx1", argLength: 3, reg: gploadidx, commutative: true, asm: "MOVL", aux: "SymOff", symEffect: "Read"},    // load 4 bytes from arg0+arg1+auxint+aux. arg2=mem
 		{name: "MOVLloadidx4", argLength: 3, reg: gploadidx, asm: "MOVL", aux: "SymOff", symEffect: "Read"},                       // load 4 bytes from arg0+4*arg1+auxint+aux. arg2=mem
-		// TODO: sign-extending indexed loads
+		// TODO: sign-extending indexed loads id:276 gh:277
 		{name: "MOVBstoreidx1", argLength: 4, reg: gpstoreidx, commutative: true, asm: "MOVB", aux: "SymOff", symEffect: "Write"}, // store byte in arg2 to arg0+arg1+auxint+aux. arg3=mem
 		{name: "MOVWstoreidx1", argLength: 4, reg: gpstoreidx, commutative: true, asm: "MOVW", aux: "SymOff", symEffect: "Write"}, // store 2 bytes in arg2 to arg0+arg1+auxint+aux. arg3=mem
 		{name: "MOVWstoreidx2", argLength: 4, reg: gpstoreidx, asm: "MOVW", aux: "SymOff", symEffect: "Write"},                    // store 2 bytes in arg2 to arg0+2*arg1+auxint+aux. arg3=mem
 		{name: "MOVLstoreidx1", argLength: 4, reg: gpstoreidx, commutative: true, asm: "MOVL", aux: "SymOff", symEffect: "Write"}, // store 4 bytes in arg2 to arg0+arg1+auxint+aux. arg3=mem
 		{name: "MOVLstoreidx4", argLength: 4, reg: gpstoreidx, asm: "MOVL", aux: "SymOff", symEffect: "Write"},                    // store 4 bytes in arg2 to arg0+4*arg1+auxint+aux. arg3=mem
-		// TODO: add size-mismatched indexed loads, like MOVBstoreidx4.
+		// TODO: add size-mismatched indexed loads, like MOVBstoreidx4. id:229 gh:230
 
 		// For storeconst ops, the AuxInt field encodes both
 		// the value to store and an address offset of the store.

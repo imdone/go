@@ -291,7 +291,7 @@ func defaultContext() Context {
 	// in all releases >= Go 1.x. Code that requires Go 1.x or later should
 	// say "+build go1.x", and code that should only be built before Go 1.x
 	// (perhaps it is the stub to use in that case) should say "+build !go1.x".
-	// NOTE: If you add to this list, also update the doc comment in doc.go.
+	// NOTE: If you add to this list, also update the doc comment in doc.go. id:619 gh:620
 	const version = 10 // go1.10
 	for i := 1; i <= version; i++ {
 		c.ReleaseTags = append(c.ReleaseTags, "go1."+strconv.Itoa(i))
@@ -1365,7 +1365,7 @@ func (ctxt *Context) makePathsAbsolute(args []string, srcDir string) {
 	}
 }
 
-// NOTE: $ is not safe for the shell, but it is allowed here because of linker options like -Wl,$ORIGIN.
+// NOTE: $ is not safe for the shell, but it is allowed here because of linker options like -Wl,$ORIGIN. id:776 gh:777
 // We never pass these arguments to a shell (just to programs we construct argv for), so this should be okay.
 // See golang.org/issue/6038.
 // The @ is for OS X. See golang.org/issue/13720.

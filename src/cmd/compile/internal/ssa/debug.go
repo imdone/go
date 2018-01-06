@@ -245,7 +245,7 @@ func BuildFuncDebug(f *Func, loggingEnabled bool) *FuncDebug {
 		numRegisters:     len(f.Config.registers),
 		registerContents: make([][]SlotID, len(f.Config.registers)),
 	}
-	// TODO: consider storing this in Cache and reusing across functions.
+	// TODO: consider storing this in Cache and reusing across functions. id:216 gh:217
 	valueNames := make([][]SlotID, f.NumValues())
 
 	for i, slot := range f.Names {

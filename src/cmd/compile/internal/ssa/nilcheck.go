@@ -12,7 +12,7 @@ func nilcheckelim(f *Func) {
 	// efficacy of the cse pass.
 	sdom := f.sdom()
 
-	// TODO: Eliminate more nil checks.
+	// TODO: Eliminate more nil checks. id:300 gh:301
 	// We can recursively remove any chain of fixed offset calculations,
 	// i.e. struct fields and array elements, even with non-constant
 	// indices: x is non-nil iff x.a.b[i].c is.
@@ -240,7 +240,7 @@ func nilcheckelim2(f *Func) {
 		}
 		b.Values = b.Values[:i]
 
-		// TODO: if b.Kind == BlockPlain, start the analysis in the subsequent block to find
+		// TODO: if b.Kind == BlockPlain, start the analysis in the subsequent block to find id:301 gh:302
 		// more unnecessary nil checks.  Would fix test/nilptr3_ssa.go:157.
 	}
 }

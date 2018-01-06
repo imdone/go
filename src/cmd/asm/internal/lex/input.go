@@ -75,7 +75,7 @@ func (in *Input) Error(args ...interface{}) {
 	os.Exit(1)
 }
 
-// expectText is like Error but adds "got XXX" where XXX is a quoted representation of the most recent token.
+// expectText is like Error but adds "got XXX " where XXX is a quoted representation of the most recent token. id:77 gh:78
 func (in *Input) expectText(args ...interface{}) {
 	in.Error(append(args, "; got", strconv.Quote(in.Stack.Text()))...)
 }

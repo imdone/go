@@ -4,7 +4,7 @@
 
 // Cgo; see gmp.go for an overview.
 
-// TODO(rsc):
+// TODO (rsc): id:53 gh:54
 //	Emit correct line number annotations.
 //	Make gc understand the annotations.
 

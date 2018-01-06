@@ -86,7 +86,7 @@ func gentext(ctxt *ld.Link) {
 		thunkfunc := ctxt.Syms.Lookup("__x86.get_pc_thunk."+r.name, 0)
 		thunkfunc.Type = sym.STEXT
 		thunkfunc.Attr |= sym.AttrLocal
-		thunkfunc.Attr |= sym.AttrReachable //TODO: remove?
+		thunkfunc.Attr |= sym.AttrReachable //TODO: remove? id:490 gh:491
 		o := func(op ...uint8) {
 			for _, op1 := range op {
 				thunkfunc.AddUint8(op1)
@@ -182,7 +182,7 @@ func adddynrel(ctxt *ld.Link, s *sym.Symbol, r *sym.Reloc) bool {
 		if targ.Type == sym.SDYNIMPORT {
 			ld.Errorf(s, "unexpected R_386_PC32 relocation for dynamic symbol %s", targ.Name)
 		}
-		// TODO(mwhudson): the test of VisibilityHidden here probably doesn't make
+		// TODO (mwhudson): the test of VisibilityHidden here probably doesn't make id:630 gh:631
 		// sense and should be removed when someone has thought about it properly.
 		if (targ.Type == 0 || targ.Type == sym.SXREF) && !targ.Attr.VisibilityHidden() {
 			ld.Errorf(s, "unknown symbol %s in pcrel", targ.Name)
@@ -670,7 +670,7 @@ func asmb(ctxt *ld.Link) {
 	ld.Lcsize = 0
 	symo := uint32(0)
 	if !*ld.FlagS {
-		// TODO: rationalize
+		// TODO: rationalize id:981 gh:989
 		if ctxt.Debugvlog != 0 {
 			ctxt.Logf("%5.2f sym\n", ld.Cputime())
 		}

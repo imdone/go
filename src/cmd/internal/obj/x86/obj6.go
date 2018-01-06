@@ -121,7 +121,7 @@ func progedit(ctxt *obj.Link, p *obj.Prog, newprog obj.ProgAlloc) {
 		//	NOP
 		//	... off(TLS) ...
 		//
-		// TODO(rsc): Remove the Hsolaris special case. It exists only to
+		// TODO (rsc): Remove the Hsolaris special case. It exists only to id:591 gh:592
 		// guarantee we are producing byte-identical binaries as before this code.
 		// But it should be unnecessary.
 		if (p.As == AMOVQ || p.As == AMOVL) && p.From.Type == obj.TYPE_REG && p.From.Reg == REG_TLS && p.To.Type == obj.TYPE_REG && REG_AX <= p.To.Reg && p.To.Reg <= REG_R15 && ctxt.Headtype != objabi.Hsolaris {
@@ -152,7 +152,7 @@ func progedit(ctxt *obj.Link, p *obj.Prog, newprog obj.ProgAlloc) {
 			q.From.Type = obj.TYPE_MEM
 			q.From.Reg = p.To.Reg
 			q.From.Index = REG_TLS
-			q.From.Scale = 2 // TODO: use 1
+			q.From.Scale = 2 // TODO: use 1 id:932 gh:940
 			q.To = p.To
 			p.From.Type = obj.TYPE_REG
 			p.From.Reg = REG_TLS
@@ -161,7 +161,7 @@ func progedit(ctxt *obj.Link, p *obj.Prog, newprog obj.ProgAlloc) {
 		}
 	}
 
-	// TODO: Remove.
+	// TODO: Remove. id:468 gh:469
 	if ctxt.Headtype == objabi.Hwindows && ctxt.Arch.Family == sys.AMD64 || ctxt.Headtype == objabi.Hplan9 {
 		if p.From.Scale == 1 && p.From.Index == REG_TLS {
 			p.From.Scale = 2
@@ -621,7 +621,7 @@ func preprocess(ctxt *obj.Link, cursym *obj.LSym, newprog obj.ProgAlloc) {
 		// 1) If noframe is set (which we do for functions which tail call).
 		// 2) Scary runtime internals which would be all messed up by frame pointers.
 		//    We detect these using a heuristic: frameless nosplit functions.
-		//    TODO: Maybe someday we label them all with NOFRAME and get rid of this heuristic.
+		//    TODO: Maybe someday we label them all with NOFRAME and get rid of this heuristic. id:368 gh:369
 		// For performance, we also want to avoid:
 		// 3) Frameless leaf functions
 		bpsize = ctxt.Arch.PtrSize
@@ -635,12 +635,12 @@ func preprocess(ctxt *obj.Link, cursym *obj.LSym, newprog obj.ProgAlloc) {
 	cursym.Func.Args = int32(textarg)
 	cursym.Func.Locals = int32(p.To.Offset)
 
-	// TODO(rsc): Remove.
+	// TODO (rsc): Remove. id:461 gh:462
 	if ctxt.Arch.Family == sys.I386 && cursym.Func.Locals < 0 {
 		cursym.Func.Locals = 0
 	}
 
-	// TODO(rsc): Remove 'ctxt.Arch.Family == sys.AMD64 &&'.
+	// TODO (rsc): Remove 'ctxt.Arch.Family == sys.AMD64 &&'. id:593 gh:594
 	if ctxt.Arch.Family == sys.AMD64 && autoffset < objabi.StackSmall && !p.From.Sym.NoSplit() {
 		leaf := true
 	LeafSearch:

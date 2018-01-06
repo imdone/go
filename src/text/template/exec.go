@@ -83,7 +83,7 @@ func doublePercent(str string) string {
 	return strings.Replace(str, "%", "%%", -1)
 }
 
-// TODO: It would be nice if ExecError was more broken down, but
+// TODO: It would be nice if ExecError was more broken down, but id:1432 gh:1440
 // the way ErrorContext embeds the template name makes the
 // processing too clumsy.
 
@@ -667,7 +667,7 @@ func (s *state) evalCall(dot, fun reflect.Value, node parse.Node, name string, a
 		s.errorf("wrong number of args for %s: want %d got %d", name, typ.NumIn(), len(args))
 	}
 	if !goodFunc(typ) {
-		// TODO: This could still be a confusing error; maybe goodFunc should provide info.
+		// TODO: This could still be a confusing error; maybe goodFunc should provide info. id:1084 gh:1092
 		s.errorf("can't call method/function %q with %d results", name, typ.NumOut())
 	}
 	// Build the arg list.

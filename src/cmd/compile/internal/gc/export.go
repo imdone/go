@@ -240,7 +240,7 @@ func dumpexport(bout *bio.Writer) {
 			Fatalf("error writing export data: got %d bytes, want %d bytes, err = %v", n, size, err)
 		}
 		// export data must contain no '$' so that we can find the end by searching for "$$"
-		// TODO(gri) is this still needed?
+		// TODO (gri) is this still needed? id:86 gh:87
 		if bytes.IndexByte(copy.Bytes(), '$') >= 0 {
 			Fatalf("export data contains $")
 		}
@@ -302,7 +302,7 @@ func importconst(pkg *types.Pkg, s *types.Sym, t *types.Type, n *Node) {
 	importsym(pkg, s, OLITERAL)
 	n = convlit(n, t)
 
-	if asNode(s.Def) != nil { // TODO: check if already the same.
+	if asNode(s.Def) != nil { // TODO: check if already the same. id:308 gh:309
 		return
 	}
 

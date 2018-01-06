@@ -4,7 +4,7 @@
 
 package syscall
 
-// TODO: generate with runtime/mknacl.sh, allow override with IRT.
+// TODO: generate with runtime/mknacl.sh, allow override with IRT. id:1064 gh:1072
 const (
 	sys_null                 = 1
 	sys_nameservice          = 2
@@ -91,7 +91,7 @@ const (
 	sys_get_random_bytes     = 150
 )
 
-// TODO: Auto-generate some day. (Hard-coded in binaries so not likely to change.)
+// TODO: Auto-generate some day. (Hard-coded in binaries so not likely to change.) id:1456 gh:1464
 const (
 	// native_client/src/trusted/service_runtime/include/sys/errno.h
 	// The errors are mainly copied from Linux.
@@ -219,7 +219,7 @@ const (
 	EWOULDBLOCK     Errno = EAGAIN /* Operation would block */
 )
 
-// TODO: Auto-generate some day. (Hard-coded in binaries so not likely to change.)
+// TODO: Auto-generate some day. (Hard-coded in binaries so not likely to change.) id:1428 gh:1437
 var errorstr = [...]string{
 	EPERM:           "Operation not permitted",
 	ENOENT:          "No such file or directory",

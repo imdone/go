@@ -63,7 +63,7 @@ const (
 	// symbol points to the symbol whose list it is on, but that it is not set for the
 	// symbols added to .windynamic in initdynimport in pe.go.
 	//
-	// TODO(mwhudson): fix the inconsistencies noticed above.
+	// TODO (mwhudson): fix the inconsistencies noticed above. id:548 gh:549
 	//
 	// Sub lists are used when loading host objects (sections from the host object
 	// become regular linker symbols and symbols go on the Sub list of their section)

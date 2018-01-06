@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// TODO: live at start of block instead?
+// TODO: live at start of block instead? id:323 gh:324
 
 package ssa
 
@@ -160,7 +160,7 @@ func (s *stackAllocState) stackalloc() {
 
 	// For each type, we keep track of all the stack slots we
 	// have allocated for that type.
-	// TODO: share slots among equivalent types. We would need to
+	// TODO: share slots among equivalent types. We would need to id:325 gh:326
 	// only share among types with the same GC signature. See the
 	// type.Equal calls below for where this matters.
 	locations := map[*types.Type][]LocalSlot{}
@@ -263,7 +263,7 @@ func (s *stackAllocState) stackalloc() {
 
 // computeLive computes a map from block ID to a list of
 // stack-slot-needing value IDs live at the end of that block.
-// TODO: this could be quadratic if lots of variables are live across lots of
+// TODO: this could be quadratic if lots of variables are live across lots of id:231 gh:232
 // basic blocks. Figure out a way to make this function (or, more precisely, the user
 // of this function) require only linear size & time.
 func (s *stackAllocState) computeLive(spillLive [][]ID) {
@@ -320,7 +320,7 @@ func (s *stackAllocState) computeLive(spillLive [][]ID) {
 						t.add(a.ID)
 					}
 					if spill := s.values[a.ID].spill; spill != nil {
-						//TODO: remove?  Subsumed by SpillUse?
+						//TODO: remove?  Subsumed by SpillUse? id:385 gh:386
 						t.add(spill.ID)
 					}
 				}

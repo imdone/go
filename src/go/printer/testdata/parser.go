@@ -585,7 +585,7 @@ func (p *parser) parseStructType() *ast.StructType {
 	}
 	rbrace := p.expect(token.RBRACE)
 
-	// TODO(gri): store struct scope in AST
+	// TODO (gri): store struct scope in AST id:641 gh:642
 	return &ast.StructType{pos, &ast.FieldList{lbrace, list, rbrace}, false}
 }
 
@@ -797,7 +797,7 @@ func (p *parser) parseInterfaceType() *ast.InterfaceType {
 	}
 	rbrace := p.expect(token.RBRACE)
 
-	// TODO(gri): store interface scope in AST
+	// TODO (gri): store interface scope in AST id:795 gh:797
 	return &ast.InterfaceType{pos, &ast.FieldList{lbrace, list, rbrace}, false}
 }
 
@@ -1351,7 +1351,7 @@ func (p *parser) parseBinaryExpr(lhs bool, prec1 int) ast.Expr {
 }
 
 // If lhs is set and the result is an identifier, it is not resolved.
-// TODO(gri): parseExpr may return a type or even a raw type ([..]int) -
+// TODO (gri): parseExpr may return a type or even a raw type ([..]int) - id:707 gh:708
 //            should reject when a type/raw type is obviously not allowed
 func (p *parser) parseExpr(lhs bool) ast.Expr {
 	if p.trace {
@@ -1647,7 +1647,7 @@ func (p *parser) parseSwitchStmt() ast.Stmt {
 		return &ast.SwitchStmt{pos, s1, p.makeExpr(s2), body}
 	}
 	// type switch
-	// TODO(gri): do all the checks!
+	// TODO (gri): do all the checks! id:890 gh:898
 	return &ast.TypeSwitchStmt{pos, s1, s2, body}
 }
 
@@ -1998,7 +1998,7 @@ func (p *parser) parseReceiver(scope *ast.Scope) *ast.FieldList {
 	// must have exactly one receiver
 	if par.NumFields() != 1 {
 		p.errorExpected(pos, "exactly one receiver")
-		// TODO determine a better range for BadExpr below
+		// TODO determine a better range for BadExpr below id:1156 gh:1164
 		par.List = []*ast.Field{{Type: &ast.BadExpr{pos, pos}}}
 		return par
 	}
@@ -2148,6 +2148,6 @@ func (p *parser) parseFile() *ast.File {
 		}
 	}
 
-	// TODO(gri): store p.imports in AST
+	// TODO (gri): store p.imports in AST id:643 gh:644
 	return &ast.File{doc, pos, ident, decls, p.pkgScope, p.imports, p.unresolved[0:i], p.comments}
 }

@@ -156,7 +156,7 @@ type traceBuf struct {
 // manipulated in contexts where write barriers are not allowed, so
 // this is necessary.
 //
-// TODO: Since traceBuf is now go:notinheap, this isn't necessary.
+// TODO: Since traceBuf is now go:notinheap, this isn't necessary. id:1063 gh:1071
 type traceBufPtr uintptr
 
 func (tp traceBufPtr) ptr() *traceBuf   { return (*traceBuf)(unsafe.Pointer(tp)) }
@@ -873,7 +873,7 @@ type traceAllocBlock struct {
 	data [64<<10 - sys.PtrSize]byte
 }
 
-// TODO: Since traceAllocBlock is now go:notinheap, this isn't necessary.
+// TODO: Since traceAllocBlock is now go:notinheap, this isn't necessary. id:1302 gh:1310
 type traceAllocBlockPtr uintptr
 
 func (p traceAllocBlockPtr) ptr() *traceAllocBlock   { return (*traceAllocBlock)(unsafe.Pointer(p)) }

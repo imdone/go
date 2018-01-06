@@ -102,7 +102,7 @@ func TestImplicitMapConversion(t *testing.T) {
 	}
 	{
 		// convert identical underlying types
-		// TODO(rsc): Should be able to define MyBuffer here.
+		// TODO (rsc): Should be able to define MyBuffer here. id:1201 gh:1209
 		// 6l prints very strange messages about .this.Bytes etc
 		// when we do that though, so MyBuffer is defined
 		// at top level.

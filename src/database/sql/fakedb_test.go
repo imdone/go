@@ -1058,7 +1058,7 @@ func (rc *rowsCursor) Next(dest []driver.Value) error {
 		return io.EOF // per interface spec
 	}
 	for i, v := range rc.rows[rc.posSet][rc.posRow].cols {
-		// TODO(bradfitz): convert to subset types? naah, I
+		// TODO (bradfitz): convert to subset types? naah, I id:737 gh:738
 		// think the subset types should only be input to
 		// driver, but the sql package should be able to handle
 		// a wider range of types coming out of drivers. all
@@ -1138,16 +1138,16 @@ func converterForType(typ string) driver.ValueConverter {
 	case "nullstring":
 		return driver.Null{Converter: fakeDriverString{}}
 	case "int64":
-		// TODO(coopernurse): add type-specific converter
+		// TODO (coopernurse): add type-specific converter id:646 gh:647
 		return driver.NotNull{Converter: driver.DefaultParameterConverter}
 	case "nullint64":
-		// TODO(coopernurse): add type-specific converter
+		// TODO (coopernurse): add type-specific converter id:680 gh:681
 		return driver.Null{Converter: driver.DefaultParameterConverter}
 	case "float64":
-		// TODO(coopernurse): add type-specific converter
+		// TODO (coopernurse): add type-specific converter id:1032 gh:1040
 		return driver.NotNull{Converter: driver.DefaultParameterConverter}
 	case "nullfloat64":
-		// TODO(coopernurse): add type-specific converter
+		// TODO (coopernurse): add type-specific converter id:585 gh:586
 		return driver.Null{Converter: driver.DefaultParameterConverter}
 	case "datetime":
 		return driver.DefaultParameterConverter

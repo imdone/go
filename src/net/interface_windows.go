@@ -200,7 +200,7 @@ func addrPrefixTable(aa *windows.IpAdapterAddresses) (pfx4, pfx6 []IPNet, err er
 // from pfxs. It returns 32 or 128 when no appropriate on-link address
 // prefix found.
 //
-// NOTE: This is pretty naive implementation that contains many
+// NOTE: This is pretty naive implementation that contains many id:1337 gh:1345
 // allocations and non-effective linear search, and should not be used
 // freely.
 func addrPrefixLen(pfxs []IPNet, ip IP) int {

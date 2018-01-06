@@ -59,12 +59,12 @@ var setStringTests = []StringTest{
 // These are not supported by fmt.Fscanf.
 var setStringTests2 = []StringTest{
 	{"0x10", "16", true},
-	{"-010/1", "-8", true}, // TODO(gri) should we even permit octal here?
+	{"-010/1", "-8", true}, // TODO (gri) should we even permit octal here? id:848 gh:849
 	{"-010.", "-10", true},
 	{"0x10/0x20", "1/2", true},
 	{"0b1000/3", "8/3", true},
 	{in: "4/3x"},
-	// TODO(gri) add more tests
+	// TODO (gri) add more tests id:1123 gh:1131
 }
 
 func TestRatSetString(t *testing.T) {

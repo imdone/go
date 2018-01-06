@@ -51,7 +51,7 @@ type pollDesc struct {
 	// pollReset, pollWait, pollWaitCanceled and runtime·netpollready (IO readiness notification)
 	// proceed w/o taking the lock. So closing, rg, rd, wg and wd are manipulated
 	// in a lock-free way by all operations.
-	// NOTE(dvyukov): the following code uses uintptr to store *g (rg/wg),
+	// NOTE (dvyukov): the following code uses uintptr to store *g (rg/wg), id:1382 gh:1390
 	// that will blow up when GC starts moving objects.
 	lock    mutex // protects the following fields
 	fd      uintptr

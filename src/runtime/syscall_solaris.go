@@ -50,7 +50,7 @@ func syscall_rawsysvicall6(fn, nargs, a1, a2, a3, a4, a5, a6 uintptr) (r1, r2, e
 	return call.r1, call.r2, call.err
 }
 
-// TODO(aram): Once we remove all instances of C calling sysvicallN, make
+// TODO (aram): Once we remove all instances of C calling sysvicallN, make id:1301 gh:1309
 // sysvicallN return errors and replace the body of the following functions
 // with calls to sysvicallN.
 
@@ -239,7 +239,7 @@ func syscall_setpgid(pid, pgid uintptr) (err uintptr) {
 //
 // DO NOT USE!
 //
-// TODO(aram): make this panic once we stop calling fcntl(2) in net using it.
+// TODO (aram): make this panic once we stop calling fcntl(2) in net using it. id:1046 gh:1054
 func syscall_syscall(trap, a1, a2, a3 uintptr) (r1, r2, err uintptr) {
 	call := libcall{
 		fn:   uintptr(unsafe.Pointer(&libc_syscall)),

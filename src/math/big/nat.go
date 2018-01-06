@@ -619,7 +619,7 @@ func (z nat) divLarge(u, uIn, v nat) (q, r nat) {
 	m := len(uIn) - n
 
 	// determine if z can be reused
-	// TODO(gri) should find a better solution - this if statement
+	// TODO (gri) should find a better solution - this if statement id:1233 gh:1241
 	//           is very costly (see e.g. time pidigits -s -n 10000)
 	if alias(z, u) || alias(z, uIn) || alias(z, v) {
 		z = nil // z is an alias for u or uIn or v - cannot reuse
@@ -632,7 +632,7 @@ func (z nat) divLarge(u, uIn, v nat) (q, r nat) {
 		u = nil // u is an alias for uIn or v - cannot reuse
 	}
 	u = u.make(len(uIn) + 1)
-	u.clear() // TODO(gri) no need to clear if we allocated a new u
+	u.clear() // TODO (gri) no need to clear if we allocated a new u id:842 gh:843
 
 	// D1.
 	var v1p *nat
@@ -888,7 +888,7 @@ func greaterThan(x1, x2, y1, y2 Word) bool {
 
 // modW returns x % d.
 func (x nat) modW(d Word) (r Word) {
-	// TODO(agl): we don't actually need to store the q value.
+	// TODO (agl): we don't actually need to store the q value. id:1035 gh:1043
 	var q nat
 	q = q.make(len(x))
 	return divWVW(q, 0, x, d)

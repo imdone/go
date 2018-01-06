@@ -56,7 +56,7 @@ func (f *File) updateDead(node ast.Node) {
 
 		// Case clause is dead if its constant value doesn't match
 		// the constant value from the switch tag.
-		// TODO: This handles integer comparisons only.
+		// TODO: This handles integer comparisons only. id:1012 gh:1020
 		v := f.pkg.types[stmt.Tag].Value
 		if v == nil || v.Kind() != constant.Int {
 			return

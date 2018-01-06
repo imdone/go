@@ -16,7 +16,7 @@ var Tptr EType // either TPTR32 or TPTR64
 
 // The following variables must be initialized early by the frontend.
 // They are here to break import cycles.
-// TODO(gri) eliminate these dependencies.
+// TODO (gri) eliminate these dependencies. id:249 gh:250
 var (
 	Widthptr    int
 	Dowidth     func(*Type)

@@ -948,7 +948,7 @@ func evacuate_fast32(t *maptype, h *hmap, oldbucket uintptr) {
 	b := (*bmap)(add(h.oldbuckets, oldbucket*uintptr(t.bucketsize)))
 	newbit := h.noldbuckets()
 	if !evacuated(b) {
-		// TODO: reuse overflow buckets instead of using new ones, if there
+		// TODO: reuse overflow buckets instead of using new ones, if there id:966 gh:974
 		// is no iterator using the old buckets.  (If !oldIterator.)
 
 		// xy contains the x and y (low and high) evacuation destinations.
@@ -1048,7 +1048,7 @@ func evacuate_fast64(t *maptype, h *hmap, oldbucket uintptr) {
 	b := (*bmap)(add(h.oldbuckets, oldbucket*uintptr(t.bucketsize)))
 	newbit := h.noldbuckets()
 	if !evacuated(b) {
-		// TODO: reuse overflow buckets instead of using new ones, if there
+		// TODO: reuse overflow buckets instead of using new ones, if there id:1232 gh:1240
 		// is no iterator using the old buckets.  (If !oldIterator.)
 
 		// xy contains the x and y (low and high) evacuation destinations.
@@ -1154,7 +1154,7 @@ func evacuate_faststr(t *maptype, h *hmap, oldbucket uintptr) {
 	b := (*bmap)(add(h.oldbuckets, oldbucket*uintptr(t.bucketsize)))
 	newbit := h.noldbuckets()
 	if !evacuated(b) {
-		// TODO: reuse overflow buckets instead of using new ones, if there
+		// TODO: reuse overflow buckets instead of using new ones, if there id:994 gh:1002
 		// is no iterator using the old buckets.  (If !oldIterator.)
 
 		// xy contains the x and y (low and high) evacuation destinations.

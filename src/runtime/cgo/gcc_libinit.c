@@ -40,7 +40,7 @@ _cgo_wait_runtime_init_done() {
 		pthread_cond_wait(&runtime_init_cond, &runtime_init_mu);
 	}
 
-	// TODO(iant): For the case of a new C thread calling into Go, such
+	// TODO (iant): For the case of a new C thread calling into Go, such id:1341 gh:1349
 	// as when using -buildmode=c-archive, we know that Go runtime
 	// initialization is complete but we do not know that all Go init
 	// functions have been run. We should not fetch cgo_context_function

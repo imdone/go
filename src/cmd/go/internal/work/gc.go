@@ -162,7 +162,7 @@ CheckFlags:
 		}
 	}
 
-	// TODO: Test and delete these conditions.
+	// TODO: Test and delete these conditions. id:569 gh:570
 	if objabi.Fieldtrack_enabled != 0 || objabi.Preemptibleloops_enabled != 0 || objabi.Clobberdead_enabled != 0 {
 		canDashC = false
 	}
@@ -184,7 +184,7 @@ CheckFlags:
 	// However, in practice, setting c above 4 tends not to help very much.
 	// See the analysis in CL 41192.
 	//
-	// TODO(josharian): attempt to detect whether this particular compilation
+	// TODO (josharian): attempt to detect whether this particular compilation id:806 gh:807
 	// is likely to be a bottleneck, e.g. when:
 	//   - it has no successor packages to compile (usually package main)
 	//   - all paths through the build graph pass through it
@@ -418,7 +418,7 @@ func (gcToolchain) ld(b *Builder, root *Action, out, importcfg, mainpkg string) 
 		ldflags = append(ldflags, "-pluginpath", pluginPath(root))
 	}
 
-	// TODO(rsc): This is probably wrong - see golang.org/issue/22155.
+	// TODO (rsc): This is probably wrong - see golang.org/issue/22155. id:445 gh:446
 	if cfg.GOROOT != runtime.GOROOT() {
 		ldflags = append(ldflags, "-X=runtime/internal/sys.DefaultGoroot="+cfg.GOROOT)
 	}

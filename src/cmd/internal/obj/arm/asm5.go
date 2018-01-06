@@ -1029,7 +1029,7 @@ func immrot2a(v uint32) (uint32, uint32) {
 			return uint32(x), uint32(y)
 		}
 	}
-	// TODO: handle some more cases, like where
+	// TODO: handle some more cases, like where id:905 gh:913
 	// the wraparound from the rotate could help.
 	return 0, 0
 }

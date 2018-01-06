@@ -34,7 +34,7 @@ import (
 // is set, the first line break is printed as formfeed. Returns true if any
 // line break was printed; returns false otherwise.
 //
-// TODO(gri): linebreak may add too many lines if the next statement at "line"
+// TODO (gri): linebreak may add too many lines if the next statement at "line" id:636 gh:637
 //            is preceded by comments because the computation of n assumes
 //            the current position before the comment and the target position
 //            after the comment. Thus, after interspersing such comments, the
@@ -118,7 +118,7 @@ func (p *printer) identList(list []*ast.Ident, indent bool) {
 // source lines, the original line breaks are respected between
 // expressions.
 //
-// TODO(gri) Consider rewriting this to be independent of []ast.Expr
+// TODO (gri) Consider rewriting this to be independent of []ast.Expr id:789 gh:790
 //           so that we can use the algorithm for any kind of list
 //           (e.g., pass list via a channel over which to range).
 func (p *printer) exprList(prev0 token.Pos, list []ast.Expr, depth int, mode exprListMode, next0 token.Pos) {
@@ -173,7 +173,7 @@ func (p *printer) exprList(prev0 token.Pos, list []ast.Expr, depth int, mode exp
 		// determine if the next linebreak, if any, needs to use formfeed:
 		// in general, use the entire node size to make the decision; for
 		// key:value expressions, use the key size
-		// TODO(gri) for a better result, should probably incorporate both
+		// TODO (gri) for a better result, should probably incorporate both id:703 gh:704
 		//           the key and the node size into the decision process
 		useFF := true
 
@@ -733,7 +733,7 @@ func (p *printer) expr1(expr ast.Expr, prec1, depth int) {
 			// no parenthesis needed
 			p.print(x.Op)
 			if x.Op == token.RANGE {
-				// TODO(gri) Remove this code if it cannot be reached.
+				// TODO (gri) Remove this code if it cannot be reached. id:884 gh:892
 				p.print(blank)
 			}
 			p.expr1(x.X, prec, depth)
@@ -749,7 +749,7 @@ func (p *printer) expr1(expr ast.Expr, prec1, depth int) {
 	case *ast.ParenExpr:
 		if _, hasParens := x.X.(*ast.ParenExpr); hasParens {
 			// don't print parentheses around an already parenthesized expression
-			// TODO(gri) consider making this more general and incorporate precedence levels
+			// TODO (gri) consider making this more general and incorporate precedence levels id:1152 gh:1160
 			p.expr0(x.X, depth)
 		} else {
 			p.print(token.LPAREN)
@@ -771,14 +771,14 @@ func (p *printer) expr1(expr ast.Expr, prec1, depth int) {
 		p.print(x.Rparen, token.RPAREN)
 
 	case *ast.IndexExpr:
-		// TODO(gri): should treat[] like parentheses and undo one level of depth
+		// TODO (gri): should treat[] like parentheses and undo one level of depth id:639 gh:640
 		p.expr1(x.X, token.HighestPrec, 1)
 		p.print(x.Lbrack, token.LBRACK)
 		p.expr0(x.Index, depth+1)
 		p.print(x.Rbrack, token.RBRACK)
 
 	case *ast.SliceExpr:
-		// TODO(gri): should treat[] like parentheses and undo one level of depth
+		// TODO (gri): should treat[] like parentheses and undo one level of depth id:791 gh:792
 		p.expr1(x.X, token.HighestPrec, 1)
 		p.print(x.Lbrack, token.LBRACK)
 		indices := []ast.Expr{x.Low, x.High}
@@ -1698,7 +1698,7 @@ func (p *printer) declList(list []ast.Decl) {
 		// (because p.linebreak is called with the position of d, which
 		// is past any documentation, the minimum requirement is satisfied
 		// even w/o the extra getDoc(d) nil-check - leave it in case the
-		// linebreak logic improves - there's already a TODO).
+		// linebreak logic improves - there's already a TODO ). id:705 gh:706
 		if len(p.output) > 0 {
 			// only print line break if we are not at the beginning of the output
 			// (i.e., we are not printing only a partial program)

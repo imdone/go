@@ -189,7 +189,7 @@ func main() {
 
 		// generate test functions
 		for _, r := range values {
-			// TODO: could also test constant on lhs.
+			// TODO: could also test constant on lhs. id:248 gh:249
 			sig := sigString(r)
 			for _, op := range operators {
 				// no need for go:noinline because the function is called indirectly

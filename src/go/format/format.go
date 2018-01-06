@@ -47,7 +47,7 @@ func Node(dst io.Writer, fset *token.FileSet, node interface{}) error {
 	// Sort imports if necessary.
 	if file != nil && hasUnsortedImports(file) {
 		// Make a copy of the AST because ast.SortImports is destructive.
-		// TODO(gri) Do this more efficiently.
+		// TODO (gri) Do this more efficiently. id:627 gh:628
 		var buf bytes.Buffer
 		err := config.Fprint(&buf, fset, file)
 		if err != nil {
@@ -92,7 +92,7 @@ func Source(src []byte) ([]byte, error) {
 
 	if sourceAdj == nil {
 		// Complete source file.
-		// TODO(gri) consider doing this always.
+		// TODO (gri) consider doing this always. id:780 gh:781
 		ast.SortImports(fset, file)
 	}
 
@@ -109,7 +109,7 @@ func hasUnsortedImports(file *ast.File) bool {
 		}
 		if d.Lparen.IsValid() {
 			// For now assume all grouped imports are unsorted.
-			// TODO(gri) Should check if they are sorted already.
+			// TODO (gri) Should check if they are sorted already. id:691 gh:692
 			return true
 		}
 		// Ungrouped imports are sorted by default.

@@ -109,7 +109,7 @@ func walkselectcases(cases *Nodes) []*Node {
 	}
 
 	// optimization: one-case select: single op.
-	// TODO(rsc): Reenable optimization once order.go can handle it.
+	// TODO (rsc): Reenable optimization once order.go can handle it. id:196 gh:197
 	// golang.org/issue/7672.
 	if n == 1 {
 		cas := cases.First()
@@ -320,7 +320,7 @@ func walkselectcases(cases *Nodes) []*Node {
 
 // Keep in sync with src/runtime/select.go.
 func selecttype(size int64) *types.Type {
-	// TODO(dvyukov): it's possible to generate Scase only once
+	// TODO (dvyukov): it's possible to generate Scase only once id:115 gh:116
 	// and then cache; and also cache Select per size.
 
 	scase := tostruct([]*Node{

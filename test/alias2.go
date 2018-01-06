@@ -101,4 +101,4 @@ type B1 = struct{}
 
 func (B1) m() {} // ERROR "m redeclared in this block" "invalid receiver type"
 
-// TODO(gri) expand
+// TODO (gri) expand id:1458 gh:1466

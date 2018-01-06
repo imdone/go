@@ -256,7 +256,7 @@ func genhash(sym *types.Sym, t *types.Type) {
 			if !IsRegularMemory(f.Type) {
 				hashel := hashfor(f.Type)
 				call := nod(OCALL, hashel, nil)
-				nx := nodSym(OXDOT, np, f.Sym) // TODO: fields from other packages?
+				nx := nodSym(OXDOT, np, f.Sym) // TODO: fields from other packages? id:57 gh:58
 				na := nod(OADDR, nx, nil)
 				na.Etype = 1 // no escape to heap
 				call.List.Append(na)
@@ -272,7 +272,7 @@ func genhash(sym *types.Sym, t *types.Type) {
 			// h = hashel(&p.first, size, h)
 			hashel := hashmem(f.Type)
 			call := nod(OCALL, hashel, nil)
-			nx := nodSym(OXDOT, np, f.Sym) // TODO: fields from other packages?
+			nx := nodSym(OXDOT, np, f.Sym) // TODO: fields from other packages? id:42 gh:43
 			na := nod(OADDR, nx, nil)
 			na.Etype = 1 // no escape to heap
 			call.List.Append(na)
@@ -449,7 +449,7 @@ func geneq(sym *types.Sym, t *types.Type) {
 			// Find maximal length run of memory-only fields.
 			size, next := memrun(t, i)
 
-			// TODO(rsc): All the calls to newname are wrong for
+			// TODO (rsc): All the calls to newname are wrong for id:163 gh:164
 			// cross-package unexported fields.
 			if s := fields[i:next]; len(s) <= 2 {
 				// Two or fewer fields: use plain field equality.

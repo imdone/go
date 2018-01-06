@@ -1229,7 +1229,7 @@ func elfshbits(linkmode LinkMode, sect *sym.Section) *ElfShdr {
 	// flags are already correct, but the other fields still need filling in.
 	if sh.type_ == SHT_NOTE {
 		if linkmode != LinkExternal {
-			// TODO(mwhudson): the approach here will work OK when
+			// TODO (mwhudson): the approach here will work OK when id:473 gh:474
 			// linking internally for notes that we want to be included
 			// in a loadable segment (e.g. the abihash note) but not for
 			// notes that we do not want to be mapped (e.g. the package
@@ -2316,7 +2316,7 @@ func elfadddynsym(ctxt *Link, s *sym.Symbol) {
 		/* type */
 		t := STB_GLOBAL << 4
 
-		// TODO(mwhudson): presumably the behavior should actually be the same on both arm and 386.
+		// TODO (mwhudson): presumably the behavior should actually be the same on both arm and 386. id:605 gh:606
 		if ctxt.Arch.Family == sys.I386 && s.Attr.CgoExport() && s.Type == sym.STEXT {
 			t |= STT_FUNC
 		} else if ctxt.Arch.Family == sys.ARM && s.Attr.CgoExportDynamic() && s.Type == sym.STEXT {

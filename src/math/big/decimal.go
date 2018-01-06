@@ -41,13 +41,13 @@ func (d *decimal) at(i int) byte {
 // A Word has _W bits and (1<<maxShift - 1)*10 + 9 must fit into Word.
 const maxShift = _W - 4
 
-// TODO(gri) Since we know the desired decimal precision when converting
+// TODO (gri) Since we know the desired decimal precision when converting id:1220 gh:1228
 // a floating-point number, we may be able to limit the number of decimal
 // digits that need to be computed by init by providing an additional
 // precision argument and keeping track of when a number was truncated early
 // (equivalent of "sticky bit" in binary rounding).
 
-// TODO(gri) Along the same lines, enforce some limit to shift magnitudes
+// TODO (gri) Along the same lines, enforce some limit to shift magnitudes id:830 gh:831
 // to avoid "infinitely" long running conversions (until we run out of space).
 
 // Init initializes x to the decimal representation of m << shift (for

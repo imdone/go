@@ -296,7 +296,7 @@ const (
 	C_LACON // 32-bit offset in auto constant $a(FP)
 	C_AECON // ADDCON offset in extern constant $e(SB)
 
-	// TODO(aram): only one branch class should be enough
+	// TODO (aram): only one branch class should be enough id:452 gh:453
 	C_SBRA // for TYPE_BRANCH
 	C_LBRA
 
@@ -342,7 +342,7 @@ const (
 	C_UOREG32K
 	C_LOREG
 
-	C_ADDR // TODO(aram): explain difference from C_VCONADDR
+	C_ADDR // TODO (aram): explain difference from C_VCONADDR id:287 gh:289
 
 	// The GOT slot for a symbol in -dynlink mode.
 	C_GOTADDR

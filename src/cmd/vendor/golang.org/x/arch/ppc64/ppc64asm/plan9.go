@@ -83,7 +83,7 @@ func GoSyntax(inst Inst, pc uint64, symname func(uint64) (string, uint64)) strin
 }
 
 // plan9Arg formats arg (which is the argIndex's arg in inst) according to Plan 9 rules.
-// NOTE: because Plan9Syntax is the only caller of this func, and it receives a copy
+// NOTE: because Plan9Syntax is the only caller of this func, and it receives a copy id:654 gh:655
 //       of inst, it's ok to modify inst.Args here.
 func plan9Arg(inst *Inst, argIndex int, pc uint64, arg Arg, symname func(uint64) (string, uint64)) string {
 	// special cases for load/store instructions
@@ -155,7 +155,7 @@ var plan9OpMap = map[Op]string{
 	ADDI: "ADD",
 	ADD_: "ADDCC",
 	LBZ:  "MOVBZ", STB: "MOVB",
-	LBZU: "MOVBZU", STBU: "MOVBU", // TODO(minux): indexed forms are not handled
+	LBZU: "MOVBZU", STBU: "MOVBU", // TODO (minux): indexed forms are not handled id:996 gh:1004
 	LHZ: "MOVHZ", LHA: "MOVH", STH: "MOVH",
 	LHZU: "MOVHZU", STHU: "MOVHU",
 	LI:  "MOVD",

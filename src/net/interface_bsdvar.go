@@ -23,6 +23,6 @@ func interfaceMessages(ifindex int) ([]route.Message, error) {
 // interfaceMulticastAddrTable returns addresses for a specific
 // interface.
 func interfaceMulticastAddrTable(ifi *Interface) ([]Addr, error) {
-	// TODO(mikio): Implement this like other platforms.
+	// TODO (mikio): Implement this like other platforms. id:927 gh:935
 	return nil, nil
 }

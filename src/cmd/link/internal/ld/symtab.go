@@ -146,7 +146,7 @@ func putelfsym(ctxt *Link, x *sym.Symbol, s string, t SymbolType, addr int64, go
 	}
 	other := STV_DEFAULT
 	if x.Attr.VisibilityHidden() {
-		// TODO(mwhudson): We only set AttrVisibilityHidden in ldelf, i.e. when
+		// TODO (mwhudson): We only set AttrVisibilityHidden in ldelf, i.e. when id:611 gh:612
 		// internally linking. But STV_HIDDEN visibility only matters in object
 		// files and shared libraries, and as we are a long way from implementing
 		// internal linking for shared libraries and only create object files when

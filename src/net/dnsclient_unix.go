@@ -7,7 +7,7 @@
 // DNS client: see RFC 1035.
 // Has to be linked into package net for Dial.
 
-// TODO(rsc):
+// TODO (rsc): id:855 gh:859
 //	Could potentially handle many outstanding lookups faster.
 //	Could have a small cache.
 //	Random UDP source port (net.Dial should do that for us).
@@ -120,7 +120,7 @@ func (r *Resolver) exchange(ctx context.Context, server, name string, qtype uint
 		},
 	}
 	for _, network := range []string{"udp", "tcp"} {
-		// TODO(mdempsky): Refactor so defers from UDP-based
+		// TODO (mdempsky): Refactor so defers from UDP-based id:1129 gh:1137
 		// exchanges happen before TCP-based exchange.
 
 		ctx, cancel := context.WithDeadline(ctx, time.Now().Add(timeout))
@@ -185,7 +185,7 @@ func (r *Resolver) tryOneName(ctx context.Context, cfg *dnsConfig, name string, 
 			// If answer errored for rcodes dnsRcodeSuccess or dnsRcodeNameError,
 			// it means the response in msg was not useful and trying another
 			// server probably won't help. Return now in those cases.
-			// TODO: indicate this in a more obvious way, such as a field on DNSError?
+			// TODO: indicate this in a more obvious way, such as a field on DNSError? id:838 gh:839
 			if err == nil || msg.rcode == dnsRcodeSuccess || msg.rcode == dnsRcodeNameError {
 				return cname, rrs, err
 			}

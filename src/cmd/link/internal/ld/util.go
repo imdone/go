@@ -15,7 +15,7 @@ import (
 
 var startTime time.Time
 
-// TODO(josharian): delete. See issue 19865.
+// TODO (josharian): delete. See issue 19865. id:962 gh:970
 func Cputime() float64 {
 	if startTime.IsZero() {
 		startTime = time.Now()

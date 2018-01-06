@@ -59,7 +59,7 @@ func encBoolArray(state *encoderState, v reflect.Value) bool {
 func encBoolSlice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]bool)
 	if !ok {
-		// It is kind bool but not type bool. TODO: We can handle this unsafely.
+		// It is kind bool but not type bool. TODO: We can handle this unsafely. id:1119 gh:1127
 		return false
 	}
 	for _, x := range slice {
@@ -85,7 +85,7 @@ func encComplex64Array(state *encoderState, v reflect.Value) bool {
 func encComplex64Slice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]complex64)
 	if !ok {
-		// It is kind complex64 but not type complex64. TODO: We can handle this unsafely.
+		// It is kind complex64 but not type complex64. TODO: We can handle this unsafely. id:604 gh:605
 		return false
 	}
 	for _, x := range slice {
@@ -110,7 +110,7 @@ func encComplex128Array(state *encoderState, v reflect.Value) bool {
 func encComplex128Slice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]complex128)
 	if !ok {
-		// It is kind complex128 but not type complex128. TODO: We can handle this unsafely.
+		// It is kind complex128 but not type complex128. TODO: We can handle this unsafely. id:767 gh:768
 		return false
 	}
 	for _, x := range slice {
@@ -135,7 +135,7 @@ func encFloat32Array(state *encoderState, v reflect.Value) bool {
 func encFloat32Slice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]float32)
 	if !ok {
-		// It is kind float32 but not type float32. TODO: We can handle this unsafely.
+		// It is kind float32 but not type float32. TODO: We can handle this unsafely. id:665 gh:666
 		return false
 	}
 	for _, x := range slice {
@@ -158,7 +158,7 @@ func encFloat64Array(state *encoderState, v reflect.Value) bool {
 func encFloat64Slice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]float64)
 	if !ok {
-		// It is kind float64 but not type float64. TODO: We can handle this unsafely.
+		// It is kind float64 but not type float64. TODO: We can handle this unsafely. id:700 gh:701
 		return false
 	}
 	for _, x := range slice {
@@ -181,7 +181,7 @@ func encIntArray(state *encoderState, v reflect.Value) bool {
 func encIntSlice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]int)
 	if !ok {
-		// It is kind int but not type int. TODO: We can handle this unsafely.
+		// It is kind int but not type int. TODO: We can handle this unsafely. id:1120 gh:1128
 		return false
 	}
 	for _, x := range slice {
@@ -203,7 +203,7 @@ func encInt16Array(state *encoderState, v reflect.Value) bool {
 func encInt16Slice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]int16)
 	if !ok {
-		// It is kind int16 but not type int16. TODO: We can handle this unsafely.
+		// It is kind int16 but not type int16. TODO: We can handle this unsafely. id:606 gh:607
 		return false
 	}
 	for _, x := range slice {
@@ -225,7 +225,7 @@ func encInt32Array(state *encoderState, v reflect.Value) bool {
 func encInt32Slice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]int32)
 	if !ok {
-		// It is kind int32 but not type int32. TODO: We can handle this unsafely.
+		// It is kind int32 but not type int32. TODO: We can handle this unsafely. id:768 gh:769
 		return false
 	}
 	for _, x := range slice {
@@ -247,7 +247,7 @@ func encInt64Array(state *encoderState, v reflect.Value) bool {
 func encInt64Slice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]int64)
 	if !ok {
-		// It is kind int64 but not type int64. TODO: We can handle this unsafely.
+		// It is kind int64 but not type int64. TODO: We can handle this unsafely. id:667 gh:668
 		return false
 	}
 	for _, x := range slice {
@@ -269,7 +269,7 @@ func encInt8Array(state *encoderState, v reflect.Value) bool {
 func encInt8Slice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]int8)
 	if !ok {
-		// It is kind int8 but not type int8. TODO: We can handle this unsafely.
+		// It is kind int8 but not type int8. TODO: We can handle this unsafely. id:702 gh:703
 		return false
 	}
 	for _, x := range slice {
@@ -291,7 +291,7 @@ func encStringArray(state *encoderState, v reflect.Value) bool {
 func encStringSlice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]string)
 	if !ok {
-		// It is kind string but not type string. TODO: We can handle this unsafely.
+		// It is kind string but not type string. TODO: We can handle this unsafely. id:1121 gh:1129
 		return false
 	}
 	for _, x := range slice {
@@ -314,7 +314,7 @@ func encUintArray(state *encoderState, v reflect.Value) bool {
 func encUintSlice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]uint)
 	if !ok {
-		// It is kind uint but not type uint. TODO: We can handle this unsafely.
+		// It is kind uint but not type uint. TODO: We can handle this unsafely. id:608 gh:609
 		return false
 	}
 	for _, x := range slice {
@@ -336,7 +336,7 @@ func encUint16Array(state *encoderState, v reflect.Value) bool {
 func encUint16Slice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]uint16)
 	if !ok {
-		// It is kind uint16 but not type uint16. TODO: We can handle this unsafely.
+		// It is kind uint16 but not type uint16. TODO: We can handle this unsafely. id:769 gh:770
 		return false
 	}
 	for _, x := range slice {
@@ -358,7 +358,7 @@ func encUint32Array(state *encoderState, v reflect.Value) bool {
 func encUint32Slice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]uint32)
 	if !ok {
-		// It is kind uint32 but not type uint32. TODO: We can handle this unsafely.
+		// It is kind uint32 but not type uint32. TODO: We can handle this unsafely. id:669 gh:670
 		return false
 	}
 	for _, x := range slice {
@@ -380,7 +380,7 @@ func encUint64Array(state *encoderState, v reflect.Value) bool {
 func encUint64Slice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]uint64)
 	if !ok {
-		// It is kind uint64 but not type uint64. TODO: We can handle this unsafely.
+		// It is kind uint64 but not type uint64. TODO: We can handle this unsafely. id:706 gh:707
 		return false
 	}
 	for _, x := range slice {
@@ -402,7 +402,7 @@ func encUintptrArray(state *encoderState, v reflect.Value) bool {
 func encUintptrSlice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]uintptr)
 	if !ok {
-		// It is kind uintptr but not type uintptr. TODO: We can handle this unsafely.
+		// It is kind uintptr but not type uintptr. TODO: We can handle this unsafely. id:1122 gh:1130
 		return false
 	}
 	for _, x := range slice {

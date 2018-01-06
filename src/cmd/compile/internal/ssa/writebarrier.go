@@ -173,7 +173,7 @@ func writebarrier(f *Func) {
 		b.Succs = b.Succs[:0]
 		b.AddEdgeTo(bThen)
 		b.AddEdgeTo(bElse)
-		// TODO: For OpStoreWB and the buffered write barrier,
+		// TODO: For OpStoreWB and the buffered write barrier, id:387 gh:388
 		// we could move the write out of the write barrier,
 		// which would lead to fewer branches. We could do
 		// something similar to OpZeroWB, since the runtime

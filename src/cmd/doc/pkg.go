@@ -129,7 +129,7 @@ func parsePackage(writer io.Writer, pkg *build.Package, userPath string) *Packag
 	}
 	astPkg := pkgs[pkg.Name]
 
-	// TODO: go/doc does not include typed constants in the constants
+	// TODO: go/doc does not include typed constants in the constants id:413 gh:414
 	// list, which is what we want. For instance, time.Sunday is of type
 	// time.Weekday, so it is defined in the type but not in the
 	// Consts list for the package. This prevents
@@ -518,7 +518,7 @@ func (pkg *Package) typeSummary() {
 }
 
 // bugs prints the BUGS information for the package.
-// TODO: Provide access to TODOs and NOTEs as well (very noisy so off by default)?
+// TODO: Provide access to TODOs and NOTEs as well (very noisy so off by default)? id:541 gh:542
 func (pkg *Package) bugs() {
 	if pkg.doc.Notes["BUG"] == nil {
 		return
@@ -602,9 +602,9 @@ func (pkg *Package) symbolDoc(symbol string) bool {
 	for _, value := range values {
 		// Print each spec only if there is at least one exported symbol in it.
 		// (See issue 11008.)
-		// TODO: Should we elide unexported symbols from a single spec?
+		// TODO: Should we elide unexported symbols from a single spec? id:369 gh:370
 		// It's an unlikely scenario, probably not worth the trouble.
-		// TODO: Would be nice if go/doc did this for us.
+		// TODO: Would be nice if go/doc did this for us. id:418 gh:419
 		specs := make([]ast.Spec, 0, len(value.Decl.Specs))
 		var typ ast.Expr
 		for _, spec := range value.Decl.Specs {
@@ -801,7 +801,7 @@ func (pkg *Package) printMethodDoc(symbol, method string) bool {
 		}
 		for _, iMethod := range inter.Methods.List {
 			// This is an interface, so there can be only one name.
-			// TODO: Anonymous methods (embedding)
+			// TODO: Anonymous methods (embedding) id:254 gh:255
 			if len(iMethod.Names) == 0 {
 				continue
 			}
@@ -850,7 +850,7 @@ func (pkg *Package) printFieldDoc(symbol, fieldName string) bool {
 			continue
 		}
 		for _, field := range structType.Fields.List {
-			// TODO: Anonymous fields.
+			// TODO: Anonymous fields. id:414 gh:415
 			for _, name := range field.Names {
 				if !match(fieldName, name.Name) {
 					numUnmatched++

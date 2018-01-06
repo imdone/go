@@ -477,7 +477,7 @@ func (t *Tree) parseControl(allowElseIf bool, context string) (pos Pos, line int
 			//	{{if a}}_{{else}}{{if b}}_{{end}}{{end}}.
 			// To do this, parse the if as usual and stop at it {{end}}; the subsequent{{end}}
 			// is assumed. This technique works even for long if-else-if chains.
-			// TODO: Should we allow else-if in with and range?
+			// TODO: Should we allow else-if in with and range? id:1323 gh:1331
 			if t.peek().typ == itemIf {
 				t.next() // Consume the "if" token.
 				elseList = t.newList(next.Position())

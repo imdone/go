@@ -403,7 +403,7 @@ func init() {
 		{name: "CVTSS2SD", argLength: 1, reg: fp11, asm: "CVTSS2SD"},   // convert float32 to float64
 
 		// Move values between int and float registers, with no conversion.
-		// TODO: should we have generic versions of these?
+		// TODO: should we have generic versions of these? id:195 gh:196
 		{name: "MOVQi2f", argLength: 1, reg: gpfp, typ: "Float64"}, // move 64 bits from int to float reg
 		{name: "MOVQf2i", argLength: 1, reg: fpgp, typ: "UInt64"},  // move 64 bits from float to int reg
 		{name: "MOVLi2f", argLength: 1, reg: gpfp, typ: "Float32"}, // move 32 bits from int to float reg
@@ -444,8 +444,8 @@ func init() {
 		{name: "MOVLloadidx8", argLength: 3, reg: gploadidx, asm: "MOVL", aux: "SymOff", typ: "UInt32", symEffect: "Read"},                       // load 4 bytes from arg0+8*arg1+auxint+aux. arg2=mem
 		{name: "MOVQloadidx1", argLength: 3, reg: gploadidx, commutative: true, asm: "MOVQ", aux: "SymOff", typ: "UInt64", symEffect: "Read"},    // load 8 bytes from arg0+arg1+auxint+aux. arg2=mem
 		{name: "MOVQloadidx8", argLength: 3, reg: gploadidx, asm: "MOVQ", aux: "SymOff", typ: "UInt64", symEffect: "Read"},                       // load 8 bytes from arg0+8*arg1+auxint+aux. arg2=mem
-		// TODO: sign-extending indexed loads
-		// TODO: mark the MOVXstoreidx1 ops as commutative.  Generates too many rewrite rules at the moment.
+		// TODO: sign-extending indexed loads id:318 gh:319
+		// TODO: mark the MOVXstoreidx1 ops as commutative.  Generates too many rewrite rules at the moment. id:516 gh:517
 		{name: "MOVBstoreidx1", argLength: 4, reg: gpstoreidx, asm: "MOVB", aux: "SymOff", symEffect: "Write"}, // store byte in arg2 to arg0+arg1+auxint+aux. arg3=mem
 		{name: "MOVWstoreidx1", argLength: 4, reg: gpstoreidx, asm: "MOVW", aux: "SymOff", symEffect: "Write"}, // store 2 bytes in arg2 to arg0+arg1+auxint+aux. arg3=mem
 		{name: "MOVWstoreidx2", argLength: 4, reg: gpstoreidx, asm: "MOVW", aux: "SymOff", symEffect: "Write"}, // store 2 bytes in arg2 to arg0+2*arg1+auxint+aux. arg3=mem
@@ -454,7 +454,7 @@ func init() {
 		{name: "MOVLstoreidx8", argLength: 4, reg: gpstoreidx, asm: "MOVL", aux: "SymOff", symEffect: "Write"}, // store 4 bytes in arg2 to arg0+8*arg1+auxint+aux. arg3=mem
 		{name: "MOVQstoreidx1", argLength: 4, reg: gpstoreidx, asm: "MOVQ", aux: "SymOff", symEffect: "Write"}, // store 8 bytes in arg2 to arg0+arg1+auxint+aux. arg3=mem
 		{name: "MOVQstoreidx8", argLength: 4, reg: gpstoreidx, asm: "MOVQ", aux: "SymOff", symEffect: "Write"}, // store 8 bytes in arg2 to arg0+8*arg1+auxint+aux. arg3=mem
-		// TODO: add size-mismatched indexed loads, like MOVBstoreidx4.
+		// TODO: add size-mismatched indexed loads, like MOVBstoreidx4. id:278 gh:279
 
 		// For storeconst ops, the AuxInt field encodes both
 		// the value to store and an address offset of the store.
@@ -621,7 +621,7 @@ func init() {
 		//   return (false, memory)
 		// }
 		// Note that these instructions also return the old value in AX, but we ignore it.
-		// TODO: have these return flags instead of bool.  The current system generates:
+		// TODO: have these return flags instead of bool.  The current system generates: id:232 gh:233
 		//    CMPXCHGQ ...
 		//    SETEQ AX
 		//    CMPB  AX, $0

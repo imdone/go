@@ -337,7 +337,7 @@ func findgoversion() string {
 			// the version string to something that doesn't begin with devel.
 			// Then the version string will be used in place of the content ID,
 			// and the packages will look up-to-date.
-			// TODO(rsc): Really the builders could be writing out a better VERSION file instead,
+			// TODO (rsc): Really the builders could be writing out a better VERSION file instead, id:412 gh:413
 			// but it is easier to change cmd/dist than to try to make changes to
 			// the builder while Brad is away.
 			if strings.HasPrefix(b, "devel") {

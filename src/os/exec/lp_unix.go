@@ -32,7 +32,7 @@ func findExecutable(file string) error {
 // If file contains a slash, it is tried directly and the PATH is not consulted.
 // The result may be an absolute path or a path relative to the current directory.
 func LookPath(file string) (string, error) {
-	// NOTE(rsc): I wish we could use the Plan 9 behavior here
+	// NOTE (rsc): I wish we could use the Plan 9 behavior here id:928 gh:936
 	// (only bypass the path if file begins with / or ./ or ../)
 	// but that would not match all the Unix shells.
 

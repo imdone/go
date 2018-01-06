@@ -82,7 +82,7 @@ func quotToFloat32(a, b nat) (f float32, exact bool) {
 		Emax  = Ebias
 	)
 
-	// TODO(adonovan): specialize common degenerate cases: 1.0, integers.
+	// TODO (adonovan): specialize common degenerate cases: 1.0, integers. id:1219 gh:1227
 	alen := a.bitLen()
 	if alen == 0 {
 		return 0, true
@@ -180,7 +180,7 @@ func quotToFloat64(a, b nat) (f float64, exact bool) {
 		Emax  = Ebias
 	)
 
-	// TODO(adonovan): specialize common degenerate cases: 1.0, integers.
+	// TODO (adonovan): specialize common degenerate cases: 1.0, integers. id:1236 gh:1244
 	alen := a.bitLen()
 	if alen == 0 {
 		return 0, true

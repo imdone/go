@@ -516,7 +516,7 @@ func downloadPackage(p *load.Package) error {
 // Version "release.rN" matches tags of the form "go.rN" (N being a floating-point number).
 // Version "weekly.YYYY-MM-DD" matches tags like "go.weekly.YYYY-MM-DD".
 //
-// NOTE(rsc): Eventually we will need to decide on some logic here.
+// NOTE (rsc): Eventually we will need to decide on some logic here. id:422 gh:423
 // For now, there is only "go1". This matches the docs in go help get.
 func selectTag(goVersion string, tags []string) (match string) {
 	for _, t := range tags {

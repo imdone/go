@@ -51,7 +51,7 @@ var respTests = []respTest{
 			ProtoMinor: 0,
 			Request:    dummyReq("GET"),
 			Header: Header{
-				"Connection": {"close"}, // TODO(rsc): Delete?
+				"Connection": {"close"}, // TODO (rsc): Delete? id:893 gh:901
 			},
 			Close:         true,
 			ContentLength: -1,
@@ -370,7 +370,7 @@ some body`,
 			ProtoMajor: 1,
 			ProtoMinor: 0,
 			Header: Header{
-				"Connection": {"close"}, // TODO(rsc): Delete?
+				"Connection": {"close"}, // TODO (rsc): Delete? id:1285 gh:1293
 			},
 			Close:         true,
 			ContentLength: -1,

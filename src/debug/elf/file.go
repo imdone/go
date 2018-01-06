@@ -28,7 +28,7 @@ const (
 	seekEnd     int = 2
 )
 
-// TODO: error reporting detail
+// TODO: error reporting detail id:589 gh:590
 
 /*
  * Internal ELF representation

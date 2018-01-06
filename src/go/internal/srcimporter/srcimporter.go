@@ -105,7 +105,7 @@ func (p *Importer) ImportFrom(path, srcDir string, mode types.ImportMode) (*type
 	p.packages[bp.ImportPath] = &importing
 	defer func() {
 		// clean up in case of error
-		// TODO(gri) Eventually we may want to leave a (possibly empty)
+		// TODO (gri) Eventually we may want to leave a (possibly empty) id:698 gh:699
 		// package in the map in all cases (and use that package to
 		// identify cycles). See also issue 16088.
 		if p.packages[bp.ImportPath] == &importing {
@@ -185,7 +185,7 @@ func (p *Importer) parseFiles(dir string, filenames []string) ([]*ast.File, erro
 				// parser's file reading mechanism directly. This appears to be quite a
 				// bit faster than opening the file and providing an io.ReaderCloser in
 				// both cases.
-				// TODO(gri) investigate performance difference (issue #19281)
+				// TODO (gri) investigate performance difference (issue #19281) id:882 gh:890
 				files[i], errors[i] = parser.ParseFile(p.fset, filepath, nil, 0)
 			}
 		}(i, p.joinPath(dir, filename))
@@ -205,7 +205,7 @@ func (p *Importer) parseFiles(dir string, filenames []string) ([]*ast.File, erro
 // context-controlled file system operations
 
 func (p *Importer) absPath(path string) (string, error) {
-	// TODO(gri) This should be using p.ctxt.AbsPath which doesn't
+	// TODO (gri) This should be using p.ctxt.AbsPath which doesn't id:1150 gh:1158
 	// exist but probably should. See also issue #14282.
 	return filepath.Abs(path)
 }

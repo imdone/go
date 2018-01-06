@@ -153,7 +153,7 @@ func init() {
 			},
 			clobberFlags: true,
 			typ:          "(UInt32,UInt32)",
-			call:         false, // TODO(mdempsky): Should this be true?
+			call:         false, // TODO (mdempsky): Should this be true? id:197 gh:198
 		},
 
 		{name: "ADDS", argLength: 2, reg: gp21carry, asm: "ADD", commutative: true}, // arg0 + arg1, set carry flag

@@ -24,7 +24,7 @@ func Loaduintptr(ptr *uintptr) uintptr
 //go:noescape
 func Loaduint(ptr *uint) uint
 
-// TODO(matloob): Should these functions have the go:noescape annotation?
+// TODO (matloob): Should these functions have the go:noescape annotation? id:1000 gh:1008
 
 //go:noescape
 func Loadint64(ptr *int64) int64

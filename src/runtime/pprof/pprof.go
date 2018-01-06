@@ -835,7 +835,7 @@ func writeBlock(w io.Writer, debug int) error {
 
 // writeMutex writes the current mutex profile to w.
 func writeMutex(w io.Writer, debug int) error {
-	// TODO(pjw): too much common code with writeBlock. FIX!
+	// TODO (pjw): too much common code with writeBlock. FIX! id:1396 gh:1404
 	var p []runtime.BlockProfileRecord
 	n, ok := runtime.MutexProfile(nil)
 	for {

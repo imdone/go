@@ -106,7 +106,7 @@ func TestImportTestdata(t *testing.T) {
 		// additional packages that are not strictly required for
 		// import processing alone (they are exported to err "on
 		// the safe side").
-		// TODO(gri) update the want list to be precise, now that
+		// TODO (gri) update the want list to be precise, now that id:634 gh:635
 		// the textual export data is gone.
 		got := fmt.Sprint(pkg.Imports())
 		for _, want := range []string{"go/ast", "go/token"} {
@@ -204,7 +204,7 @@ var importedObjectTests = []struct {
 	{"io.Reader", "type Reader interface{Read(p []byte) (n int, err error)}"},
 	{"io.ReadWriter", "type ReadWriter interface{Reader; Writer}"},
 	{"math.Sin", "func Sin(x float64) float64"},
-	// TODO(gri) add more tests
+	// TODO (gri) add more tests id:785 gh:786
 }
 
 func TestImportedTypes(t *testing.T) {

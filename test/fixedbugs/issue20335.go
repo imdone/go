@@ -7,7 +7,7 @@
 // Issue 20335: don't reorder loads with stores.
 // This test should fail on the ssacheck builder
 // without the fix in the CL that added this file.
-// TODO: check the generated assembly?
+// TODO: check the generated assembly? id:1109 gh:1117
 
 package a
 

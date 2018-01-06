@@ -6,7 +6,7 @@
 
 // Run runs tests in the test directory.
 //
-// TODO(bradfitz): docs of some sort, once we figure out how we're changing
+// TODO (bradfitz): docs of some sort, once we figure out how we're changing id:1479 gh:1487
 // headers of files
 package main
 
@@ -51,7 +51,7 @@ var (
 	goos, goarch string
 
 	// dirs are the directories to look for *.go files in.
-	// TODO(bradfitz): just use all directories?
+	// TODO (bradfitz): just use all directories? id:1466 gh:1474
 	dirs = []string{".", "ken", "chan", "interface", "syntax", "dwarf", "fixedbugs"}
 
 	// ratec controls the max number of tests running at a time.
@@ -482,7 +482,7 @@ func (t *test) run() {
 		args = f[1:]
 	}
 
-	// TODO: Clean up/simplify this switch statement.
+	// TODO: Clean up/simplify this switch statement. id:1110 gh:1118
 	switch action {
 	case "rundircmpout":
 		action = "rundir"
@@ -594,7 +594,7 @@ func (t *test) run() {
 		t.err = fmt.Errorf("unimplemented action %q", action)
 
 	case "errorcheck":
-		// TODO(gri) remove need for -C (disable printing of columns in error messages)
+		// TODO (gri) remove need for -C (disable printing of columns in error messages) id:1374 gh:1382
 		cmdline := []string{"go", "tool", "compile", "-C", "-e", "-o", "a.o"}
 		// No need to add -dynlink even if linkshared if we're just checking for errors...
 		cmdline = append(cmdline, flags...)
@@ -775,7 +775,7 @@ func (t *test) run() {
 		}
 
 	case "buildrun": // build binary, then run binary, instead of go run. Useful for timeout tests where failure mode is infinite loop.
-		// TODO: not supported on NaCl
+		// TODO: not supported on NaCl id:1102 gh:1110
 		useTmp = true
 		cmd := []string{"go", "build", goGcflags(), "-o", "a.exe"}
 		if *linkshared {

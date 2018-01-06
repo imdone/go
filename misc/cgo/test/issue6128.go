@@ -8,7 +8,7 @@ package cgotest
 // golang.org/issue/6128.
 
 /*
-// NOTE: Must use hex, or else a shortcut for decimals
+// NOTE: Must use hex, or else a shortcut for decimals id:7 gh:8
 // in cgo avoids trying to pass this to clang.
 #define X 0x1
 */

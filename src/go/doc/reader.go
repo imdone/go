@@ -382,7 +382,7 @@ func (r *reader) readFunc(fun *ast.FuncDecl) {
 			typ.methods.set(fun)
 		}
 		// otherwise ignore the method
-		// TODO(gri): There may be exported methods of non-exported types
+		// TODO (gri): There may be exported methods of non-exported types id:621 gh:622
 		// that can be called because of exported values (consts, vars, or
 		// function results) of that type. Could determine if that is the
 		// case and then show those methods in an appropriate section.
@@ -430,7 +430,7 @@ func (r *reader) readNote(list []*ast.Comment) {
 		// The note body starts after the marker.
 		// We remove any formatting so that we don't
 		// get spurious line breaks/indentation when
-		// showing the TODO body.
+		// showing the TODO body. id:777 gh:778
 		body := clean(text[m[1]:], keepNL)
 		if body != "" {
 			marker := text[m[2]:m[3]]
@@ -641,7 +641,7 @@ func (r *reader) computeMethodSets() {
 			r.collectEmbeddedMethods(t.methods, t, t.name, false, 1, make(embeddedSet))
 		} else {
 			// interface
-			// TODO(gri) fix this
+			// TODO (gri) fix this id:685 gh:686
 		}
 	}
 

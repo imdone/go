@@ -1290,7 +1290,7 @@ func (t *tester) raceTest(dt *distTest) error {
 	// We don't want the following line, because it
 	// slows down all.bash (by 10 seconds on my laptop).
 	// The race builder should catch any error here, but doesn't.
-	// TODO(iant): Figure out how to catch this.
+	// TODO (iant): Figure out how to catch this. id:253 gh:254
 	// t.addCmd(dt, "src", t.goTest(),  "-race", "-run=TestParallelTest", "cmd/go")
 	if t.cgoEnabled {
 		cmd := t.addCmd(dt, "misc/cgo/test", t.goTest(), "-race")

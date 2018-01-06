@@ -7,7 +7,7 @@
 // Issue 15747: liveness analysis was marking heap-escaped params live too much,
 // and worse was using the wrong bitmap bits to do so.
 
-// TODO(austin): This expects function calls to the write barrier, so
+// TODO (austin): This expects function calls to the write barrier, so id:1098 gh:1106
 // we enable the legacy eager write barrier. Fix this once the
 // buffered write barrier works on all arches.
 

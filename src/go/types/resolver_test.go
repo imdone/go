@@ -212,5 +212,5 @@ func TestResolveIdents(t *testing.T) {
 		t.Errorf("%s: identifier %s not present in source", fset.Position(x.Pos()), x.Name)
 	}
 
-	// TODO(gri) add tests to check ImplicitObj callbacks
+	// TODO (gri) add tests to check ImplicitObj callbacks id:912 gh:920
 }

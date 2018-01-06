@@ -70,11 +70,11 @@ func (check *Checker) arityMatch(s, init *ast.ValueSpec) {
 			// init exprs from s
 			n := s.Values[l]
 			check.errorf(n.Pos(), "extra init expr %s", n)
-			// TODO(gri) avoid declared but not used error here
+			// TODO (gri) avoid declared but not used error here id:1172 gh:1180
 		} else {
 			// init exprs "inherited"
 			check.errorf(s.Pos(), "extra init expr at %s", check.fset.Position(init.Pos()))
-			// TODO(gri) avoid declared but not used error here
+			// TODO (gri) avoid declared but not used error here id:788 gh:789
 		}
 	case l > r && (init != nil || r != 1):
 		n := s.Names[r]
@@ -301,7 +301,7 @@ func (check *Checker) collectObjects() {
 								// A package scope may contain non-exported objects,
 								// do not import them!
 								if obj.Exported() {
-									// TODO(gri) When we import a package, we create
+									// TODO (gri) When we import a package, we create id:819 gh:820
 									// a new local package object. We should do the
 									// same for each dot-imported object. That way
 									// they can have correct position information.
@@ -445,7 +445,7 @@ func (check *Checker) collectObjects() {
 					check.reportAltDecl(pkg)
 				} else {
 					check.errorf(alt.Pos(), "%s already declared through dot-import of %s", alt.Name(), obj.Pkg())
-					// TODO(gri) dot-imported objects don't have a position; reportAltDecl won't print anything
+					// TODO (gri) dot-imported objects don't have a position; reportAltDecl won't print anything id:730 gh:731
 					check.reportAltDecl(obj)
 				}
 			}

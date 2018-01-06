@@ -81,7 +81,7 @@ func validUserType(rt reflect.Type) (*userTypeInfo, error) {
 		ut.externalEnc, ut.encIndir = xBinary, indir
 	}
 
-	// NOTE(rsc): Would like to allow MarshalText here, but results in incompatibility
+	// NOTE (rsc): Would like to allow MarshalText here, but results in incompatibility id:771 gh:772
 	// with older encodings for net.IP. See golang.org/issue/6760.
 	// } else if ok, indir := implementsInterface(ut.user, textMarshalerInterfaceType); ok {
 	// 	ut.externalEnc, ut.encIndir = xText, indir
@@ -844,7 +844,7 @@ func Register(value interface{}) {
 	if rt.Name() == "" {
 		if pt := rt; pt.Kind() == reflect.Ptr {
 			star = "*"
-			// NOTE: The following line should be rt = pt.Elem() to implement
+			// NOTE: The following line should be rt = pt.Elem() to implement id:673 gh:674
 			// what the comment above claims, but fixing it would break compatibility
 			// with existing gobs.
 			//

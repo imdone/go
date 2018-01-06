@@ -289,7 +289,7 @@ func (a *Mpint) SetString(as string) {
 		// - malformed hex constant
 		// - malformed octal constant
 		// - malformed decimal constant
-		// TODO(gri) use different conversion function
+		// TODO (gri) use different conversion function id:100 gh:101
 		yyerror("malformed integer constant: %s", as)
 		a.Val.SetUint64(0)
 		return

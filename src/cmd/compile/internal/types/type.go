@@ -12,7 +12,7 @@ import (
 
 // Dummy Node so we can refer to *Node without actually
 // having a gc.Node. Necessary to break import cycles.
-// TODO(gri) try to eliminate soon
+// TODO (gri) try to eliminate soon id:403 gh:404
 type Node struct{ _ int }
 
 //go:generate stringer -type EType -trimprefix T
@@ -411,7 +411,7 @@ func New(et EType) *Type {
 		Width: BADWIDTH,
 	}
 	t.Orig = t
-	// TODO(josharian): lazily initialize some of these?
+	// TODO (josharian): lazily initialize some of these? id:536 gh:536
 	switch t.Etype {
 	case TMAP:
 		t.Extra = new(Map)
@@ -684,7 +684,7 @@ func (t *Type) copy() *Type {
 	case TTUPLE, TSSA:
 		Fatalf("ssa types cannot be copied")
 	}
-	// TODO(mdempsky): Find out why this is necessary and explain.
+	// TODO (mdempsky): Find out why this is necessary and explain. id:354 gh:355
 	if t.Orig == t {
 		nt.Orig = &nt
 	}
@@ -804,12 +804,12 @@ func (t *Type) IsFuncArgStruct() bool {
 }
 
 func (t *Type) Methods() *Fields {
-	// TODO(mdempsky): Validate t?
+	// TODO (mdempsky): Validate t? id:352 gh:353
 	return &t.methods
 }
 
 func (t *Type) AllMethods() *Fields {
-	// TODO(mdempsky): Validate t?
+	// TODO (mdempsky): Validate t? id:247 gh:248
 	return &t.allMethods
 }
 
@@ -968,7 +968,7 @@ func (r *Sym) cmpsym(s *Sym) Cmp {
 // cmp compares two *Types t and x, returning CMPlt,
 // CMPeq, CMPgt as t<x, t==x, t>x, for an arbitrary
 // and optimizer-centric notion of comparison.
-// TODO(josharian): make this safe for recursive interface types
+// TODO (josharian): make this safe for recursive interface types id:407 gh:408
 // and use in signatlist sorting. See issue 19869.
 func (t *Type) cmp(x *Type) Cmp {
 	// This follows the structure of eqtype in subr.go
@@ -1228,7 +1228,7 @@ func (t *Type) IsUnsafePtr() bool {
 // In addition to regular Go pointer types, this includes map, channel, and
 // function types and unsafe.Pointer. It does not include array or struct types
 // that consist of a single pointer shaped type.
-// TODO(mdempsky): Should it? See golang.org/issue/15028.
+// TODO (mdempsky): Should it? See golang.org/issue/15028. id:537 gh:537
 func (t *Type) IsPtrShaped() bool {
 	return t.Etype == TPTR32 || t.Etype == TPTR64 || t.Etype == TUNSAFEPTR ||
 		t.Etype == TMAP || t.Etype == TCHAN || t.Etype == TFUNC
@@ -1268,7 +1268,7 @@ func (t *Type) IsEmptyInterface() bool {
 }
 
 func (t *Type) ElemType() *Type {
-	// TODO(josharian): If Type ever moves to a shared
+	// TODO (josharian): If Type ever moves to a shared id:358 gh:359
 	// internal package, remove this silly wrapper.
 	return t.Elem()
 }
@@ -1366,7 +1366,7 @@ func (t *Type) IsUntyped() bool {
 	return false
 }
 
-// TODO(austin): We probably only need HasHeapPointer. See
+// TODO (austin): We probably only need HasHeapPointer. See id:405 gh:406
 // golang.org/cl/73412 for discussion.
 
 func Haspointers(t *Type) bool {

@@ -1,0 +1,64 @@
+{
+  "exclude": [
+    "^(node_modules|bower_components|\\.imdone|target|build|dist|logs|flow-typed)[\\/\\\\]?|\\.(git|svn|hg|npmignore)|\\~$|\\.(jpg|png|gif|swp|ttf|otf)$"
+  ],
+  "watcher": true,
+  "keepEmptyPriority": true,
+  "code": {
+    "include_lists": [
+      "TODO",
+      "FIXME",
+      "HACK",
+      "CHANGED",
+      "XXX",
+      "IDEA",
+      "NOTE",
+      "REVIEW",
+      "TODO",
+      "NOTE",
+      "FIXME",
+      "XXX",
+      "HACK",
+      "SNG"
+    ]
+  },
+  "lists": [
+    {
+      "name": "TODO",
+      "hidden": false
+    },
+    {
+      "name": "NOTE",
+      "hidden": false
+    },
+    {
+      "name": "FIXME",
+      "hidden": false
+    },
+    {
+      "name": "XXX",
+      "hidden": false
+    },
+    {
+      "name": "HACK",
+      "hidden": false
+    },
+    {
+      "name": "SNG",
+      "hidden": false
+    }
+  ],
+  "marked": {
+    "gfm": true,
+    "tables": true,
+    "breaks": false,
+    "pedantic": false,
+    "smartLists": true,
+    "langPrefix": "language-"
+  },
+  "sync": {
+    "id": "5a514a81a6822e6922c7aee7",
+    "name": "imdone/go",
+    "useImdoneioForPriority": true
+  }
+}

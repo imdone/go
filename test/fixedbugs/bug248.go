@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	// TODO: If we get rid of errchk, re-enable this test on Windows.
+	// TODO: If we get rid of errchk, re-enable this test on Windows. id:1096 gh:1104
 	errchk, err := filepath.Abs("errchk")
 	check(err)
 

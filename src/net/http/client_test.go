@@ -853,7 +853,7 @@ func TestClientInsecureTransport(t *testing.T) {
 	ts.Config.ErrorLog = log.New(errc, "", 0)
 	defer ts.Close()
 
-	// TODO(bradfitz): add tests for skipping hostname checks too?
+	// TODO (bradfitz): add tests for skipping hostname checks too? id:1250 gh:1258
 	// would require a new cert for testing, and probably
 	// redundant with these tests.
 	c := ts.Client()
@@ -1767,7 +1767,7 @@ func TestClientRedirectTypes(t *testing.T) {
 				return fmt.Errorf("#%d: got next method %q; want %q", i, got, want)
 			}
 			handlerc <- func(rw ResponseWriter, req *Request) {
-				// TODO: Check that the body is valid when we do 307 and 308 support
+				// TODO: Check that the body is valid when we do 307 and 308 support id:862 gh:870
 			}
 			return nil
 		}

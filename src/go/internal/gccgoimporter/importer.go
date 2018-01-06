@@ -98,7 +98,7 @@ func openExportFile(fpath string) (reader io.ReadSeeker, closer io.Closer, err e
 		return
 
 	case archiveMagic:
-		// TODO(pcc): Read the archive directly instead of using "ar".
+		// TODO (pcc): Read the archive directly instead of using "ar". id:1144 gh:1152
 		f.Close()
 		closer = nil
 
@@ -141,7 +141,7 @@ type Importer func(imports map[string]*types.Package, path, srcDir string, looku
 
 func GetImporter(searchpaths []string, initmap map[*types.Package]InitData) Importer {
 	return func(imports map[string]*types.Package, pkgpath, srcDir string, lookup func(string) (io.ReadCloser, error)) (pkg *types.Package, err error) {
-		// TODO(gri): Use srcDir.
+		// TODO (gri): Use srcDir. id:629 gh:630
 		// Or not. It's possible that srcDir will fade in importance as
 		// the go command and other tools provide a translation table
 		// for relative imports (like ./foo or vendored imports).

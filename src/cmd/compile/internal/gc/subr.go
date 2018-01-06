@@ -697,7 +697,7 @@ func assignop(src *types.Type, dst *types.Type, why *string) Op {
 		*why = ""
 	}
 
-	// TODO(rsc,lvd): This behaves poorly in the presence of inlining.
+	// TODO (rsc,lvd): This behaves poorly in the presence of inlining. id:146 gh:147
 	// https://golang.org/issue/2795
 	if safemode && !inimport && src != nil && src.Etype == TUNSAFEPTR {
 		yyerror("cannot use unsafe.Pointer")
@@ -1143,7 +1143,7 @@ func updateHasCall(n *Node) {
 
 func calcHasCall(n *Node) bool {
 	if n.Ninit.Len() != 0 {
-		// TODO(mdempsky): This seems overly conservative.
+		// TODO (mdempsky): This seems overly conservative. id:246 gh:247
 		return true
 	}
 
@@ -1751,7 +1751,7 @@ func genwrapper(rcvr *types.Type, method *types.Field, newnam *types.Sym, iface 
 	if !instrumenting && rcvr.IsPtr() && methodrcvr.IsPtr() && method.Embedded != 0 && !isifacemethod(method.Type) && !(thearch.LinkArch.Name == "ppc64le" && Ctxt.Flag_dynlink) {
 		// generate tail call: adjust pointer receiver and jump to embedded method.
 		dot = dot.Left // skip final .M
-		// TODO(mdempsky): Remove dependency on dotlist.
+		// TODO (mdempsky): Remove dependency on dotlist. id:494 gh:495
 		if !dotlist[0].field.Type.IsPtr() {
 			dot = nod(OADDR, dot, nil)
 		}

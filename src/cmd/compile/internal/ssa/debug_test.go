@@ -83,7 +83,7 @@ var optimizedLibs = (!strings.Contains(gogcflags, "-N") && !strings.Contains(gog
 /*
 	if len(os.Args) > 1 { //gdb-dbg=(hist/A,cannedInput/A) //dlv-dbg=(hist/A,cannedInput/A)
 */
-// TODO: not implemented for Delve yet, but this is the plan
+// TODO: not implemented for Delve yet, but this is the plan id:187 gh:188
 //
 // After a compiler change that causes a difference in the debug behavior, check
 // to see if it is sensible or not, and if it is, update the reference files with
@@ -138,7 +138,7 @@ func TestNexting(t *testing.T) {
 	optFlags := "-dwarflocationlists"
 	if !*useDelve && !*inlines {
 		// For gdb (default), disable inlining so that a compiler test does not depend on library code.
-		// TODO: This may not be necessary with 1.10 and later.
+		// TODO: This may not be necessary with 1.10 and later. id:304 gh:305
 		optFlags += " -l"
 	}
 
@@ -312,7 +312,7 @@ func (h *nextHist) write(filename string) {
 			lastfile = p.file
 		}
 		fmt.Fprintf(file, "%d:%s\n", p.line, x)
-		// TODO, normalize between gdb and dlv into a common, comparable format.
+		// TODO , normalize between gdb and dlv into a common, comparable format. id:512 gh:513
 		for _, y := range h.vars[i] {
 			y = strings.TrimSpace(y)
 			fmt.Fprintf(file, "%s\n", y)
@@ -499,7 +499,7 @@ func (s *delveState) stepnext(ss string) bool {
 		s.file = fn
 		s.function = locations[1]
 		s.ioState.history.add(s.file, s.line, excerpt)
-		// TODO: here is where variable processing will be added.  See gdbState.stepnext as a guide.
+		// TODO: here is where variable processing will be added.  See gdbState.stepnext as a guide. id:270 gh:271
 		// Adding this may require some amount of normalization so that logs are comparable.
 		return true
 	}

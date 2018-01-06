@@ -256,7 +256,7 @@ func (w *gcWork) get() uintptr {
 		}
 	}
 
-	// TODO: This might be a good place to add prefetch code
+	// TODO: This might be a good place to add prefetch code id:1261 gh:1269
 
 	wbuf.nobj--
 	return wbuf.obj[wbuf.nobj]

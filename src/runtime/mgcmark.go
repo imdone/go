@@ -176,7 +176,7 @@ var oneptrmask = [...]uint8{1}
 //
 //go:nowritebarrier
 func markroot(gcw *gcWork, i uint32) {
-	// TODO(austin): This is a bit ridiculous. Compute and store
+	// TODO (austin): This is a bit ridiculous. Compute and store id:1370 gh:1378
 	// the bases in gcMarkRootPrepare instead of the counts.
 	baseFlushCache := uint32(fixedRootCount)
 	baseData := baseFlushCache + uint32(work.nFlushCacheRoots)
@@ -254,7 +254,7 @@ func markroot(gcw *gcWork, i uint32) {
 				userG.waitreason = "garbage collection scan"
 			}
 
-			// TODO: scang blocks until gp's stack has
+			// TODO: scang blocks until gp's stack has id:988 gh:996
 			// been scanned, which may take a while for
 			// running goroutines. Consider doing this in
 			// two phases where the first is non-blocking:
@@ -299,7 +299,7 @@ func markrootBlock(b0, n0 uintptr, ptrmask0 *uint8, gcw *gcWork, shard int) {
 // This does not free stacks of dead Gs cached on Ps, but having a few
 // cached stacks around isn't a problem.
 //
-//TODO go:nowritebarrier
+//TODO go:nowritebarrier id:1258 gh:1266
 func markrootFreeGStacks() {
 	// Take list of dead Gs with stacks.
 	lock(&sched.gflock)
@@ -338,7 +338,7 @@ func markrootSpans(gcw *gcWork, shard int) {
 	// collected heap) are roots. In practice, this means the fn
 	// field must be scanned.
 	//
-	// TODO(austin): There are several ideas for making this more
+	// TODO (austin): There are several ideas for making this more id:1014 gh:1022
 	// efficient in issue #11485.
 
 	if work.markrootDone {
@@ -1042,7 +1042,7 @@ func gcDrainN(gcw *gcWork, scanWork int64) int64 {
 		if b == 0 {
 			// Try to do a root job.
 			//
-			// TODO: Assists should get credit for this
+			// TODO: Assists should get credit for this id:1403 gh:1411
 			// work.
 			if work.markrootNext < work.markrootJobs {
 				job := atomic.Xadd(&work.markrootNext, +1) - 1

@@ -441,7 +441,7 @@ Reading:
 		//     {test ...	skip if failed until }
 		//     }		end of skip
 		//
-		//     : comment		comment copied as output NOTE
+		//     : comment		comment copied as output NOTE id:976 gh:984
 		//     :comment:test	:comment: ignored
 		//     N[OTE] comment	comment copied as output NOTE
 		//     T[EST] comment	comment

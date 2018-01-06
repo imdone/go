@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-// TODO(gri) expand this test framework
+// TODO (gri) expand this test framework id:683 gh:684
 
 var opTests = []string{
 	// unary operations
@@ -63,7 +63,7 @@ var opTests = []string{
 	`? / 0 = ?`,
 	`0 / ? = ?`,
 
-	`0 % 0 = "runtime_error:_integer_divide_by_zero"`, // TODO(gri) should be the same as for /
+	`0 % 0 = "runtime_error:_integer_divide_by_zero"`, // TODO (gri) should be the same as for / id:760 gh:761
 	`10 % 3 = 1`,
 	`? % 0 = ?`,
 	`0 % ? = ?`,

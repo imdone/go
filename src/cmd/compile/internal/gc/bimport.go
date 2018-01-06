@@ -73,7 +73,7 @@ func Import(imp *types.Pkg, in *bufio.Reader) {
 		// For backward-compatibility only (avoid problems with
 		// old installed packages). Newly compiled packages use
 		// the extensible format string.
-		// TODO(gri) Remove this support eventually; after Go1.8.
+		// TODO (gri) Remove this support eventually; after Go1.8. id:69 gh:70
 		if b == 'd' {
 			p.debugFormat = true
 		}
@@ -376,7 +376,7 @@ func (p *importer) obj(tag int) {
 
 		n := newfuncnamel(pos, sym)
 		n.Type = sig
-		// TODO(mdempsky): Stop clobbering n.Pos in declare.
+		// TODO (mdempsky): Stop clobbering n.Pos in declare. id:71 gh:72
 		savedlineno := lineno
 		lineno = pos
 		declare(n, PFUNC)
@@ -501,7 +501,7 @@ func (p *importer) typ() *types.Type {
 
 		// read underlying type
 		t0 := p.typ()
-		// TODO(mdempsky): Stop clobbering n.Pos in declare.
+		// TODO (mdempsky): Stop clobbering n.Pos in declare. id:61 gh:62
 		savedlineno := lineno
 		lineno = pos
 		p.importtype(t, t0)
@@ -527,7 +527,7 @@ func (p *importer) typ() *types.Type {
 				Fatalf("imported method name %+v in wrong package %s\n", sym, tsym.Pkg.Name)
 			}
 
-			recv := p.paramList() // TODO(gri) do we need a full param list for the receiver?
+			recv := p.paramList() // TODO (gri) do we need a full param list for the receiver? id:178 gh:179
 			params := p.paramList()
 			result := p.paramList()
 			nointerface := p.bool()
@@ -774,7 +774,7 @@ func (p *importer) param(named bool) *types.Field {
 		if name == "" {
 			p.formatErrorf("expected named parameter")
 		}
-		// TODO(gri) Supply function/method package rather than
+		// TODO (gri) Supply function/method package rather than id:148 gh:149
 		// encoding the package for each parameter repeatedly.
 		pkg := localpkg
 		if name != "_" {
@@ -784,7 +784,7 @@ func (p *importer) param(named bool) *types.Field {
 		f.Nname = asTypesNode(newname(f.Sym))
 	}
 
-	// TODO(gri) This is compiler-specific (escape info).
+	// TODO (gri) This is compiler-specific (escape info). id:74 gh:75
 	// Move into compiler-specific section eventually?
 	f.Note = p.string()
 
@@ -928,7 +928,7 @@ func npos(pos src.XPos, n *Node) *Node {
 	return n
 }
 
-// TODO(gri) split into expr and stmt
+// TODO (gri) split into expr and stmt id:73 gh:74
 func (p *importer) node() *Node {
 	switch op := p.op(); op {
 	// expressions
@@ -986,7 +986,7 @@ func (p *importer) node() *Node {
 		return n
 
 	case OSTRUCTLIT:
-		// TODO(mdempsky): Export position information for OSTRUCTKEY nodes.
+		// TODO (mdempsky): Export position information for OSTRUCTKEY nodes. id:66 gh:67
 		savedlineno := lineno
 		lineno = p.pos()
 		n := nodl(lineno, OCOMPLIT, nil, typenod(p.typ()))
@@ -1097,7 +1097,7 @@ func (p *importer) node() *Node {
 	// 	unreachable - mapped to std comparison operators by exporter
 
 	case ODCLCONST:
-		// TODO(gri) these should not be exported in the first place
+		// TODO (gri) these should not be exported in the first place id:180 gh:181
 		return nodl(p.pos(), OEMPTY, nil, nil)
 
 	// --------------------------------------------------------------------
@@ -1111,7 +1111,7 @@ func (p *importer) node() *Node {
 		pos := p.pos()
 		lhs := dclname(p.sym())
 		typ := typenod(p.typ())
-		return npos(pos, liststmt(variter([]*Node{lhs}, typ, nil))) // TODO(gri) avoid list creation
+		return npos(pos, liststmt(variter([]*Node{lhs}, typ, nil))) // TODO (gri) avoid list creation id:151 gh:152
 
 	// case ODCLFIELD:
 	//	unimplemented
@@ -1189,7 +1189,7 @@ func (p *importer) node() *Node {
 	case OXCASE:
 		n := nodl(p.pos(), OXCASE, nil, nil)
 		n.List.Set(p.exprList())
-		// TODO(gri) eventually we must declare variables for type switch
+		// TODO (gri) eventually we must declare variables for type switch id:79 gh:80
 		// statements (type switch statements are not yet exported)
 		n.Nbody.Set(p.stmtList())
 		return n

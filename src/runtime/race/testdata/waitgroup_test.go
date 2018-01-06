@@ -221,7 +221,7 @@ func TestNoRaceWaitGroupPanicRecover(t *testing.T) {
 	wg.Add(-1)
 }
 
-// TODO: this is actually a panic-synchronization test, not a
+// TODO: this is actually a panic-synchronization test, not a id:1400 gh:1408
 // WaitGroup test. Move it to another *_test file
 // Is it possible to get a race by synchronization via panic?
 func TestNoRaceWaitGroupPanicRecover2(t *testing.T) {

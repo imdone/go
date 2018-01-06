@@ -15,7 +15,7 @@
 // implementation.
 package lzw
 
-// TODO(nigeltao): check that PDF uses LZW in the same way as GIF,
+// TODO (nigeltao): check that PDF uses LZW in the same way as GIF, id:1022 gh:1030
 // modulo LSB/MSB packing order.
 
 import (

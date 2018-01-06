@@ -24,7 +24,7 @@ func expandpkg(t0 string, pkg string) string {
 	return strings.Replace(t0, `"".`, pkg+".", -1)
 }
 
-// TODO:
+// TODO: id:953 gh:961
 //	generate debugging section in binary.
 //	once the dust settles, try to move some code to
 //		libmach, so that other linkers and ar can share.

@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-// TODO: remove duplicate code
+// TODO: remove duplicate code id:743 gh:744
 func TestSymbols(t *testing.T) {
 	do := func(file string, ts []Symbol, getfunc func(*File) ([]Symbol, error)) {
 		var f *File

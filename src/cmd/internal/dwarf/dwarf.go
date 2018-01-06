@@ -892,7 +892,7 @@ func putattr(ctxt Context, s Sym, abbrev int, form int, cls int, value int64, da
 	case DW_FORM_string: // string
 		str := data.(string)
 		ctxt.AddString(s, str)
-		// TODO(ribrdb): verify padded strings are never used and remove this
+		// TODO (ribrdb): verify padded strings are never used and remove this id:447 gh:448
 		for i := int64(len(str)); i < value; i++ {
 			ctxt.AddInt(s, 1, 0)
 		}

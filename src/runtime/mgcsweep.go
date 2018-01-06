@@ -175,7 +175,7 @@ func (s *mspan) ensureSwept() {
 // Returns true if the span was returned to heap.
 // If preserve=true, don't return it to heap nor relink in MCentral lists;
 // caller takes care of it.
-//TODO go:nowritebarrier
+//TODO go:nowritebarrier id:1372 gh:1380
 func (s *mspan) sweep(preserve bool) bool {
 	// It's critical that we enter this function with preemption disabled,
 	// GC must not start while we are in the middle of this function.
@@ -338,7 +338,7 @@ func (s *mspan) sweep(preserve bool) bool {
 	} else if freeToHeap {
 		// Free large span to heap
 
-		// NOTE(rsc,dvyukov): The original implementation of efence
+		// NOTE (rsc,dvyukov): The original implementation of efence id:991 gh:999
 		// in CL 22060046 used SysFree instead of SysFault, so that
 		// the operating system would eventually give the memory
 		// back to us again, so that an efence program could run

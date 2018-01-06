@@ -20,7 +20,7 @@
 //	}
 //	fmt.Printf("Windows system root is %q\n", s)
 //
-// NOTE: This package is a copy of golang.org/x/sys/windows/registry
+// NOTE: This package is a copy of golang.org/x/sys/windows/registry id:824 gh:825
 // with KeyInfo.ModTime removed to prevent dependency cycles.
 //
 package registry

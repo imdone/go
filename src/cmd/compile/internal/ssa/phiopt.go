@@ -27,7 +27,7 @@ func phiopt(f *Func) {
 	sdom := f.sdom()
 	for _, b := range f.Blocks {
 		if len(b.Preds) != 2 || len(b.Values) == 0 {
-			// TODO: handle more than 2 predecessors, e.g. a || b || c.
+			// TODO: handle more than 2 predecessors, e.g. a || b || c. id:371 gh:372
 			continue
 		}
 

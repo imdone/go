@@ -88,7 +88,7 @@ func makeSparseTreeHelper(sdom SparseTree, dom, po []*Block, ponums []int32) *Sp
 // entry and exit numbers of the descendants.
 type sparseTreeMapEntry struct {
 	index        *SparseTreeNode // references the entry and exit numbers for a block in the sparse tree
-	block        *Block          // TODO: store this in a separate index.
+	block        *Block          // TODO: store this in a separate index. id:528 gh:529
 	data         interface{}
 	sparseParent *sparseTreeMapEntry // references the nearest ancestor of this block in the sparse tree.
 	adjust       int32               // at what adjustment was this node entered into the sparse tree? The same block may be entered more than once, but at different adjustments.

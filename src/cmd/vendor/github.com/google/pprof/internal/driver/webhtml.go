@@ -561,7 +561,7 @@ function viewer(baseUrl, nodes) {
       try {
         re = new RegExp(search.value)
       } catch (e) {
-        // TODO: Display error state in search box
+        // TODO: Display error state in search box id:709 gh:710
         return
       }
     }

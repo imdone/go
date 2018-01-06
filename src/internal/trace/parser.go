@@ -762,8 +762,8 @@ func postProcessTrace(ver int, events []*Event) error {
 		ps[ev.P] = p
 	}
 
-	// TODO(dvyukov): restore stacks for EvGoStart events.
-	// TODO(dvyukov): test that all EvGoStart events has non-nil Link.
+	// TODO (dvyukov): restore stacks for EvGoStart events. id:1217 gh:1225
+	// TODO (dvyukov): test that all EvGoStart events has non-nil Link. id:827 gh:828
 
 	return nil
 }

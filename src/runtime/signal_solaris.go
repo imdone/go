@@ -47,7 +47,7 @@ var sigtable = [...]sigTabT{
 	/* 39 */ {_SigNotify, "SIGJVM1: reserved signal for Java Virtual Machine"},
 	/* 40 */ {_SigNotify, "SIGJVM2: reserved signal for Java Virtual Machine"},
 
-	/* TODO(aram): what should be do about these signals? _SigDefault or _SigNotify? is this set static? */
+	/* TODO (aram): what should be do about these signals? _SigDefault or _SigNotify? is this set static? id:1433 gh:1441*/
 	/* 41 */ {_SigNotify, "real time signal"},
 	/* 42 */ {_SigNotify, "real time signal"},
 	/* 43 */ {_SigNotify, "real time signal"},

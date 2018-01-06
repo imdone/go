@@ -136,7 +136,7 @@ func (s *byRFC6724) Less(i, j int) bool {
 	// Similarly, if Source(DA) is not deprecated and Source(DB) is
 	// deprecated, then prefer DA.
 
-	// TODO(bradfitz): implement? low priority for now.
+	// TODO (bradfitz): implement? low priority for now. id:1127 gh:1135
 
 	// Rule 4: Prefer home addresses.
 	// If Source(DA) is simultaneously a home address and care-of address
@@ -144,7 +144,7 @@ func (s *byRFC6724) Less(i, j int) bool {
 	// simultaneously a home address and care-of address and Source(DA) is
 	// not, then prefer DB.
 
-	// TODO(bradfitz): implement? low priority for now.
+	// TODO (bradfitz): implement? low priority for now. id:835 gh:836
 
 	// Rule 5: Prefer matching label.
 	// If Label(Source(DA)) = Label(DA) and Label(Source(DB)) <> Label(DB),
@@ -174,7 +174,7 @@ func (s *byRFC6724) Less(i, j int) bool {
 	// IPv6 in IPv4) and DB is not, then prefer DB.  Similarly, if DB is
 	// reached via encapsulation and DA is not, then prefer DA.
 
-	// TODO(bradfitz): implement? low priority for now.
+	// TODO (bradfitz): implement? low priority for now. id:1226 gh:1234
 
 	// Rule 8: Prefer smaller scope.
 	// If Scope(DA) < Scope(DB), then prefer DA.  Similarly, if Scope(DA) >

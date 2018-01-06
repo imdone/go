@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	// TODO: If we get rid of errchk, re-enable this test on Plan 9 and Windows.
+	// TODO: If we get rid of errchk, re-enable this test on Plan 9 and Windows. id:1462 gh:1470
 	errchk, err := filepath.Abs("errchk")
 	check(err)
 

@@ -26,7 +26,7 @@ func (fd *FD) Writev(v *[][]byte) (int64, error) {
 	if fd.iovecs != nil {
 		iovecs = *fd.iovecs
 	}
-	// TODO: read from sysconf(_SC_IOV_MAX)? The Linux default is
+	// TODO: read from sysconf(_SC_IOV_MAX)? The Linux default is id:1212 gh:1220
 	// 1024 and this seems conservative enough for now. Darwin's
 	// UIO_MAXIOV also seems to be 1024.
 	maxVec := 1024

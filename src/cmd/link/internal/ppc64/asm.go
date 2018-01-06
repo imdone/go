@@ -78,7 +78,7 @@ func genplt(ctxt *ld.Link) {
 	//    straight from the call stub to the real function, and
 	//    then call the function.
 
-	// NOTE: It's possible we could make ppc64 closer to other
+	// NOTE: It's possible we could make ppc64 closer to other id:488 gh:489
 	// architectures: ppc64's .plt is like .plt.got on other
 	// platforms and ppc64's .glink is like .plt on other
 	// platforms.
@@ -368,7 +368,7 @@ func adddynrel(ctxt *ld.Link, s *sym.Symbol, r *sym.Reloc) bool {
 		return true
 	}
 
-	// TODO(austin): Translate our relocations to ELF
+	// TODO (austin): Translate our relocations to ELF id:622 gh:623
 
 	return false
 }
@@ -831,7 +831,7 @@ func addpltsym(ctxt *ld.Link, s *sym.Symbol) {
 		// reserve 8 bytes for each PLT entry and generate a
 		// JMP_SLOT dynamic relocation for it.
 		//
-		// TODO(austin): ABI v1 is different
+		// TODO (austin): ABI v1 is different id:974 gh:982
 		s.Plt = int32(plt.Size)
 
 		plt.Size += 8
@@ -954,7 +954,7 @@ func asmb(ctxt *ld.Link) {
 	ld.Lcsize = 0
 	symo := uint32(0)
 	if !*ld.FlagS {
-		// TODO: rationalize
+		// TODO: rationalize id:546 gh:547
 		if ctxt.Debugvlog != 0 {
 			ctxt.Logf("%5.2f sym\n", ld.Cputime())
 		}

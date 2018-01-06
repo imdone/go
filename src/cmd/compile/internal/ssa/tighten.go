@@ -31,7 +31,7 @@ func tighten(f *Func) {
 				switch a.Op {
 				case OpConst8, OpConst16, OpConst32, OpConst64, OpAddr:
 					// Probably foldable into v, don't count as an argument needing a register.
-					// TODO: move tighten to a machine-dependent phase and use v.rematerializeable()?
+					// TODO: move tighten to a machine-dependent phase and use v.rematerializeable()? id:329 gh:330
 				default:
 					narg++
 				}

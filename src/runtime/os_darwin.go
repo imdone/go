@@ -212,7 +212,7 @@ func mach_msgh_bits(a, b uint32) uint32 {
 }
 
 func mach_msg(h *machheader, op int32, send_size, rcv_size, rcv_name, timeout, notify uint32) int32 {
-	// TODO: Loop on interrupt.
+	// TODO: Loop on interrupt. id:1027 gh:1035
 	return mach_msg_trap(unsafe.Pointer(h), op, send_size, rcv_size, rcv_name, timeout, notify)
 }
 
@@ -463,7 +463,7 @@ func osyield() {
 }
 
 func memlimit() uintptr {
-	// NOTE(rsc): Could use getrlimit here,
+	// NOTE (rsc): Could use getrlimit here, id:1413 gh:1421
 	// like on FreeBSD or Linux, but Darwin doesn't enforce
 	// ulimit -v, so it's unclear why we'd try to stay within
 	// the limit.
@@ -489,7 +489,7 @@ func sigaction(mode uint32, new *sigactiont, old *usigactiont)
 func sigaltstack(new, old *stackt)
 
 // darwin/arm64 uses registers instead of stack-based arguments.
-// TODO: does this matter?
+// TODO: does this matter? id:1384 gh:1392
 func sigtramp(fn uintptr, infostyle, sig uint32, info *siginfo, ctx unsafe.Pointer)
 
 //go:noescape

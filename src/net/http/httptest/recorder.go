@@ -186,7 +186,7 @@ func (rw *ResponseRecorder) Result() *http.Response {
 	if trailers, ok := rw.snapHeader["Trailer"]; ok {
 		res.Trailer = make(http.Header, len(trailers))
 		for _, k := range trailers {
-			// TODO: use http2.ValidTrailerHeader, but we can't
+			// TODO: use http2.ValidTrailerHeader, but we can't id:1276 gh:1284
 			// get at it easily because it's bundled into net/http
 			// unexported. This is good enough for now:
 			switch k {

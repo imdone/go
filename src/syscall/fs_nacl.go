@@ -10,7 +10,7 @@
 // The file system need never be written to disk, so it is represented as
 // in-memory Go data structures, never in a serialized form.
 //
-// TODO: Perhaps support symlinks, although they muck everything up.
+// TODO: Perhaps support symlinks, although they muck everything up. id:1052 gh:1060
 
 package syscall
 
@@ -308,7 +308,7 @@ func (fs *fsys) open(name string, openmode int, mode uint32) (fileImpl, error) {
 		// handled above
 
 	default:
-		// TODO: some kind of special file
+		// TODO: some kind of special file id:1445 gh:1453
 		return nil, EPERM
 	}
 

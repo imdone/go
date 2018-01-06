@@ -12,7 +12,7 @@ import (
 // An Op is an ARM64 opcode.
 type Op uint16
 
-// NOTE: The actual Op values are defined in tables.go.
+// NOTE: The actual Op values are defined in tables.go. id:502 gh:503
 // They are chosen to simplify instruction decoding and
 // are not a dense packing from 0 to N, although the
 // density is high, probably at least 90%.

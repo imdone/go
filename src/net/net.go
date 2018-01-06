@@ -395,7 +395,7 @@ var (
 // mapErr maps from the context errors to the historical internal net
 // error values.
 //
-// TODO(bradfitz): get rid of this after adjusting tests and making
+// TODO (bradfitz): get rid of this after adjusting tests and making id:1310 gh:1318
 // context.DeadlineExceeded implement net.Error?
 func mapErr(err error) error {
 	switch err {

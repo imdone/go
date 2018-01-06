@@ -302,7 +302,7 @@ const (
 // kmaGCM executes the encryption or decryption operation given by fn. The tag
 // will be calculated and written to tag. cnt should contain the current
 // counter state and will be overwritten with the updated counter state.
-// TODO(mundaym): could pass in hash subkey
+// TODO (mundaym): could pass in hash subkey id:1024 gh:1032
 //go:noescape
 func kmaGCM(fn code, key, dst, src, aad []byte, tag *[16]byte, cnt *gcmCount)
 

@@ -119,7 +119,7 @@ func AcceptedCases() {
 	x = *OKRet()           // indirection of function call on RHS is OK (#16227)
 }
 
-// TODO: Unfortunate cases
+// TODO: Unfortunate cases id:633 gh:634
 
 // Non-ideal error message:
 // Since we're looking for Lock methods, sync.Once's underlying

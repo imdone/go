@@ -37,7 +37,7 @@ var fingwait bool
 var fingwake bool
 var allfin *finblock // list of all blocks
 
-// NOTE: Layout known to queuefinalizer.
+// NOTE: Layout known to queuefinalizer. id:1009 gh:1017
 type finalizer struct {
 	fn   *funcval       // function to call (may be a heap pointer)
 	arg  unsafe.Pointer // ptr to object (may be a heap pointer)

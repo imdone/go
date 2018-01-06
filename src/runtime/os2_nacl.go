@@ -135,7 +135,7 @@ const (
 	_EWOULDBLOCK     = _EAGAIN /* Operation would block */
 
 	// native_client/src/trusted/service_runtime/include/bits/mman.h.
-	// NOTE: DO NOT USE native_client/src/shared/imc/nacl_imc_c.h.
+	// NOTE: DO NOT USE native_client/src/shared/imc/nacl_imc_c.h. id:1008 gh:1016
 	// Those MAP_*values are different from these.
 	_PROT_NONE  = 0x0
 	_PROT_READ  = 0x1

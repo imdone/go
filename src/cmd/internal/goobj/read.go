@@ -4,8 +4,8 @@
 
 // Package goobj implements reading of Go object files and archives.
 //
-// TODO(rsc): Decide where this package should live. (golang.org/issue/6932)
-// TODO(rsc): Decide the appropriate integer types for various fields.
+// TODO (rsc): Decide where this package should live. (golang.org/issue/6932) id:282 gh:283
+// TODO (rsc): Decide the appropriate integer types for various fields. id:442 gh:443
 package goobj
 
 import (
@@ -74,7 +74,7 @@ type Reloc struct {
 
 	// The Type records the form of address expected in the bytes
 	// described by the previous fields: absolute, PC-relative, and so on.
-	// TODO(rsc): The interpretation of Type is not exposed by this package.
+	// TODO (rsc): The interpretation of Type is not exposed by this package. id:572 gh:573
 	Type objabi.RelocType
 }
 
@@ -85,8 +85,8 @@ type Var struct {
 	// identifies a variable in a function stack frame.
 	// Using fewer of these - in particular, using only Name - does not.
 	Name   string // Name of variable.
-	Kind   int64  // TODO(rsc): Define meaning.
-	Offset int64  // Frame offset. TODO(rsc): Define meaning.
+	Kind   int64  // TODO (rsc): Define meaning. id:902 gh:910
+	Offset int64  // Frame offset. TODO (rsc): Define meaning. id:450 gh:451
 
 	Type SymID // Go type for variable.
 }
@@ -108,7 +108,7 @@ type Func struct {
 	InlTree  []InlinedCall
 }
 
-// TODO: Add PCData []byte and PCDataIter (similar to liblink).
+// TODO: Add PCData []byte and PCDataIter (similar to liblink). id:285 gh:286
 
 // A FuncData is a single function-specific data value.
 type FuncData struct {
@@ -484,7 +484,7 @@ func (r *objReader) parseObject(prefix []byte) error {
 	if len(hs) >= 4 {
 		r.p.Arch = hs[3]
 	}
-	// TODO: extract OS + build ID if/when we need it
+	// TODO: extract OS + build ID if/when we need it id:444 gh:445
 
 	r.readFull(r.tmp[:8])
 	if !bytes.Equal(r.tmp[:8], []byte("\x00\x00go19ld")) {
@@ -585,7 +585,7 @@ func (r *objReader) parseObject(prefix []byte) error {
 				f.FuncData[i].Sym = r.readSymID()
 			}
 			for i := range f.FuncData {
-				f.FuncData[i].Offset = int64(r.readInt()) // TODO
+				f.FuncData[i].Offset = int64(r.readInt()) // TODO id:574 gh:575
 			}
 			f.File = make([]string, r.readInt())
 			for i := range f.File {

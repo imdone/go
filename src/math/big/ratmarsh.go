@@ -67,7 +67,7 @@ func (x *Rat) MarshalText() (text []byte, err error) {
 
 // UnmarshalText implements the encoding.TextUnmarshaler interface.
 func (z *Rat) UnmarshalText(text []byte) error {
-	// TODO(gri): get rid of the []byte/string conversion
+	// TODO (gri): get rid of the []byte/string conversion id:829 gh:830
 	if _, ok := z.SetString(string(text)); !ok {
 		return fmt.Errorf("math/big: cannot unmarshal %q into a *big.Rat", text)
 	}

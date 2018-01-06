@@ -29,7 +29,7 @@ func TestIntendedInlining(t *testing.T) {
 	// be inlined.
 	want := map[string][]string{
 		"runtime": {
-			// TODO(mvdan): enable these once mid-stack
+			// TODO (mvdan): enable these once mid-stack id:320 gh:321
 			// inlining is available
 			// "adjustctxt",
 
@@ -122,7 +122,7 @@ func TestIntendedInlining(t *testing.T) {
 			"flag.kind",
 			"flag.ro",
 
-			// TODO: these use panic, need mid-stack
+			// TODO: these use panic, need mid-stack id:176 gh:177
 			// inlining
 			// "Value.CanInterface",
 			// "Value.pointer",

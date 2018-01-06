@@ -1242,7 +1242,7 @@ func (t *structType) Field(i int) (f StructField) {
 	}
 	f.Offset = p.offset()
 
-	// NOTE(rsc): This is the only allocation in the interface
+	// NOTE (rsc): This is the only allocation in the interface id:963 gh:971
 	// presented by a reflect.Type. It would be nice to avoid,
 	// at least in the common cases, but we need to make sure
 	// that misbehaving clients of reflect cannot affect other
@@ -1253,7 +1253,7 @@ func (t *structType) Field(i int) (f StructField) {
 	return
 }
 
-// TODO(gri): Should there be an error/bool indicator if the index
+// TODO (gri): Should there be an error/bool indicator if the index id:1366 gh:1374
 //            is wrong for FieldByIndex?
 
 // FieldByIndex returns the nested field corresponding to index.
@@ -1826,7 +1826,7 @@ func ChanOf(dir ChanDir, t Type) Type {
 	}
 
 	// Look in known types.
-	// TODO: Precedence when constructing string.
+	// TODO: Precedence when constructing string. id:1326 gh:1334
 	var s string
 	switch dir {
 	default:
@@ -2321,7 +2321,7 @@ type structTypeUncommon struct {
 //
 // A similar strategy is used for funcTypeFixed4, ...funcTypeFixedN.
 
-// TODO(crawshaw): as these structTypeFixedN and funcTypeFixedN structs
+// TODO (crawshaw): as these structTypeFixedN and funcTypeFixedN structs id:942 gh:950
 // have no methods, they could be defined at runtime using the StructOf
 // function.
 
@@ -2437,7 +2437,7 @@ func StructOf(fields []StructField) Type {
 				ift := (*interfaceType)(unsafe.Pointer(ft))
 				for im, m := range ift.methods {
 					if ift.nameOff(m.name).pkgPath() != "" {
-						// TODO(sbinet).  Issue 15924.
+						// TODO (sbinet).  Issue 15924. id:1204 gh:1212
 						panic("reflect: embedded interface with unexported method(s) not implemented")
 					}
 
@@ -2502,7 +2502,7 @@ func StructOf(fields []StructField) Type {
 					for _, m := range unt.methods() {
 						mname := ptr.nameOff(m.name)
 						if mname.pkgPath() != "" {
-							// TODO(sbinet).
+							// TODO (sbinet). id:968 gh:976
 							// Issue 15924.
 							panic("reflect: embedded interface with unexported method(s) not implemented")
 						}
@@ -2518,7 +2518,7 @@ func StructOf(fields []StructField) Type {
 					for _, m := range unt.methods() {
 						mname := ptr.nameOff(m.name)
 						if mname.pkgPath() != "" {
-							// TODO(sbinet)
+							// TODO (sbinet) id:1368 gh:1376
 							// Issue 15924.
 							panic("reflect: embedded interface with unexported method(s) not implemented")
 						}
@@ -2539,7 +2539,7 @@ func StructOf(fields []StructField) Type {
 					for _, m := range unt.methods() {
 						mname := ft.nameOff(m.name)
 						if mname.pkgPath() != "" {
-							// TODO(sbinet)
+							// TODO (sbinet) id:1328 gh:1336
 							// Issue 15924.
 							panic("reflect: embedded interface with unexported method(s) not implemented")
 						}
@@ -2717,7 +2717,7 @@ func StructOf(fields []StructField) Type {
 				// the last field that contains pointer data
 				break
 			}
-			// FIXME(sbinet) handle padding, fields smaller than a word
+			// FIXME (sbinet) handle padding, fields smaller than a word id:944 gh:952
 			elemGC := (*[1 << 30]byte)(unsafe.Pointer(ft.typ.gcdata))[:]
 			elemPtrs := ft.typ.ptrdata / ptrSize
 			switch {

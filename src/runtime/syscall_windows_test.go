@@ -251,7 +251,7 @@ func TestBlockingCallback(t *testing.T) {
 }
 
 func TestCallbackInAnotherThread(t *testing.T) {
-	// TODO: test a function which calls back in another thread: QueueUserAPC() or CreateThread()
+	// TODO: test a function which calls back in another thread: QueueUserAPC() or CreateThread() id:1439 gh:1447
 }
 
 type cbDLLFunc int // int determines number of callback parameters

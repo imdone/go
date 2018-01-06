@@ -23,7 +23,7 @@ import (
 //   · the order of b.Values is the order to emit the Values in each Block
 //   · f has a non-nil regAlloc field
 func Compile(f *Func) {
-	// TODO: debugging - set flags to control verbosity of compiler,
+	// TODO: debugging - set flags to control verbosity of compiler, id:264 gh:265
 	// which phases to dump IR before/after, etc.
 	if f.Log() {
 		f.Logf("compiling %s\n", f.Name)
@@ -60,7 +60,7 @@ func Compile(f *Func) {
 		if f.Log() {
 			f.Logf("  pass %s begin\n", p.name)
 		}
-		// TODO: capture logging during this pass, add it to the HTML
+		// TODO: capture logging during this pass, add it to the HTML id:209 gh:210
 		var mStart runtime.MemStats
 		if logMemStats || p.mem {
 			runtime.ReadMemStats(&mStart)
@@ -115,7 +115,7 @@ func Compile(f *Func) {
 	phaseName = ""
 }
 
-// TODO: should be a config field
+// TODO: should be a config field id:183 gh:184
 var dumpFileSeq int
 
 // dumpFile creates a file from the phase name and function name
@@ -329,13 +329,13 @@ Dump files are named <phase>__<function_name>_<seq>.dump.
 
 // list of passes for the compiler
 var passes = [...]pass{
-	// TODO: combine phielim and copyelim into a single pass?
+	// TODO: combine phielim and copyelim into a single pass? id:296 gh:297
 	{name: "early phielim", fn: phielim},
 	{name: "early copyelim", fn: copyelim},
 	{name: "early deadcode", fn: deadcode}, // remove generated dead code to avoid doing pointless work during opt
 	{name: "short circuit", fn: shortcircuit},
 	{name: "decompose user", fn: decomposeUser, required: true},
-	{name: "opt", fn: opt, required: true},               // TODO: split required rules and optimizing rules
+	{name: "opt", fn: opt, required: true},               // TODO: split required rules and optimizing rules id:509 gh:510
 	{name: "zero arg cse", fn: zcse, required: true},     // required to merge OpSB values
 	{name: "opt deadcode", fn: deadcode, required: true}, // remove any blocks orphaned during opt
 	{name: "generic cse", fn: cse},
@@ -345,7 +345,7 @@ var passes = [...]pass{
 	{name: "loopbce", fn: loopbce},
 	{name: "decompose builtin", fn: decomposeBuiltIn, required: true},
 	{name: "softfloat", fn: softfloat, required: true},
-	{name: "late opt", fn: opt, required: true}, // TODO: split required rules and optimizing rules
+	{name: "late opt", fn: opt, required: true}, // TODO: split required rules and optimizing rules id:266 gh:267
 	{name: "generic deadcode", fn: deadcode},
 	{name: "check bce", fn: checkbce},
 	{name: "fuse", fn: fuse},

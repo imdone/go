@@ -63,7 +63,7 @@ type Types struct {
 	UInt       *types.Type
 	Uintptr    *types.Type
 	String     *types.Type
-	BytePtr    *types.Type // TODO: use unsafe.Pointer instead?
+	BytePtr    *types.Type // TODO: use unsafe.Pointer instead? id:212 gh:213
 	Int32Ptr   *types.Type
 	UInt32Ptr  *types.Type
 	IntPtr     *types.Type
@@ -228,7 +228,7 @@ func NewConfig(arch string, types Types, ctxt *obj.Link, optimize bool) *Config 
 		c.fpRegMask = fpRegMaskPPC64
 		c.FPReg = framepointerRegPPC64
 		c.LinkReg = linkRegPPC64
-		c.noDuffDevice = true // TODO: Resolve PPC64 DuffDevice (has zero, but not copy)
+		c.noDuffDevice = true // TODO: Resolve PPC64 DuffDevice (has zero, but not copy) id:185 gh:186
 		c.hasGReg = true
 	case "mips64":
 		c.BigEndian = true
@@ -301,7 +301,7 @@ func NewConfig(arch string, types Types, ctxt *obj.Link, optimize bool) *Config 
 	// cutoff == 0 implies all sparse.
 	// cutoff == -1 implies none sparse.
 	// Good cutoff values seem to be O(million) depending on constant factor cost of sparse.
-	// TODO: get this from a flag, not an environment variable
+	// TODO: get this from a flag, not an environment variable id:299 gh:300
 	c.sparsePhiCutoff = 2500000 // 0 for testing. // 2500000 determined with crude experiments w/ make.bash
 	ev := os.Getenv("GO_SSA_PHI_LOC_CUTOFF")
 	if ev != "" {

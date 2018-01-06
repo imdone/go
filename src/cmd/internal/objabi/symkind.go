@@ -35,7 +35,7 @@ type SymKind uint8
 
 // Defined SymKind values.
 //
-// TODO(rsc): Give idiomatic Go names.
+// TODO (rsc): Give idiomatic Go names. id:595 gh:596
 //go:generate stringer -type=SymKind
 const (
 	// An otherwise invalid zero value for the type

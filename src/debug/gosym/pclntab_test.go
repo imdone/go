@@ -235,7 +235,7 @@ func TestPCLine(t *testing.T) {
 	sym := tab.LookupFunc("linefrompc")
 	wantLine := 0
 	for pc := sym.Entry; pc < sym.End; pc++ {
-		off := pc - text.Addr // TODO(rsc): should not need off; bug in 8g
+		off := pc - text.Addr // TODO (rsc): should not need off; bug in 8g id:686 gh:687
 		if textdat[off] == 255 {
 			break
 		}
@@ -253,7 +253,7 @@ func TestPCLine(t *testing.T) {
 	sym = tab.LookupFunc("pcfromline")
 	lookupline := -1
 	wantLine = 0
-	off := uint64(0) // TODO(rsc): should not need off; bug in 8g
+	off := uint64(0) // TODO (rsc): should not need off; bug in 8g id:1112 gh:1120
 	for pc := sym.Value; pc < sym.End; pc += 2 + uint64(textdat[off]) {
 		file, line, fn := tab.PCToLine(pc)
 		off = pc - text.Addr

@@ -1467,7 +1467,7 @@ func testWriteHeaderAfterWrite(t *testing.T, h2, hijack bool) {
 
 	// Also check the stderr output:
 	if h2 {
-		// TODO: also emit this log message for HTTP/2?
+		// TODO: also emit this log message for HTTP/2? id:1135 gh:1143
 		// We historically haven't, so don't check.
 		return
 	}

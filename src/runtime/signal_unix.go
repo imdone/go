@@ -846,5 +846,5 @@ func setsigsegv(pc uintptr) {
 	g.sig = _SIGSEGV
 	g.sigpc = pc
 	g.sigcode0 = _SEGV_MAPERR
-	g.sigcode1 = 0 // TODO: emulate si_addr
+	g.sigcode1 = 0 // TODO: emulate si_addr id:1404 gh:1412
 }

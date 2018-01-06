@@ -89,7 +89,7 @@ func TestFloatZeroValue(t *testing.T) {
 		}
 	}
 
-	// TODO(gri) test how precision is set for zero value results
+	// TODO (gri) test how precision is set for zero value results id:833 gh:834
 }
 
 func makeFloat(s string) *Float {
@@ -690,7 +690,7 @@ func TestFloatSetInt(t *testing.T) {
 		}
 	}
 
-	// TODO(gri) test basic rounding behavior
+	// TODO (gri) test basic rounding behavior id:872 gh:880
 }
 
 func TestFloatSetRat(t *testing.T) {
@@ -703,7 +703,7 @@ func TestFloatSetRat(t *testing.T) {
 		"123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890",
 		"1.2",
 		"3.14159265",
-		// TODO(gri) expand
+		// TODO (gri) expand id:817 gh:818
 	} {
 		var x Rat
 		_, ok := x.SetString(want)
@@ -1220,7 +1220,7 @@ var bitsList = [...]Bits{
 	{-10},        // = 2**-10 == 1/1024
 	{100, 10, 1}, // = 2**100 + 2**10 + 2**1
 	{0, -1, -2, -10},
-	// TODO(gri) add more test cases
+	// TODO (gri) add more test cases id:1211 gh:1219
 }
 
 // TestFloatAdd tests Float.Add/Sub by comparing the result of a "manual"
@@ -1477,7 +1477,7 @@ func TestIssue6866(t *testing.T) {
 }
 
 func TestFloatQuo(t *testing.T) {
-	// TODO(gri) make the test vary these precisions
+	// TODO (gri) make the test vary these precisions id:1227 gh:1235
 	preci := 200 // precision of integer part
 	precf := 20  // precision of fractional part
 
@@ -1705,7 +1705,7 @@ func TestFloatArithmeticOverflow(t *testing.T) {
 	}
 }
 
-// TODO(gri) Add tests that check correctness in the presence of aliasing.
+// TODO (gri) Add tests that check correctness in the presence of aliasing. id:836 gh:837
 
 // For rounding modes ToNegativeInf and ToPositiveInf, rounding is affected
 // by the sign of the value to be rounded. Test that rounding happens after

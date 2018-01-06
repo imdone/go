@@ -137,7 +137,7 @@ const (
 // Stacks are assigned an order according to size.
 //     order = log_2(size/FixedStack)
 // There is a free list for each order.
-// TODO: one lock per order?
+// TODO: one lock per order? id:1059 gh:1067
 var stackpool [_NumStackOrders]mSpanList
 var stackpoolmu mutex
 
@@ -883,7 +883,7 @@ func copystack(gp *g, newsize uintptr, sync bool) {
 
 	// Swap out old stack for new one
 	gp.stack = new
-	gp.stackguard0 = new.lo + _StackGuard // NOTE: might clobber a preempt request
+	gp.stackguard0 = new.lo + _StackGuard // NOTE: might clobber a preempt request id:1300 gh:1308
 	gp.sched.sp = new.hi - used
 	gp.stktopsp += adjinfo.delta
 
@@ -920,7 +920,7 @@ func round2(x int32) int32 {
 //go:nowritebarrierrec
 func newstack() {
 	thisg := getg()
-	// TODO: double check all gp. shouldn't be getg().
+	// TODO: double check all gp. shouldn't be getg(). id:1045 gh:1053
 	if thisg.m.morebuf.g.ptr().stackguard0 == stackFork {
 		throw("stack growth after fork")
 	}
@@ -960,7 +960,7 @@ func newstack() {
 	thisg.m.morebuf.sp = 0
 	thisg.m.morebuf.g = 0
 
-	// NOTE: stackguard0 may change underfoot, if another thread
+	// NOTE: stackguard0 may change underfoot, if another thread id:1437 gh:1445
 	// is about to try to preempt gp. Read it just once and use that same
 	// value now and below.
 	preempt := atomic.Loaduintptr(&gp.stackguard0) == stackPreempt

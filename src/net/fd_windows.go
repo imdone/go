@@ -238,6 +238,6 @@ func (fd *netFD) writeMsg(p []byte, oob []byte, sa syscall.Sockaddr) (n int, oob
 // Unimplemented functions.
 
 func (fd *netFD) dup() (*os.File, error) {
-	// TODO: Implement this
+	// TODO: Implement this id:857 gh:863
 	return nil, syscall.EWINDOWS
 }

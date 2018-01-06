@@ -204,7 +204,7 @@ func (c *ctxtz) rewriteToUseGot(p *obj.Prog) {
 }
 
 func preprocess(ctxt *obj.Link, cursym *obj.LSym, newprog obj.ProgAlloc) {
-	// TODO(minux): add morestack short-cuts with small fixed frame-size.
+	// TODO (minux): add morestack short-cuts with small fixed frame-size. id:349 gh:350
 	if cursym.Func.Text == nil || cursym.Func.Text.Link == nil {
 		return
 	}

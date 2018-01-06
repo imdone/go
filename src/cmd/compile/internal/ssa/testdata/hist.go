@@ -60,8 +60,8 @@ func test() {
 	dy := l.end.y - l.begin.y //gdb-opt=(dx,dy/O)
 	sink = dx + dy            //gdb-opt=(dx,dy)
 	// For #21098
-	hist := make([]int, 7)                                //gdb-opt=(dx/O,dy/O) // TODO sink is missing if this code is in 'test' instead of 'main'
-	var reader io.Reader = strings.NewReader(cannedInput) //gdb-dbg=(hist/A) // TODO cannedInput/A is missing if this code is in 'test' instead of 'main'
+	hist := make([]int, 7)                                //gdb-opt=(dx/O,dy/O) // TODO sink is missing if this code is in 'test' instead of 'main' id:529 gh:530
+	var reader io.Reader = strings.NewReader(cannedInput) //gdb-dbg=(hist/A) // TODO cannedInput/A is missing if this code is in 'test' instead of 'main' id:327 gh:328
 	if len(os.Args) > 1 {
 		var err error
 		reader, err = os.Open(os.Args[1])

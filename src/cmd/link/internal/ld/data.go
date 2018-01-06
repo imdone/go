@@ -167,7 +167,7 @@ func relocsym(ctxt *Link, s *sym.Symbol) {
 			Errorf(s, "unreachable sym in relocation: %s", r.Sym.Name)
 		}
 
-		// TODO(mundaym): remove this special case - see issue 14218.
+		// TODO (mundaym): remove this special case - see issue 14218. id:946 gh:954
 		if ctxt.Arch.Family == sys.S390X {
 			switch r.Type {
 			case objabi.R_PCRELDBL:
@@ -253,7 +253,7 @@ func relocsym(ctxt *Link, s *sym.Symbol) {
 				}
 				Thearch.TLSIEtoLE(s, int(off), int(r.Siz))
 				o = int64(ctxt.Tlsoffset)
-				// TODO: o += r.Add when ctxt.Arch.Family != sys.AMD64?
+				// TODO: o += r.Add when ctxt.Arch.Family != sys.AMD64? id:478 gh:479
 				// Why do we treat r.Add differently on AMD64?
 				// Is the external linker using Xadd at all?
 			} else {
@@ -458,7 +458,7 @@ func relocsym(ctxt *Link, s *sym.Symbol) {
 			Errorf(s, "bad reloc size %#x for %s", uint32(siz), r.Sym.Name)
 			fallthrough
 
-			// TODO(rsc): Remove.
+			// TODO (rsc): Remove. id:379 gh:380
 		case 1:
 			s.P[off] = byte(int8(o))
 		case 2:
@@ -1427,7 +1427,7 @@ func (ctxt *Link) dodata() {
 	// but for the other sections that this applies to, we just write a read-only
 	// .FOO section or a read-write .data.rel.ro.FOO section depending on the
 	// situation.
-	// TODO(mwhudson): It would make sense to do this more widely, but it makes
+	// TODO (mwhudson): It would make sense to do this more widely, but it makes id:471 gh:472
 	// the system linker segfault on darwin.
 	addrelrosection := func(suffix string) *sym.Section {
 		return addsection(ctxt.Arch, segro, suffix, 04)

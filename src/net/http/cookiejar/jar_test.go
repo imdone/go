@@ -134,7 +134,7 @@ var canonicalHostTests = map[string]string{
 	"[2001:4860:0:::68]:8080": "2001:4860:0:::68",
 	"www.bücher.de":           "www.xn--bcher-kva.de",
 	"www.example.com.":        "www.example.com",
-	// TODO: Fix canonicalHost so that all of the following malformed
+	// TODO: Fix canonicalHost so that all of the following malformed id:864 gh:872
 	// domain names trigger an error. (This list is not exhaustive, e.g.
 	// malformed internationalized domain names are missing.)
 	".":                       "",

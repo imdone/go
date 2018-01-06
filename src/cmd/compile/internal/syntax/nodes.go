@@ -102,7 +102,7 @@ type (
 		Name   *Name
 		Type   *FuncType
 		Body   *BlockStmt // nil means no body (forward declaration)
-		Pragma Pragma     // TODO(mdempsky): Cleaner solution.
+		Pragma Pragma     // TODO (mdempsky): Cleaner solution. id:331 gh:332
 		decl
 	}
 )
@@ -192,7 +192,7 @@ type (
 		Index [3]Expr
 		// Full indicates whether this is a simple or full slice expression.
 		// In a valid AST, this is equivalent to Index[2] != nil.
-		// TODO(mdempsky): This is only needed to report the "3-index
+		// TODO (mdempsky): This is only needed to report the "3-index id:332 gh:333
 		// slice of string" error when Index[2] is missing.
 		Full bool
 		expr
@@ -201,7 +201,7 @@ type (
 	// X.(Type)
 	AssertExpr struct {
 		X Expr
-		// TODO(gri) consider using Name{"..."} instead of nil (permits attaching of comments)
+		// TODO (gri) consider using Name{"..."} instead of nil (permits attaching of comments) id:237 gh:238
 		Type Expr
 		expr
 	}
@@ -228,7 +228,7 @@ type (
 
 	// [Len]Elem
 	ArrayType struct {
-		// TODO(gri) consider using Name{"..."} instead of nil (permits attaching of comments)
+		// TODO (gri) consider using Name{"..."} instead of nil (permits attaching of comments) id:389 gh:390
 		Len  Expr // nil means Len is ...
 		Elem Expr
 		expr
@@ -416,7 +416,7 @@ type (
 	}
 
 	TypeSwitchGuard struct {
-		// TODO(gri) consider using Name{"..."} instead of nil (permits attaching of comments)
+		// TODO (gri) consider using Name{"..."} instead of nil (permits attaching of comments) id:531 gh:532
 		Lhs *Name // nil means no Lhs :=
 		X   Expr  // X.(type)
 		expr
@@ -450,7 +450,7 @@ func (simpleStmt) aSimpleStmt() {}
 // ----------------------------------------------------------------------------
 // Comments
 
-// TODO(gri) Consider renaming to CommentPos, CommentPlacement, etc.
+// TODO (gri) Consider renaming to CommentPos, CommentPlacement, etc. id:334 gh:335
 //           Kind = Above doesn't make much sense.
 type CommentKind uint
 

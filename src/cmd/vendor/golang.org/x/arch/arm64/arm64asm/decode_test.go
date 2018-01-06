@@ -58,7 +58,7 @@ func TestDecode(t *testing.T) {
 			t.Errorf("unknown syntax %q", syntax)
 			continue
 		}
-		// TODO: system instruction.
+		// TODO: system instruction. id:714 gh:715
 		var Todo = strings.Fields(`
 			sys
 			dc

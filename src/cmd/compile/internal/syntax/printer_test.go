@@ -27,7 +27,7 @@ func TestPrintString(t *testing.T) {
 	for _, want := range []string{
 		"package p",
 		"package p; type _ = int; type T1 = struct{}; type ( _ = *struct{}; T2 = float32 )",
-		// TODO(gri) expand
+		// TODO (gri) expand id:535 gh:538
 	} {
 		ast, err := ParseBytes(nil, []byte(want), nil, nil, nil, 0)
 		if err != nil {

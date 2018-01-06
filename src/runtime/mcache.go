@@ -90,7 +90,7 @@ func freemcache(c *mcache) {
 		c.releaseAll()
 		stackcache_clear(c)
 
-		// NOTE(rsc,rlh): If gcworkbuffree comes back, we need to coordinate
+		// NOTE (rsc,rlh): If gcworkbuffree comes back, we need to coordinate id:1397 gh:1405
 		// with the stealing of gcworkbufs during garbage collection to avoid
 		// a race where the workbuf is double-freed.
 		// gcworkbuffree(c.gcworkbuf)

@@ -30,7 +30,7 @@ type indVar struct {
 // exit_loop:
 //
 //
-// TODO: handle 32 bit operations
+// TODO: handle 32 bit operations id:206 gh:207
 func findIndVar(f *Func) []indVar {
 	var iv []indVar
 	sdom := f.sdom()
@@ -45,7 +45,7 @@ nextb:
 		entry := -1         // which successor of b enters the loop
 
 		// Check thet the control if it either ind < max or max > ind.
-		// TODO: Handle Leq64, Geq64.
+		// TODO: Handle Leq64, Geq64. id:363 gh:364
 		switch b.Control.Op {
 		case OpLess64:
 			entry = 0
@@ -83,7 +83,7 @@ nextb:
 		}
 
 		// Expect the increment to be a positive constant.
-		// TODO: handle negative increment.
+		// TODO: handle negative increment. id:521 gh:522
 		if inc.Op != OpConst64 || inc.AuxInt <= 0 {
 			continue
 		}
@@ -118,7 +118,7 @@ nextb:
 
 		// If max is c + SliceLen with c <= 0 then we drop c.
 		// Makes sure c + SliceLen doesn't overflow when SliceLen == 0.
-		// TODO: save c as an offset from max.
+		// TODO: save c as an offset from max. id:297 gh:298
 		if w, c := dropAdd64(max); (w.Op == OpStringLen || w.Op == OpSliceLen) && 0 >= c && -c >= 0 {
 			max = w
 		}

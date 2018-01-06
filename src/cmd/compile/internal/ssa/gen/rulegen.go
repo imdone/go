@@ -510,7 +510,7 @@ func genResult(w io.Writer, arch arch, result string, loc string) {
 	genResult0(w, arch, result, new(int), true, move, loc)
 }
 func genResult0(w io.Writer, arch arch, result string, alloc *int, top, move bool, loc string) string {
-	// TODO: when generating a constant result, use f.constVal to avoid
+	// TODO: when generating a constant result, use f.constVal to avoid id:281 gh:282
 	// introducing copies just to clean them up again.
 	if result[0] != '(' {
 		// variable

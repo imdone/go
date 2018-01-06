@@ -183,7 +183,7 @@ func (z *Int) SetBytes(b []byte) *Int {
 // SetInt64 sets z = x and returns z.
 func (z *Int) SetInt64(x int64) *Int {
 	z.doinit()
-	// TODO(rsc): more work on 32-bit platforms
+	// TODO (rsc): more work on 32-bit platforms id:6 gh:7
 	C.mpz_set_si(&z.i[0], C.long(x))
 	return z
 }

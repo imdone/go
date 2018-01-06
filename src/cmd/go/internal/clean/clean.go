@@ -142,7 +142,7 @@ func runClean(cmd *base.Command, args []string) {
 
 var cleaned = map[*load.Package]bool{}
 
-// TODO: These are dregs left by Makefile-based builds.
+// TODO: These are dregs left by Makefile-based builds. id:394 gh:395
 // Eventually, can stop deleting these.
 var cleanDir = map[string]bool{
 	"_test": true,
@@ -224,7 +224,7 @@ func clean(p *load.Package) {
 			continue
 		}
 		if !dir.IsDir() && strings.HasSuffix(name, ".go") {
-			// TODO(adg,rsc): check that this .go file is actually
+			// TODO (adg,rsc): check that this .go file is actually id:427 gh:428
 			// in "package main", and therefore capable of building
 			// to an executable file.
 			base := name[:len(name)-len(".go")]
@@ -243,7 +243,7 @@ func clean(p *load.Package) {
 	for _, dir := range dirs {
 		name := dir.Name()
 		if dir.IsDir() {
-			// TODO: Remove once Makefiles are forgotten.
+			// TODO: Remove once Makefiles are forgotten. id:259 gh:260
 			if cleanDir[name] {
 				if cfg.BuildN || cfg.BuildX {
 					b.Showcmd(p.Dir, "rm -r %s", name)

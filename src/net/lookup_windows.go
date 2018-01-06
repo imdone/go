@@ -77,7 +77,7 @@ func (r *Resolver) lookupHost(ctx context.Context, name string) ([]string, error
 }
 
 func (r *Resolver) lookupIP(ctx context.Context, name string) ([]IPAddr, error) {
-	// TODO(bradfitz,brainman): use ctx more. See TODO below.
+	// TODO (bradfitz,brainman): use ctx more. See TODO below. id:930 gh:938
 
 	type ret struct {
 		addrs []IPAddr
@@ -119,7 +119,7 @@ func (r *Resolver) lookupIP(ctx context.Context, name string) ([]IPAddr, error) 
 	case r := <-ch:
 		return r.addrs, r.err
 	case <-ctx.Done():
-		// TODO(bradfitz,brainman): cancel the ongoing
+		// TODO (bradfitz,brainman): cancel the ongoing id:1340 gh:1348
 		// GetAddrInfoW? It would require conditionally using
 		// GetAddrInfoEx with lpOverlapped, which requires
 		// Windows 8 or newer. I guess we'll need oldLookupIP,
@@ -140,7 +140,7 @@ func (r *Resolver) lookupPort(ctx context.Context, network, service string) (int
 		return lookupPortMap(network, service)
 	}
 
-	// TODO(bradfitz): finish ctx plumbing. Nothing currently depends on this.
+	// TODO (bradfitz): finish ctx plumbing. Nothing currently depends on this. id:1306 gh:1314
 	acquireThread()
 	defer releaseThread()
 	var stype int32
@@ -180,7 +180,7 @@ func (r *Resolver) lookupPort(ctx context.Context, network, service string) (int
 }
 
 func (*Resolver) lookupCNAME(ctx context.Context, name string) (string, error) {
-	// TODO(bradfitz): finish ctx plumbing. Nothing currently depends on this.
+	// TODO (bradfitz): finish ctx plumbing. Nothing currently depends on this. id:916 gh:924
 	acquireThread()
 	defer releaseThread()
 	var r *syscall.DNSRecord
@@ -201,7 +201,7 @@ func (*Resolver) lookupCNAME(ctx context.Context, name string) (string, error) {
 }
 
 func (*Resolver) lookupSRV(ctx context.Context, service, proto, name string) (string, []*SRV, error) {
-	// TODO(bradfitz): finish ctx plumbing. Nothing currently depends on this.
+	// TODO (bradfitz): finish ctx plumbing. Nothing currently depends on this. id:1174 gh:1182
 	acquireThread()
 	defer releaseThread()
 	var target string
@@ -227,7 +227,7 @@ func (*Resolver) lookupSRV(ctx context.Context, service, proto, name string) (st
 }
 
 func (*Resolver) lookupMX(ctx context.Context, name string) ([]*MX, error) {
-	// TODO(bradfitz): finish ctx plumbing. Nothing currently depends on this.
+	// TODO (bradfitz): finish ctx plumbing. Nothing currently depends on this. id:933 gh:941
 	acquireThread()
 	defer releaseThread()
 	var r *syscall.DNSRecord
@@ -247,7 +247,7 @@ func (*Resolver) lookupMX(ctx context.Context, name string) ([]*MX, error) {
 }
 
 func (*Resolver) lookupNS(ctx context.Context, name string) ([]*NS, error) {
-	// TODO(bradfitz): finish ctx plumbing. Nothing currently depends on this.
+	// TODO (bradfitz): finish ctx plumbing. Nothing currently depends on this. id:1343 gh:1351
 	acquireThread()
 	defer releaseThread()
 	var r *syscall.DNSRecord
@@ -266,7 +266,7 @@ func (*Resolver) lookupNS(ctx context.Context, name string) ([]*NS, error) {
 }
 
 func (*Resolver) lookupTXT(ctx context.Context, name string) ([]string, error) {
-	// TODO(bradfitz): finish ctx plumbing. Nothing currently depends on this.
+	// TODO (bradfitz): finish ctx plumbing. Nothing currently depends on this. id:1308 gh:1316
 	acquireThread()
 	defer releaseThread()
 	var r *syscall.DNSRecord
@@ -289,7 +289,7 @@ func (*Resolver) lookupTXT(ctx context.Context, name string) ([]string, error) {
 }
 
 func (*Resolver) lookupAddr(ctx context.Context, addr string) ([]string, error) {
-	// TODO(bradfitz): finish ctx plumbing. Nothing currently depends on this.
+	// TODO (bradfitz): finish ctx plumbing. Nothing currently depends on this. id:919 gh:927
 	acquireThread()
 	defer releaseThread()
 	arpa, err := reverseaddr(addr)

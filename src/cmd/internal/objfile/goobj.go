@@ -111,7 +111,7 @@ func (f *goobjFile) pcln() (textStart uint64, symtab, pclntab []byte, err error)
 // Returns "",0,nil if unknown.
 // This function implements the Liner interface in preference to pcln() above.
 func (f *goobjFile) PCToLine(pc uint64) (string, int, *gosym.Func) {
-	// TODO: this is really inefficient. Binary search? Memoize last result?
+	// TODO: this is really inefficient. Binary search? Memoize last result? id:938 gh:946
 	var arch *sys.Arch
 	for _, a := range sys.Archs {
 		if a.Name == f.goobj.Arch {

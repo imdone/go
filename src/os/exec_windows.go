@@ -35,7 +35,7 @@ func (p *Process) wait() (ps *ProcessState, err error) {
 		return nil, NewSyscallError("GetProcessTimes", e)
 	}
 	p.setDone()
-	// NOTE(brainman): It seems that sometimes process is not dead
+	// NOTE (brainman): It seems that sometimes process is not dead id:951 gh:959
 	// when WaitForSingleObject returns. But we do not know any
 	// other way to wait for it. Sleeping for a while seems to do
 	// the trick sometimes. So we will sleep and smell the roses.
@@ -67,7 +67,7 @@ func (p *Process) signal(sig Signal) error {
 		runtime.KeepAlive(p)
 		return err
 	}
-	// TODO(rsc): Handle Interrupt too?
+	// TODO (rsc): Handle Interrupt too? id:1356 gh:1364
 	return syscall.Errno(syscall.EWINDOWS)
 }
 

@@ -234,7 +234,7 @@ func htmlNameFilter(args ...interface{}) string {
 	}
 	s = strings.ToLower(s)
 	if t := attrType(s); t != contentTypePlain {
-		// TODO: Split attr and element name part filters so we can whitelist
+		// TODO: Split attr and element name part filters so we can whitelist id:797 gh:798
 		// attributes.
 		return filterFailsafe
 	}

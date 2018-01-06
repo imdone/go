@@ -186,6 +186,6 @@ func expmulti(hi, lo float64, k int) float64 {
 	t := r * r
 	c := r - t*(P1+t*(P2+t*(P3+t*(P4+t*P5))))
 	y := 1 - ((lo - (r*c)/(2-c)) - hi)
-	// TODO(rsc): make sure Ldexp can handle boundary k
+	// TODO (rsc): make sure Ldexp can handle boundary k id:1238 gh:1246
 	return Ldexp(y, k)
 }

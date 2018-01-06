@@ -1765,7 +1765,7 @@ func TestUnmarshal(t *testing.T) {
 			`<x><b xmlns="space">b</b>`+
 			`<b xmlns="space1">b1</b></x>`+
 			`</top>` {
-			// TODO(rogpeppe): re-enable this test in
+			// TODO (rogpeppe): re-enable this test in id:1128 gh:1136
 			// https://go-review.googlesource.com/#/c/5910/
 			continue
 		}

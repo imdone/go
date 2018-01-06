@@ -10,7 +10,7 @@ import (
 	"cmd/internal/obj/mips"
 )
 
-// TODO(mips): implement DUFFZERO
+// TODO (mips): implement DUFFZERO id:286 gh:287
 func zerorange(pp *gc.Progs, p *obj.Prog, off, cnt int64, _ *uint32) *obj.Prog {
 
 	if cnt == 0 {

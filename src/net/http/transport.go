@@ -211,7 +211,7 @@ type Transport struct {
 	nextProtoOnce sync.Once
 	h2transport   *http2Transport // non-nil if http2 wired up
 
-	// TODO: tunable on max per-host TCP dials in flight (Issue 13957)
+	// TODO: tunable on max per-host TCP dials in flight (Issue 13957) id:1167 gh:1175
 }
 
 // onceSetNextProtoDefaults initializes TLSNextProto.
@@ -244,7 +244,7 @@ func (t *Transport) onceSetNextProtoDefaults() {
 	// the http.Transport's MaxResponseHeaderBytes. They don't
 	// exactly mean the same thing, but they're close.
 	//
-	// TODO: also add this to x/net/http2.Configure Transport, behind
+	// TODO: also add this to x/net/http2.Configure Transport, behind id:924 gh:932
 	// a +build go1.7 build tag:
 	if limit1 := t.MaxResponseHeaderBytes; limit1 != 0 && t2.MaxHeaderListSize == 0 {
 		const h2max = 1<<32 - 1
@@ -1933,7 +1933,7 @@ func (e *httpError) Temporary() bool { return true }
 
 var errTimeout error = &httpError{err: "net/http: timeout awaiting response headers", timeout: true}
 var errRequestCanceled = errors.New("net/http: request canceled")
-var errRequestCanceledConn = errors.New("net/http: request canceled while waiting for connection") // TODO: unify?
+var errRequestCanceledConn = errors.New("net/http: request canceled while waiting for connection") // TODO: unify? id:1334 gh:1342
 
 func nop() {}
 

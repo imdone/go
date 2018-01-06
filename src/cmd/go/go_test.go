@@ -807,7 +807,7 @@ func TestProgramNameInCrashMessages(t *testing.T) {
 func TestBrokenTestsWithoutTestFunctionsAllFail(t *testing.T) {
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:419 gh:420
 	tg.runFail("test", "./testdata/src/badtest/...")
 	tg.grepBothNot("^ok", "test passed unexpectedly")
 	tg.grepBoth("FAIL.*badtest/badexec", "test did not run everything")
@@ -920,7 +920,7 @@ func TestGoListStandard(t *testing.T) {
 	tooSlow(t)
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:255 gh:256
 	tg.cd(runtime.GOROOT() + "/src")
 	tg.run("list", "-f", "{{if not .Standard}}{{.ImportPath}}{{end}}", "./...")
 	stdout := tg.getStdout()
@@ -946,7 +946,7 @@ func TestGoInstallCleansUpAfterGoBuild(t *testing.T) {
 	tooSlow(t)
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:415 gh:416
 	tg.tempFile("src/mycmd/main.go", `package main; func main(){}`)
 	tg.setenv("GOPATH", tg.path("."))
 	tg.cd(tg.path("src/mycmd"))
@@ -1039,7 +1039,7 @@ func TestGoInstallDetectsRemovedFiles(t *testing.T) {
 func TestWildcardMatchesSyntaxErrorDirs(t *testing.T) {
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:545 gh:546
 	tg.tempFile("src/mypkg/x.go", `package mypkg`)
 	tg.tempFile("src/mypkg/y.go", `pkg mypackage`)
 	tg.setenv("GOPATH", tg.path("."))
@@ -1203,7 +1203,7 @@ func copyBad(tg *testgoData) {
 func TestBadImportsEasy(t *testing.T) {
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:381 gh:382
 	copyBad(tg)
 	testLocalEasy(tg, badDirName)
 }
@@ -1315,7 +1315,7 @@ func TestMoveHG(t *testing.T) {
 	testMove(t, "hg", "vcs-test.golang.org/go/custom-hg-hello", "custom-hg-hello", "vcs-test.golang.org/go/custom-hg-hello/.hg/hgrc")
 }
 
-// TODO(rsc): Set up a test case on SourceForge (?) for svn.
+// TODO (rsc): Set up a test case on SourceForge (?) for svn. id:421 gh:422
 // func testMoveSVN(t *testing.T) {
 //	testMove(t, "svn", "code.google.com/p/rsc-svn/trunk", "-", "-")
 // }
@@ -1497,7 +1497,7 @@ func TestRelativeImportsGoTestDashI(t *testing.T) {
 func TestRelativeImportsInCommandLinePackage(t *testing.T) {
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:256 gh:257
 	files, err := filepath.Glob("./testdata/testimport/*.go")
 	tg.must(err)
 	tg.run(append([]string{"test"}, files...)...)
@@ -1520,7 +1520,7 @@ func TestVersionControlErrorMessageIncludesCorrectDirectory(t *testing.T) {
 	tg.setenv("GOPATH", filepath.Join(tg.pwd(), "testdata/shadow/root1"))
 	tg.runFail("get", "-u", "foo")
 
-	// TODO(iant): We should not have to use strconv.Quote here.
+	// TODO (iant): We should not have to use strconv.Quote here. id:416 gh:417
 	// The code in vcs.go should be changed so that it is not required.
 	quoted := strconv.Quote(filepath.Join("testdata", "shadow", "root1", "src", "foo"))
 	quoted = quoted[1 : len(quoted)-1]
@@ -2834,7 +2834,7 @@ func TestIssue6480(t *testing.T) {
 	tooSlow(t)
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:547 gh:548
 	tg.makeTempdir()
 	tg.cd(tg.path("."))
 	tg.run("test", "-c", "-test.bench=XXX", "errors")
@@ -3953,7 +3953,7 @@ func TestIssue17119(t *testing.T) {
 func TestFatalInBenchmarkCauseNonZeroExitStatus(t *testing.T) {
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:384 gh:385
 	tg.runFail("test", "-run", "^$", "-bench", ".", "./testdata/src/benchfatal")
 	tg.grepBothNot("^ok", "test passed unexpectedly")
 	tg.grepBoth("FAIL.*benchfatal", "test did not run everything")
@@ -4152,7 +4152,7 @@ const (
 func TestMatchesNoTests(t *testing.T) {
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:423 gh:424
 	tg.run("test", "-run", "ThisWillNotMatch", "testdata/standalone_test.go")
 	tg.grepBoth(noMatchesPattern, "go test did not say [no tests to run]")
 }
@@ -4170,7 +4170,7 @@ func TestMatchesNoTestsDoesNotOverrideBuildFailure(t *testing.T) {
 func TestMatchesNoBenchmarksIsOK(t *testing.T) {
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:257 gh:258
 	tg.run("test", "-run", "^$", "-bench", "ThisWillNotMatch", "testdata/standalone_benchmark_test.go")
 	tg.grepBothNot(noMatchesPattern, "go test did say [no tests to run]")
 	tg.grepBoth(okPattern, "go test did not say ok")
@@ -4179,7 +4179,7 @@ func TestMatchesNoBenchmarksIsOK(t *testing.T) {
 func TestMatchesOnlyExampleIsOK(t *testing.T) {
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:417 gh:418
 	tg.run("test", "-run", "Example", "testdata/example1_test.go")
 	tg.grepBothNot(noMatchesPattern, "go test did say [no tests to run]")
 	tg.grepBoth(okPattern, "go test did not say ok")
@@ -4188,7 +4188,7 @@ func TestMatchesOnlyExampleIsOK(t *testing.T) {
 func TestMatchesOnlyBenchmarkIsOK(t *testing.T) {
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:549 gh:550
 	tg.run("test", "-run", "^$", "-bench", ".", "testdata/standalone_benchmark_test.go")
 	tg.grepBothNot(noMatchesPattern, "go test did say [no tests to run]")
 	tg.grepBoth(okPattern, "go test did not say ok")
@@ -4197,7 +4197,7 @@ func TestMatchesOnlyBenchmarkIsOK(t *testing.T) {
 func TestBenchmarkLabels(t *testing.T) {
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:392 gh:393
 	tg.setenv("GOPATH", filepath.Join(tg.pwd(), "testdata"))
 	tg.run("test", "-run", "^$", "-bench", ".", "bench")
 	tg.grepStdout(`(?m)^goos: `+runtime.GOOS, "go test did not print goos")
@@ -4209,7 +4209,7 @@ func TestBenchmarkLabels(t *testing.T) {
 func TestBenchmarkLabelsOutsideGOPATH(t *testing.T) {
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:425 gh:426
 	tg.run("test", "-run", "^$", "-bench", ".", "testdata/standalone_benchmark_test.go")
 	tg.grepStdout(`(?m)^goos: `+runtime.GOOS, "go test did not print goos")
 	tg.grepStdout(`(?m)^goarch: `+runtime.GOARCH, "go test did not print goarch")
@@ -4219,7 +4219,7 @@ func TestBenchmarkLabelsOutsideGOPATH(t *testing.T) {
 func TestMatchesOnlyTestIsOK(t *testing.T) {
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:258 gh:259
 	tg.run("test", "-run", "Test", "testdata/standalone_test.go")
 	tg.grepBothNot(noMatchesPattern, "go test did say [no tests to run]")
 	tg.grepBoth(okPattern, "go test did not say ok")
