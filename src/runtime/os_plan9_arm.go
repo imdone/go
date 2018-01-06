@@ -4,16 +4,16 @@
 
 package runtime
 
-var hardDiv bool // TODO: set if a hardware divider is available
+var hardDiv bool // TODO: set if a hardware divider is available id:1293 gh:1301
 
 func checkgoarm() {
-	return // TODO(minux)
+	return // TODO (minux) id:1038 gh:1046
 }
 
 //go:nosplit
 func cputicks() int64 {
 	// Currently cputicks() is used in blocking profiler and to seed runtime·fastrand().
 	// runtime·nanotime() is a poor approximation of CPU ticks that is enough for the profiler.
-	// TODO: need more entropy to better seed fastrand.
+	// TODO: need more entropy to better seed fastrand. id:1423 gh:1431
 	return nanotime()
 }

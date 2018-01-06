@@ -683,7 +683,7 @@ func ssaGenValue(s *gc.SSAGenState, v *ssa.Value) {
 	case ssa.OpARM64InvertFlags:
 		v.Fatalf("InvertFlags should never make it to codegen %v", v.LongString())
 	case ssa.OpClobber:
-		// TODO: implement for clobberdead experiment. Nop is ok for now.
+		// TODO: implement for clobberdead experiment. Nop is ok for now. id:43 gh:44
 	default:
 		v.Fatalf("genValue not implemented: %s", v.LongString())
 	}

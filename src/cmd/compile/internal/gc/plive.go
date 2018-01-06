@@ -27,7 +27,7 @@ import (
 	"strings"
 )
 
-// TODO(mdempsky): Update to reference OpVar{Def,Kill,Live} instead.
+// TODO (mdempsky): Update to reference OpVar{Def,Kill,Live} instead. id:153 gh:154
 
 // VARDEF is an annotation for the liveness analysis, marking a place
 // where a complete initialization (definition) of a variable begins.
@@ -351,7 +351,7 @@ func (lv *Liveness) blockEffects(b *ssa.Block) *BlockEffects {
 	return &lv.be[b.ID]
 }
 
-// NOTE: The bitmap for a specific type t could be cached in t after
+// NOTE: The bitmap for a specific type t could be cached in t after id:348 gh:349
 // the first run and then simply copied into bv at the correct offset
 // on future calls with the same type t.
 func onebitwalktype1(t *types.Type, off int64, bv bvec) {
@@ -601,7 +601,7 @@ func (lv *Liveness) epilogue() {
 	// that are pointers to heap-allocated output parameters are
 	// also always live (post-deferreturn code needs these
 	// pointers to copy values back to the stack).
-	// TODO: if the output parameter is heap-allocated, then we
+	// TODO: if the output parameter is heap-allocated, then we id:194 gh:195
 	// don't need to keep the stack copy live?
 	if lv.fn.Func.HasDefer() {
 		for i, n := range lv.vars {

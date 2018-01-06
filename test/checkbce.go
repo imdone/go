@@ -32,7 +32,7 @@ func f1(a [256]int, i int) {
 	if 4 <= i && i < len(a) {
 		useInt(a[i])
 		useInt(a[i-1]) // ERROR "Found IsInBounds$"
-		// TODO: 'if 4 <= i && i < len(a)' gets rewritten to 'if uint(i - 4) < 256 - 4',
+		// TODO: 'if 4 <= i && i < len(a)' gets rewritten to 'if uint(i - 4) < 256 - 4', id:1351 gh:1359
 		// which the bounds checker cannot yet use to infer that the next line doesn't need a bounds check.
 		useInt(a[i-4])
 	}

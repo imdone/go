@@ -16,7 +16,7 @@ import (
 	"time"
 )
 
-// TODO(adg): a more sophisticated test suite
+// TODO (adg): a more sophisticated test suite id:38 gh:39
 
 type WriteTest struct {
 	Name   string

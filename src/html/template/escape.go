@@ -378,7 +378,7 @@ func indexOfStr(s string, strs []string, eq func(a, b string) bool) int {
 func newIdentCmd(identifier string, pos parse.Pos) *parse.CommandNode {
 	return &parse.CommandNode{
 		NodeType: parse.NodeCommand,
-		Args:     []parse.Node{parse.NewIdentifier(identifier).SetTree(nil).SetPos(pos)}, // TODO: SetTree.
+		Args:     []parse.Node{parse.NewIdentifier(identifier).SetTree(nil).SetPos(pos)}, // TODO: SetTree. id:1184 gh:1192
 	}
 }
 

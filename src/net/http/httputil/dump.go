@@ -132,7 +132,7 @@ func DumpRequestOut(req *http.Request, body bool) ([]byte, error) {
 	dump := buf.Bytes()
 
 	// If we used a dummy body above, remove it now.
-	// TODO: if the req.ContentLength is large, we allocate memory
+	// TODO: if the req.ContentLength is large, we allocate memory id:1278 gh:1286
 	// unnecessarily just to slice it off here. But this is just
 	// a debug function, so this is acceptable for now. We could
 	// discard the body earlier if this matters.

@@ -666,7 +666,7 @@ func foo76e() {
 
 func foo76f() {
 	for {
-		// TODO: This one really only escapes its scope, but we don't distinguish yet.
+		// TODO: This one really only escapes its scope, but we don't distinguish yet. id:1107 gh:1115
 		defer myprint(nil, 1, 2, 3) // ERROR "... argument escapes to heap$" "1 escapes to heap$" "2 escapes to heap$" "3 escapes to heap$"
 	}
 }

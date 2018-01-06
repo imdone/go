@@ -410,7 +410,7 @@ func newEscState(recursive bool) *EscState {
 }
 
 func (e *EscState) stepWalk(dst, src *Node, why string, parent *EscStep) *EscStep {
-	// TODO: keep a cache of these, mark entry/exit in escwalk to avoid allocation
+	// TODO: keep a cache of these, mark entry/exit in escwalk to avoid allocation id:184 gh:185
 	// Or perhaps never mind, since it is disabled unless printing is on.
 	// We may want to revisit this, since the EscStep nodes would make
 	// an excellent replacement for the poorly-separated graph-build/graph-flood
@@ -676,7 +676,7 @@ func (e *EscState) esc(n *Node, parent *Node) {
 		}
 		n.Esc = EscHeap
 		addrescapes(n)
-		e.escassignSinkWhy(n, n, "too large for stack") // TODO category: tooLarge
+		e.escassignSinkWhy(n, n, "too large for stack") // TODO category: tooLarge id:159 gh:160
 	}
 
 	e.esc(n.Left, n)
@@ -814,7 +814,7 @@ func (e *EscState) esc(n *Node, parent *Node) {
 			break
 		}
 		// arguments leak out of scope
-		// TODO: leak to a dummy node instead
+		// TODO: leak to a dummy node instead id:85 gh:86
 		// defer f(x) - f and x escape
 		e.escassignSinkWhy(n, n.Left.Left, "defer func")
 		e.escassignSinkWhy(n, n.Left.Right, "defer func ...") // ODDDARG for call
@@ -1203,7 +1203,7 @@ func (e *EscState) escassign(dst, src *Node, step *EscStep) {
 
 	// Might be pointer arithmetic, in which case
 	// the operands flow into the result.
-	// TODO(rsc): Decide what the story is here. This is unsettling.
+	// TODO (rsc): Decide what the story is here. This is unsettling. id:81 gh:82
 	case OADD,
 		OSUB,
 		OOR,
@@ -1436,7 +1436,7 @@ func (e *EscState) initEscRetval(call *Node, fntype *types.Type) {
 	for i, f := range fntype.Results().Fields().Slice() {
 		buf := fmt.Sprintf(".out%d", i)
 		ret := newname(lookup(buf))
-		ret.SetAddable(false) // TODO(mdempsky): Seems suspicious.
+		ret.SetAddable(false) // TODO (mdempsky): Seems suspicious. id:82 gh:83
 		ret.Type = f.Type
 		ret.SetClass(PAUTO)
 		ret.Name.Curfn = Curfn
@@ -1551,7 +1551,7 @@ func (e *EscState) esccall(call *Node, parent *Node) {
 					e.track(arg)
 					call.Right = arg
 				}
-				e.escassignWhyWhere(n, arg, "arg to recursive call", call) // TODO this message needs help.
+				e.escassignWhyWhere(n, arg, "arg to recursive call", call) // TODO this message needs help. id:302 gh:303
 				if arg == args[0] {
 					args = args[1:]
 					continue
@@ -1686,7 +1686,7 @@ func (e *EscState) escflows(dst, src *Node, why *EscStep) {
 		dstE.Flowsrc = append(dstE.Flowsrc, EscStep{src: src})
 	} else {
 		starwhy := *why
-		starwhy.src = src // TODO: need to reconcile this w/ needs of explanations.
+		starwhy.src = src // TODO: need to reconcile this w/ needs of explanations. id:165 gh:166
 		dstE.Flowsrc = append(dstE.Flowsrc, starwhy)
 	}
 }
@@ -1733,7 +1733,7 @@ func (es *EscStep) describe(src *Node) {
 	}
 	step0 := es
 	for step := step0; step != nil && !step.busy; step = step.parent {
-		// TODO: We get cycles. Trigger is i = &i (where var i interface{})
+		// TODO: We get cycles. Trigger is i = &i (where var i interface{}) id:87 gh:88
 		step.busy = true
 		// The trail is a little odd because of how the
 		// graph is constructed.  The link to the current
@@ -2102,7 +2102,7 @@ func moveToHeap(n *Node) {
 
 	// Unset AutoTemp to persist the &foo variable name through SSA to
 	// liveness analysis.
-	// TODO(mdempsky/drchase): Cleaner solution?
+	// TODO (mdempsky/drchase): Cleaner solution? id:84 gh:85
 	heapaddr.Name.SetAutoTemp(false)
 
 	// Parameters have a local stack copy used at function start/end

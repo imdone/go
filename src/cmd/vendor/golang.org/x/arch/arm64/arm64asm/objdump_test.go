@@ -105,7 +105,7 @@ func allowedMismatchObjdump(text string, inst *Inst, dec ExtInst) bool {
 	return false
 }
 
-// TODO: system instruction.
+// TODO: system instruction. id:651 gh:652
 var todo = strings.Fields(`
 	sys
 	dc

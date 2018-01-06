@@ -330,7 +330,7 @@ func usleep(µs uint32) {
 func nanotime() int64 {
 	var scratch int64
 	ns := nsec(&scratch)
-	// TODO(aram): remove hack after I fix _nsec in the pc64 kernel.
+	// TODO (aram): remove hack after I fix _nsec in the pc64 kernel. id:1019 gh:1027
 	if ns == 0 {
 		return scratch
 	}

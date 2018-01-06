@@ -32,7 +32,7 @@ function urlForInput(t) {
     }
 
     if (pkgRE.test(t)) {
-        // TODO: make this smarter, using a list of packages + substring matches.
+        // TODO: make this smarter, using a list of packages + substring matches. id:30 gh:31
         // Get the list from godoc itself in JSON format?
         return "https://golang.org/pkg/" + t;
     }

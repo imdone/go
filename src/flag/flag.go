@@ -524,7 +524,7 @@ func (f *FlagSet) defaultUsage() {
 	f.PrintDefaults()
 }
 
-// NOTE: Usage is not just defaultUsage(CommandLine)
+// NOTE: Usage is not just defaultUsage(CommandLine) id:753 gh:754
 // because it serves (via godoc flag Usage) as the example
 // for how to write your own usage function.
 

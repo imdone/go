@@ -205,7 +205,7 @@ func (b *Builder) buildActionID(a *Action) cache.ActionID {
 		if len(p.FFiles) > 0 {
 			fmt.Fprintf(h, "FC=%q %q\n", b.fcExe(), fflags)
 		}
-		// TODO(rsc): Should we include the SWIG version or Fortran/GCC/G++/Objective-C compiler versions?
+		// TODO (rsc): Should we include the SWIG version or Fortran/GCC/G++/Objective-C compiler versions? id:269 gh:270
 	}
 	if p.Internal.CoverMode != "" {
 		fmt.Fprintf(h, "cover %q %q\n", p.Internal.CoverMode, b.toolID("cover"))
@@ -222,7 +222,7 @@ func (b *Builder) buildActionID(a *Action) cache.ActionID {
 		}
 		fmt.Fprintf(h, "GO$GOARCH=%s\n", os.Getenv("GO"+strings.ToUpper(cfg.BuildContext.GOARCH))) // GO386, GOARM, etc
 
-		// TODO(rsc): Convince compiler team not to add more magic environment variables,
+		// TODO (rsc): Convince compiler team not to add more magic environment variables, id:432 gh:433
 		// or perhaps restrict the environment variables passed to subprocesses.
 		magic := []string{
 			"GOCLOBBERDEADHASH",
@@ -303,7 +303,7 @@ func (b *Builder) build(a *Action) (err error) {
 	if !p.BinaryOnly {
 		if b.useCache(a, p, b.buildActionID(a), p.Target) {
 			// If this build triggers a header install, run cgo to get the header.
-			// TODO(rsc): Once we can cache multiple file outputs from an action,
+			// TODO (rsc): Once we can cache multiple file outputs from an action, id:563 gh:564
 			// the header should be cached, and then this awful test can be deleted.
 			// Need to look for install header actions depending on this action,
 			// or depending on a link that depends on this action.
@@ -640,7 +640,7 @@ func (b *Builder) build(a *Action) (err error) {
 		}
 	}
 
-	// NOTE(rsc): On Windows, it is critically important that the
+	// NOTE (rsc): On Windows, it is critically important that the id:796 gh:796
 	// gcc-compiled objects (cgoObjects) be listed after the ordinary
 	// objects in the archive. I do not know why this is.
 	// https://golang.org/issue/2601
@@ -712,7 +712,7 @@ func (b *Builder) vet(a *Action) error {
 	// We only run vet if the compilation has succeeded,
 	// so at least for now assume the bug is in vet.
 	// We know of at least #18395.
-	// TODO(rsc,gri): Try to remove this for Go 1.11.
+	// TODO (rsc,gri): Try to remove this for Go 1.11. id:439 gh:440
 	vcfg.SucceedOnTypecheckFailure = cfg.CmdName == "test"
 
 	js, err := json.MarshalIndent(vcfg, "", "\t")
@@ -791,7 +791,7 @@ func (b *Builder) printLinkerConfig(h io.Writer, p *load.Package) {
 		fmt.Fprintf(h, "GO$GOARCH=%s\n", os.Getenv("GO"+strings.ToUpper(cfg.BuildContext.GOARCH))) // GO386, GOARM, etc
 
 		/*
-			// TODO(rsc): Enable this code.
+			// TODO (rsc): Enable this code. id:271 gh:272
 			// golang.org/issue/22475.
 			goroot := cfg.BuildContext.GOROOT
 			if final := os.Getenv("GOROOT_FINAL"); final != "" {
@@ -800,7 +800,7 @@ func (b *Builder) printLinkerConfig(h io.Writer, p *load.Package) {
 			fmt.Fprintf(h, "GOROOT=%s\n", goroot)
 		*/
 
-		// TODO(rsc): Convince linker team not to add more magic environment variables,
+		// TODO (rsc): Convince linker team not to add more magic environment variables, id:434 gh:435
 		// or perhaps restrict the environment variables passed to subprocesses.
 		magic := []string{
 			"GO_EXTLINK_ENABLED",
@@ -811,7 +811,7 @@ func (b *Builder) printLinkerConfig(h io.Writer, p *load.Package) {
 			}
 		}
 
-		// TODO(rsc): Do cgo settings and flags need to be included?
+		// TODO (rsc): Do cgo settings and flags need to be included? id:565 gh:566
 		// Or external linker settings and flags?
 
 	case "gccgo":
@@ -820,7 +820,7 @@ func (b *Builder) printLinkerConfig(h io.Writer, p *load.Package) {
 			base.Fatalf("%v", err)
 		}
 		fmt.Fprintf(h, "link %s %s\n", id, ldBuildmode)
-		// TODO(iant): Should probably include cgo flags here.
+		// TODO (iant): Should probably include cgo flags here. id:799 gh:800
 	}
 }
 
@@ -961,7 +961,7 @@ func (b *Builder) getPkgConfigFlags(p *load.Package) (cflags, ldflags []string, 
 }
 
 func (b *Builder) installShlibname(a *Action) error {
-	// TODO: BuildN
+	// TODO: BuildN id:441 gh:442
 	a1 := a.Deps[0]
 	err := ioutil.WriteFile(a.Target, []byte(filepath.Base(a1.Target)+"\n"), 0666)
 	if err != nil {
@@ -1020,7 +1020,7 @@ func (b *Builder) linkShared(a *Action) (err error) {
 		return err
 	}
 
-	// TODO(rsc): There is a missing updateBuildID here,
+	// TODO (rsc): There is a missing updateBuildID here, id:273 gh:274
 	// but we have to decide where to store the build ID in these files.
 	a.built = a.Target
 	return BuildToolchain.ldShared(b, a, a.Deps[0].Deps, a.Target, importcfg, a.Deps)
@@ -1256,7 +1256,7 @@ func (b *Builder) installHeader(a *Action) error {
 	if _, err := os.Stat(src); os.IsNotExist(err) {
 		// If the file does not exist, there are no exported
 		// functions, and we do not install anything.
-		// TODO(rsc): Once we know that caching is rebuilding
+		// TODO (rsc): Once we know that caching is rebuilding id:436 gh:437
 		// at the right times (not missing rebuilds), here we should
 		// probably delete the installed header, if any.
 		if cfg.BuildX {
@@ -1494,7 +1494,7 @@ func (b *Builder) runOut(dir string, desc string, env []string, cmdargs ...inter
 
 // joinUnambiguously prints the slice, quoting where necessary to make the
 // output unambiguous.
-// TODO: See issue 5279. The printing of commands needs a complete redo.
+// TODO: See issue 5279. The printing of commands needs a complete redo. id:567 gh:568
 func joinUnambiguously(a []string) string {
 	var buf bytes.Buffer
 	for i, s := range a {
@@ -1751,7 +1751,7 @@ func (b *Builder) compilerExe(envValue string, def string) []string {
 // compilerCmd returns a command line prefix for the given environment
 // variable and using the default command when the variable is empty.
 func (b *Builder) compilerCmd(compiler []string, incdir, workdir string) []string {
-	// NOTE: env.go's mkEnv knows that the first three
+	// NOTE: env.go's mkEnv knows that the first three id:803 gh:804
 	// strings returned are "gcc", "-I", incdir (and cuts them off).
 	a := []string{compiler[0], "-I", incdir}
 	a = append(a, compiler[1:]...)
@@ -1938,7 +1938,7 @@ func (b *Builder) cgo(a *Action, cgoExe, objdir string, pcCFLAGS, pcLDFLAGS, cgo
 	cgoCPPFLAGS = append(cgoCPPFLAGS, "-I", objdir)
 
 	// cgo
-	// TODO: CGO_FLAGS?
+	// TODO: CGO_FLAGS? id:443 gh:444
 	gofiles := []string{objdir + "_cgo_gotypes.go"}
 	cfiles := []string{"_cgo_export.c"}
 	for _, fn := range cgofiles {
@@ -1947,7 +1947,7 @@ func (b *Builder) cgo(a *Action, cgoExe, objdir string, pcCFLAGS, pcLDFLAGS, cgo
 		cfiles = append(cfiles, f+".cgo2.c")
 	}
 
-	// TODO: make cgo not depend on $GOARCH?
+	// TODO: make cgo not depend on $GOARCH? id:275 gh:276
 
 	cgoflags := []string{}
 	if p.Standard && p.ImportPath == "runtime/cgo" {
@@ -2101,7 +2101,7 @@ func (b *Builder) dynimport(a *Action, p *load.Package, objdir, importGo, cgoExe
 }
 
 // Run SWIG on all SWIG input files.
-// TODO: Don't build a shared library, once SWIG emits the necessary
+// TODO: Don't build a shared library, once SWIG emits the necessary id:438 gh:439
 // pragmas for external linking.
 func (b *Builder) swig(a *Action, p *load.Package, objdir string, pcCFLAGS []string) (outGo, outC, outCXX []string, err error) {
 	if err := b.swigVersionCheck(); err != nil {

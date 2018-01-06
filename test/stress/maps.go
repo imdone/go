@@ -11,7 +11,7 @@ import (
 )
 
 func mapTypes() []MapType {
-	// TODO(bradfitz): bunch more map types of all different key and value types.
+	// TODO (bradfitz): bunch more map types of all different key and value types. id:1480 gh:1488
 	// Use reflect.MapOf and a program to generate lots of types & struct types.
 	// For now, just one:
 	return []MapType{intMapType{}}

@@ -635,7 +635,7 @@ func (tr *Reader) Read(b []byte) (int, error) {
 // assuming that skipped regions are filled with NULs.
 // This always writes the last byte to ensure w is the right size.
 //
-// TODO(dsnet): Re-export this when adding sparse file support.
+// TODO (dsnet): Re-export this when adding sparse file support. id:13 gh:14
 // See https://golang.org/issue/22735
 func (tr *Reader) writeTo(w io.Writer) (int64, error) {
 	if tr.err != nil {

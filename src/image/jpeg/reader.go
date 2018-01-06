@@ -14,7 +14,7 @@ import (
 	"io"
 )
 
-// TODO(nigeltao): fix up the doc comment style so that sentences start with
+// TODO (nigeltao): fix up the doc comment style so that sentences start with id:1173 gh:1181
 // the name of the type or function that they annotate.
 
 // A FormatError reports that the input is not a valid JPEG.

@@ -22,7 +22,7 @@ const maxInt64 = 1<<63 - 1
 // immediate cancelation of network operations.
 var aLongTimeAgo = time.Unix(1, 0)
 
-// TODO(bradfitz): move common stuff here. The other files have accumulated
+// TODO (bradfitz): move common stuff here. The other files have accumulated id:886 gh:894
 // generic http stuff in random places.
 
 // contextKey is a value for use with context.WithValue. It's used as

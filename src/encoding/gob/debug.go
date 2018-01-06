@@ -203,7 +203,7 @@ func (deb *debugger) int64() int64 {
 
 // uint64 returns and decodes the next unsigned integer, which must be present.
 // Don't call this if you could be at EOF.
-// TODO: handle errors better.
+// TODO: handle errors better. id:594 gh:595
 func (deb *debugger) uint64() uint64 {
 	n, w, err := decodeUintReader(deb.r, deb.tmp)
 	if err != nil {
@@ -492,7 +492,7 @@ func (deb *debugger) nilInterfaceValue(indent tab) int {
 func (deb *debugger) nonNilInterfaceValue(indent tab, nameLen int) {
 	// ConcreteTypeName
 	b := make([]byte, nameLen)
-	deb.r.Read(b) // TODO: CHECK THESE READS!!
+	deb.r.Read(b) // TODO: CHECK THESE READS!! id:749 gh:750
 	deb.consumed(nameLen)
 	name := string(b)
 

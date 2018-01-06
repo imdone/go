@@ -21,7 +21,7 @@ type matcher struct {
 	subNames map[string]int64
 }
 
-// TODO: fix test_main to avoid race and improve caching, also allowing to
+// TODO: fix test_main to avoid race and improve caching, also allowing to id:1069 gh:1077
 // eliminate this Mutex.
 var matchMutex sync.Mutex
 

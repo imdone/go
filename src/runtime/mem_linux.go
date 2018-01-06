@@ -14,7 +14,7 @@ const (
 	_EINVAL = 22
 )
 
-// NOTE: vec must be just 1 byte long here.
+// NOTE: vec must be just 1 byte long here. id:983 gh:991
 // Mincore returns ENOMEM if any of the pages are unmapped,
 // but we want to know that all of the pages are unmapped.
 // To make these the same, we can only ask about one page

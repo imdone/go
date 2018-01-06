@@ -17,7 +17,7 @@ import (
 )
 
 // Test that RepoRootForImportPath creates the correct RepoRoot for a given importPath.
-// TODO(cmang): Add tests for SVN and BZR.
+// TODO (cmang): Add tests for SVN and BZR. id:553 gh:554
 func TestRepoRootForImportPath(t *testing.T) {
 	testenv.MustHaveExternalNetwork(t)
 

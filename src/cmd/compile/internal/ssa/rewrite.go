@@ -532,7 +532,7 @@ func logRule(s string) {
 		// and we want the concatenation of all of those logs.
 		// This means, of course, that users need to rm the old log
 		// to get fresh data.
-		// TODO: all.bash runs compilers in parallel. Need to synchronize logging somehow?
+		// TODO: all.bash runs compilers in parallel. Need to synchronize logging somehow? id:319 gh:320
 		w, err := os.OpenFile(filepath.Join(os.Getenv("GOROOT"), "src", "rulelog"),
 			os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 		if err != nil {
@@ -650,7 +650,7 @@ func zeroUpper32Bits(x *Value, depth int) bool {
 		return x.Type.Width == 4
 	case OpSelect0, OpSelect1:
 		// Disabled for now. See issue 23305.
-		// TODO: we could look into the arg of the Select to decide.
+		// TODO: we could look into the arg of the Select to decide. id:322 gh:323
 		return false
 	case OpPhi:
 		// Phis can use each-other as an arguments, instead of tracking visited values,

@@ -102,7 +102,7 @@ func TestMain(m *testing.M) {
 	switch GOOS {
 	case "darwin":
 		// For Darwin/ARM.
-		// TODO(crawshaw): can we do better?
+		// TODO (crawshaw): can we do better? id:11 gh:12
 		cc = append(cc, []string{"-framework", "CoreFoundation", "-framework", "Foundation"}...)
 	case "android":
 		cc = append(cc, "-pie", "-fuse-ld=gold")

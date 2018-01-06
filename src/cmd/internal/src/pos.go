@@ -103,7 +103,7 @@ func (p Pos) Format(showCol, showOrig bool) string {
 	// typically generated code and we can't say much about the
 	// original source at that point but for the file:line info
 	// that's provided via a line directive).
-	// TODO(gri) This may not be true if we have an inlining base.
+	// TODO (gri) This may not be true if we have an inlining base. id:597 gh:598
 	// We may want to differentiate at some point.
 	s := format(p.RelFilename(), p.RelLine(), 0, false)
 	if showOrig {

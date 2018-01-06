@@ -113,7 +113,7 @@ func adddynrel(ctxt *ld.Link, s *sym.Symbol, r *sym.Reloc) bool {
 		if targ.Type == sym.SDYNIMPORT {
 			ld.Errorf(s, "unexpected R_X86_64_PC32 relocation for dynamic symbol %s", targ.Name)
 		}
-		// TODO(mwhudson): the test of VisibilityHidden here probably doesn't make
+		// TODO (mwhudson): the test of VisibilityHidden here probably doesn't make id:474 gh:475
 		// sense and should be removed when someone has thought about it properly.
 		if (targ.Type == 0 || targ.Type == sym.SXREF) && !targ.Attr.VisibilityHidden() {
 			ld.Errorf(s, "unknown symbol %s in pcrel", targ.Name)
@@ -158,7 +158,7 @@ func adddynrel(ctxt *ld.Link, s *sym.Symbol, r *sym.Reloc) bool {
 		}
 
 		// fall back to using GOT and hope for the best (CMOV*)
-		// TODO: just needs relocation, no need to put in .dynsym
+		// TODO: just needs relocation, no need to put in .dynsym id:375 gh:376
 		addgotsym(ctxt, targ)
 
 		r.Type = objabi.R_PCREL
@@ -178,7 +178,7 @@ func adddynrel(ctxt *ld.Link, s *sym.Symbol, r *sym.Reloc) bool {
 	case 512 + ld.MACHO_X86_64_RELOC_UNSIGNED*2 + 0,
 		512 + ld.MACHO_X86_64_RELOC_SIGNED*2 + 0,
 		512 + ld.MACHO_X86_64_RELOC_BRANCH*2 + 0:
-		// TODO: What is the difference between all these?
+		// TODO: What is the difference between all these? id:467 gh:468
 		r.Type = objabi.R_ADDR
 
 		if targ.Type == sym.SDYNIMPORT {
@@ -317,7 +317,7 @@ func adddynrel(ctxt *ld.Link, s *sym.Symbol, r *sym.Reloc) bool {
 		}
 
 		if ctxt.IsELF {
-			// TODO: We generate a R_X86_64_64 relocation for every R_ADDR, even
+			// TODO: We generate a R_X86_64_64 relocation for every R_ADDR, even id:599 gh:600
 			// though it would be more efficient (for the dynamic linker) if we
 			// generated R_X86_RELATIVE instead.
 			ld.Adddynsym(ctxt, targ)
@@ -326,7 +326,7 @@ func adddynrel(ctxt *ld.Link, s *sym.Symbol, r *sym.Reloc) bool {
 			if r.Siz == 8 {
 				rela.AddUint64(ctxt.Arch, ld.ELF64_R_INFO(uint32(targ.Dynid), uint32(elf.R_X86_64_64)))
 			} else {
-				// TODO: never happens, remove.
+				// TODO: never happens, remove. id:943 gh:951
 				rela.AddUint64(ctxt.Arch, ld.ELF64_R_INFO(uint32(targ.Dynid), uint32(elf.R_X86_64_32)))
 			}
 			rela.AddUint64(ctxt.Arch, uint64(r.Add))
@@ -459,7 +459,7 @@ func machoreloc1(arch *sys.Arch, out *ld.OutBuf, s *sym.Symbol, r *sym.Reloc, se
 		v |= 1 << 24 // pc-relative bit
 		v |= ld.MACHO_X86_64_RELOC_BRANCH << 28
 
-		// NOTE: Only works with 'external' relocation. Forced above.
+		// NOTE: Only works with 'external' relocation. Forced above. id:476 gh:477
 	case objabi.R_PCREL:
 		v |= 1 << 24 // pc-relative bit
 		v |= ld.MACHO_X86_64_RELOC_SIGNED << 28

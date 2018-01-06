@@ -1385,7 +1385,7 @@ reservation does not deprive other processes of memory.
 To find the amount of actual memory allocated to a Go process, use the Unix
 <code>top</code> command and consult the <code>RES</code> (Linux) or
 <code>RSIZE</code> (Mac OS X) columns.
-<!-- TODO(adg): find out how this works on Windows -->
+<!-- TODO (adg): find out how this works on Windows id:2 gh:3-->
 </p>
 
 <h2 id="Concurrency">Concurrency</h2>
@@ -1905,7 +1905,7 @@ import "unused"
 
 // This declaration marks the import as used by referencing an
 // item from the package.
-var _ = unused.Item  // TODO: Delete before committing!
+var _ = unused.Item  // TODO: Delete before committing! id:1 gh:2
 
 func main() {
     debugData := debug.Profile()

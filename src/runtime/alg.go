@@ -97,7 +97,7 @@ func strhash(a unsafe.Pointer, h uintptr) uintptr {
 	return memhash(x.str, h, uintptr(x.len))
 }
 
-// NOTE: Because NaN != NaN, a map can contain any
+// NOTE: Because NaN != NaN, a map can contain any id:1377 gh:1385
 // number of (mostly useless) entries keyed with NaNs.
 // To avoid long hash chains, we assign a random number
 // as the hash value for a NaN.

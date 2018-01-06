@@ -106,7 +106,7 @@ func TestVet(t *testing.T) {
 	}
 	batch := make([][]string, wide)
 	for i, file := range gos {
-		// TODO: Remove print.go exception once we require type checking for everything,
+		// TODO: Remove print.go exception once we require type checking for everything, id:635 gh:636
 		// and then delete TestVetPrint.
 		if strings.HasSuffix(file, "print.go") {
 			continue

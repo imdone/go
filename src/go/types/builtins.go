@@ -492,7 +492,7 @@ func (check *Checker) builtin(x *operand, call *ast.CallExpr, id builtinId) (_ b
 				}
 				check.assignment(x, nil, "argument to "+predeclaredFuncs[id].name)
 				if x.mode == invalid {
-					// TODO(gri) "use" all arguments?
+					// TODO (gri) "use" all arguments? id:716 gh:717
 					return
 				}
 				params[i] = x.typ
@@ -548,7 +548,7 @@ func (check *Checker) builtin(x *operand, call *ast.CallExpr, id builtinId) (_ b
 			check.invalidArg(x.pos(), "%s has no single field %s", base, sel)
 			return
 		case *Func:
-			// TODO(gri) Using derefStructPtr may result in methods being found
+			// TODO (gri) Using derefStructPtr may result in methods being found id:894 gh:902
 			// that don't actually exist. An error either way, but the error
 			// message is confusing. See: https://play.golang.org/p/al75v23kUy ,
 			// but go/types reports: "invalid argument: x.m is a method value".
@@ -560,7 +560,7 @@ func (check *Checker) builtin(x *operand, call *ast.CallExpr, id builtinId) (_ b
 			return
 		}
 
-		// TODO(gri) Should we pass x.typ instead of base (and indirect report if derefStructPtr indirected)?
+		// TODO (gri) Should we pass x.typ instead of base (and indirect report if derefStructPtr indirected)? id:1160 gh:1168
 		check.recordSelection(selx, FieldVal, base, obj, index, false)
 
 		offs := check.conf.offsetof(base, index)

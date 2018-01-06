@@ -23,7 +23,7 @@ import (
 func TestGoroutineInSyscall(t *testing.T) {
 	// Start one goroutine blocked in syscall.
 	//
-	// TODO: syscall.Pipe used to cause the goroutine to
+	// TODO: syscall.Pipe used to cause the goroutine to id:984 gh:992
 	// remain blocked in syscall is not portable. Replace
 	// it with a more portable way so this test can run
 	// on non-unix architecture e.g. Windows.

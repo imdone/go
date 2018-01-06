@@ -12,7 +12,7 @@ package strconv
 
 import "math"
 
-// TODO: move elsewhere?
+// TODO: move elsewhere? id:1303 gh:1311
 type floatInfo struct {
 	mantbits uint
 	expbits  uint

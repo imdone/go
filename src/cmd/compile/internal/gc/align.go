@@ -42,7 +42,7 @@ func expandiface(t *types.Type) {
 			// Add to fields so that error messages
 			// include the broken embedded type when
 			// printing t.
-			// TODO(mdempsky): Revisit this.
+			// TODO (mdempsky): Revisit this. id:125 gh:126
 			fields = append(fields, m)
 			continue
 		}
@@ -105,7 +105,7 @@ func widstruct(errtype *types.Type, t *types.Type, o int64, flag int) int64 {
 			// Usually addrescapes runs after widstruct,
 			// in which case we could drop this,
 			// but function closure functions are the exception.
-			// NOTE(rsc): This comment may be stale.
+			// NOTE (rsc): This comment may be stale. id:46 gh:47
 			// It's possible the ordering has changed and this is
 			// now the common case. I'm not sure.
 			if asNode(f.Nname).Name.Param.Stackcopy != nil {

@@ -109,7 +109,7 @@ func memhash64(p unsafe.Pointer, seed uintptr) uintptr {
 
 // Note: in order to get the compiler to issue rotl instructions, we
 // need to constant fold the shift amount by hand.
-// TODO: convince the compiler to issue rotl instructions after inlining.
+// TODO: convince the compiler to issue rotl instructions after inlining. id:1383 gh:1391
 func rotl_15(x uint32) uint32 {
 	return (x << 15) | (x >> (32 - 15))
 }

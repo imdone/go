@@ -209,7 +209,7 @@ func runList(cmd *base.Command, args []string) {
 		b.Init()
 		b.ComputeStaleOnly = true
 		a := &work.Action{}
-		// TODO: Use pkgsFilter?
+		// TODO: Use pkgsFilter? id:397 gh:398
 		for _, p := range pkgs {
 			a.Deps = append(a.Deps, b.AutoAction(work.ModeInstall, work.ModeInstall, p))
 		}

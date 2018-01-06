@@ -4500,19 +4500,19 @@ func TestStructOfExportRules(t *testing.T) {
 		},
 		{
 			field:     StructField{Name: "s", Type: TypeOf(S1{}), PkgPath: "other/pkg"},
-			mustPanic: true, // TODO(sbinet): creating a name with a package path
+			mustPanic: true, // TODO (sbinet): creating a name with a package path id:1361 gh:1369
 		},
 		{
 			field:     StructField{Name: "s", Type: TypeOf((*S1)(nil)), PkgPath: "other/pkg"},
-			mustPanic: true, // TODO(sbinet): creating a name with a package path
+			mustPanic: true, // TODO (sbinet): creating a name with a package path id:1322 gh:1330
 		},
 		{
 			field:     StructField{Name: "s", Type: TypeOf(s2{}), PkgPath: "other/pkg"},
-			mustPanic: true, // TODO(sbinet): creating a name with a package path
+			mustPanic: true, // TODO (sbinet): creating a name with a package path id:937 gh:945
 		},
 		{
 			field:     StructField{Name: "s", Type: TypeOf((*s2)(nil)), PkgPath: "other/pkg"},
-			mustPanic: true, // TODO(sbinet): creating a name with a package path
+			mustPanic: true, // TODO (sbinet): creating a name with a package path id:1199 gh:1207
 		},
 		{
 			field:     StructField{Name: "", Type: TypeOf(ΦType{})},
@@ -4842,7 +4842,7 @@ func TestStructOfWithInterface(t *testing.T) {
 			impl: false,
 		},
 		// {
-		//	typ:  TypeOf((*Iface)(nil)).Elem(), // FIXME(sbinet): fix method.ifn/tfn
+		//	typ:  TypeOf((*Iface)(nil)).Elem(), // FIXME (sbinet): fix method.ifn/tfn id:960 gh:968
 		//	val:  ValueOf(StructI(want)),
 		//	impl: true,
 		// },
@@ -4976,7 +4976,7 @@ func TestChanOfGC(t *testing.T) {
 	tt := TypeOf(T(nil))
 	ct := ChanOf(BothDir, tt)
 
-	// NOTE: The garbage collector handles allocated channels specially,
+	// NOTE: The garbage collector handles allocated channels specially, id:1364 gh:1372
 	// so we have to save pointers to channels in x; the pointer code will
 	// use the gc info in the newly constructed chan type.
 	const n = 100
@@ -5034,7 +5034,7 @@ func TestMapOfGCKeys(t *testing.T) {
 	tt := TypeOf(T(nil))
 	mt := MapOf(tt, TypeOf(false))
 
-	// NOTE: The garbage collector handles allocated maps specially,
+	// NOTE: The garbage collector handles allocated maps specially, id:1324 gh:1332
 	// so we have to save pointers to maps in x; the pointer code will
 	// use the gc info in the newly constructed map type.
 	const n = 100
@@ -5072,7 +5072,7 @@ func TestMapOfGCValues(t *testing.T) {
 	tt := TypeOf(T(nil))
 	mt := MapOf(TypeOf(1), tt)
 
-	// NOTE: The garbage collector handles allocated maps specially,
+	// NOTE: The garbage collector handles allocated maps specially, id:939 gh:947
 	// so we have to save pointers to maps in x; the pointer code will
 	// use the gc info in the newly constructed map type.
 	const n = 100

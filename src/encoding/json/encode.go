@@ -872,7 +872,7 @@ func (w *reflectWithString) resolve() error {
 	panic("unexpected map key type")
 }
 
-// NOTE: keep in sync with stringBytes below.
+// NOTE: keep in sync with stringBytes below. id:1126 gh:1134
 func (e *encodeState) string(s string, escapeHTML bool) {
 	e.WriteByte('"')
 	start := 0
@@ -947,7 +947,7 @@ func (e *encodeState) string(s string, escapeHTML bool) {
 	e.WriteByte('"')
 }
 
-// NOTE: keep in sync with string above.
+// NOTE: keep in sync with string above. id:613 gh:614
 func (e *encodeState) stringBytes(s []byte, escapeHTML bool) {
 	e.WriteByte('"')
 	start := 0

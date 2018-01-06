@@ -44,7 +44,7 @@ type LineTable struct {
 	fileMap  map[string]uint32
 }
 
-// NOTE(rsc): This is wrong for GOARCH=arm, which uses a quantum of 4,
+// NOTE (rsc): This is wrong for GOARCH=arm, which uses a quantum of 4, id:652 gh:653
 // but we have no idea whether we're using arm or not. This only
 // matters in the old (pre-Go 1.2) symbol table format, so it's not worth
 // fixing.

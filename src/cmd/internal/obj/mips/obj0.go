@@ -127,7 +127,7 @@ func progedit(ctxt *obj.Link, p *obj.Prog, newprog obj.ProgAlloc) {
 }
 
 func preprocess(ctxt *obj.Link, cursym *obj.LSym, newprog obj.ProgAlloc) {
-	// TODO(minux): add morestack short-cuts with small fixed frame-size.
+	// TODO (minux): add morestack short-cuts with small fixed frame-size. id:339 gh:340
 	c := ctxt0{ctxt: ctxt, newprog: newprog, cursym: cursym}
 
 	// a switch for enabling/disabling instruction scheduling

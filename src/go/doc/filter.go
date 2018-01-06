@@ -94,7 +94,7 @@ func filterTypes(a []*Type, f Filter) []*Type {
 }
 
 // Filter eliminates documentation for names that don't pass through the filter f.
-// TODO(gri): Recognize "Type.Method" as a name.
+// TODO (gri): Recognize "Type.Method" as a name. id:1136 gh:1144
 //
 func (p *Package) Filter(f Filter) {
 	p.Consts = filterValues(p.Consts, f)

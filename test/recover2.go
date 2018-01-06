@@ -6,7 +6,7 @@
 
 // Test of recover for run-time errors.
 
-// TODO(rsc):
+// TODO (rsc): id:1369 gh:1377
 //	null pointer accesses
 
 package main

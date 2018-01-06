@@ -196,7 +196,7 @@ func compile(expr string, mode syntax.Flags, longest bool) (*Regexp, error) {
 		regexp.prefix, regexp.prefixComplete, regexp.prefixEnd = onePassPrefix(prog)
 	}
 	if regexp.prefix != "" {
-		// TODO(rsc): Remove this allocation by adding
+		// TODO (rsc): Remove this allocation by adding id:1335 gh:1343
 		// IndexString to package bytes.
 		regexp.prefixBytes = []byte(regexp.prefix)
 		regexp.prefixRune, _ = utf8.DecodeRuneInString(regexp.prefix)
@@ -694,7 +694,7 @@ func (re *Regexp) allMatches(s string, b []byte, n int, deliver func([]int)) {
 				accept = false
 			}
 			var width int
-			// TODO: use step()
+			// TODO: use step() id:952 gh:960
 			if b == nil {
 				_, width = utf8.DecodeRuneInString(s[pos:end])
 			} else {

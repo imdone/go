@@ -419,7 +419,7 @@ func (b *Builder) useCache(a *Action, p *load.Package, actionHash cache.ActionID
 	// want the package for is to link a binary, and the binary is
 	// already up-to-date, then to avoid a rebuild, report the package
 	// as up-to-date as well. See "Build IDs" comment above.
-	// TODO(rsc): Rewrite this code to use a TryCache func on the link action.
+	// TODO (rsc): Rewrite this code to use a TryCache func on the link action. id:437 gh:438
 	if target != "" && !cfg.BuildA && a.Mode == "build" && len(a.triggers) == 1 && a.triggers[0].Mode == "link" {
 		buildID, err := buildid.ReadFile(target)
 		if err == nil {

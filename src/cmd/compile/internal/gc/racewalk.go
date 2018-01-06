@@ -28,7 +28,7 @@ import (
 // The rewriting is not yet complete. Certain nodes are not rewritten
 // but should be.
 
-// TODO(dvyukov): do not instrument initialization as writes:
+// TODO (dvyukov): do not instrument initialization as writes: id:113 gh:114
 // a := make([]int, 10)
 
 // Do not instrument the following packages at all,

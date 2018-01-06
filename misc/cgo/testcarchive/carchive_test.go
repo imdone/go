@@ -78,7 +78,7 @@ func init() {
 
 	if GOOS == "darwin" {
 		// For Darwin/ARM.
-		// TODO(crawshaw): can we do better?
+		// TODO (crawshaw): can we do better? id:12 gh:13
 		cc = append(cc, []string{"-framework", "CoreFoundation", "-framework", "Foundation"}...)
 	}
 	libgodir = GOOS + "_" + GOARCH

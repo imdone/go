@@ -53,7 +53,7 @@ type Builder struct {
 	buildIDCache map[string]string // file name -> build ID
 }
 
-// NOTE: Much of Action would not need to be exported if not for test.
+// NOTE: Much of Action would not need to be exported if not for test. id:431 gh:432
 // Maybe test functionality should move into this package too?
 
 // An Action represents a single action in the action graph.
@@ -175,7 +175,7 @@ func actionGraphJSON(a *Action) string {
 			Built:      a.built,
 		}
 		if a.Package != nil {
-			// TODO(rsc): Make this a unique key for a.Package somehow.
+			// TODO (rsc): Make this a unique key for a.Package somehow. id:263 gh:264
 			aj.Package = a.Package.ImportPath
 		}
 		for _, a1 := range a.Deps {
@@ -288,7 +288,7 @@ func readpkglist(shlibpath string) (pkgs []*load.Package) {
 
 // cacheAction looks up {mode, p} in the cache and returns the resulting action.
 // If the cache has no such action, f() is recorded and returned.
-// TODO(rsc): Change the second key from *load.Package to interface{},
+// TODO (rsc): Change the second key from *load.Package to interface{}, id:426 gh:427
 // to make the caching in linkShared less awkward?
 func (b *Builder) cacheAction(mode string, p *load.Package, f func() *Action) *Action {
 	a := b.actionCache[cacheKey{mode, p}]
@@ -527,7 +527,7 @@ func (b *Builder) addTransitiveLinkDeps(a, a1 *Action, shlib string) {
 	// Expand Deps to include all built packages, for the linker.
 	// Use breadth-first search to find rebuilt-for-test packages
 	// before the standard ones.
-	// TODO(rsc): Eliminate the standard ones from the action graph,
+	// TODO (rsc): Eliminate the standard ones from the action graph, id:557 gh:558
 	// which will require doing a little bit more rebuilding.
 	workq := []*Action{a1}
 	haveDep := map[string]bool{}
@@ -537,7 +537,7 @@ func (b *Builder) addTransitiveLinkDeps(a, a1 *Action, shlib string) {
 	for i := 0; i < len(workq); i++ {
 		a1 := workq[i]
 		for _, a2 := range a1.Deps {
-			// TODO(rsc): Find a better discriminator than the Mode strings, once the dust settles.
+			// TODO (rsc): Find a better discriminator than the Mode strings, once the dust settles. id:401 gh:402
 			if a2.Package == nil || (a2.Mode != "build-install" && a2.Mode != "build") || haveDep[a2.Package.ImportPath] {
 				continue
 			}
@@ -560,7 +560,7 @@ func (b *Builder) addTransitiveLinkDeps(a, a1 *Action, shlib string) {
 				continue
 			}
 			haveShlib[filepath.Base(p1.Shlib)] = true
-			// TODO(rsc): The use of ModeInstall here is suspect, but if we only do ModeBuild,
+			// TODO (rsc): The use of ModeInstall here is suspect, but if we only do ModeBuild, id:433 gh:434
 			// we'll end up building an overall library or executable that depends at runtime
 			// on other libraries that are out-of-date, which is clearly not good either.
 			// We call it ModeBuggyInstall to make clear that this is not right.
@@ -617,7 +617,7 @@ func (b *Builder) linkSharedAction(mode, depMode BuildMode, shlib string, a1 *Ac
 	shlib = filepath.Base(shlib)
 	a := b.cacheAction("build-shlib "+shlib, nil, func() *Action {
 		if a1 == nil {
-			// TODO(rsc): Need to find some other place to store config,
+			// TODO (rsc): Need to find some other place to store config, id:265 gh:266
 			// not in pkg directory. See golang.org/issue/22196.
 			pkgs := readpkglist(fullShlib)
 			a1 = &Action{
@@ -641,9 +641,9 @@ func (b *Builder) linkSharedAction(mode, depMode BuildMode, shlib string, a1 *Ac
 		// external linking mode forces an import of runtime/cgo (and
 		// math on arm). So if it was not passed on the command line and
 		// it is not present in another shared library, add it here.
-		// TODO(rsc): Maybe this should only happen if "runtime" is in the original package set.
-		// TODO(rsc): This should probably be changed to use load.LinkerDeps(p).
-		// TODO(rsc): Find out and explain here why gccgo is excluded.
+		// TODO (rsc): Maybe this should only happen if "runtime" is in the original package set. id:428 gh:429
+		// TODO (rsc): This should probably be changed to use load.LinkerDeps(p). id:559 gh:560
+		// TODO (rsc): Find out and explain here why gccgo is excluded. id:404 gh:405
 		// If the answer is that gccgo is different in implicit linker deps, maybe
 		// load.LinkerDeps should be used and updated.
 		// Link packages into a shared library.
@@ -700,7 +700,7 @@ func (b *Builder) linkSharedAction(mode, depMode BuildMode, shlib string, a1 *Ac
 			// Determine the eventual install target.
 			// The install target is root/pkg/shlib, where root is the source root
 			// in which all the packages lie.
-			// TODO(rsc): Perhaps this cross-root check should apply to the full
+			// TODO (rsc): Perhaps this cross-root check should apply to the full id:435 gh:436
 			// transitive package dependency list, not just the ones named
 			// on the command line?
 			pkgDir := a1.Deps[0].Package.Internal.Build.PkgTargetRoot
@@ -713,7 +713,7 @@ func (b *Builder) linkSharedAction(mode, depMode BuildMode, shlib string, a1 *Ac
 						dir)
 				}
 			}
-			// TODO(rsc): Find out and explain here why gccgo is different.
+			// TODO (rsc): Find out and explain here why gccgo is different. id:267 gh:268
 			if cfg.BuildToolchainName == "gccgo" {
 				pkgDir = filepath.Join(pkgDir, "shlibs")
 			}

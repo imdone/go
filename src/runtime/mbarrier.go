@@ -159,7 +159,7 @@ func gcmarkwb_m(slot *uintptr, ptr uintptr) {
 				shade(optr)
 			}
 		}
-		// TODO: Make this conditional on the caller's stack color.
+		// TODO: Make this conditional on the caller's stack color. id:1360 gh:1368
 		if ptr != 0 && inheap(ptr) {
 			shade(ptr)
 		}
@@ -198,7 +198,7 @@ func writebarrierptr_prewrite1(dst *uintptr, src uintptr) {
 	releasem(mp)
 }
 
-// NOTE: Really dst *unsafe.Pointer, src unsafe.Pointer,
+// NOTE: Really dst *unsafe.Pointer, src unsafe.Pointer, id:977 gh:985
 // but if we do that, Go inserts a write barrier on *dst = src.
 //go:nosplit
 func writebarrierptr(dst *uintptr, src uintptr) {
@@ -240,7 +240,7 @@ func writebarrierptr_prewrite(dst *uintptr, src uintptr) {
 // typedmemmove copies a value of type t to dst from src.
 // Must be nosplit, see #16026.
 //
-// TODO: Perfect for go:nosplitrec since we can't have a safe point
+// TODO: Perfect for go:nosplitrec since we can't have a safe point id:1245 gh:1253
 // anywhere in the bulk barrier or memmove.
 //
 //go:nosplit
@@ -314,7 +314,7 @@ func reflectcallmove(typ *_type, dst, src unsafe.Pointer, size uintptr) {
 
 //go:nosplit
 func typedslicecopy(typ *_type, dst, src slice) int {
-	// TODO(rsc): If typedslicecopy becomes faster than calling
+	// TODO (rsc): If typedslicecopy becomes faster than calling id:1004 gh:1012
 	// typedmemmove repeatedly, consider using during func growslice.
 	n := dst.len
 	if n > src.len {

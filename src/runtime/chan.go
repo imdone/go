@@ -85,7 +85,7 @@ func makechan(t *chantype, size int) *hchan {
 	// Hchan does not contain pointers interesting for GC when elements stored in buf do not contain pointers.
 	// buf points into the same allocation, elemtype is persistent.
 	// SudoG's are referenced from their owning thread so they can't be collected.
-	// TODO(dvyukov,rlh): Rethink when collector can move allocated objects.
+	// TODO (dvyukov,rlh): Rethink when collector can move allocated objects. id:1221 gh:1229
 	var c *hchan
 	switch {
 	case size == 0 || elem.size == 0:
@@ -649,7 +649,7 @@ func selectnbrecv(elem unsafe.Pointer, c *hchan) (selected bool) {
 //	}
 //
 func selectnbrecv2(elem unsafe.Pointer, received *bool, c *hchan) (selected bool) {
-	// TODO(khr): just return 2 values from this function, now that it is in Go.
+	// TODO (khr): just return 2 values from this function, now that it is in Go. id:985 gh:993
 	selected, *received = chanrecv(c, elem, false)
 	return
 }

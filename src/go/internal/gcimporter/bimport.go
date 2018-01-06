@@ -79,7 +79,7 @@ func BImportData(fset *token.FileSet, imports map[string]*types.Package, data []
 		// For backward-compatibility only (avoid problems with
 		// old installed packages). Newly compiled packages use
 		// the extensible format string.
-		// TODO(gri) Remove this support eventually; after Go1.8.
+		// TODO (gri) Remove this support eventually; after Go1.8. id:781 gh:782
 		if b == 'd' {
 			p.debugFormat = true
 		}
@@ -142,7 +142,7 @@ func BImportData(fset *token.FileSet, imports map[string]*types.Package, data []
 	// ignore compiler-specific import data
 
 	// complete interfaces
-	// TODO(gri) re-investigate if we still need to do this in a delayed fashion
+	// TODO (gri) re-investigate if we still need to do this in a delayed fashion id:693 gh:694
 	for _, typ := range p.interfaceList {
 		typ.Complete()
 	}
@@ -245,7 +245,7 @@ func (p *importer) declare(obj types.Object) {
 		// However, type aliases require reexporting the original type, so we need
 		// to allow it (see also the comment in cmd/compile/internal/gc/bimport.go,
 		// method importer.obj, switch case importing functions).
-		// TODO(gri) review/update this comment once the gc compiler handles type aliases.
+		// TODO (gri) review/update this comment once the gc compiler handles type aliases. id:877 gh:885
 		if !sameObj(obj, alt) {
 			errorf("inconsistent import:\n\t%v\npreviously imported as:\n\t%v\n", obj, alt)
 		}
@@ -262,7 +262,7 @@ func (p *importer) obj(tag int) {
 		p.declare(types.NewConst(pos, pkg, name, typ, val))
 
 	case aliasTag:
-		// TODO(gri) verify type alias hookup is correct
+		// TODO (gri) verify type alias hookup is correct id:1146 gh:1154
 		pos := p.pos()
 		pkg, name := p.qualifiedName()
 		typ := p.typ(nil)
@@ -331,7 +331,7 @@ func (p *importer) pos() token.Pos {
 		f = p.fset.AddFile(file, -1, maxlines)
 		p.files[file] = f
 		// Allocate the fake linebreak indices on first use.
-		// TODO(adonovan): opt: save ~512KB using a more complex scheme?
+		// TODO (adonovan): opt: save ~512KB using a more complex scheme? id:632 gh:633
 		fakeLinesOnce.Do(func() {
 			fakeLines = make([]int, maxlines)
 			for i := range fakeLines {
@@ -422,14 +422,14 @@ func (p *importer) typ(parent *types.Package) types.Type {
 
 		// read associated methods
 		for i := p.int(); i > 0; i-- {
-			// TODO(gri) replace this with something closer to fieldName
+			// TODO (gri) replace this with something closer to fieldName id:783 gh:784
 			pos := p.pos()
 			name := p.string()
 			if !exported(name) {
 				p.pkg()
 			}
 
-			recv, _ := p.paramList() // TODO(gri) do we need a full param list for the receiver?
+			recv, _ := p.paramList() // TODO (gri) do we need a full param list for the receiver? id:695 gh:696
 			params, isddd := p.paramList()
 			result, _ := p.paramList()
 			p.int() // go:nointerface pragma - discarded
@@ -739,7 +739,7 @@ func (p *importer) float() constant.Value {
 	}
 
 	// convert to little endian
-	// TODO(gri) go/constant should have a more direct conversion function
+	// TODO (gri) go/constant should have a more direct conversion function id:879 gh:887
 	//           (e.g., once it supports a big.Float based implementation)
 	for i, j := 0, len(mant)-1; i < j; i, j = i+1, j-1 {
 		mant[i], mant[j] = mant[j], mant[i]

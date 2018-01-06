@@ -91,9 +91,9 @@ const (
 	IMAGE_SUBSYSTEM_WINDOWS_CUI          = 3
 )
 
-// TODO(crawshaw): add these constants to debug/pe.
+// TODO (crawshaw): add these constants to debug/pe. id:958 gh:966
 const (
-	// TODO: the Microsoft doco says IMAGE_SYM_DTYPE_ARRAY is 3 and IMAGE_SYM_DTYPE_FUNCTION is 2
+	// TODO: the Microsoft doco says IMAGE_SYM_DTYPE_ARRAY is 3 and IMAGE_SYM_DTYPE_FUNCTION is 2 id:485 gh:485
 	IMAGE_SYM_TYPE_NULL      = 0
 	IMAGE_SYM_TYPE_STRUCT    = 8
 	IMAGE_SYM_DTYPE_FUNCTION = 0x20
@@ -667,7 +667,7 @@ func (f *peFile) writeSymbols(ctxt *Link) {
 		if ctxt.LinkMode == LinkExternal {
 			typ = IMAGE_SYM_TYPE_NULL
 		} else {
-			// TODO: fix IMAGE_SYM_DTYPE_ARRAY value and use following expression, instead of 0x0308
+			// TODO: fix IMAGE_SYM_DTYPE_ARRAY value and use following expression, instead of 0x0308 id:390 gh:391
 			typ = IMAGE_SYM_DTYPE_ARRAY<<8 + IMAGE_SYM_TYPE_STRUCT
 			typ = 0x0308 // "array of structs"
 		}
@@ -851,7 +851,7 @@ func (f *peFile) writeOptionalHeader(ctxt *Link) {
 	if !iscgo {
 		oh64.SizeOfStackCommit = 0x00001000
 	} else {
-		// TODO(brainman): Maybe remove optional header writing altogether for cgo.
+		// TODO (brainman): Maybe remove optional header writing altogether for cgo. id:479 gh:480
 		// For cgo it is the external linker that is building final executable.
 		// And it probably does not use any information stored in optional header.
 		oh64.SizeOfStackCommit = 0x00200000 - 0x2000 // account for 2 guard pages

@@ -181,7 +181,7 @@ const (
 	R_ADDRPOWER_TOCREL_DS
 
 	// R_PCRELDBL relocates s390x 2-byte aligned PC-relative addresses.
-	// TODO(mundaym): remove once variants can be serialized - see issue 14218.
+	// TODO (mundaym): remove once variants can be serialized - see issue 14218. id:463 gh:464
 	R_PCRELDBL
 
 	// R_ADDRMIPSU (only used on mips/mips64) resolves to the sign-adjusted "upper" 16

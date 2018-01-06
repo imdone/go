@@ -21,7 +21,7 @@ func init() {
 		assignStmt)
 }
 
-// TODO: should also check for assignments to struct fields inside methods
+// TODO: should also check for assignments to struct fields inside methods id:666 gh:667
 // that are on T instead of *T.
 
 // checkAssignStmt checks for assignments of the form "<expr> = <expr>".

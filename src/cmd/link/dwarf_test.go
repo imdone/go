@@ -77,7 +77,7 @@ func TestDWARF(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			// TODO: We'd like to use filepath.Join here.
+			// TODO: We'd like to use filepath.Join here. id:940 gh:948
 			// Also related: golang.org/issue/19784.
 			wantFile := path.Join(prog, "main.go")
 			wantLine := 24

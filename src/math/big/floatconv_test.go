@@ -409,7 +409,7 @@ func TestFloatText(t *testing.T) {
 		{"0x.8p-2147483647", 64, 'p', 0, "0x.8p-2147483647"},
 		{"1p-2147483649", 64, 'p', 0, "0x.8p-2147483648"},
 
-		// TODO(gri) need tests for actual large Floats
+		// TODO (gri) need tests for actual large Floats id:1214 gh:1222
 
 		{"0", 53, 'b', 0, "0"},
 		{"-0", 53, 'b', 0, "-0"},

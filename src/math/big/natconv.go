@@ -27,7 +27,7 @@ const maxBaseSmall = 10 + ('z' - 'a' + 1)
 // maxPow returns (b**n, n) such that b**n is the largest power b**n <= _M.
 // For instance maxPow(10) == (1e19, 19) for 19 decimal digits in a 64bit Word.
 // In other words, at most n digits in base b fit into a Word.
-// TODO(gri) replace this with a table, generated at build time.
+// TODO (gri) replace this with a table, generated at build time. id:826 gh:827
 func maxPow(b Word) (p Word, n int) {
 	p, n = b, 1 // assuming b <= _M
 	for max := _M / b; p <= max; {

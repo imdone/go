@@ -259,7 +259,7 @@ type TypeAndValue struct {
 	Value constant.Value
 }
 
-// TODO(gri) Consider eliminating the IsVoid predicate. Instead, report
+// TODO (gri) Consider eliminating the IsVoid predicate. Instead, report id:892 gh:900
 // "void" values as regular values but with the empty tuple type.
 
 // IsVoid reports whether the corresponding expression

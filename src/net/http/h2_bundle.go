@@ -703,12 +703,12 @@ var (
 	_ http2clientConnPoolIdleCloser = http2noDialClientConnPool{}
 )
 
-// TODO: use singleflight for dialing and addConnCalls?
+// TODO: use singleflight for dialing and addConnCalls? id:1255 gh:1263
 type http2clientConnPool struct {
 	t *http2Transport
 
-	mu sync.Mutex // TODO: maybe switch to RWMutex
-	// TODO: add support for sharing conns based on cert names
+	mu sync.Mutex // TODO: maybe switch to RWMutex id:867 gh:876
+	// TODO: add support for sharing conns based on cert names id:1139 gh:1147
 	// (e.g. share conn for googleapis.com and appspot.com)
 	conns        map[string][]*http2ClientConn // key is host:port
 	dialing      map[string]*http2dialCall     // currently in-flight dials
@@ -891,7 +891,7 @@ func (p *http2clientConnPool) MarkDead(cc *http2ClientConn) {
 func (p *http2clientConnPool) closeIdleConnections() {
 	p.mu.Lock()
 	defer p.mu.Unlock()
-	// TODO: don't close a cc if it was just added to the pool
+	// TODO: don't close a cc if it was just added to the pool id:852 gh:852
 	// milliseconds ago and has never been used. There's currently
 	// a small race window with the HTTP/1 Transport's integration
 	// where it can add an idle conn just before using it, and
@@ -1002,7 +1002,7 @@ func (rt http2noDialH2RoundTripper) RoundTrip(req *Request) (*Response, error) {
 // classes to minimize overheads for servers that typically receive very
 // small request bodies.
 //
-// TODO: Benchmark to determine if the pools are necessary. The GC may have
+// TODO: Benchmark to determine if the pools are necessary. The GC may have id:1243 gh:1251
 // improved enough that we can instead allocate chunks like this:
 // make([]byte, max(16<<10, expectedBytesRemaining))
 var (
@@ -1554,13 +1554,13 @@ type http2Framer struct {
 	maxReadSize uint32
 	headerBuf   [http2frameHeaderLen]byte
 
-	// TODO: let getReadBuf be configurable, and use a less memory-pinning
+	// TODO: let getReadBuf be configurable, and use a less memory-pinning id:1257 gh:1265
 	// allocator in server.go to minimize memory pinned for many idle conns.
 	// Will probably also need to make frame invalidation have a hook too.
 	getReadBuf func(size uint32) []byte
 	readBuf    []byte // cache for default getReadBuf
 
-	maxWriteSize uint32 // zero means unlimited; TODO: implement
+	maxWriteSize uint32 // zero means unlimited; TODO: implement id:870 gh:878
 
 	w    io.Writer
 	wbuf []byte
@@ -1591,7 +1591,7 @@ type http2Framer struct {
 	// If the limit is hit, MetaHeadersFrame.Truncated is set true.
 	MaxHeaderListSize uint32
 
-	// TODO: track which type of frame & with which flags was sent
+	// TODO: track which type of frame & with which flags was sent id:1141 gh:1149
 	// last. Then return an error (unless AllowIllegalWrites) if
 	// we're in the middle of a header block and a
 	// non-Continuation or Continuation on a different stream is
@@ -3458,7 +3458,7 @@ func http2newBufferedWriter(w io.Writer) *http2bufferedWriter {
 // bufWriterPoolBufferSize is the size of bufio.Writer's
 // buffers created using bufWriterPool.
 //
-// TODO: pick a less arbitrary value? this is a bit under
+// TODO: pick a less arbitrary value? this is a bit under id:856 gh:861
 // (3 x typical 1500 byte MTU) at least. Other than that,
 // not much thought went into it.
 const http2bufWriterPoolBufferSize = 4 << 10
@@ -3743,7 +3743,7 @@ const (
 	http2prefaceTimeout        = 10 * time.Second
 	http2firstSettingsTimeout  = 2 * time.Second // should be in-flight with preface anyway
 	http2handlerChunkWriteSize = 4 << 10
-	http2defaultMaxStreams     = 250 // TODO: make this 100 as the GFE seems to?
+	http2defaultMaxStreams     = 250 // TODO: make this 100 as the GFE seems to? id:1247 gh:1255
 )
 
 var (
@@ -3774,7 +3774,7 @@ type http2Server struct {
 	// MaxHandlers limits the number of http.Handler ServeHTTP goroutines
 	// which may run at a time over all connections.
 	// Negative or zero no limit.
-	// TODO: implement
+	// TODO: implement id:1260 gh:1268
 	MaxHandlers int
 
 	// MaxConcurrentStreams optionally specifies the number of
@@ -4095,7 +4095,7 @@ func (s *http2Server) ServeConn(c net.Conn, opts *http2ServeConnOpts) {
 			// since it was causing problems when connecting to bare IP
 			// addresses during development.
 			//
-			// TODO: optionally enforce? Or enforce at the time we receive
+			// TODO: optionally enforce? Or enforce at the time we receive id:873 gh:881
 			// a new request, and verify the the ServerName matches the :authority?
 			// But that precludes proxy situations, perhaps.
 			//
@@ -4299,7 +4299,7 @@ func (sc *http2serverConn) logf(format string, args ...interface{}) {
 
 // errno returns v's underlying uintptr, else 0.
 //
-// TODO: remove this helper function once http2 can use build
+// TODO: remove this helper function once http2 can use build id:1143 gh:1151
 // tags. See comment in isClosedConnError.
 func http2errno(v error) uintptr {
 	if rv := reflect.ValueOf(v); rv.Kind() == reflect.Uintptr {
@@ -4315,7 +4315,7 @@ func http2isClosedConnError(err error) bool {
 		return false
 	}
 
-	// TODO: remove this string search and be more like the Windows
+	// TODO: remove this string search and be more like the Windows id:859 gh:867
 	// case below. That might involve modifying the standard library
 	// to return better error types.
 	str := err.Error()
@@ -4323,7 +4323,7 @@ func http2isClosedConnError(err error) bool {
 		return true
 	}
 
-	// TODO(bradfitz): x/tools/cmd/bundle doesn't really support
+	// TODO (bradfitz): x/tools/cmd/bundle doesn't really support id:1252 gh:1260
 	// build tags, so I can't make an http2_windows.go file with
 	// Windows-specific stuff. Fix that and move this, once we
 	// have a way to bundle this into std's net/http somehow.
@@ -4610,7 +4610,7 @@ func (sc *http2serverConn) readPreface() error {
 			errc <- nil
 		}
 	}()
-	timer := time.NewTimer(http2prefaceTimeout) // TODO: configurable on *Server?
+	timer := time.NewTimer(http2prefaceTimeout) // TODO: configurable on *Server? id:1262 gh:1270
 	defer timer.Stop()
 	select {
 	case <-timer.C:
@@ -4829,7 +4829,7 @@ func (sc *http2serverConn) wroteFrame(res http2frameWriteResult) {
 			// theory, but since our handler is done and
 			// the net/http package provides no mechanism
 			// for closing a ResponseWriter while still
-			// reading data (see possible TODO at top of
+			// reading data (see possible TODO at top of id:876 gh:884
 			// this file), we go into closed state here
 			// anyway, after telling the peer we're
 			// hanging up on them. We'll transition to
@@ -4937,7 +4937,7 @@ func (sc *http2serverConn) startGracefulShutdown() {
 // This is a var so it can be shorter in tests, where all requests uses the
 // loopback interface making the expected RTT very small.
 //
-// TODO: configurable?
+// TODO: configurable? id:1145 gh:1153
 var http2goAwayTimeout = 1 * time.Second
 
 func (sc *http2serverConn) startGracefulShutdownInternal() {
@@ -4981,12 +4981,12 @@ func (sc *http2serverConn) processFrameFromReader(res http2readFrameResult) bool
 		}
 		clientGone := err == io.EOF || err == io.ErrUnexpectedEOF || http2isClosedConnError(err)
 		if clientGone {
-			// TODO: could we also get into this state if
+			// TODO: could we also get into this state if id:861 gh:869
 			// the peer does a half close
 			// (e.g. CloseWrite) because they're done
 			// sending frames but they're still wanting
 			// our open replies?  Investigate.
-			// TODO: add CloseWrite to crypto/tls.Conn first
+			// TODO: add CloseWrite to crypto/tls.Conn first id:1256 gh:1264
 			// so we have a way to test this? I suppose
 			// just for testing we could have a non-TLS mode.
 			return false
@@ -5513,7 +5513,7 @@ func (st *http2stream) processTrailerHeaders(f *http2MetaHeadersFrame) error {
 		for _, hf := range f.RegularFields() {
 			key := sc.canonicalHeader(hf.Name)
 			if !http2ValidTrailerHeader(key) {
-				// TODO: send more details to the peer somehow. But http2 has
+				// TODO: send more details to the peer somehow. But http2 has id:1264 gh:1272
 				// no way to send debug data at a stream level. Discuss with
 				// HTTP folk.
 				return http2streamError(st.id, http2ErrCodeProtocol)
@@ -5948,7 +5948,7 @@ type http2responseWriterState struct {
 	body   *http2requestBody // to close at end of request, if DATA frames didn't
 	conn   *http2serverConn
 
-	// TODO: adjust buffer writing sizes based on server config, frame size updates from peer, etc
+	// TODO: adjust buffer writing sizes based on server config, frame size updates from peer, etc id:878 gh:886
 	bw *bufio.Writer // writing to a chunkWriter{this *responseWriterState}
 
 	// mutated by http.Handler goroutine:
@@ -6022,7 +6022,7 @@ func (rws *http2responseWriterState) writeChunk(p []byte) (n int, err error) {
 		}
 		var date string
 		if _, ok := rws.snapHeader["Date"]; !ok {
-			// TODO(bradfitz): be faster here, like net/http? measure.
+			// TODO (bradfitz): be faster here, like net/http? measure. id:1147 gh:1155
 			date = time.Now().UTC().Format(TimeFormat)
 		}
 
@@ -6262,7 +6262,7 @@ func (w *http2responseWriter) write(lenData int, dataB []byte, dataS string) (n 
 	}
 	rws.wroteBytes += int64(len(dataB)) + int64(len(dataS)) // only one can be set
 	if rws.sentContentLen != 0 && rws.wroteBytes > rws.sentContentLen {
-		// TODO: send a RST_STREAM
+		// TODO: send a RST_STREAM id:865 gh:873
 		return 0, errors.New("http2: handler wrote more than declared Content-Length")
 	}
 
@@ -7086,7 +7086,7 @@ func (t *http2Transport) newClientConn(c net.Conn, singleUse bool) (*http2Client
 	cc.cond = sync.NewCond(&cc.mu)
 	cc.flow.add(int32(http2initialWindowSize))
 
-	// TODO: adjust this writer size to account for frame size +
+	// TODO: adjust this writer size to account for frame size + id:1259 gh:1267
 	// MTU + crypto/tls record padding.
 	cc.bw = bufio.NewWriter(http2stickyErrWriter{c, &cc.werr})
 	cc.br = bufio.NewReader(c)
@@ -7094,7 +7094,7 @@ func (t *http2Transport) newClientConn(c net.Conn, singleUse bool) (*http2Client
 	cc.fr.ReadMetaHeaders = hpack.NewDecoder(http2initialHeaderTableSize, nil)
 	cc.fr.MaxHeaderListSize = t.maxHeaderListSize()
 
-	// TODO: SetMaxDynamicTableSize, SetMaxDynamicTableSizeLimit on
+	// TODO: SetMaxDynamicTableSize, SetMaxDynamicTableSizeLimit on id:1266 gh:1274
 	// henc in response to SETTINGS frames?
 	cc.henc = hpack.NewEncoder(&cc.hbuf)
 
@@ -7183,7 +7183,7 @@ func (cc *http2ClientConn) closeIfIdle() {
 	}
 	cc.closed = true
 	nextID := cc.nextStreamID
-	// TODO: do clients send GOAWAY too? maybe? Just Close:
+	// TODO: do clients send GOAWAY too? maybe? Just Close: id:880 gh:888
 	cc.mu.Unlock()
 
 	if http2VerboseLogs {
@@ -7322,7 +7322,7 @@ func (cc *http2ClientConn) roundTrip(req *Request) (res *Response, gotErrAfterRe
 	contentLen := http2actualContentLength(req)
 	hasBody := contentLen != 0
 
-	// TODO(bradfitz): this is a copy of the logic in net/http. Unify somewhere?
+	// TODO (bradfitz): this is a copy of the logic in net/http. Unify somewhere? id:1149 gh:1157
 	var requestedGzip bool
 	if !cc.t.disableCompression() &&
 		req.Header.Get("Accept-Encoding") == "" &&
@@ -7535,7 +7535,7 @@ func (cc *http2ClientConn) writeHeaders(streamID uint32, endStream bool, maxFram
 			cc.fr.WriteContinuation(streamID, endHeaders, chunk)
 		}
 	}
-	// TODO(bradfitz): this Flush could potentially block (as
+	// TODO (bradfitz): this Flush could potentially block (as id:868 gh:877
 	// could the WriteHeaders call(s) above), which means they
 	// wouldn't respond to Request.Cancel being readable. That's
 	// rare, but this should probably be in a goroutine.
@@ -7560,7 +7560,7 @@ func (cs *http2clientStream) writeRequestBody(body io.Reader, bodyCloser io.Clos
 
 	defer func() {
 		http2traceWroteRequest(cs.trace, err)
-		// TODO: write h12Compare test showing whether
+		// TODO: write h12Compare test showing whether id:1263 gh:1271
 		// Request.Body is closed by the Transport,
 		// and in multiple cases: server replies <=299 and >299
 		// while still writing request body
@@ -7602,7 +7602,7 @@ func (cs *http2clientStream) writeRequestBody(body io.Reader, bodyCloser io.Clos
 			sentEnd = sawEOF && len(remain) == 0 && !hasTrailers
 			err = cc.fr.WriteData(cs.ID, sentEnd, data)
 			if err == nil {
-				// TODO(bradfitz): this flush is for latency, not bandwidth.
+				// TODO (bradfitz): this flush is for latency, not bandwidth. id:1268 gh:1276
 				// Most requests won't need this. Make this opt-in or
 				// opt-out?  Use some heuristic on the body type? Nagel-like
 				// timers?  Based on 'n'? Only last chunk of this for loop,
@@ -7973,7 +7973,7 @@ func (rl *http2clientConnReadLoop) cleanup() {
 	}
 
 	// Close any response bodies if the server closes prematurely.
-	// TODO: also do this if we've written the headers but not
+	// TODO: also do this if we've written the headers but not id:883 gh:891
 	// gotten a response yet.
 	err := cc.readerErr
 	cc.mu.Lock()
@@ -8100,7 +8100,7 @@ func (rl *http2clientConnReadLoop) processHeaders(f *http2MetaHeadersFrame) erro
 	}
 	if !cs.firstByte {
 		if cs.trace != nil {
-			// TODO(bradfitz): move first response byte earlier,
+			// TODO (bradfitz): move first response byte earlier, id:1151 gh:1159
 			// when we first read the 9 byte header, not waiting
 			// until all the HEADERS+CONTINUATION frames have been
 			// merged. This works for now.
@@ -8196,11 +8196,11 @@ func (rl *http2clientConnReadLoop) handleResponse(cs *http2clientStream, f *http
 			if clen64, err := strconv.ParseInt(clens[0], 10, 64); err == nil {
 				res.ContentLength = clen64
 			} else {
-				// TODO: care? unlike http/1, it won't mess up our framing, so it's
+				// TODO: care? unlike http/1, it won't mess up our framing, so it's id:871 gh:879
 				// more safe smuggling-wise to ignore.
 			}
 		} else if len(clens) > 1 {
-			// TODO: care? unlike http/1, it won't mess up our framing, so it's
+			// TODO: care? unlike http/1, it won't mess up our framing, so it's id:1267 gh:1275
 			// more safe smuggling-wise to ignore.
 		}
 	}
@@ -8238,7 +8238,7 @@ func (rl *http2clientConnReadLoop) processTrailers(cs *http2clientStream, f *htt
 	}
 	if len(f.PseudoFields()) > 0 {
 		// No pseudo header fields are defined for trailers.
-		// TODO: ConnectionError might be overly harsh? Check.
+		// TODO: ConnectionError might be overly harsh? Check. id:1270 gh:1278
 		return http2ConnectionError(http2ErrCodeProtocol)
 	}
 
@@ -8368,7 +8368,7 @@ func (rl *http2clientConnReadLoop) processData(f *http2DataFrame) error {
 			return http2ConnectionError(http2ErrCodeProtocol)
 		}
 		// We probably did ask for this, but canceled. Just ignore it.
-		// TODO: be stricter here? only silently ignore things which
+		// TODO: be stricter here? only silently ignore things which id:885 gh:893
 		// we canceled, but not things which were closed normally
 		// by the peer? Tough without accumulating too much state.
 
@@ -8452,7 +8452,7 @@ func (rl *http2clientConnReadLoop) processData(f *http2DataFrame) error {
 var http2errInvalidTrailers = errors.New("http2: invalid trailers")
 
 func (rl *http2clientConnReadLoop) endStream(cs *http2clientStream) {
-	// TODO: check that any declared content-length matches, like
+	// TODO: check that any declared content-length matches, like id:1153 gh:1161
 	// server.go's (*stream).endStream method.
 	rl.endStreamError(cs, nil)
 }
@@ -8488,7 +8488,7 @@ func (rl *http2clientConnReadLoop) processGoAway(f *http2GoAwayFrame) error {
 	cc := rl.cc
 	cc.t.connPool().MarkDead(cc)
 	if f.ErrCode != 0 {
-		// TODO: deal with GOAWAY more. particularly the error code
+		// TODO: deal with GOAWAY more. particularly the error code id:875 gh:883
 		cc.vlogf("transport got GOAWAY with error code = %v", f.ErrCode)
 	}
 	cc.setGoAway(f)
@@ -8536,7 +8536,7 @@ func (rl *http2clientConnReadLoop) processSettings(f *http2SettingsFrame) error 
 
 			cc.initialWindowSize = s.Val
 		default:
-			// TODO(bradfitz): handle more settings? SETTINGS_HEADER_TABLE_SIZE probably.
+			// TODO (bradfitz): handle more settings? SETTINGS_HEADER_TABLE_SIZE probably. id:1271 gh:1279
 			cc.vlogf("Unhandled Setting: %v", s)
 		}
 		return nil
@@ -8577,7 +8577,7 @@ func (rl *http2clientConnReadLoop) processWindowUpdate(f *http2WindowUpdateFrame
 func (rl *http2clientConnReadLoop) processResetStream(f *http2RSTStreamFrame) error {
 	cs := rl.cc.streamByID(f.StreamID, true)
 	if cs == nil {
-		// TODO: return error if server tries to RST_STEAM an idle stream
+		// TODO: return error if server tries to RST_STEAM an idle stream id:1272 gh:1280
 		return nil
 	}
 	select {
@@ -8669,7 +8669,7 @@ func (rl *http2clientConnReadLoop) processPushPromise(f *http2PushPromiseFrame) 
 }
 
 func (cc *http2ClientConn) writeStreamReset(streamID uint32, code http2ErrCode, err error) {
-	// TODO: map err to more interesting error codes, once the
+	// TODO: map err to more interesting error codes, once the id:888 gh:896
 	// HTTP community comes up with some. But currently for
 	// RST_STREAM there's no equivalent to GOAWAY frame's debug
 	// data, and the error codes are all pretty vague ("cancel").
@@ -8849,7 +8849,7 @@ type http2writeFramer interface {
 //
 // This interface is implemented by *serverConn.
 //
-// TODO: decide whether to a) use this in the client code (which didn't
+// TODO: decide whether to a) use this in the client code (which didn't id:1155 gh:1163
 // end up using this yet, because it has a simpler design, not
 // currently implementing priorities), or b) delete this and
 // make the server code a bit more concrete.
@@ -9016,7 +9016,7 @@ func http2encKV(enc *hpack.Encoder, k, v string) {
 }
 
 func (w *http2writeResHeaders) staysWithinBuffer(max int) bool {
-	// TODO: this is a common one. It'd be nice to return true
+	// TODO: this is a common one. It'd be nice to return true id:881 gh:889
 	// here and get into the fast path if we could be clever and
 	// calculate the size fast enough, or at least a conservative
 	// uppper bound that usually fires. (Maybe if w.h and
@@ -9081,7 +9081,7 @@ type http2writePushPromise struct {
 }
 
 func (w *http2writePushPromise) staysWithinBuffer(max int) bool {
-	// TODO: see writeResHeaders.staysWithinBuffer
+	// TODO: see writeResHeaders.staysWithinBuffer id:1274 gh:1282
 	return false
 }
 
@@ -9171,11 +9171,11 @@ func http2encodeHeaders(enc *hpack.Encoder, h Header, keys []string) {
 		isTE := k == "transfer-encoding"
 		for _, v := range vv {
 			if !httplex.ValidHeaderFieldValue(v) {
-				// TODO: return an error? golang.org/issue/14048
+				// TODO: return an error? golang.org/issue/14048 id:1275 gh:1283
 				// For now just omit it.
 				continue
 			}
-			// TODO: more of "8.1.2.2 Connection-Specific Header Fields"
+			// TODO: more of "8.1.2.2 Connection-Specific Header Fields" id:891 gh:899
 			if isTE && v != "trailers" {
 				continue
 			}
@@ -9368,7 +9368,7 @@ func (q *http2writeQueue) shift() http2FrameWriteRequest {
 		panic("invalid use of queue")
 	}
 	wr := q.s[0]
-	// TODO: less copy-happy queue.
+	// TODO: less copy-happy queue. id:1157 gh:1165
 	copy(q.s, q.s[1:])
 	q.s[len(q.s)-1] = http2FrameWriteRequest{}
 	q.s = q.s[:len(q.s)-1]

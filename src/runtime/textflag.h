@@ -28,7 +28,7 @@
 #define TLSBSS	256
 // Do not insert instructions to allocate a stack frame for this function.
 // Only valid on functions that declare a frame size of 0.
-// TODO(mwhudson): only implemented for ppc64x at present.
+// TODO (mwhudson): only implemented for ppc64x at present. id:1410 gh:1418
 #define NOFRAME 512
 // Function can call reflect.Type.Method or reflect.Type.MethodByName.
 #define REFLECTMETHOD = 1024

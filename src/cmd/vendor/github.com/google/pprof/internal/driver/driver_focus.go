@@ -130,7 +130,7 @@ func compileTagFilter(name, value string, numLabelUnits map[string]string, ui pl
 			for _, rx := range rfx {
 				for key, vals := range s.Label {
 					for _, val := range vals {
-						// TODO: Match against val, not key:val in future
+						// TODO: Match against val, not key:val in future id:552 gh:553
 						if rx.MatchString(key + ":" + val) {
 							continue matchedrx
 						}

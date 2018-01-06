@@ -76,7 +76,7 @@ func open(name string) (*Plugin, error) {
 		pluginsMu.Unlock()
 		return nil, errors.New(`plugin.Open("` + name + `"): ` + C.GoString(cErr))
 	}
-	// TODO(crawshaw): look for plugin note, confirm it is a Go plugin
+	// TODO (crawshaw): look for plugin note, confirm it is a Go plugin id:957 gh:965
 	// and it was built with the correct toolchain.
 	if len(name) > 3 && name[len(name)-3:] == ".so" {
 		name = name[:len(name)-3]

@@ -11,8 +11,8 @@ import (
 )
 
 func maxListenerBacklog() int {
-	// TODO: Implement this
-	// NOTE: Never return a number bigger than 1<<16 - 1. See issue 5030.
+	// TODO: Implement this id:922 gh:930
+	// NOTE: Never return a number bigger than 1<<16 - 1. See issue 5030. id:1182 gh:1190
 	return syscall.SOMAXCONN
 }
 

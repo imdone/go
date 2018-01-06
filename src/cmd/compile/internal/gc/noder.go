@@ -347,7 +347,7 @@ func (p *noder) declNames(names []*syntax.Name) []*Node {
 }
 
 func (p *noder) declName(name *syntax.Name) *Node {
-	// TODO(mdempsky): Set lineno?
+	// TODO (mdempsky): Set lineno? id:99 gh:100
 	return dclname(p.name(name))
 }
 
@@ -532,7 +532,7 @@ func (p *noder) expr(expr syntax.Expr) *Node {
 		if expr.Type == nil {
 			panic("unexpected AssertExpr")
 		}
-		// TODO(mdempsky): parser.pexpr uses p.expr(), but
+		// TODO (mdempsky): parser.pexpr uses p.expr(), but id:129 gh:130
 		// seems like the type field should be parsed with
 		// ntype? Shrug, doesn't matter here.
 		return p.nod(expr, ODOTTYPE, p.expr(expr.X), p.expr(expr.Type))
@@ -543,10 +543,10 @@ func (p *noder) expr(expr syntax.Expr) *Node {
 		x := p.expr(expr.X)
 		if expr.Y == nil {
 			if expr.Op == syntax.And {
-				x = unparen(x) // TODO(mdempsky): Needed?
+				x = unparen(x) // TODO (mdempsky): Needed? id:328 gh:329
 				if x.Op == OCOMPLIT {
 					// Special case for &T{...}: turn into (*T){...}.
-					// TODO(mdempsky): Switch back to p.nod after we
+					// TODO (mdempsky): Switch back to p.nod after we id:182 gh:183
 					// get rid of gcCompat.
 					x.Right = nod(OIND, x.Right, nil)
 					x.Right.SetImplicit(true)
@@ -677,7 +677,7 @@ func (p *noder) sum(x syntax.Expr) *Node {
 }
 
 func (p *noder) typeExpr(typ syntax.Expr) *Node {
-	// TODO(mdempsky): Be stricter? typecheck should handle errors anyway.
+	// TODO (mdempsky): Be stricter? typecheck should handle errors anyway. id:101 gh:102
 	return p.expr(typ)
 }
 
@@ -818,7 +818,7 @@ func (p *noder) stmtFall(stmt syntax.Stmt, fallOK bool) *Node {
 	case *syntax.BlockStmt:
 		l := p.blockStmt(stmt)
 		if len(l) == 0 {
-			// TODO(mdempsky): Line number?
+			// TODO (mdempsky): Line number? id:102 gh:103
 			return nod(OEMPTY, nil, nil)
 		}
 		return liststmt(l)
@@ -1138,7 +1138,7 @@ func (p *noder) labeledStmt(label *syntax.LabeledStmt, fallOK bool) *Node {
 	lhs := p.nod(label, OLABEL, p.newname(label.Label), nil)
 
 	var ls *Node
-	if label.Stmt != nil { // TODO(mdempsky): Should always be present.
+	if label.Stmt != nil { // TODO (mdempsky): Should always be present. id:133 gh:134
 		ls = p.stmtFall(label.Stmt, fallOK)
 	}
 
@@ -1205,7 +1205,7 @@ func (p *noder) binOp(op syntax.Operator) Op {
 }
 
 func (p *noder) basicLit(lit *syntax.BasicLit) Val {
-	// TODO: Don't try to convert if we had syntax errors (conversions may fail).
+	// TODO: Don't try to convert if we had syntax errors (conversions may fail). id:333 gh:334
 	//       Use dummy values so we can continue to compile. Eventually, use a
 	//       form of "unknown" literals that are ignored during type-checking so
 	//       we can continue type-checking w/o spurious follow-up errors.
@@ -1262,12 +1262,12 @@ func (p *noder) name(name *syntax.Name) *types.Sym {
 }
 
 func (p *noder) mkname(name *syntax.Name) *Node {
-	// TODO(mdempsky): Set line number?
+	// TODO (mdempsky): Set line number? id:186 gh:187
 	return mkname(p.name(name))
 }
 
 func (p *noder) newname(name *syntax.Name) *Node {
-	// TODO(mdempsky): Set line number?
+	// TODO (mdempsky): Set line number? id:103 gh:104
 	return newname(p.name(name))
 }
 
@@ -1294,7 +1294,7 @@ func (p *noder) nod(orig syntax.Node, op Op, left, right *Node) *Node {
 func (p *noder) setlineno(src_ syntax.Node, dst *Node) *Node {
 	pos := src_.Pos()
 	if !pos.IsKnown() {
-		// TODO(mdempsky): Shouldn't happen. Fix package syntax.
+		// TODO (mdempsky): Shouldn't happen. Fix package syntax. id:105 gh:106
 		return dst
 	}
 	dst.Pos = Ctxt.PosTable.XPos(pos)
@@ -1307,7 +1307,7 @@ func (p *noder) lineno(n syntax.Node) {
 	}
 	pos := n.Pos()
 	if !pos.IsKnown() {
-		// TODO(mdempsky): Shouldn't happen. Fix package syntax.
+		// TODO (mdempsky): Shouldn't happen. Fix package syntax. id:139 gh:140
 		return
 	}
 	lineno = Ctxt.PosTable.XPos(pos)

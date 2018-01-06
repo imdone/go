@@ -74,7 +74,7 @@ func runTestProg(t *testing.T, binary, name string, env ...string) string {
 	go func() {
 		scale := 1
 		// This GOARCH/GOOS test is copied from cmd/dist/test.go.
-		// TODO(iant): Have cmd/dist update the environment variable.
+		// TODO (iant): Have cmd/dist update the environment variable. id:961 gh:969
 		if runtime.GOARCH == "arm" || runtime.GOOS == "windows" {
 			scale = 2
 		}

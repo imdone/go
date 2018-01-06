@@ -512,7 +512,7 @@ func (r *objReader) readSymName() string {
 			s := string(append(adjName, origName...))
 			// Read past the peeked origName, now that we're done with it,
 			// using the rfBuf (also no longer used) as the scratch space.
-			// TODO: use bufio.Reader.Discard if available instead?
+			// TODO: use bufio.Reader.Discard if available instead? id:406 gh:407
 			if err == nil {
 				r.readFull(r.rdBuf[:n])
 			}

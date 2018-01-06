@@ -28,7 +28,7 @@ const debugPhi = false
 // all definitions.
 // Phi values are inserted, and all FwdRefs are changed to a Copy
 // of the appropriate phi or definition.
-// TODO: make this part of cmd/compile/internal/ssa somehow?
+// TODO: make this part of cmd/compile/internal/ssa somehow? id:110 gh:111
 func (s *state) insertPhis() {
 	if len(s.f.Blocks) <= smallBlocks {
 		sps := simplePhiState{s: s, f: s.f, defvars: s.defvars}
@@ -111,7 +111,7 @@ func (s *phiState) insertPhis() {
 	// defs[n] contains all the blocks in which variable number n is assigned.
 	defs := make([][]*ssa.Block, len(vartypes))
 	for _, b := range s.f.Blocks {
-		for var_ := range s.defvars[b.ID] { // TODO: encode defvars some other way (explicit ops)? make defvars[n] a slice instead of a map.
+		for var_ := range s.defvars[b.ID] { // TODO: encode defvars some other way (explicit ops)? make defvars[n] a slice instead of a map. id:147 gh:148
 			if n, ok := s.varnum[var_]; ok {
 				defs[n] = append(defs[n], b)
 			}
@@ -228,7 +228,7 @@ func (s *phiState) insertVarPhis(n int, var_ *Node, defs []*ssa.Block, typ *type
 			currentRootLevel := s.level[currentRoot.ID]
 			for _, e := range b.Succs {
 				c := e.Block()
-				// TODO: if the variable is dead at c, skip it.
+				// TODO: if the variable is dead at c, skip it. id:346 gh:347
 				if s.level[c.ID] > currentRootLevel {
 					// a D-edge, or an edge whose target is in currentRoot's subtree.
 					continue
@@ -238,7 +238,7 @@ func (s *phiState) insertVarPhis(n int, var_ *Node, defs []*ssa.Block, typ *type
 				}
 				// Add a phi to block c for variable n.
 				hasPhi.add(c.ID)
-				v := c.NewValue0I(currentRoot.Pos, ssa.OpPhi, typ, int64(n)) // TODO: line number right?
+				v := c.NewValue0I(currentRoot.Pos, ssa.OpPhi, typ, int64(n)) // TODO: line number right? id:192 gh:193
 				// Note: we store the variable number in the phi's AuxInt field. Used temporarily by phi building.
 				s.s.addNamedValue(var_, v)
 				for i := 0; i < len(c.Preds); i++ {
@@ -394,13 +394,13 @@ func (h *blockHeap) Less(i, j int) bool {
 	return h.level[h.a[i].ID] > h.level[h.a[j].ID]
 }
 
-// TODO: stop walking the iterated domininance frontier when
+// TODO: stop walking the iterated domininance frontier when id:109 gh:110
 // the variable is dead. Maybe detect that by checking if the
 // node we're on is reverse dominated by all the reads?
 // Reverse dominated by the highest common successor of all the reads?
 
 // copy of ../ssa/sparseset.go
-// TODO: move this file to ../ssa, then use sparseSet there.
+// TODO: move this file to ../ssa, then use sparseSet there. id:111 gh:112
 type sparseSet struct {
 	dense  []ssa.ID
 	sparse []int32

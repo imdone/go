@@ -20,7 +20,7 @@ func (a byPos) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 // sortComments sorts the list of comment groups in source order.
 //
 func sortComments(list []*CommentGroup) {
-	// TODO(gri): Does it make sense to check for sorted-ness
+	// TODO (gri): Does it make sense to check for sorted-ness id:679 gh:680
 	//            first (because we know that sorted-ness is
 	//            very likely)?
 	if orderedList := byPos(list); !sort.IsSorted(orderedList) {
@@ -190,7 +190,7 @@ func NewCommentMap(fset *token.FileSet, node Node, comments []*CommentGroup) Com
 			// (i.e., a node of "importance" such as a declaration);
 			// if that fails, try to associate it with the most recent
 			// node.
-			// TODO(gri) try to simplify the logic below
+			// TODO (gri) try to simplify the logic below id:756 gh:757
 			var assoc Node
 			switch {
 			case pg != nil &&

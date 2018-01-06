@@ -58,7 +58,7 @@ const (
 )
 
 func sys_op_4(op1, crn, crm, op2 uint32) Sys {
-	// TODO: system instruction
+	// TODO: system instruction id:711 gh:712
 	return Sys_SYS
 }
 

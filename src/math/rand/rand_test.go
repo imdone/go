@@ -337,7 +337,7 @@ func hasSlowFloatingPoint() bool {
 	case "mips", "mipsle", "mips64", "mips64le":
 		// Be conservative and assume that all mips boards
 		// have emulated floating point.
-		// TODO: detect what it actually has.
+		// TODO: detect what it actually has. id:851 gh:855
 		return true
 	}
 	return false
@@ -549,7 +549,7 @@ func TestUniformFactorial(t *testing.T) {
 					expected := &statsResults{mean: dof, stddev: math.Sqrt(2 * dof)}
 					errorScale := max(1.0, expected.stddev)
 					expected.closeEnough = 0.10 * errorScale
-					expected.maxError = 0.08 // TODO: What is the right value here? See issue 21211.
+					expected.maxError = 0.08 // TODO: What is the right value here? See issue 21211. id:1125 gh:1133
 					checkSampleDistribution(t, samples, expected)
 				})
 			}

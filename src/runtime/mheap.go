@@ -103,7 +103,7 @@ type mheap struct {
 	pagesSweptBasis    uint64  // pagesSwept to use as the origin of the sweep ratio; updated atomically
 	sweepHeapLiveBasis uint64  // value of heap_live to use as the origin of sweep ratio; written with lock, read without
 	sweepPagesPerByte  float64 // proportional sweep ratio; written with lock, read without
-	// TODO(austin): pagesInUse should be a uintptr, but the 386
+	// TODO (austin): pagesInUse should be a uintptr, but the 386 id:1018 gh:1026
 	// compiler can't 8-byte align fields.
 
 	// Malloc stats.
@@ -222,7 +222,7 @@ type mSpanList struct {
 type mspan struct {
 	next *mspan     // next span in list, or nil if none
 	prev *mspan     // previous span in list, or nil if none
-	list *mSpanList // For debugging. TODO: Remove.
+	list *mSpanList // For debugging. TODO: Remove. id:1405 gh:1413
 
 	startAddr uintptr // address of first byte of span aka s.base()
 	npages    uintptr // number of pages in span
@@ -245,7 +245,7 @@ type mspan struct {
 	//
 	// Object n starts at address n*elemsize + (start << pageShift).
 	freeindex uintptr
-	// TODO: Look up nelems from sizeclass and remove this field if it
+	// TODO: Look up nelems from sizeclass and remove this field if it id:1376 gh:1384
 	// helps performance.
 	nelems uintptr // number of object in the span.
 
@@ -423,7 +423,7 @@ func inHeapOrStack(b uintptr) bool {
 	}
 }
 
-// TODO: spanOf and spanOfUnchecked are open-coded in a lot of places.
+// TODO: spanOf and spanOfUnchecked are open-coded in a lot of places. id:995 gh:1003
 // Use the functions instead.
 
 // spanOf returns the span of p. If p does not point into the heap or
@@ -661,7 +661,7 @@ func (h *mheap) alloc_m(npage uintptr, spanclass spanClass, large bool) *mspan {
 	// To prevent excessive heap growth, before allocating n pages
 	// we need to sweep and reclaim at least n pages.
 	if h.sweepdone == 0 {
-		// TODO(austin): This tends to sweep a large number of
+		// TODO (austin): This tends to sweep a large number of id:1265 gh:1273
 		// spans in order to find a few completely free spans
 		// (for example, in the garbage benchmark, this sweeps
 		// ~30x the number of pages its trying to allocate).
@@ -1622,7 +1622,7 @@ func newMarkBits(nelems uintptr) *gcBits {
 	// from next again.
 	if p := gcBitsArenas.next.tryAlloc(bytesNeeded); p != nil {
 		// Put fresh back on the free list.
-		// TODO: Mark it "already zeroed"
+		// TODO: Mark it "already zeroed" id:1021 gh:1029
 		fresh.next = gcBitsArenas.free
 		gcBitsArenas.free = fresh
 		unlock(&gcBitsArenas.lock)

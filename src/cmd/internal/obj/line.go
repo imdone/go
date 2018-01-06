@@ -18,6 +18,6 @@ func linkgetlineFromPos(ctxt *Link, xpos src.XPos) (f string, l int32) {
 	if !pos.IsKnown() {
 		pos = src.Pos{}
 	}
-	// TODO(gri) Should this use relative or absolute line number?
+	// TODO (gri) Should this use relative or absolute line number? id:456 gh:457
 	return pos.SymFilename(), int32(pos.RelLine())
 }

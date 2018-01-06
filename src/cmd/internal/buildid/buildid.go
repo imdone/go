@@ -114,7 +114,7 @@ func readGccgoArchive(name string, f *os.File) (string, error) {
 			return "", err
 		}
 
-		// TODO(iant): Make a debug/ar package, and use it
+		// TODO (iant): Make a debug/ar package, and use it id:810 gh:811
 		// here and in cmd/link.
 		var hdr [60]byte
 		if _, err := io.ReadFull(f, hdr[:]); err != nil {

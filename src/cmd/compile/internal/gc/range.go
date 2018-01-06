@@ -248,7 +248,7 @@ func walkrange(n *Node) *Node {
 
 		if objabi.Preemptibleloops_enabled != 0 {
 			// Doing this transformation makes a bounds check removal less trivial; see #20711
-			// TODO enhance the preemption check insertion so that this transformation is not necessary.
+			// TODO enhance the preemption check insertion so that this transformation is not necessary. id:114 gh:115
 			ifGuard = nod(OIF, nil, nil)
 			ifGuard.Left = nod(OLT, hv1, hn)
 			translatedLoopOp = OFORUNTIL

@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 // This file implements convertions between *types.Node and *Node.
-// TODO(gri) try to eliminate these soon
+// TODO (gri) try to eliminate these soon id:141 gh:142
 
 package gc
 

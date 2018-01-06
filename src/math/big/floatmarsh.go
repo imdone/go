@@ -111,7 +111,7 @@ func (x *Float) MarshalText() (text []byte, err error) {
 // If z's precision is 0, it is changed to 64 before rounding takes
 // effect.
 func (z *Float) UnmarshalText(text []byte) error {
-	// TODO(gri): get rid of the []byte/string conversion
+	// TODO (gri): get rid of the []byte/string conversion id:1230 gh:1238
 	_, _, err := z.Parse(string(text), 0)
 	if err != nil {
 		err = fmt.Errorf("math/big: cannot unmarshal %q into a *big.Float (%v)", text, err)

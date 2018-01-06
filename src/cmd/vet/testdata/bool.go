@@ -16,7 +16,7 @@ func RatherStupidConditions() {
 	}
 	_ = f == nil || f == nil // ERROR "redundant or: f == nil || f == nil"
 
-	_ = i == byte(1) || i == byte(1) // TODO conversions are treated as if they may have side effects
+	_ = i == byte(1) || i == byte(1) // TODO conversions are treated as if they may have side effects id:573 gh:574
 
 	var c chan int
 	_ = 0 == <-c || 0 == <-c                                  // OK subsequent receives may yield different values
@@ -102,7 +102,7 @@ func RoyallySuspectConditions() {
 	_ = "me gustas" != "tu" || "le gustas" != "tu" // OK we could catch this case, but it's not worth the code
 
 	var err error
-	_ = err != nil || err != io.EOF // TODO catch this case?
+	_ = err != nil || err != io.EOF // TODO catch this case? id:727 gh:728
 
 	// Sanity check and.
 	_ = i != 0 && i != 1 // OK

@@ -191,7 +191,7 @@ func (p *Package) copyBuild(pp *build.Package) {
 	p.ConflictDir = pp.ConflictDir
 	p.BinaryOnly = pp.BinaryOnly
 
-	// TODO? Target
+	// TODO ? Target id:429 gh:430
 	p.Goroot = pp.Goroot
 	p.Standard = p.Goroot && p.ImportPath != "" && isStandardImportPath(p.ImportPath)
 	p.GoFiles = pp.GoFiles
@@ -980,7 +980,7 @@ func (p *Package) load(stk *ImportStack, bp *build.Package, err error) {
 		addImport("syscall")
 		addImport("sync")
 
-		// TODO: The .swig and .swigcxx files can use
+		// TODO: The .swig and .swigcxx files can use id:261 gh:262
 		// %go_import directives to import other packages.
 	}
 
@@ -1437,7 +1437,7 @@ func PackagesForBuild(args []string) []*Package {
 // (typically named on the command line). The target is named p.a for
 // package p or named after the first Go file for package main.
 func GoFilesPackage(gofiles []string) *Package {
-	// TODO: Remove this restriction.
+	// TODO: Remove this restriction. id:424 gh:425
 	for _, f := range gofiles {
 		if !strings.HasSuffix(f, ".go") {
 			base.Fatalf("named files must be .go files")

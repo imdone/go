@@ -71,8 +71,8 @@ func (s *Selection) Type() Type {
 	case MethodExpr:
 		// The type of x.f is a function (without receiver)
 		// and an additional first argument with the same type as x.
-		// TODO(gri) Similar code is already in call.go - factor!
-		// TODO(gri) Compute this eagerly to avoid allocations.
+		// TODO (gri) Similar code is already in call.go - factor! id:822 gh:823
+		// TODO (gri) Compute this eagerly to avoid allocations. id:732 gh:733
 		sig := *s.obj.(*Func).typ.(*Signature)
 		arg0 := *sig.recv
 		sig.recv = nil

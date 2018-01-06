@@ -111,7 +111,7 @@ func allowedMismatchObjdump(text string, size int, inst *Inst, dec ExtInst) bool
 
 	// 0F 20 11, 0F 21 11, 0F 22 11, 0F 23 11, 0F 24 11:
 	// Moves into and out of some control registers seem to be unsupported by libopcodes.
-	// TODO(rsc): Are they invalid somehow?
+	// TODO (rsc): Are they invalid somehow? id:566 gh:567
 	if (contains(dec.text, "(bad)") || dec.nenc == 1 && isPrefix(dec.text)) && contains(text, "%cr", "%db", "%tr") {
 		return true
 	}
@@ -136,7 +136,7 @@ func allowedMismatchObjdump(text string, size int, inst *Inst, dec ExtInst) bool
 	}
 
 	// 0F C7 B0 11 22 33 44: libopcodes says vmptrld 0x44332211(%eax); we say rdrand %eax.
-	// TODO(rsc): Fix, since we are probably wrong, but we don't have vmptrld in the manual.
+	// TODO (rsc): Fix, since we are probably wrong, but we don't have vmptrld in the manual. id:721 gh:722
 	if contains(text, "rdrand") && contains(dec.text, "vmptrld", "vmxon", "vmclear") {
 		return true
 	}

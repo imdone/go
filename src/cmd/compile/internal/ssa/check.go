@@ -207,8 +207,8 @@ func checkFunc(f *Func) {
 				f.Fatalf("unexpected floating-point type %v", v.LongString())
 			}
 
-			// TODO: check for cycles in values
-			// TODO: check type
+			// TODO: check for cycles in values id:177 gh:178
+			// TODO: check type id:293 gh:294
 		}
 	}
 
@@ -260,7 +260,7 @@ func checkFunc(f *Func) {
 	// Check to make sure all args dominate uses.
 	if f.RegAlloc == nil {
 		// Note: regalloc introduces non-dominating args.
-		// See TODO in regalloc.go.
+		// See TODO in regalloc.go. id:507 gh:508
 		sdom := f.sdom()
 		for _, b := range f.Blocks {
 			for _, v := range b.Values {

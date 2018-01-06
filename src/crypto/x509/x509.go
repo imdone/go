@@ -764,7 +764,7 @@ func (c *Certificate) hasSANExtension() bool {
 // from the Basic Constraints requirement.
 // See http://www.entrust.net/knowledge-base/technote.cfm?tn=7869
 //
-// TODO(agl): remove this hack once their reissued root is sufficiently
+// TODO (agl): remove this hack once their reissued root is sufficiently id:678 gh:679
 // widespread.
 var entrustBrokenSPKI = []byte{
 	0x30, 0x82, 0x01, 0x22, 0x30, 0x0d, 0x06, 0x09,
@@ -829,7 +829,7 @@ func (c *Certificate) CheckSignatureFrom(parent *Certificate) error {
 		return ErrUnsupportedAlgorithm
 	}
 
-	// TODO(agl): don't ignore the path length constraint.
+	// TODO (agl): don't ignore the path length constraint. id:1028 gh:1036
 
 	return parent.CheckSignature(c.SignatureAlgorithm, c.RawTBSCertificate, c.Signature)
 }
@@ -1425,7 +1425,7 @@ func parseCertificate(in *certificate) (*Certificate, error) {
 				out.IsCA = constraints.IsCA
 				out.MaxPathLen = constraints.MaxPathLen
 				out.MaxPathLenZero = out.MaxPathLen == 0
-				// TODO: map out.MaxPathLen to 0 if it has the -1 default value? (Issue 19285)
+				// TODO: map out.MaxPathLen to 0 if it has the -1 default value? (Issue 19285) id:583 gh:584
 			case 17:
 				out.DNSNames, out.EmailAddresses, out.IPAddresses, out.URIs, err = parseSANExtension(e.Value)
 				if err != nil {

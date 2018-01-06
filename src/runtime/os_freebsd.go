@@ -187,7 +187,7 @@ func newosproc(mp *m, stk unsafe.Pointer) {
 		print("newosproc stk=", stk, " m=", mp, " g=", mp.g0, " thr_start=", funcPC(thr_start), " id=", mp.id, " ostk=", &mp, "\n")
 	}
 
-	// NOTE(rsc): This code is confused. stackbase is the top of the stack
+	// NOTE (rsc): This code is confused. stackbase is the top of the stack id:1283 gh:1291
 	// and is equal to stk. However, it's working, so I'm not changing it.
 	param := thrparam{
 		start_func: funcPC(thr_start),
@@ -202,7 +202,7 @@ func newosproc(mp *m, stk unsafe.Pointer) {
 
 	var oset sigset
 	sigprocmask(_SIG_SETMASK, &sigset_all, &oset)
-	// TODO: Check for error.
+	// TODO: Check for error. id:1031 gh:1039
 	thr_new(&param, int32(unsafe.Sizeof(param)))
 	sigprocmask(_SIG_SETMASK, &oset, nil)
 }

@@ -113,7 +113,7 @@ func packEface(v Value) interface{} {
 		// Value is indirect, and so is the interface we're making.
 		ptr := v.ptr
 		if v.flag&flagAddr != 0 {
-			// TODO: pass safe boolean from valueInterface so
+			// TODO: pass safe boolean from valueInterface so id:1207 gh:1215
 			// we don't need to copy if safe==true?
 			c := unsafe_New(t)
 			typedmemmove(t, c, ptr)
@@ -139,7 +139,7 @@ func packEface(v Value) interface{} {
 // unpackEface converts the empty interface i to a Value.
 func unpackEface(i interface{}) Value {
 	e := (*emptyInterface)(unsafe.Pointer(&i))
-	// NOTE: don't read e.word until we know whether it is really a pointer or not.
+	// NOTE: don't read e.word until we know whether it is really a pointer or not. id:971 gh:979
 	t := e.typ
 	if t == nil {
 		return Value{}
@@ -493,7 +493,7 @@ func (v Value) call(op string, in []Value) []Value {
 // It is in this file so that it can be next to the call method above.
 // The remainder of the MakeFunc implementation is in makefunc.go.
 //
-// NOTE: This function must be marked as a "wrapper" in the generated code,
+// NOTE: This function must be marked as a "wrapper" in the generated code, id:1371 gh:1379
 // so that the linker can make it work correctly for panic and recover.
 // The gc compilers know to do that for the name "reflect.callReflect".
 func callReflect(ctxt *makeFuncImpl, frame unsafe.Pointer) {
@@ -641,7 +641,7 @@ func align(x, n uintptr) uintptr {
 // It is in this file so that it can be next to the two similar functions above.
 // The remainder of the makeMethodValue implementation is in makefunc.go.
 //
-// NOTE: This function must be marked as a "wrapper" in the generated code,
+// NOTE: This function must be marked as a "wrapper" in the generated code, id:1330 gh:1338
 // so that the linker can make it work correctly for panic and recover.
 // The gc compilers know to do that for the name "reflect.callMethod".
 func callMethod(ctxt *methodValue, frame unsafe.Pointer) {
@@ -974,14 +974,14 @@ func valueInterface(v Value, safe bool) interface{} {
 		})(v.ptr)
 	}
 
-	// TODO: pass safe to packEface so we don't need to copy if safe==true?
+	// TODO: pass safe to packEface so we don't need to copy if safe==true? id:947 gh:955
 	return packEface(v)
 }
 
 // InterfaceData returns the interface v's value as a uintptr pair.
 // It panics if v's Kind is not Interface.
 func (v Value) InterfaceData() [2]uintptr {
-	// TODO: deprecate this
+	// TODO: deprecate this id:1210 gh:1218
 	v.mustBe(Interface)
 	// We treat this as a read operation, so we allow
 	// it even for unexported data, because the caller
@@ -1268,7 +1268,7 @@ func (v Value) OverflowUint(x uint64) bool {
 // element of the slice. If the slice is nil the returned value
 // is 0.  If the slice is empty but non-nil the return value is non-zero.
 func (v Value) Pointer() uintptr {
-	// TODO: deprecate
+	// TODO: deprecate id:973 gh:981
 	k := v.kind()
 	switch k {
 	case Chan, Map, Ptr, UnsafePointer:
@@ -1764,7 +1764,7 @@ func (v Value) Uint() uint64 {
 // It is for advanced clients that also import the "unsafe" package.
 // It panics if v is not addressable.
 func (v Value) UnsafeAddr() uintptr {
-	// TODO: deprecate
+	// TODO: deprecate id:1373 gh:1381
 	if v.typ == nil {
 		panic(&ValueError{"reflect.Value.UnsafeAddr", Invalid})
 	}
@@ -1953,7 +1953,7 @@ func rselect([]runtimeSelect) (chosen int, recvOK bool)
 // A SelectDir describes the communication direction of a select case.
 type SelectDir int
 
-// NOTE: These values must match ../runtime/select.go:/selectDir.
+// NOTE: These values must match ../runtime/select.go:/selectDir. id:1332 gh:1341
 
 const (
 	_             SelectDir = iota
@@ -1993,7 +1993,7 @@ type SelectCase struct {
 // boolean indicating whether the value corresponds to a send on the channel
 // (as opposed to a zero value received because the channel is closed).
 func Select(cases []SelectCase) (chosen int, recv Value, recvOK bool) {
-	// NOTE: Do not trust that caller is not modifying cases data underfoot.
+	// NOTE: Do not trust that caller is not modifying cases data underfoot. id:949 gh:957
 	// The range is safe because the caller cannot modify our copy of the len
 	// and each iteration makes its own copy of the value c.
 	runcases := make([]runtimeSelect, len(cases))
@@ -2152,7 +2152,7 @@ func ValueOf(i interface{}) Value {
 		return Value{}
 	}
 
-	// TODO: Maybe allow contents of a Value to live on the stack.
+	// TODO: Maybe allow contents of a Value to live on the stack. id:1213 gh:1221
 	// For now we make the contents always escape to the heap. It
 	// makes life easier in a few places (see chanrecv/mapassign
 	// comment below).

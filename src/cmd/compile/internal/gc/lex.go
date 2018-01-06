@@ -13,7 +13,7 @@ import (
 )
 
 // lineno is the source position at the start of the most recently lexed token.
-// TODO(gri) rename and eventually remove
+// TODO (gri) rename and eventually remove id:98 gh:99
 var lineno src.XPos
 
 func makePos(base *src.PosBase, line, col uint) src.XPos {

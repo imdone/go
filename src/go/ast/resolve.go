@@ -120,7 +120,7 @@ func NewPackage(fset *token.FileSet, files map[string]*File, importer Importer, 
 				importErrors = true
 				continue
 			}
-			// TODO(gri) If a local package name != "." is provided,
+			// TODO (gri) If a local package name != "." is provided, id:758 gh:759
 			// global identifier resolution could proceed even if the
 			// import failed. Consider adjusting the logic here a bit.
 

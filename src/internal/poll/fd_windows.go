@@ -242,7 +242,7 @@ func (s *ioSrv) ExecIO(o *operation, submit func(o *operation) error) (int, erro
 		err := syscall.CancelIoEx(fd.Sysfd, &o.o)
 		// Assuming ERROR_NOT_FOUND is returned, if IO is completed.
 		if err != nil && err != syscall.ERROR_NOT_FOUND {
-			// TODO(brainman): maybe do something else, but panic.
+			// TODO (brainman): maybe do something else, but panic. id:1198 gh:1206
 			panic(err)
 		}
 	} else {

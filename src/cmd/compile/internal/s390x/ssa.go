@@ -222,7 +222,7 @@ func ssaGenValue(s *gc.SSAGenState, v *ssa.Value) {
 		ssa.OpS390XMODD, ssa.OpS390XMODW,
 		ssa.OpS390XMODDU, ssa.OpS390XMODWU:
 
-		// TODO(mundaym): use the temp registers every time like x86 does with AX?
+		// TODO (mundaym): use the temp registers every time like x86 does with AX? id:505 gh:506
 		dividend := v.Args[0].Reg()
 		divisor := v.Args[1].Reg()
 
@@ -758,7 +758,7 @@ func ssaGenValue(s *gc.SSAGenState, v *ssa.Value) {
 		bne.To.Type = obj.TYPE_BRANCH
 		gc.Patch(bne, cs)
 	case ssa.OpClobber:
-		// TODO: implement for clobberdead experiment. Nop is ok for now.
+		// TODO: implement for clobberdead experiment. Nop is ok for now. id:262 gh:263
 	default:
 		v.Fatalf("genValue not implemented: %s", v.LongString())
 	}

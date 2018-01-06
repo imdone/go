@@ -44,7 +44,7 @@ func maxSliceCap(elemsize uintptr) uintptr {
 }
 
 func makeslice(et *_type, len, cap int) slice {
-	// NOTE: The len > maxElements check here is not strictly necessary,
+	// NOTE: The len > maxElements check here is not strictly necessary, id:1044 gh:1052
 	// but it produces a 'len out of range' error instead of a 'cap out of range' error
 	// when someone does make([]T, bignumber). 'cap out of range' is true too,
 	// but since the cap is only being supplied implicitly, saying len is clearer.
@@ -84,7 +84,7 @@ func makeslice64(et *_type, len64, cap64 int64) slice {
 // NOT to the new requested capacity.
 // This is for codegen convenience. The old slice's length is used immediately
 // to calculate where to write new values during an append.
-// TODO: When the old backend is gone, reconsider this decision.
+// TODO: When the old backend is gone, reconsider this decision. id:1435 gh:1443
 // The SSA backend might prefer the new length or to return only ptr/cap and save stack space.
 func growslice(et *_type, old slice, cap int) slice {
 	if raceenabled {
@@ -216,7 +216,7 @@ func slicecopy(to, fm slice, width uintptr) int {
 
 	size := uintptr(n) * width
 	if size == 1 { // common case worth about 2x to do here
-		// TODO: is this still worth it with new memmove impl?
+		// TODO: is this still worth it with new memmove impl? id:1406 gh:1414
 		*(*byte)(to.array) = *(*byte)(fm.array) // known to be a byte pointer
 	} else {
 		memmove(to.array, fm.array, size)

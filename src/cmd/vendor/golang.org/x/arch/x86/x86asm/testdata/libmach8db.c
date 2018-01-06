@@ -1730,7 +1730,7 @@ static char *sreg[] = { "ES", "CS", "SS", "DS", "FS", "GS" };
 static void
 immediate(Instr *ip, vlong val)
 {
-	// TODO: Translate known names.
+	// TODO: Translate known names. id:626 gh:627
 	if((ip->rex & REXW) == 0)
 		bprint(ip, "%#lux", (long)val);
 	else

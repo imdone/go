@@ -119,7 +119,7 @@ func (tw *Writer) writeUSTARHeader(hdr *Header) error {
 func (tw *Writer) writePAXHeader(hdr *Header, paxHdrs map[string]string) error {
 	realName, realSize := hdr.Name, hdr.Size
 
-	// TODO(dsnet): Re-enable this when adding sparse support.
+	// TODO (dsnet): Re-enable this when adding sparse support. id:14 gh:15
 	// See https://golang.org/issue/22735
 	/*
 		// Handle sparse files.
@@ -204,7 +204,7 @@ func (tw *Writer) writePAXHeader(hdr *Header, paxHdrs map[string]string) error {
 		return err
 	}
 
-	// TODO(dsnet): Re-enable this when adding sparse support.
+	// TODO (dsnet): Re-enable this when adding sparse support. id:35 gh:36
 	// See https://golang.org/issue/22735
 	/*
 		// Write the sparse map and setup the sparse writer if necessary.
@@ -246,7 +246,7 @@ func (tw *Writer) writeGNUHeader(hdr *Header) error {
 	if !hdr.ChangeTime.IsZero() {
 		f.formatNumeric(blk.GNU().ChangeTime(), hdr.ChangeTime.Unix())
 	}
-	// TODO(dsnet): Re-enable this when adding sparse support.
+	// TODO (dsnet): Re-enable this when adding sparse support. id:18 gh:19
 	// See https://golang.org/issue/22735
 	/*
 		if hdr.Typeflag == TypeGNUSparse {
@@ -438,7 +438,7 @@ func (tw *Writer) Write(b []byte) (int, error) {
 // assuming that skipped regions are all NULs.
 // This always reads the last byte to ensure r is the right size.
 //
-// TODO(dsnet): Re-export this when adding sparse file support.
+// TODO (dsnet): Re-export this when adding sparse file support. id:16 gh:17
 // See https://golang.org/issue/22735
 func (tw *Writer) readFrom(r io.Reader) (int64, error) {
 	if tw.err != nil {

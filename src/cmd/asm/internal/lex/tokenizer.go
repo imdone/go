@@ -109,7 +109,7 @@ func (t *Tokenizer) Next() ScanToken {
 		}
 		length := strings.Count(s.TokenText(), "\n")
 		t.line += length
-		// TODO: If we ever have //go: comments in assembly, will need to keep them here.
+		// TODO: If we ever have //go: comments in assembly, will need to keep them here. id:47 gh:48
 		// For now, just discard all comments.
 	}
 	switch t.tok {

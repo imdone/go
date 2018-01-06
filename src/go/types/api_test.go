@@ -905,12 +905,12 @@ func main() {
 		"new(A).f": {"method (*main.A) f(int)", "->[0 0]"},
 		"A{}.g":    {"method (main.A) g()", ".[1 0]"},
 		"new(A).g": {"method (*main.A) g()", "->[1 0]"},
-		"new(A).h": {"method (*main.A) h()", "->[1 1]"}, // TODO(gri) should this report .[1 1] ?
+		"new(A).h": {"method (*main.A) h()", "->[1 1]"}, // TODO (gri) should this report .[1 1] ? id:1158 gh:1166
 		"B{}.f":    {"method (main.B) f(int)", ".[0]"},
 		"new(B).f": {"method (*main.B) f(int)", "->[0]"},
 		"C{}.g":    {"method (main.C) g()", ".[0]"},
 		"new(C).g": {"method (*main.C) g()", "->[0]"},
-		"new(C).h": {"method (*main.C) h()", "->[1]"}, // TODO(gri) should this report .[1] ?
+		"new(C).h": {"method (*main.C) h()", "->[1]"}, // TODO (gri) should this report .[1] ? id:645 gh:646
 
 		"A.f":    {"method expr (main.A) f(main.A, int)", "->[0 0]"},
 		"(*A).f": {"method expr (*main.A) f(*main.A, int)", "->[0 0]"},
@@ -1015,7 +1015,7 @@ func TestLookupFieldOrMethod(t *testing.T) {
 		{"var a T; type T struct{}; func (T) f() {}", true, []int{0}, false},
 		{"var a *T; type T struct{}; func (T) f() {}", true, []int{0}, true},
 		{"var a T; type T struct{}; func (*T) f() {}", true, []int{0}, false},
-		{"var a *T; type T struct{}; func (*T) f() {}", true, []int{0}, true}, // TODO(gri) should this report indirect = false?
+		{"var a *T; type T struct{}; func (*T) f() {}", true, []int{0}, true}, // TODO (gri) should this report indirect = false? id:801 gh:802
 
 		// collisions
 		{"type ( E1 struct{ f int }; E2 struct{ f int }; x struct{ E1; *E2 })", false, []int{1, 0}, false},

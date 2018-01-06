@@ -149,7 +149,7 @@ func buildssa(fn *Node, worker int) *ssa.Func {
 
 	if name == os.Getenv("GOSSAFUNC") {
 		s.f.HTMLWriter = ssa.NewHTMLWriter("ssa.html", s.f.Frontend(), name)
-		// TODO: generate and print a mapping from nodes to values and blocks
+		// TODO: generate and print a mapping from nodes to values and blocks id:117 gh:118
 	}
 
 	// Allocate starting block
@@ -160,7 +160,7 @@ func buildssa(fn *Node, worker int) *ssa.Func {
 	s.labeledNodes = map[*Node]*ssaLabel{}
 	s.fwdVars = map[*Node]*ssa.Value{}
 	s.startmem = s.entryNewValue0(ssa.OpInitMem, types.TypeMem)
-	s.sp = s.entryNewValue0(ssa.OpSP, types.Types[TUINTPTR]) // TODO: use generic pointer type (unsafe.Pointer?) instead
+	s.sp = s.entryNewValue0(ssa.OpSP, types.Types[TUINTPTR]) // TODO: use generic pointer type (unsafe.Pointer?) instead id:126 gh:127
 	s.sb = s.entryNewValue0(ssa.OpSB, types.Types[TUINTPTR])
 
 	s.startBlock(s.f.Entry)
@@ -245,7 +245,7 @@ func (s *state) updateUnsetPredPos(b *ssa.Block) {
 				}
 				if v.Pos != src.NoXPos {
 					// Assume values are still in roughly textual order;
-					// TODO: could also seek minimum position?
+					// TODO: could also seek minimum position? id:233 gh:234
 					bestPos = v.Pos
 					break
 				}
@@ -284,7 +284,7 @@ type state struct {
 
 	// variable assignments in the current block (map from variable symbol to ssa value)
 	// *Node is the unique identifier (an ONAME Node) for the variable.
-	// TODO: keep a single varnum map, then make all of these maps slices instead?
+	// TODO: keep a single varnum map, then make all of these maps slices instead? id:355 gh:357
 	vars map[*Node]*ssa.Value
 
 	// fwdVars are variables that are used before they are defined in the current block.
@@ -627,7 +627,7 @@ func (s *state) stmt(n *Node) {
 				b := s.endBlock()
 				b.Kind = ssa.BlockExit
 				b.SetControl(m)
-				// TODO: never rewrite OPANIC to OCALLFUNC in the
+				// TODO: never rewrite OPANIC to OCALLFUNC in the id:200 gh:201
 				// first place. Need to wait until all backends
 				// go through SSA.
 			}
@@ -798,7 +798,7 @@ func (s *state) stmt(n *Node) {
 				// [0:...] is the same as [:...]
 				i = nil
 			}
-			// TODO: detect defaults for len/cap also.
+			// TODO: detect defaults for len/cap also. id:119 gh:120
 			// Currently doesn't really work because (*p)[:len(*p)] appears here as:
 			//    tmp = len(*p)
 			//    (*p)[:tmp]
@@ -1051,7 +1051,7 @@ func (s *state) exit() *ssa.Block {
 		val := s.variable(n, n.Type)
 		s.vars[&memVar] = s.newValue1A(ssa.OpVarDef, types.TypeMem, n, s.mem())
 		s.vars[&memVar] = s.newValue3A(ssa.OpStore, types.TypeMem, n.Type, addr, val, s.mem())
-		// TODO: if val is ever spilled, we'd like to use the
+		// TODO: if val is ever spilled, we'd like to use the id:132 gh:133
 		// PPARAMOUT slot for spilling it. That won't happen
 		// currently.
 	}
@@ -1885,7 +1885,7 @@ func (s *state) expr(n *Node) *ssa.Value {
 		a := s.expr(n.Left)
 		b := s.expr(n.Right)
 		if n.Type.IsComplex() {
-			// TODO this is not executed because the front-end substitutes a runtime call.
+			// TODO this is not executed because the front-end substitutes a runtime call. id:236 gh:237
 			// That probably ought to change; with modest optimization the widen/narrow
 			// conversions could all be elided in larger expression trees.
 			mulop := ssa.OpMul64F
@@ -1911,7 +1911,7 @@ func (s *state) expr(n *Node) *ssa.Value {
 			xreal := s.newValueOrSfCall2(addop, wt, s.newValueOrSfCall2(mulop, wt, areal, breal), s.newValueOrSfCall2(mulop, wt, aimag, bimag))
 			ximag := s.newValueOrSfCall2(subop, wt, s.newValueOrSfCall2(mulop, wt, aimag, breal), s.newValueOrSfCall2(mulop, wt, areal, bimag))
 
-			// TODO not sure if this is best done in wide precision or narrow
+			// TODO not sure if this is best done in wide precision or narrow id:357 gh:358
 			// Double-rounding might be an issue.
 			// Note that the pre-SSA implementation does the entire calculation
 			// in wide format, so wide is compatible.
@@ -2386,7 +2386,7 @@ func (s *state) condBranch(cond *Node, yes, no *ssa.Block, likely int8) {
 		// If likely==-1, then we don't have enough information to decide
 		// whether the first branch is likely or not. So we pass 0 for
 		// the likeliness of the first branch.
-		// TODO: have the frontend give us branch prediction hints for
+		// TODO: have the frontend give us branch prediction hints for id:202 gh:203
 		// OANDAND and OOROR nodes (if it ever has such info).
 	case OOROR:
 		mid := s.f.NewBlock(ssa.BlockPlain)
@@ -2467,7 +2467,7 @@ func (s *state) assign(left *Node, right *ssa.Value, deref bool, skip skipMask) 
 
 			// Recursively assign the new value we've made to the base of the dot op.
 			s.assign(left.Left, new, false, 0)
-			// TODO: do we need to update named values here?
+			// TODO: do we need to update named values here? id:121 gh:122
 			return
 		}
 		if left.Op == OINDEX && left.Left.Type.IsArray() {
@@ -2651,7 +2651,7 @@ func softfloatInit() {
 	}
 }
 
-// TODO: do not emit sfcall if operation can be optimized to constant in later
+// TODO: do not emit sfcall if operation can be optimized to constant in later id:136 gh:137
 // opt phase
 func (s *state) sfcall(op ssa.Op, args ...*ssa.Value) (*ssa.Value, bool) {
 	if callDef, ok := softFloatOps[op]; ok {
@@ -3297,7 +3297,7 @@ func (s *state) intrinsicArgs(n *Node) []*ssa.Value {
 	// stores an arg, or an assignment to a temporary which computes an arg
 	// which is later assigned.
 	// The args can also be out of order.
-	// TODO: when walk goes away someday, this code can go away also.
+	// TODO: when walk goes away someday, this code can go away also. id:238 gh:239
 	var args []callArg
 	temps := map[*Node]*ssa.Value{}
 	for _, a := range n.List.Slice() {
@@ -3485,7 +3485,7 @@ func (s *state) addr(n *Node, bounded bool) *ssa.Value {
 		case PEXTERN:
 			// global variable
 			v := s.entryNewValue1A(ssa.OpAddr, t, n.Sym.Linksym(), s.sb)
-			// TODO: Make OpAddr use AuxInt as well as Aux.
+			// TODO: Make OpAddr use AuxInt as well as Aux. id:362 gh:363
 			if n.Xoffset != 0 {
 				v = s.entryNewValue1I(ssa.OpOffPtr, v.Type, n.Xoffset, v)
 			}
@@ -3594,7 +3594,7 @@ func (s *state) canSSA(n *Node) bool {
 		return false
 	case PPARAMOUT:
 		if s.hasdefer {
-			// TODO: handle this case? Named return values must be
+			// TODO: handle this case? Named return values must be id:204 gh:205
 			// in memory so that the deferred function can see them.
 			// Maybe do: if !strings.HasPrefix(n.String(), "~") { return false }
 			// Or maybe not, see issue 18860.  Even unnamed return values
@@ -3610,11 +3610,11 @@ func (s *state) canSSA(n *Node) bool {
 	if n.Class() == PPARAM && n.Sym != nil && n.Sym.Name == ".this" {
 		// wrappers generated by genwrapper need to update
 		// the .this pointer in place.
-		// TODO: treat as a PPARMOUT?
+		// TODO: treat as a PPARMOUT? id:122 gh:123
 		return false
 	}
 	return canSSAType(n.Type)
-	// TODO: try to make more variables SSAable?
+	// TODO: try to make more variables SSAable? id:140 gh:141
 }
 
 // canSSA reports whether variables of type t are SSA-able.
@@ -3630,7 +3630,7 @@ func canSSAType(t *types.Type) bool {
 	case TARRAY:
 		// We can't do larger arrays because dynamic indexing is
 		// not supported on SSA variables.
-		// TODO: allow if all indexes are constant.
+		// TODO: allow if all indexes are constant. id:241 gh:242
 		if t.NumElem() <= 1 {
 			return canSSAType(t.Elem())
 		}
@@ -3799,7 +3799,7 @@ func (s *state) storeType(t *types.Type, left, right *ssa.Value, skip skipMask) 
 	// store scalar fields first, so write barrier stores for
 	// pointer fields can be grouped together, and scalar values
 	// don't need to be live across the write barrier call.
-	// TODO: if the writebarrier pass knows how to reorder stores,
+	// TODO: if the writebarrier pass knows how to reorder stores, id:366 gh:367
 	// we can do a single store here as long as skip==0.
 	s.storeTypeScalars(t, left, right, skip)
 	if skip&skipPtr == 0 && types.Haspointers(t) {
@@ -4417,7 +4417,7 @@ func (s *state) dottype(n *Node, commaok bool) (res, resok *ssa.Value) {
 	var addr *ssa.Value // address of tmp
 	if commaok && !canSSAType(n.Type) {
 		// unSSAable type, use temporary.
-		// TODO: get rid of some of these temporaries.
+		// TODO: get rid of some of these temporaries. id:205 gh:206
 		tmp = tempAt(n.Pos, s.curfn, n.Type)
 		addr = s.addr(tmp, false)
 		s.vars[&memVar] = s.newValue1A(ssa.OpVarDef, types.TypeMem, tmp, s.mem())
@@ -4544,7 +4544,7 @@ func (s *state) addNamedValue(n *Node, v *ssa.Value) {
 	}
 	if n.Class() == PPARAMOUT {
 		// Don't track named output values.  This prevents return values
-		// from being assigned too early. See #14591 and #14762. TODO: allow this.
+		// from being assigned too early. See #14591 and #14762. TODO: allow this. id:123 gh:124
 		return
 	}
 	if n.Class() == PAUTO && n.Xoffset != 0 {
@@ -4800,7 +4800,7 @@ func genssa(f *ssa.Func, pp *Progs) {
 		if f.HTMLWriter != nil {
 			// LineHist is defunct now - this code won't do
 			// anything.
-			// TODO: fix this (ideally without a global variable)
+			// TODO: fix this (ideally without a global variable) id:144 gh:145
 			// saved := pp.Text.Ctxt.LineHist.PrintFilenameOnly
 			// pp.Text.Ctxt.LineHist.PrintFilenameOnly = true
 			var buf bytes.Buffer
@@ -5043,7 +5043,7 @@ func CheckLoweredPhi(v *ssa.Value) {
 	f := v.Block.Func
 	loc := f.RegAlloc[v.ID]
 	for _, a := range v.Args {
-		if aloc := f.RegAlloc[a.ID]; aloc != loc { // TODO: .Equal() instead?
+		if aloc := f.RegAlloc[a.ID]; aloc != loc { // TODO: .Equal() instead? id:244 gh:245
 			v.Fatalf("phi arg at different location than phi: %v @ %s, but arg %v @ %s\n%s\n", v, loc, a, aloc, v.Block.Func)
 		}
 	}
@@ -5126,7 +5126,7 @@ func (s *SSAGenState) Call(v *ssa.Value) *obj.Prog {
 			nowritebarrierrecCheck.recordCall(s.pp.curfn, sym, v.Pos)
 		}
 	} else {
-		// TODO(mdempsky): Can these differences be eliminated?
+		// TODO (mdempsky): Can these differences be eliminated? id:492 gh:493
 		switch thearch.LinkArch.Family {
 		case sys.AMD64, sys.I386, sys.PPC64, sys.S390X:
 			p.To.Type = obj.TYPE_REG
@@ -5164,7 +5164,7 @@ func fieldIdx(n *Node) int {
 	}
 	panic(fmt.Sprintf("can't find field in expr %v\n", n))
 
-	// TODO: keep the result of this function somewhere in the ODOT Node
+	// TODO: keep the result of this function somewhere in the ODOT Node id:207 gh:208
 	// so we don't have to recompute it each time we need it.
 }
 

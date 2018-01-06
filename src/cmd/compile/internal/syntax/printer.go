@@ -13,7 +13,7 @@ import (
 	"strings"
 )
 
-// TODO(gri) Consider removing the linebreaks flag from this signature.
+// TODO (gri) Consider removing the linebreaks flag from this signature. id:338 gh:339
 // Its likely rarely used in common cases.
 
 func Fprint(w io.Writer, x Node, linebreaks bool) (n int, err error) {
@@ -39,7 +39,7 @@ func String(n Node) string {
 	var buf bytes.Buffer
 	_, err := Fprint(&buf, n, false)
 	if err != nil {
-		panic(err) // TODO(gri) print something sensible into buf instead
+		panic(err) // TODO (gri) print something sensible into buf instead id:337 gh:338
 	}
 	return buf.String()
 }
@@ -119,13 +119,13 @@ func impliesSemi(tok token) bool {
 	switch tok {
 	case _Name,
 		_Break, _Continue, _Fallthrough, _Return,
-		/*_Inc, _Dec,*/ _Rparen, _Rbrack, _Rbrace: // TODO(gri) fix this
+		/*_Inc, _Dec,*/ _Rparen, _Rbrack, _Rbrace: // TODO (gri) fix this id:240 gh:241
 		return true
 	}
 	return false
 }
 
-// TODO(gri) provide table of []byte values for all tokens to avoid repeated string conversion
+// TODO (gri) provide table of []byte values for all tokens to avoid repeated string conversion id:393 gh:394
 
 func lineComment(text string) bool {
 	return strings.HasPrefix(text, "//")
@@ -169,7 +169,7 @@ func (p *printer) flush(next token) {
 		// 		sawNewline = true
 		// 	}
 		// case eolComment:
-		// 	// TODO(gri) act depending on sawNewline
+		// 	// TODO (gri) act depending on sawNewline id:342 gh:343
 		default:
 			panic("unreachable")
 		}
@@ -212,7 +212,7 @@ func (p *printer) flush(next token) {
 		// 		p.nlcount = 0
 		// 		prev = comment
 		// 	}
-		// 	// TODO(gri) should check that line comments are always followed by newline
+		// 	// TODO (gri) should check that line comments are always followed by newline id:340 gh:341
 		default:
 			panic("unreachable")
 		}
@@ -263,7 +263,7 @@ func (p *printer) print(args ...interface{}) {
 				s = x.String()
 			}
 
-			// TODO(gri) This check seems at the wrong place since it doesn't
+			// TODO (gri) This check seems at the wrong place since it doesn't id:242 gh:243
 			//           take into account pending white space.
 			if mayCombine(p.lastTok, s[0]) {
 				panic("adjacent tokens combine without whitespace")
@@ -290,7 +290,7 @@ func (p *printer) print(args ...interface{}) {
 			case none, semi /*, comment*/ :
 				panic("unreachable")
 			case newline:
-				// TODO(gri) need to handle mandatory newlines after a //-style comment
+				// TODO (gri) need to handle mandatory newlines after a //-style comment id:395 gh:396
 				if !p.linebreaks {
 					x = blank
 				}
@@ -309,7 +309,7 @@ func (p *printer) print(args ...interface{}) {
 func (p *printer) printNode(n Node) {
 	// ncom := *n.Comments()
 	// if ncom != nil {
-	// 	// TODO(gri) in general we cannot make assumptions about whether
+	// 	// TODO (gri) in general we cannot make assumptions about whether id:534 gh:535
 	// 	// a comment is a /*- or a //-style comment since the syntax
 	// 	// tree may have been manipulated. Need to make sure the correct
 	// 	// whitespace is emitted.
@@ -419,7 +419,7 @@ func (p *printer) printRawNode(n Node) {
 			p.print(n.X)
 		} else {
 			// binary expr
-			// TODO(gri) eventually take precedence into account
+			// TODO (gri) eventually take precedence into account id:345 gh:346
 			// to control possibly missing parentheses
 			p.print(n.X, blank, n.Op, blank, n.Y)
 		}
@@ -505,7 +505,7 @@ func (p *printer) printRawNode(n Node) {
 	case *AssignStmt:
 		p.print(n.Lhs)
 		if n.Rhs == ImplicitOne {
-			// TODO(gri) This is going to break the mayCombine
+			// TODO (gri) This is going to break the mayCombine id:344 gh:345
 			//           check once we enable that again.
 			p.print(n.Op, n.Op) // ++ or --
 		} else {
@@ -586,7 +586,7 @@ func (p *printer) printRawNode(n Node) {
 		} else {
 			if n.Init != nil {
 				p.print(n.Init)
-				// TODO(gri) clean this up
+				// TODO (gri) clean this up id:243 gh:244
 				if _, ok := n.Init.(*RangeClause); ok {
 					p.print(blank, n.Body)
 					break
@@ -803,7 +803,7 @@ func (p *printer) printDecl(list []Decl) {
 	// 	if len(list) != 1 {
 	// 		panic("unreachable")
 	// 	}
-	// 	// TODO(gri) if there are comments inside the empty
+	// 	// TODO (gri) if there are comments inside the empty id:400 gh:401
 	// 	// group, we may need to keep the list non-nil
 	// 	list = nil
 	// }

@@ -543,7 +543,7 @@ var intelReg = [...]string{
 	X14: "xmm14",
 	X15: "xmm15",
 
-	// TODO: Maybe the constants are named wrong.
+	// TODO: Maybe the constants are named wrong. id:1005 gh:1013
 	SPB: "spl",
 	BPB: "bpl",
 	SIB: "sil",

@@ -54,7 +54,7 @@ func TestSplitPkgConfigOutput(t *testing.T) {
 }
 
 func TestSharedLibName(t *testing.T) {
-	// TODO(avdva) - make these values platform-specific
+	// TODO (avdva) - make these values platform-specific id:793 gh:794
 	prefix := "lib"
 	suffix := ".so"
 	testData := []struct {

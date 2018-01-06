@@ -457,7 +457,7 @@ type response struct {
 	statusBuf [3]byte
 
 	// closeNotifyCh is the channel returned by CloseNotify.
-	// TODO(bradfitz): this is currently (for Go 1.8) always
+	// TODO (bradfitz): this is currently (for Go 1.8) always id:897 gh:905
 	// non-nil. Make this lazily-created again as it used to be?
 	closeNotifyCh  chan bool
 	didCloseNotify int32 // atomic (only 0->1 winner should send)
@@ -717,7 +717,7 @@ func (cr *connReader) handleReadError(err error) {
 // pipelined HTTP request, per the previous Go behavior and
 // documentation (that this "MAY" happen).
 //
-// TODO: consider changing this behavior and making context
+// TODO: consider changing this behavior and making context id:1288 gh:1296
 // cancelation and closenotify work the same.
 func (cr *connReader) closeNotifyFromPipelinedRequest() {
 	cr.closeNotify()
@@ -1275,7 +1275,7 @@ func (cw *chunkWriter) writeHeader(p []byte) {
 	// replying, if the handler hasn't already done so. But we
 	// don't want to do an unbounded amount of reading here for
 	// DoS reasons, so we only try up to a threshold.
-	// TODO(bradfitz): where does RFC 2616 say that? See Issue 15527
+	// TODO (bradfitz): where does RFC 2616 say that? See Issue 15527 id:1284 gh:1292
 	// about HTTP/1.x Handlers concurrently reading and writing, like
 	// HTTP/2 handlers can do. Maybe this code should be relaxed?
 	if w.req.ContentLength != 0 && !w.closeAfterReply {
@@ -1351,7 +1351,7 @@ func (cw *chunkWriter) writeHeader(p []byte) {
 	}
 
 	if hasCL && hasTE && te != "identity" {
-		// TODO: return an error if WriteHeader gets a return parameter
+		// TODO: return an error if WriteHeader gets a return parameter id:904 gh:912
 		// For now just ignore the Content-Length.
 		w.conn.server.logf("http: WriteHeader called with both Transfer-Encoding of %q and a Content-Length of %d",
 			te, w.contentLength)
@@ -1486,7 +1486,7 @@ func (w *response) bodyAllowed() bool {
 //    and populates c.werr with it if so. but otherwise writes to:
 // 6. the rwc, the net.Conn.
 //
-// TODO(bradfitz): short-circuit some of the buffering when the
+// TODO (bradfitz): short-circuit some of the buffering when the id:1165 gh:1173
 // initial header contains both a Content-Type and Content-Length.
 // Also short-circuit in (1) when the header's been sent and not in
 // chunking mode, writing directly to (4) instead, if (2) has no
@@ -1861,7 +1861,7 @@ func (c *conn) serve(ctx context.Context) {
 }
 
 func (w *response) sendExpectationFailed() {
-	// TODO(bradfitz): let ServeHTTP handlers handle
+	// TODO (bradfitz): let ServeHTTP handlers handle id:899 gh:907
 	// requests with non-standard expectation[s]? Seems
 	// theoretical at best, and doesn't fit into the
 	// current ServeHTTP model anyway. We'd need to
@@ -2003,7 +2003,7 @@ func Redirect(w ResponseWriter, r *Request, url string, code int) {
 		// The browser would probably do this for us,
 		// but doing it ourselves is more reliable.
 
-		// NOTE(rsc): RFC 2616 says that the Location
+		// NOTE (rsc): RFC 2616 says that the Location id:1290 gh:1298
 		// line must be an absolute URI, like
 		// "http://www.google.com/redirect/",
 		// not a path like "/redirect/".

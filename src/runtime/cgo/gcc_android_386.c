@@ -23,14 +23,14 @@ inittls(void)
 	 * Same logic, code as gcc_android_amd64.c:/inittls.
 	 * Note that this is a temporary hack that should be fixed soon.
 	 *
-	 * TODO: fix this.
+	 * TODO: fix this. id:1338 gh:1346
 	 *
 	 * The linker and runtime hard-code this constant offset
 	 * from %gs where we expect to find g. Disgusting.
 	 *
 	 * Known to src/cmd/link/internal/ld/sym.go:/0xf8
 	 * and to src/runtime/sys_linux_386.s:/0xf8 or /GOOS_android.
-	 * TODO(hyangah): check 0xb0 works with API23+
+	 * TODO (hyangah): check 0xb0 works with API23+ id:955 gh:963
 	 *
 	 * As disgusting as on the darwin/386, darwin/amd64.
 	 */
@@ -57,7 +57,7 @@ inittls(void)
 		}
 		tofree[ntofree++] = k;
 	}
-	// TODO: output to stderr is not useful for apps.
+	// TODO: output to stderr is not useful for apps. id:1218 gh:1226
 	// Can we fall back to Android's log library?
 
 	/*

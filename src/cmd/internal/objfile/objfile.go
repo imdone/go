@@ -40,7 +40,7 @@ type Sym struct {
 	Addr   uint64  // virtual address of symbol
 	Size   int64   // size in bytes
 	Code   rune    // nm code (T for text, D for data, and so on)
-	Type   string  // XXX?
+	Type   string  // XXX ? id:472 gh:473
 	Relocs []Reloc // in increasing Addr order
 }
 

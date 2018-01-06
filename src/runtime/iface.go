@@ -258,7 +258,7 @@ func panicdottypeI(have *itab, want, iface *_type) {
 // want = the static type we're trying to convert to.
 func panicnildottype(want *_type) {
 	panic(&TypeAssertionError{"", "", want.string(), ""})
-	// TODO: Add the static type we're converting from as well.
+	// TODO: Add the static type we're converting from as well. id:1353 gh:1361
 	// It might generate a better error message.
 	// Just to match other nil conversion errors, we don't for now.
 }
@@ -278,7 +278,7 @@ func convT2E(t *_type, elem unsafe.Pointer) (e eface) {
 		msanread(elem, t.size)
 	}
 	x := mallocgc(t.size, t, true)
-	// TODO: We allocate a zeroed object only to overwrite it with actual data.
+	// TODO: We allocate a zeroed object only to overwrite it with actual data. id:969 gh:977
 	// Figure out how to avoid zeroing. Also below in convT2Eslice, convT2I, convT2Islice.
 	typedmemmove(t, x, elem)
 	e._type = t

@@ -185,7 +185,7 @@ var lookPathTests = []lookPathTest{
 		PATH:      `p1;p2`,
 		files:     []string{`p1\b`, `p2\a`},
 		searchFor: `a`,
-		fails:     true, // TODO(brainman): do not know why this fails
+		fails:     true, // TODO (brainman): do not know why this fails id:1190 gh:1198
 	},
 	// If the command name specifies a path, the shell searches
 	// the specified path for an executable file matching

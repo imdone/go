@@ -396,7 +396,7 @@ func TestQueryContextWait(t *testing.T) {
 	defer closeDB(t, db)
 	prepares0 := numPrepares(t, db)
 
-	// TODO(kardianos): convert this from using a timeout to using an explicit
+	// TODO (kardianos): convert this from using a timeout to using an explicit id:587 gh:588
 	// cancel when the query signals that is is "executing" the query.
 	ctx, cancel := context.WithTimeout(context.Background(), 300*time.Millisecond)
 	defer cancel()
@@ -412,7 +412,7 @@ func TestQueryContextWait(t *testing.T) {
 	// Verify closed rows connection after error condition.
 	waitForFree(t, db, 5*time.Second, 1)
 	if prepares := numPrepares(t, db) - prepares0; prepares != 1 {
-		// TODO(kardianos): if the context timeouts before the db.QueryContext
+		// TODO (kardianos): if the context timeouts before the db.QueryContext id:741 gh:742
 		// executes this check may fail. After adjusting how the context
 		// is canceled above revert this back to a Fatal error.
 		t.Logf("executed %d Prepare statements; want 1", prepares)
@@ -1667,7 +1667,7 @@ func nullTestRun(t *testing.T, spec nullTestSpec) {
 
 	_, err = db.Exec("INSERT|t|id=?,name=?,nullf=?", 999, nil, nil)
 	if err == nil {
-		// TODO: this test fails, but it's just because
+		// TODO: this test fails, but it's just because id:650 gh:651
 		// fakeConn implements the optional Execer interface,
 		// so arguably this is the correct behavior. But
 		// maybe I should flesh out the fakeConn.Exec

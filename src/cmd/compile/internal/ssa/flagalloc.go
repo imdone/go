@@ -60,7 +60,7 @@ func flagalloc(f *Func) {
 	}
 
 	// Add flag recomputations where they are needed.
-	// TODO: Remove original instructions if they are never used.
+	// TODO: Remove original instructions if they are never used. id:272 gh:273
 	var oldSched []*Value
 	for _, b := range f.Blocks {
 		oldSched = append(oldSched[:0], b.Values...)

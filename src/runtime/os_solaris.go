@@ -44,7 +44,7 @@ func sysvicall1(fn *libcFunc, a1 uintptr) uintptr {
 	var libcall libcall
 	libcall.fn = uintptr(unsafe.Pointer(fn))
 	libcall.n = 1
-	// TODO(rsc): Why is noescape necessary here and below?
+	// TODO (rsc): Why is noescape necessary here and below? id:1394 gh:1402
 	libcall.args = uintptr(noescape(unsafe.Pointer(&a1)))
 	asmcgocall(unsafe.Pointer(&asmsysvicall6), unsafe.Pointer(&libcall))
 	return libcall.r1

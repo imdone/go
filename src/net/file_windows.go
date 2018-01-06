@@ -10,16 +10,16 @@ import (
 )
 
 func fileConn(f *os.File) (Conn, error) {
-	// TODO: Implement this
+	// TODO: Implement this id:1131 gh:1139
 	return nil, syscall.EWINDOWS
 }
 
 func fileListener(f *os.File) (Listener, error) {
-	// TODO: Implement this
+	// TODO: Implement this id:841 gh:842
 	return nil, syscall.EWINDOWS
 }
 
 func filePacketConn(f *os.File) (PacketConn, error) {
-	// TODO: Implement this
+	// TODO: Implement this id:1231 gh:1239
 	return nil, syscall.EWINDOWS
 }

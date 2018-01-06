@@ -39,7 +39,7 @@ func walkDeclList(v Visitor, list []Decl) {
 	}
 }
 
-// TODO(gri): Investigate if providing a closure to Walk leads to
+// TODO (gri): Investigate if providing a closure to Walk leads to id:1134 gh:1142
 //            simpler use (and may help eliminate Inspect in turn).
 
 // Walk traverses an AST in depth-first order: It starts by calling

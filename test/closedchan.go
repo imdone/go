@@ -6,7 +6,7 @@
 
 // Test close(c), receive of closed channel.
 //
-// TODO(rsc): Doesn't check behavior of close(c) when there
+// TODO (rsc): Doesn't check behavior of close(c) when there id:1094 gh:1102
 // are blocked senders/receivers.
 
 package main

@@ -89,7 +89,7 @@ const (
 	_, nodeDiag      // already printed error about this
 	_, nodeColas     // OAS resulting from :=
 	_, nodeNonNil    // guaranteed to be non-nil
-	_, nodeNoescape  // func arguments do not escape; TODO(rsc): move Noescape to Func struct (see CL 7360)
+	_, nodeNoescape  // func arguments do not escape; TODO (rsc): move Noescape to Func struct (see CL 7360) id:211 gh:212
 	_, nodeBounded   // bounds check unnecessary
 	_, nodeAddable   // addressable
 	_, nodeHasCall   // expression contains a function call
@@ -352,7 +352,7 @@ type Param struct {
 
 	// OTYPE
 	//
-	// TODO: Should Func pragmas also be stored on the Name?
+	// TODO: Should Func pragmas also be stored on the Name? id:131 gh:132
 	Pragma syntax.Pragma
 	Alias  bool // node is alias for Ntype (only used when type-checking ODCLTYPE)
 }

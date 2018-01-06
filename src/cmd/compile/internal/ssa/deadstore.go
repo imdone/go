@@ -12,14 +12,14 @@ import (
 // dse does dead-store elimination on the Function.
 // Dead stores are those which are unconditionally followed by
 // another store to the same location, with no intervening load.
-// This implementation only works within a basic block. TODO: use something more global.
+// This implementation only works within a basic block. TODO: use something more global. id:511 gh:512
 func dse(f *Func) {
 	var stores []*Value
 	loadUse := f.newSparseSet(f.NumValues())
 	defer f.retSparseSet(loadUse)
 	storeUse := f.newSparseSet(f.NumValues())
 	defer f.retSparseSet(storeUse)
-	shadowed := newSparseMap(f.NumValues()) // TODO: cache
+	shadowed := newSparseMap(f.NumValues()) // TODO: cache id:268 gh:269
 	for _, b := range f.Blocks {
 		// Find all the stores in this block. Categorize their uses:
 		//  loadUse contains stores which are used by a subsequent load.

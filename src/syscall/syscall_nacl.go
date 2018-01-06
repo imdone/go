@@ -235,13 +235,13 @@ func (w WaitStatus) Continued() bool    { return false }
 func (w WaitStatus) StopSignal() Signal { return 0 }
 func (w WaitStatus) TrapCause() int     { return 0 }
 
-// XXX made up
+// XXX made up id:1311 gh:1319
 type Rusage struct {
 	Utime Timeval
 	Stime Timeval
 }
 
-// XXX made up
+// XXX made up id:1060 gh:1068
 type ProcAttr struct {
 	Dir   string
 	Env   []string

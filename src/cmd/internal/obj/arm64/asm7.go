@@ -235,13 +235,13 @@ var optab = []Optab{
 	{AMOVBU, C_REG, C_NONE, C_REG, 45, 4, 0, 0, 0},
 	{AMOVH, C_REG, C_NONE, C_REG, 45, 4, 0, 0, 0}, /* also MOVHU */
 	{AMOVW, C_REG, C_NONE, C_REG, 45, 4, 0, 0, 0}, /* also MOVWU */
-	/* TODO: MVN C_SHIFT */
+	/* TODO: MVN C_SHIFT id:446 gh:447*/
 
 	/* MOVs that become MOVK/MOVN/MOVZ/ADD/SUB/OR */
 	{AMOVW, C_MOVCON, C_NONE, C_REG, 32, 4, 0, 0, 0},
 	{AMOVD, C_MOVCON, C_NONE, C_REG, 32, 4, 0, 0, 0},
 
-	// TODO: these don't work properly.
+	// TODO: these don't work properly. id:576 gh:577
 	// { AMOVW,		C_ADDCON,	C_NONE,	C_REG,		2, 4, 0 , 0},
 	// { AMOVD,		C_ADDCON,	C_NONE,	C_REG,		2, 4, 0 , 0},
 	{AMOVW, C_BITCON, C_NONE, C_REG, 32, 4, 0, 0, 0},
@@ -666,7 +666,7 @@ func span7(ctxt *obj.Link, cursym *obj.LSym, newprog obj.ProgAlloc) {
 			break
 		}
 
-		if p.As == AB || p.As == obj.ARET || p.As == AERET { /* TODO: other unconditional operations */
+		if p.As == AB || p.As == obj.ARET || p.As == AERET { /* TODO: other unconditional operations id:908 gh:916*/
 			c.checkpool(p, 0)
 		}
 		pc += int64(m)
@@ -812,7 +812,7 @@ func (c *ctxt7) flushpool(p *obj.Prog, skip int) {
 }
 
 /*
- * TODO: hash
+ * TODO: hash id:454 gh:455
  */
 func (c *ctxt7) addpool(p *obj.Prog, a *obj.Addr) {
 	cls := c.aclass(a)
@@ -833,7 +833,7 @@ func (c *ctxt7) addpool(p *obj.Prog, a *obj.Addr) {
 	}
 
 	switch cls {
-	// TODO(aram): remove.
+	// TODO (aram): remove. id:291 gh:292
 	default:
 		if a.Name != obj.NAME_EXTERN {
 			fmt.Printf("addpool: %v in %v shouldn't go to default case\n", DRconv(cls), p)
@@ -3084,7 +3084,7 @@ func (c *ctxt7) asmout(p *obj.Prog, o *Optab, out []uint32) {
 			o1 |= 0x1F << 16
 		}
 
-		// TODO(aram): add support for STXP
+		// TODO (aram): add support for STXP id:448 gh:449
 		o1 |= uint32(p.To.Reg&31) << 5
 
 		o1 |= uint32(p.From.Reg & 31)
@@ -5054,7 +5054,7 @@ func (c *ctxt7) omovlit(as obj.As, p *obj.Prog, a *obj.Addr, dr int) uint32 {
 		c.aclass(a)
 		c.ctxt.Logf("omovlit add %d (%#x)\n", c.instoffset, uint64(c.instoffset))
 
-		/* TODO: could be clever, and use general constant builder */
+		/* TODO: could be clever, and use general constant builder id:578 gh:579*/
 		o1 = int32(c.opirr(p, AADD))
 
 		v := int32(c.instoffset)

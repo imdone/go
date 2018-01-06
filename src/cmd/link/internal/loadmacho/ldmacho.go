@@ -49,7 +49,7 @@ const (
 	N_STAB = 0xe0
 )
 
-// TODO(crawshaw): de-duplicate these symbols with cmd/internal/ld
+// TODO (crawshaw): de-duplicate these symbols with cmd/internal/ld id:398 gh:399
 const (
 	MACHO_X86_64_RELOC_UNSIGNED = 0
 	MACHO_X86_64_RELOC_SIGNED   = 1
@@ -324,7 +324,7 @@ func macholoadrel(m *ldMachoObj, sect *ldMachoSect) int {
 		p := buf[i*8:]
 		r.addr = m.e.Uint32(p)
 
-		// TODO(rsc): Wrong interpretation for big-endian bitfields?
+		// TODO (rsc): Wrong interpretation for big-endian bitfields? id:484 gh:486
 		if r.addr&0x80000000 != 0 {
 			// scatterbrained relocation
 			r.scattered = 1
@@ -602,7 +602,7 @@ func Load(arch *sys.Arch, syms *sym.Symbols, f *bio.Reader, pkg string, length i
 			continue
 		}
 
-		// TODO: check sym->type against outer->type.
+		// TODO: check sym->type against outer->type. id:618 gh:619
 		name := machsym.name
 
 		if name[0] == '_' && name[1] != '\x00' {
@@ -732,7 +732,7 @@ func Load(arch *sys.Arch, syms *sym.Symbols, f *bio.Reader, pkg string, length i
 				rp.Siz = rel.length
 				rp.Off = int32(rel.addr)
 
-				// NOTE(rsc): I haven't worked out why (really when)
+				// NOTE (rsc): I haven't worked out why (really when) id:967 gh:975
 				// we should ignore the addend on a
 				// scattered relocation, but it seems that the
 				// common case is we ignore it.

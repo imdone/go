@@ -381,7 +381,7 @@ func (f *File) newCounter(start, end token.Pos, numStmt int) string {
 //
 // counters will be added before S1 and before S3. The block containing S2
 // will be visited in a separate call.
-// TODO: Nested simple blocks get unnecessary (but correct) counters
+// TODO: Nested simple blocks get unnecessary (but correct) counters id:251 gh:252
 func (f *File) addCounters(pos, insertPos, blockEnd token.Pos, list []ast.Stmt, extendToClosingBrace bool) {
 	// Special case: make sure we add a counter to an empty block. Can't do this below
 	// or we will add a counter to an empty statement list after, say, a return statement.
@@ -448,7 +448,7 @@ func (f *File) addCounters(pos, insertPos, blockEnd token.Pos, list []ast.Stmt, 
 // in the node, if any. If a func literal appears, it usually marks the termination
 // of a basic block because the function body is itself a block.
 // Therefore we draw a line at the start of the body of the first function literal we find.
-// TODO: what if there's more than one? Probably doesn't matter much.
+// TODO: what if there's more than one? Probably doesn't matter much. id:411 gh:412
 func hasFuncLiteral(n ast.Node) (bool, token.Pos) {
 	if n == nil {
 		return false, 0
@@ -520,7 +520,7 @@ func (f *File) statementBoundary(s ast.Stmt) token.Pos {
 	// If not a control flow statement, it is a declaration, expression, call, etc. and it may have a function literal.
 	// If it does, that's tricky because we want to exclude the body of the function from this block.
 	// Draw a line at the start of the body of the first function literal we find.
-	// TODO: what if there's more than one? Probably doesn't matter much.
+	// TODO: what if there's more than one? Probably doesn't matter much. id:539 gh:540
 	found, pos := hasFuncLiteral(s)
 	if found {
 		return pos

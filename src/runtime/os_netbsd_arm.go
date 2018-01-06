@@ -6,7 +6,7 @@ package runtime
 
 import "unsafe"
 
-var hardDiv bool // TODO: set if a hardware divider is available
+var hardDiv bool // TODO: set if a hardware divider is available id:1390 gh:1398
 
 func lwp_mcontext_init(mc *mcontextt, stk unsafe.Pointer, mp *m, gp *g, fn uintptr) {
 	// Machine dependent mcontext initialisation for LWP.
@@ -18,7 +18,7 @@ func lwp_mcontext_init(mc *mcontextt, stk unsafe.Pointer, mp *m, gp *g, fn uintp
 }
 
 func checkgoarm() {
-	// TODO(minux): FP checks like in os_linux_arm.go.
+	// TODO (minux): FP checks like in os_linux_arm.go. id:1017 gh:1025
 
 	// osinit not called yet, so ncpu not set: must use getncpu directly.
 	if getncpu() > 1 && goarm < 7 {
@@ -32,6 +32,6 @@ func checkgoarm() {
 func cputicks() int64 {
 	// Currently cputicks() is used in blocking profiler and to seed runtime·fastrand().
 	// runtime·nanotime() is a poor approximation of CPU ticks that is enough for the profiler.
-	// TODO: need more entropy to better seed fastrand.
+	// TODO: need more entropy to better seed fastrand. id:1291 gh:1299
 	return nanotime()
 }

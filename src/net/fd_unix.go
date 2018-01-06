@@ -272,7 +272,7 @@ func dupCloseOnExec(fd int) (newfd int, err error) {
 			// expected device fd type. Treat it as
 			// EINVAL instead, so we fall back to the
 			// normal dup path.
-			// TODO: only do this on 10.6 if we can detect 10.6
+			// TODO: only do this on 10.6 if we can detect 10.6 id:1246 gh:1254
 			// cheaply.
 			e1 = syscall.EINVAL
 		}

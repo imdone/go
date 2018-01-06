@@ -564,7 +564,7 @@ func walkKey(t *testing.T, k registry.Key, kname string) {
 				t.Error(err)
 			}
 		case registry.FULL_RESOURCE_DESCRIPTOR, registry.RESOURCE_LIST, registry.RESOURCE_REQUIREMENTS_LIST:
-			// TODO: not implemented
+			// TODO: not implemented id:863 gh:871
 		default:
 			t.Fatalf("value type %d of %s of %s failed: %v", valtype, name, kname, err)
 		}

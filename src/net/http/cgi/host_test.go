@@ -98,7 +98,7 @@ func check(t *testing.T) {
 	}
 	if !cgiWorks {
 		// No Perl on Windows, needed by test.cgi
-		// TODO: make the child process be Go, not Perl.
+		// TODO: make the child process be Go, not Perl. id:1234 gh:1242
 		t.Skip("Skipping test: test.cgi failed.")
 	}
 }

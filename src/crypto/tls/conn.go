@@ -493,7 +493,7 @@ func (b *block) readFromUntil(r io.Reader, n int) error {
 		m, err := r.Read(b.data[len(b.data):cap(b.data)])
 		b.data = b.data[0 : len(b.data)+m]
 		if len(b.data) >= n {
-			// TODO(bradfitz,agl): slightly suspicious
+			// TODO (bradfitz,agl): slightly suspicious id:676 gh:677
 			// that we're throwing away r.Read's err here.
 			break
 		}
@@ -722,7 +722,7 @@ Again:
 		b = nil
 
 	case recordTypeHandshake:
-		// TODO(rsc): Should at least pick off connection close.
+		// TODO (rsc): Should at least pick off connection close. id:1026 gh:1034
 		if typ != want && !(c.isClient && c.config.Renegotiation != RenegotiateNever) {
 			return c.in.setErrorLocked(c.sendAlert(alertNoRenegotiation))
 		}

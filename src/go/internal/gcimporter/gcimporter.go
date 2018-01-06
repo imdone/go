@@ -150,7 +150,7 @@ func Import(packages map[string]*types.Package, path, srcDir string, lookup func
 		var data []byte
 		data, err = ioutil.ReadAll(buf)
 		if err == nil {
-			// TODO(gri): allow clients of go/importer to provide a FileSet.
+			// TODO (gri): allow clients of go/importer to provide a FileSet. id:1148 gh:1156
 			// Or, define a new standard go/types/gcexportdata package.
 			fset := token.NewFileSet()
 			_, pkg, err = BImportData(fset, packages, data, id)

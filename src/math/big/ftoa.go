@@ -41,7 +41,7 @@ import (
 // x.Prec() mantissa bits.
 // The prec value is ignored for the 'b' or 'p' format.
 func (x *Float) Text(format byte, prec int) string {
-	cap := 10 // TODO(gri) determine a good/better value here
+	cap := 10 // TODO (gri) determine a good/better value here id:839 gh:840
 	if prec > 0 {
 		cap += prec
 	}
@@ -171,7 +171,7 @@ func roundShortest(d *decimal, x *Float) {
 	// Compute the lower and upper bound in decimal form and find the
 	// shortest decimal number d such that lower <= d <= upper.
 
-	// TODO(gri) strconv/ftoa.do describes a shortcut in some cases.
+	// TODO (gri) strconv/ftoa.do describes a shortcut in some cases. id:1033 gh:1041
 	// See if we can use it (in adjusted form) here as well.
 
 	// 1) Compute normalized mantissa mant and exponent exp for x such

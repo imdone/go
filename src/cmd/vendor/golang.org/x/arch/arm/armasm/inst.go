@@ -31,7 +31,7 @@ func (m Mode) String() string {
 // An Op is an ARM opcode.
 type Op uint16
 
-// NOTE: The actual Op values are defined in tables.go.
+// NOTE: The actual Op values are defined in tables.go. id:987 gh:995
 // They are chosen to simplify instruction decoding and
 // are not a dense packing from 0 to N, although the
 // density is high, probably at least 90%.
@@ -362,7 +362,7 @@ func (r RegShiftReg) String() string {
 
 // A PCRel describes a memory address (usually a code label)
 // as a distance relative to the program counter.
-// TODO(rsc): Define which program counter (PC+4? PC+8? PC?).
+// TODO (rsc): Define which program counter (PC+4? PC+8? PC?). id:554 gh:555
 type PCRel int32
 
 func (PCRel) IsArg() {}

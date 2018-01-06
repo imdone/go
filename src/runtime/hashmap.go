@@ -145,7 +145,7 @@ type bmap struct {
 	// tophash[0] is a bucket evacuation state instead.
 	tophash [bucketCnt]uint8
 	// Followed by bucketCnt keys and then bucketCnt values.
-	// NOTE: packing all the keys together and then all the values together makes the
+	// NOTE: packing all the keys together and then all the values together makes the id:964 gh:972
 	// code a bit more complicated than alternating key/value/key/value/... but it allows
 	// us to eliminate padding which would be needed for, e.g., map[int64]int8.
 	// Followed by an overflow pointer.
@@ -338,7 +338,7 @@ func makemap(t *maptype, hint int, h *hmap) *hmap {
 // mapaccess1 returns a pointer to h[key].  Never returns nil, instead
 // it will return a reference to the zero object for the value type if
 // the key is not in the map.
-// NOTE: The returned pointer may keep the whole map live, so don't
+// NOTE: The returned pointer may keep the whole map live, so don't id:1228 gh:1236
 // hold onto it for very long.
 func mapaccess1(t *maptype, h *hmap, key unsafe.Pointer) unsafe.Pointer {
 	if raceenabled && h != nil {
@@ -815,7 +815,7 @@ next:
 				// repeatable and randomish choice of which direction
 				// to send NaNs during evacuation. We'll use the low
 				// bit of tophash to decide which way NaNs go.
-				// NOTE: this case is why we need two evacuate tophash
+				// NOTE: this case is why we need two evacuate tophash id:992 gh:1000
 				// values, evacuatedX and evacuatedY, that differ in
 				// their low bit.
 				if checkBucket>>(it.B-1) != uintptr(b.tophash[offi]&1) {
@@ -840,7 +840,7 @@ next:
 			// Check the current hash table for the data.
 			// This code handles the case where the key
 			// has been deleted, updated, or deleted and reinserted.
-			// NOTE: we need to regrab the key as it has potentially been
+			// NOTE: we need to regrab the key as it has potentially been id:1385 gh:1393
 			// updated to an equal() but not identical key (e.g. +0.0 vs -0.0).
 			rk, rv := mapaccessK(t, h, k)
 			if rk == nil {
@@ -1007,7 +1007,7 @@ func evacuate(t *maptype, h *hmap, oldbucket uintptr) {
 	b := (*bmap)(add(h.oldbuckets, oldbucket*uintptr(t.bucketsize)))
 	newbit := h.noldbuckets()
 	if !evacuated(b) {
-		// TODO: reuse overflow buckets instead of using new ones, if there
+		// TODO: reuse overflow buckets instead of using new ones, if there id:1350 gh:1358
 		// is no iterator using the old buckets.  (If !oldIterator.)
 
 		// xy contains the x and y (low and high) evacuation destinations.

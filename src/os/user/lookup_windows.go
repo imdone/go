@@ -128,7 +128,7 @@ func current() (*User, error) {
 // Gid and HomeDir fields in the User struct returned on windows.
 
 func newUserFromSid(usid *syscall.SID) (*User, error) {
-	// TODO(brainman): do not know where to get gid and dir fields
+	// TODO (brainman): do not know where to get gid and dir fields id:954 gh:962
 	gid := "unknown"
 	dir := "Unknown directory"
 	return newUser(usid, gid, dir)

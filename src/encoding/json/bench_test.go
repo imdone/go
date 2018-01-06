@@ -201,7 +201,7 @@ func BenchmarkCodeUnmarshalReuse(b *testing.B) {
 			}
 		}
 	})
-	// TODO(bcmills): Is there a missing b.SetBytes here?
+	// TODO (bcmills): Is there a missing b.SetBytes here? id:710 gh:711
 }
 
 func BenchmarkUnmarshalString(b *testing.B) {

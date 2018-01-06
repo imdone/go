@@ -74,7 +74,7 @@ func goargs() {
 }
 
 func goenvs_unix() {
-	// TODO(austin): ppc64 in dynamic linking mode doesn't
+	// TODO (austin): ppc64 in dynamic linking mode doesn't id:1042 gh:1050
 	// guarantee env[] will immediately follow argv. Might cause
 	// problems.
 	n := int32(0)
@@ -92,7 +92,7 @@ func environ() []string {
 	return envs
 }
 
-// TODO: These should be locals in testAtomic64, but we don't 8-byte
+// TODO: These should be locals in testAtomic64, but we don't 8-byte id:1431 gh:1439
 // align stack variables on 386.
 var test_z64, test_x64 uint64
 

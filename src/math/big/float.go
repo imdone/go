@@ -581,7 +581,7 @@ func fnorm(m nat) int64 {
 // If z's precision is 0, it is changed to the larger of x.BitLen()
 // or 64 (and rounding will have no effect).
 func (z *Float) SetInt(x *Int) *Float {
-	// TODO(gri) can be more efficient if z.prec > 0
+	// TODO (gri) can be more efficient if z.prec > 0 id:869 gh:875
 	// but small compared to the size of x, or if there
 	// are many trailing 0's.
 	bits := uint32(x.BitLen())
@@ -1214,7 +1214,7 @@ func (z *Float) uadd(x, y *Float) {
 
 	al := alias(z.mant, x.mant) || alias(z.mant, y.mant)
 
-	// TODO(gri) having a combined add-and-shift primitive
+	// TODO (gri) having a combined add-and-shift primitive id:814 gh:815
 	//           could make this code significantly faster
 	switch {
 	case ex < ey:
@@ -1308,7 +1308,7 @@ func (z *Float) umul(x, y *Float) {
 	// of z is less than the sum of the precisions of x
 	// and y which is often the case (e.g., if all floats
 	// have the same precision).
-	// TODO(gri) Optimize this for the common case.
+	// TODO (gri) Optimize this for the common case. id:1208 gh:1216
 
 	e := int64(x.exp) + int64(y.exp)
 	if x == y {
@@ -1339,7 +1339,7 @@ func (z *Float) uquo(x, y *Float) {
 		xadj = make(nat, len(x.mant)+d)
 		copy(xadj[d:], x.mant)
 	}
-	// TODO(gri): If we have too many digits (d < 0), we should be able
+	// TODO (gri): If we have too many digits (d < 0), we should be able id:1223 gh:1231
 	// to shorten x for faster division. But we must be extra careful
 	// with rounding in that case.
 

@@ -144,7 +144,7 @@ func Main(archInit func(*Arch)) {
 	localpkg.Prefix = "\"\""
 
 	// pseudo-package, for scoping
-	builtinpkg = types.NewPkg("go.builtin", "") // TODO(gri) name this package go.builtin?
+	builtinpkg = types.NewPkg("go.builtin", "") // TODO (gri) name this package go.builtin? id:94 gh:95
 	builtinpkg.Prefix = "go.builtin"            // not go%2ebuiltin
 
 	// pseudo-package, accessed by import "unsafe"
@@ -178,7 +178,7 @@ func Main(archInit func(*Arch)) {
 	flag.BoolVar(&compiling_std, "std", false, "compiling standard library")
 	objabi.Flagcount("%", "debug non-static initializers", &Debug['%'])
 	objabi.Flagcount("B", "disable bounds checking", &Debug['B'])
-	objabi.Flagcount("C", "disable printing of columns in error messages", &Debug['C']) // TODO(gri) remove eventually
+	objabi.Flagcount("C", "disable printing of columns in error messages", &Debug['C']) // TODO (gri) remove eventually id:124 gh:125
 	flag.StringVar(&localimport, "D", "", "set relative `path` for local imports")
 	objabi.Flagcount("E", "debug symbol export", &Debug['E'])
 	objabi.Flagfn1("I", "add `directory` to import search path", addidir)
@@ -1230,11 +1230,11 @@ func concurrentBackendAllowed() bool {
 	if Debug_vlog || debugstr != "" || debuglive > 0 {
 		return false
 	}
-	// TODO: Test and delete these conditions.
+	// TODO: Test and delete these conditions. id:324 gh:325
 	if objabi.Fieldtrack_enabled != 0 || objabi.Preemptibleloops_enabled != 0 || objabi.Clobberdead_enabled != 0 {
 		return false
 	}
-	// TODO: fix races and enable the following flags
+	// TODO: fix races and enable the following flags id:179 gh:180
 	if Ctxt.Flag_shared || Ctxt.Flag_dynlink || flag_race {
 		return false
 	}

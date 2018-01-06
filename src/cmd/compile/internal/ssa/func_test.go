@@ -32,8 +32,8 @@
 
 package ssa
 
-// TODO(matloob): Choose better names for Fun, Bloc, Goto, etc.
-// TODO(matloob): Write a parser for the Func disassembly. Maybe
+// TODO (matloob): Choose better names for Fun, Bloc, Goto, etc. id:191 gh:192
+// TODO (matloob): Write a parser for the Func disassembly. Maybe id:310 gh:311
 //                the parser can be used instead of Fun.
 
 import (
@@ -48,7 +48,7 @@ import (
 // and their values must correspond.
 // Requires that values and predecessors are in the same order, even
 // though Funcs could be equivalent when they are not.
-// TODO(matloob): Allow values and predecessors to be in different
+// TODO (matloob): Allow values and predecessors to be in different id:514 gh:515
 // orders if the CFG are otherwise equivalent.
 func Equiv(f, g *Func) bool {
 	valcor := make(map[*Value]*Value)
@@ -61,7 +61,7 @@ func Equiv(f, g *Func) bool {
 			valcor[fv] = gv
 			valcor[gv] = fv
 			// Ignore ids. Ops and Types are compared for equality.
-			// TODO(matloob): Make sure types are canonical and can
+			// TODO (matloob): Make sure types are canonical and can id:274 gh:275
 			// be compared for equality.
 			if fv.Op != gv.Op || fv.Type != gv.Type || fv.AuxInt != gv.AuxInt {
 				return false
@@ -69,7 +69,7 @@ func Equiv(f, g *Func) bool {
 			if !reflect.DeepEqual(fv.Aux, gv.Aux) {
 				// This makes the assumption that aux values can be compared
 				// using DeepEqual.
-				// TODO(matloob): Aux values may be *gc.Sym pointers in the near
+				// TODO (matloob): Aux values may be *gc.Sym pointers in the near id:224 gh:225
 				// future. Make sure they are canonical.
 				return false
 			}
@@ -147,7 +147,7 @@ var emptyPass pass = pass{
 func (c *Conf) Fun(entry string, blocs ...bloc) fun {
 	f := NewFunc(c.Frontend())
 	f.Config = c.config
-	// TODO: Either mark some SSA tests as t.Parallel,
+	// TODO: Either mark some SSA tests as t.Parallel, id:193 gh:194
 	// or set up a shared Cache and Reset it between tests.
 	// But not both.
 	f.Cache = new(Cache)
@@ -229,7 +229,7 @@ func Valu(name string, op Op, t *types.Type, auxint int64, aux interface{}, args
 }
 
 // Goto specifies that this is a BlockPlain and names the single successor.
-// TODO(matloob): choose a better name.
+// TODO (matloob): choose a better name. id:314 gh:316
 func Goto(succ string) ctrl {
 	return ctrl{BlockPlain, "", []string{succ}}
 }

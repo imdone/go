@@ -163,7 +163,7 @@ func removeChunkExtension(p []byte) ([]byte, error) {
 	if semi == -1 {
 		return p, nil
 	}
-	// TODO: care about exact syntax of chunk extensions? We're
+	// TODO: care about exact syntax of chunk extensions? We're id:895 gh:903
 	// ignoring and stripping them anyway. For now just never
 	// return an error.
 	return p[:semi], nil
@@ -189,7 +189,7 @@ type chunkedWriter struct {
 }
 
 // Write the contents of data as one chunk to Wire.
-// NOTE: Note that the corresponding chunk-writing procedure in Conn.Write has
+// NOTE: Note that the corresponding chunk-writing procedure in Conn.Write has id:1159 gh:1167
 // a bug since it does not check for success of io.WriteString
 func (cw *chunkedWriter) Write(data []byte) (n int, err error) {
 

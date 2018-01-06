@@ -474,7 +474,7 @@ func searchInts(a []int, x int) int {
 	// future, but at the moment this change improves the go/printer
 	// benchmark performance by ~30%. This has a direct impact on the
 	// speed of gofmt and thus seems worthwhile (2011-04-29).
-	// TODO(gri): Remove this when compilers have caught up.
+	// TODO (gri): Remove this when compilers have caught up. id:712 gh:713
 	i, j := 0, len(a)
 	for i < j {
 		h := i + (j-i)/2 // avoid overflow when computing h

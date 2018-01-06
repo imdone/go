@@ -9,7 +9,7 @@ package net
 import "syscall"
 
 func maxListenerBacklog() int {
-	// TODO: Implement this
-	// NOTE: Never return a number bigger than 1<<16 - 1. See issue 5030.
+	// TODO: Implement this id:1349 gh:1357
+	// NOTE: Never return a number bigger than 1<<16 - 1. See issue 5030. id:1312 gh:1320
 	return syscall.SOMAXCONN
 }

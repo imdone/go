@@ -764,7 +764,7 @@ func ssaGenValue(s *gc.SSAGenState, v *ssa.Value) {
 		p.To.Type = obj.TYPE_REG
 		p.To.Reg = v.Reg()
 	case ssa.OpClobber:
-		// TODO: implement for clobberdead experiment. Nop is ok for now.
+		// TODO: implement for clobberdead experiment. Nop is ok for now. id:503 gh:504
 	default:
 		v.Fatalf("genValue not implemented: %s", v.LongString())
 	}

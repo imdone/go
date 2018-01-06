@@ -24,7 +24,7 @@
 // The debug['m'] flag enables diagnostic output.  a single -m is useful for verifying
 // which calls get inlined or not, more is for debugging, and may go away at any point.
 //
-// TODO:
+// TODO: id:95 gh:96
 //   - inline functions with ... args
 
 package gc
@@ -189,7 +189,7 @@ func caninl(fn *Node) {
 	n.Func.Inldcl.Set(inldcl)
 	n.Func.InlCost = maxBudget - visitor.budget
 
-	// hack, TODO, check for better way to link method nodes back to the thing with the ->inl
+	// hack, TODO , check for better way to link method nodes back to the thing with the ->inl id:90 gh:91
 	// this is so export can find the body of a method
 	fn.Type.FuncType().Nname = asTypesNode(n)
 
@@ -212,7 +212,7 @@ func inlFlood(n *Node) {
 		Fatalf("inlFlood: unexpected %v, %v, %v", n, n.Op, n.Class())
 	}
 	if n.Func == nil {
-		// TODO(mdempsky): Should init have a Func too?
+		// TODO (mdempsky): Should init have a Func too? id:93 gh:94
 		if n.Sym.Name == "init" {
 			return
 		}
@@ -288,7 +288,7 @@ func (v *hairyVisitor) visit(n *Node) bool {
 				break
 			}
 		}
-		// TODO(mdempsky): Budget for OCLOSURE calls if we
+		// TODO (mdempsky): Budget for OCLOSURE calls if we id:316 gh:317
 		// ever allow that. See #15561 and #23093.
 		if Debug['l'] < 4 {
 			v.reason = "non-leaf function"
@@ -341,7 +341,7 @@ func (v *hairyVisitor) visit(n *Node) bool {
 	}
 
 	v.budget--
-	// TODO(mdempsky/josharian): Hacks to appease toolstash; remove.
+	// TODO (mdempsky/josharian): Hacks to appease toolstash; remove. id:174 gh:175
 	// See issue 17566 and CL 31674 for discussion.
 	switch n.Op {
 	case OSTRUCTKEY:
@@ -456,7 +456,7 @@ func inlnodelist(l Nodes) {
 // nbody and nelse and use one of the 4 inlconv/glue functions above
 // to turn the OINLCALL into an expression, a statement, or patch it
 // in to this nodes list or rlist as appropriate.
-// NOTE it makes no sense to pass the glue functions down the
+// NOTE it makes no sense to pass the glue functions down the id:97 gh:98
 // recursion to the level where the OINLCALL gets created because they
 // have to edit /this/ n, so you'd have to push that one down as well,
 // but then you may as well do it here.  so this is cleaner and
@@ -477,7 +477,7 @@ func inlnode(n *Node) *Node {
 		}
 		return n
 
-	// TODO do them here (or earlier),
+	// TODO do them here (or earlier), id:92 gh:93
 	// so escape analysis can avoid more heapmoves.
 	case OCLOSURE:
 		return n
@@ -649,7 +649,7 @@ func inlinableClosure(n *Node) *Node {
 // The second return value is the first such assignment encountered in the walk, if any. It is mostly
 // useful for -m output documenting the reason for inhibited optimizations.
 // NB: global variables are always considered to be re-assigned.
-// TODO: handle initial declaration not including an assignment and followed by a single assignment?
+// TODO: handle initial declaration not including an assignment and followed by a single assignment? id:96 gh:97
 func reassigned(n *Node) (bool, *Node) {
 	if n.Op != ONAME {
 		Fatalf("reassigned %v", n)

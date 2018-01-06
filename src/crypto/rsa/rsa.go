@@ -478,7 +478,7 @@ func (priv *PrivateKey) Precompute() {
 // decrypt performs an RSA decryption, resulting in a plaintext integer. If a
 // random source is given, RSA blinding is used.
 func decrypt(random io.Reader, priv *PrivateKey, c *big.Int) (m *big.Int, err error) {
-	// TODO(agl): can we get away with reusing blinds?
+	// TODO (agl): can we get away with reusing blinds? id:733 gh:734
 	if c.Cmp(priv.N) > 0 {
 		err = ErrDecryption
 		return

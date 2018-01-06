@@ -27,8 +27,8 @@ func GNUSyntax(inst Inst, pc uint64, symname SymLookup) string {
 		// DC E0, DC F0: libopcodes swaps FSUBR/FSUB and FDIVR/FDIV, at least
 		// if you believe the Intel manual is correct (the encoding is irregular as given;
 		// libopcodes uses the more regular expected encoding).
-		// TODO(rsc): Test to ensure Intel manuals are correct and report to libopcodes maintainers?
-		// NOTE: iant thinks this is deliberate, but we can't find the history.
+		// TODO (rsc): Test to ensure Intel manuals are correct and report to libopcodes maintainers? id:510 gh:511
+		// NOTE: iant thinks this is deliberate, but we can't find the history. id:662 gh:663
 		_, reg1 := inst.Args[0].(Reg)
 		_, reg2 := inst.Args[1].(Reg)
 		if reg1 && reg2 && (inst.Opcode>>24 == 0xDC || inst.Opcode>>24 == 0xDE) {

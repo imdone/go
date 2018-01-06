@@ -17,7 +17,7 @@
 // A few of the structure elements have string tags to aid the
 // generic pack/unpack routines.
 //
-// TODO(rsc):  There are enough names defined in this file that they're all
+// TODO (rsc):  There are enough names defined in this file that they're all id:1229 gh:1237
 // prefixed with dns. Perhaps put this in its own package later.
 
 package net

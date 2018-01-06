@@ -3073,7 +3073,7 @@ func (c *ctxtz) asmout(p *obj.Prog, asm *[]byte) {
 		}
 
 	case 23: // 64-bit logical op $constant reg
-		// TODO(mundaym): merge with case 24.
+		// TODO (mundaym): merge with case 24. id:582 gh:583
 		v := c.vregoff(&p.From)
 		switch p.As {
 		default:
@@ -3516,7 +3516,7 @@ func (c *ctxtz) asmout(p *obj.Prog, asm *[]byte) {
 		}
 		// set immediate operand M3 to 0 to use the default BFP rounding mode
 		// (usually round to nearest, ties to even)
-		// TODO(mundaym): should this be fixed at round to nearest, ties to even?
+		// TODO (mundaym): should this be fixed at round to nearest, ties to even? id:917 gh:925
 		// M4 is reserved and must be 0
 		zRRF(opcode, 0, 0, uint32(p.To.Reg), uint32(p.From.Reg), asm)
 
@@ -3772,7 +3772,7 @@ func (c *ctxtz) asmout(p *obj.Prog, asm *[]byte) {
 
 		// R_390_TLS_LOAD
 		zRXY(op_LGF, uint32(p.To.Reg), REGTMP, 0, 0, asm)
-		// TODO(mundaym): add R_390_TLS_LOAD relocation here
+		// TODO (mundaym): add R_390_TLS_LOAD relocation here id:460 gh:461
 		// not strictly required but might allow the linker to optimize
 
 	case 96: // clear macro

@@ -134,7 +134,7 @@ func InotifyInit() (fd int, err error) {
 	return InotifyInit1(0)
 }
 
-// TODO(dfc): constants that should be in zsysnum_linux_arm64.go, remove
+// TODO (dfc): constants that should be in zsysnum_linux_arm64.go, remove id:1074 gh:1082
 // these when the deprecated syscalls that the syscall package relies on
 // are removed.
 const (

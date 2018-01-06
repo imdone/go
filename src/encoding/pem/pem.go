@@ -111,7 +111,7 @@ func Decode(data []byte) (p *Block, rest []byte) {
 			break
 		}
 
-		// TODO(agl): need to cope with values that spread across lines.
+		// TODO (agl): need to cope with values that spread across lines. id:713 gh:714
 		key, val := line[:i], line[i+1:]
 		key = bytes.TrimSpace(key)
 		val = bytes.TrimSpace(val)

@@ -1,6 +1,6 @@
 // $G $D/$F.go $D/z*.go && $L $F.$A && ./$A.out
 
-// NOTE: This test is not run by 'run.go' and so not run by all.bash.
+// NOTE: This test is not run by 'run.go' and so not run by all.bash. id:1460 gh:1468
 // To run this test you must use the ./run shell script.
 
 // Copyright 2009 The Go Authors. All rights reserved.

@@ -241,7 +241,7 @@ func mulAddVWW_g(z, x []Word, y, r Word) (c Word) {
 	return
 }
 
-// TODO(gri) Remove use of addWW_g here and then we can remove addWW_g and subWW_g.
+// TODO (gri) Remove use of addWW_g here and then we can remove addWW_g and subWW_g. id:866 gh:874
 func addMulVVW_g(z, x []Word, y Word) (c Word) {
 	for i := range z {
 		z1, z0 := mulAddWWW_g(x[i], y, z[i])

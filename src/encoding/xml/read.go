@@ -374,7 +374,7 @@ func (d *Decoder) unmarshal(val reflect.Value, start *StartElement) error {
 		return errors.New("unknown type " + v.Type().String())
 
 	case reflect.Interface:
-		// TODO: For now, simply ignore the field. In the near
+		// TODO: For now, simply ignore the field. In the near id:614 gh:615
 		//       future we may choose to unmarshal the start
 		//       element on it, if not nil.
 		return d.Skip()

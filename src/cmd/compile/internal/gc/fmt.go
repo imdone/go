@@ -60,7 +60,7 @@ func fmtFlag(s fmt.State, verb rune) FmtFlag {
 }
 
 // Format conversions:
-// TODO(gri) verify these; eliminate those not used anymore
+// TODO (gri) verify these; eliminate those not used anymore id:169 gh:170
 //
 //	%v Op		Node opcodes
 //		Flags:  #: print Go syntax (automatic unless mode == FDbg)
@@ -105,7 +105,7 @@ const (
 // Example: given a *types.Sym: %+v %#v %-v print an identifier properly qualified for debug/export/internal mode
 
 // Useful format combinations:
-// TODO(gri): verify these
+// TODO (gri): verify these id:91 gh:92
 //
 // *Node, Nodes:
 //   %+v    multiline recursive debug dump of *Node/Nodes
@@ -980,7 +980,7 @@ func (n *Node) stmtfmt(s fmt.State, mode fmtMode) {
 		if n.Op == OFORUNTIL {
 			opname = "foruntil"
 		}
-		if mode == FErr { // TODO maybe only if FmtShort, same below
+		if mode == FErr { // TODO maybe only if FmtShort, same below id:88 gh:89
 			fmt.Fprintf(s, "%s loop", opname)
 			break
 		}
@@ -1524,7 +1524,7 @@ func (n *Node) exprfmt(s fmt.State, prec int, mode fmtMode) {
 
 	case OCMPSTR, OCMPIFACE:
 		n.Left.exprfmt(s, nprec, mode)
-		// TODO(marvin): Fix Node.EType type union.
+		// TODO (marvin): Fix Node.EType type union. id:89 gh:90
 		mode.Fprintf(s, " %#v ", Op(n.Etype))
 		n.Right.exprfmt(s, nprec+1, mode)
 
@@ -1552,7 +1552,7 @@ func (n *Node) nodefmt(s fmt.State, flag FmtFlag, mode fmtMode) {
 		return
 	}
 
-	// TODO inlining produces expressions with ninits. we can't print these yet.
+	// TODO inlining produces expressions with ninits. we can't print these yet. id:312 gh:313
 
 	if opprec[n.Op] < 0 {
 		n.stmtfmt(s, mode)
@@ -1857,7 +1857,7 @@ func Dump(s string, n *Node) {
 	fmt.Printf("%s [%p]%+v\n", s, n, n)
 }
 
-// TODO(gri) make variable local somehow
+// TODO (gri) make variable local somehow id:171 gh:172
 var dumpdepth int
 
 // indent prints indentation to s.

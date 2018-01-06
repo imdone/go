@@ -238,7 +238,7 @@ var comms = []test{
 }
 
 func TestPos(t *testing.T) {
-	// TODO(gri) Once we have a general tree walker, we can use that to find
+	// TODO (gri) Once we have a general tree walker, we can use that to find id:335 gh:336
 	// the first occurrence of the respective node and we don't need to hand-
 	// extract the node for each specific kind of construct.
 

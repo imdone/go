@@ -523,7 +523,7 @@ func (e *encoder) writeSOS(m image.Image) {
 	)
 	bounds := m.Bounds()
 	switch m := m.(type) {
-	// TODO(wathiede): switch on m.ColorModel() instead of type.
+	// TODO (wathiede): switch on m.ColorModel() instead of type. id:1188 gh:1196
 	case *image.Gray:
 		for y := bounds.Min.Y; y < bounds.Max.Y; y += 8 {
 			for x := bounds.Min.X; x < bounds.Max.X; x += 8 {
@@ -616,7 +616,7 @@ func Encode(w io.Writer, m image.Image, o *Options) error {
 	// Compute number of components based on input image type.
 	nComponent := 3
 	switch m.(type) {
-	// TODO(wathiede): switch on m.ColorModel() instead of type.
+	// TODO (wathiede): switch on m.ColorModel() instead of type. id:802 gh:803
 	case *image.Gray:
 		nComponent = 1
 	}

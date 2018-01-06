@@ -29,7 +29,7 @@ inittls(void)
 	 * We chose %fs:0x1d0 which seems to work in testing with Android
 	 * emulators (API22, API23) but it may break any time.
 	 *
-	 * TODO: fix this.
+	 * TODO: fix this. id:982 gh:990
 	 *
 	 * The linker and runtime hard-code this constant offset
 	 * from %fs where we expect to find g. Disgusting.
@@ -62,7 +62,7 @@ inittls(void)
 		}
 		tofree[ntofree++] = k;
 	}
-	// TODO: output to stderr is not useful for apps.
+	// TODO: output to stderr is not useful for apps. id:1379 gh:1387
 	// Can we fall back to Android's log library?
 
 	/*

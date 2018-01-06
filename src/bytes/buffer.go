@@ -20,7 +20,7 @@ type Buffer struct {
 	bootstrap [64]byte // memory to hold first slice; helps small buffers avoid allocation.
 	lastRead  readOp   // last read operation, so that Unread* can work correctly.
 
-	// FIXME: it would be advisable to align Buffer to cachelines to avoid false
+	// FIXME: it would be advisable to align Buffer to cachelines to avoid false id:20 gh:21
 	// sharing.
 }
 

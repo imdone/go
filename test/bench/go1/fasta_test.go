@@ -13,7 +13,7 @@ var fastabytes = makefasta()
 func makefasta() []byte {
 	var n int = 25e6
 	if runtime.GOARCH == "arm" || runtime.GOARCH == "mips" || runtime.GOARCH == "mips64" {
-		// TODO(dfc) remove this limitation after precise gc.
+		// TODO (dfc) remove this limitation after precise gc. id:1106 gh:1114
 		// A value of 25e6 consumes 465mb of heap on 32bit
 		// platforms, which is too much for some systems.
 		// A value of 25e5 produces a memory layout that

@@ -146,7 +146,7 @@ func newosproc(mp *m, stk unsafe.Pointer) {
 		tid2:       nil,
 	}
 
-	// TODO: Check for error.
+	// TODO: Check for error. id:1386 gh:1394
 	lwp_create(&params)
 	sigprocmask(_SIG_SETMASK, &oset, nil)
 }
@@ -195,7 +195,7 @@ func unminit() {
 
 func memlimit() uintptr {
 	/*
-		                TODO: Convert to Go when something actually uses the result.
+		                TODO: Convert to Go when something actually uses the result. id:1013 gh:1021
 
 				Rlimit rl;
 				extern byte runtime·text[], runtime·end[];

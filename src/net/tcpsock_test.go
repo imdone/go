@@ -624,7 +624,7 @@ func TestTCPStress(t *testing.T) {
 
 func TestTCPSelfConnect(t *testing.T) {
 	if runtime.GOOS == "windows" {
-		// TODO(brainman): do not know why it hangs.
+		// TODO (brainman): do not know why it hangs. id:1352 gh:1360
 		t.Skip("known-broken test on windows")
 	}
 

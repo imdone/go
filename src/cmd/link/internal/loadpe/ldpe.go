@@ -20,7 +20,7 @@ import (
 )
 
 const (
-	// TODO: the Microsoft doco says IMAGE_SYM_DTYPE_ARRAY is 3 (same with IMAGE_SYM_DTYPE_POINTER and IMAGE_SYM_DTYPE_FUNCTION)
+	// TODO: the Microsoft doco says IMAGE_SYM_DTYPE_ARRAY is 3 (same with IMAGE_SYM_DTYPE_POINTER and IMAGE_SYM_DTYPE_FUNCTION) id:542 gh:543
 	IMAGE_SYM_UNDEFINED              = 0
 	IMAGE_SYM_ABSOLUTE               = -1
 	IMAGE_SYM_DEBUG                  = -2
@@ -103,7 +103,7 @@ const (
 	IMAGE_REL_AMD64_SSPAN32          = 0x0010
 )
 
-// TODO(crawshaw): de-duplicate these symbols with cmd/internal/ld, ideally in debug/pe.
+// TODO (crawshaw): de-duplicate these symbols with cmd/internal/ld, ideally in debug/pe. id:402 gh:403
 const (
 	IMAGE_SCN_CNT_CODE               = 0x00000020
 	IMAGE_SCN_CNT_INITIALIZED_DATA   = 0x00000040
@@ -114,7 +114,7 @@ const (
 	IMAGE_SCN_MEM_WRITE              = 0x80000000
 )
 
-// TODO(brainman): maybe just add ReadAt method to bio.Reader instead of creating peBiobuf
+// TODO (brainman): maybe just add ReadAt method to bio.Reader instead of creating peBiobuf id:486 gh:487
 
 // peBiobuf makes bio.Reader look like io.ReaderAt.
 type peBiobuf bio.Reader
@@ -146,14 +146,14 @@ func Load(arch *sys.Arch, syms *sym.Symbols, input *bio.Reader, pkg string, leng
 	// to stop pe.NewFile looking before current position.
 	sr := io.NewSectionReader((*peBiobuf)(input), input.Offset(), 1<<63-1)
 
-	// TODO: replace pe.NewFile with pe.Load (grep for "add Load function" in debug/pe for details)
+	// TODO: replace pe.NewFile with pe.Load (grep for "add Load function" in debug/pe for details) id:620 gh:621
 	f, err := pe.NewFile(sr)
 	if err != nil {
 		return nil, nil, err
 	}
 	defer f.Close()
 
-	// TODO return error if found .cormeta
+	// TODO return error if found .cormeta id:970 gh:978
 
 	// create symbols for mapped sections
 	for _, sect := range f.Sections {

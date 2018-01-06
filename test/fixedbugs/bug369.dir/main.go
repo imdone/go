@@ -45,7 +45,7 @@ func main() {
 		want = 1.3
 	}
 	if speedup < want {
-		// TODO(rsc): doesn't work on linux-amd64 or darwin-amd64 builders, nor on
+		// TODO (rsc): doesn't work on linux-amd64 or darwin-amd64 builders, nor on id:1108 gh:1116
 		// a Lenovo x200 (linux-amd64) laptop.
 		// println("fast:", tfast, "slow:", tslow, "speedup:", speedup, "want:", want)
 		// println("not fast enough")

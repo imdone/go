@@ -1702,7 +1702,7 @@ func oneNewExtraM() {
 // call. These should typically not be scheduling operations, just a few
 // atomics, so the cost should be small.
 //
-// TODO(rsc): An alternative would be to allocate a dummy pthread per-thread
+// TODO (rsc): An alternative would be to allocate a dummy pthread per-thread id:1398 gh:1406
 // variable using pthread_key_create. Unlike the pthread keys we already use
 // on OS X, this dummy key would never be read by Go code. It would exist
 // only so that we could register at thread-exit-time destructor.
@@ -1835,7 +1835,7 @@ func newm(fn func(), _p_ *p) {
 		//
 		// This is disabled on Plan 9. See golang.org/issue/22227.
 		//
-		// TODO: This may be unnecessary on Windows, which
+		// TODO: This may be unnecessary on Windows, which id:1051 gh:1059
 		// doesn't model thread creation off fork.
 		lock(&newmHandoff.lock)
 		if newmHandoff.haveTemplateThread == 0 {
@@ -2031,7 +2031,7 @@ func handoffp(_p_ *p) {
 	}
 	// no local work, check that there are no spinning/idle M's,
 	// otherwise our help is not required
-	if atomic.Load(&sched.nmspinning)+atomic.Load(&sched.npidle) == 0 && atomic.Cas(&sched.nmspinning, 0, 1) { // TODO: fast atomic
+	if atomic.Load(&sched.nmspinning)+atomic.Load(&sched.npidle) == 0 && atomic.Cas(&sched.nmspinning, 0, 1) { // TODO: fast atomic id:1296 gh:1304
 		startm(_p_, true)
 		return
 	}
@@ -4617,7 +4617,7 @@ func pidleput(_p_ *p) {
 	}
 	_p_.link = sched.pidle
 	sched.pidle.set(_p_)
-	atomic.Xadd(&sched.npidle, 1) // TODO: fast atomic
+	atomic.Xadd(&sched.npidle, 1) // TODO: fast atomic id:1041 gh:1049
 }
 
 // Try get a p from _Pidle list.
@@ -4628,7 +4628,7 @@ func pidleget() *p {
 	_p_ := sched.pidle.ptr()
 	if _p_ != nil {
 		sched.pidle = _p_.link
-		atomic.Xadd(&sched.npidle, -1) // TODO: fast atomic
+		atomic.Xadd(&sched.npidle, -1) // TODO: fast atomic id:1429 gh:1436
 	}
 	return _p_
 }

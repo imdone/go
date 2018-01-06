@@ -176,7 +176,7 @@ const (
 	ElfNotePrXfpreg     = 0x46e62b7f
 )
 
-// TODO(crawshaw): de-duplicate with cmd/link/internal/ld/elf.go.
+// TODO (crawshaw): de-duplicate with cmd/link/internal/ld/elf.go. id:487 gh:488
 const (
 	ELF64SYMSIZE = 24
 	ELF32SYMSIZE = 16
@@ -460,7 +460,7 @@ func parseArmAttributes(e binary.ByteOrder, initEhdrFlags uint32, data []byte) (
 // emit by scanning the attributes in the ELF file being loaded. The
 // parameter initEhdrFlags contains the current header flags for the output
 // object, and the returnd ehdrFlags contains what this Load function computes.
-// TODO: find a better place for this logic.
+// TODO: find a better place for this logic. id:396 gh:397
 func Load(arch *sys.Arch, syms *sym.Symbols, f *bio.Reader, pkg string, length int64, pn string, initEhdrFlags uint32) (textp []*sym.Symbol, ehdrFlags uint32, err error) {
 	errorf := func(str string, args ...interface{}) ([]*sym.Symbol, uint32, error) {
 		return nil, 0, fmt.Errorf("loadelf: %s: %v", pn, fmt.Sprintf(str, args...))
@@ -688,7 +688,7 @@ func Load(arch *sys.Arch, syms *sym.Symbols, f *bio.Reader, pkg string, length i
 			}
 			ehdrFlags, err = parseArmAttributes(e, initEhdrFlags, sect.base[:sect.size])
 			if err != nil {
-				// TODO(dfc) should this return an error?
+				// TODO (dfc) should this return an error? id:481 gh:482
 				log.Printf("%s: %v", pn, err)
 			}
 		}
@@ -1040,7 +1040,7 @@ func readelfsym(arch *sys.Arch, syms *sym.Symbols, elfobj *ElfObj, i int, elfsym
 				// symbol hash table, but mark them as hidden.
 				// __i686.get_pc_thunk.bx is allowed to be duplicated, to
 				// workaround that we set dupok.
-				// TODO(minux): correctly handle __i686.get_pc_thunk.bx without
+				// TODO (minux): correctly handle __i686.get_pc_thunk.bx without id:615 gh:616
 				// set dupok generally. See http://codereview.appspot.com/5823055/
 				// comment #5 for details.
 				if s != nil && elfsym.other == 2 {
@@ -1089,7 +1089,7 @@ func readelfsym(arch *sys.Arch, syms *sym.Symbols, elfobj *ElfObj, i int, elfsym
 		}
 	}
 
-	// TODO(mwhudson): the test of VisibilityHidden here probably doesn't make
+	// TODO (mwhudson): the test of VisibilityHidden here probably doesn't make id:965 gh:973
 	// sense and should be removed when someone has thought about it properly.
 	if s != nil && s.Type == 0 && !s.Attr.VisibilityHidden() && elfsym.type_ != ElfSymTypeSection {
 		s.Type = sym.SXREF
@@ -1100,7 +1100,7 @@ func readelfsym(arch *sys.Arch, syms *sym.Symbols, elfobj *ElfObj, i int, elfsym
 }
 
 func relSize(arch *sys.Arch, pn string, elftype uint32) (uint8, error) {
-	// TODO(mdempsky): Replace this with a struct-valued switch statement
+	// TODO (mdempsky): Replace this with a struct-valued switch statement id:540 gh:541
 	// once golang.org/issue/15164 is fixed or found to not impair cmd/link
 	// performance.
 

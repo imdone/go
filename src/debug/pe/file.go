@@ -60,7 +60,7 @@ var (
 	sizeofOptionalHeader64 = uint16(binary.Size(OptionalHeader64{}))
 )
 
-// TODO(brainman): add Load function, as a replacement for NewFile, that does not call removeAuxSymbols (for performance)
+// TODO (brainman): add Load function, as a replacement for NewFile, that does not call removeAuxSymbols (for performance) id:745 gh:746
 
 // NewFile creates a new File for accessing a PE binary in an underlying reader.
 func NewFile(r io.ReaderAt) (*File, error) {
@@ -242,7 +242,7 @@ func (f *File) DWARF() (*dwarf.Data, error) {
 	return dwarf.New(abbrev, nil, nil, info, line, nil, ranges, str)
 }
 
-// TODO(brainman): document ImportDirectory once we decide what to do with it.
+// TODO (brainman): document ImportDirectory once we decide what to do with it. id:653 gh:654
 
 type ImportDirectory struct {
 	OriginalFirstThunk uint32
@@ -281,7 +281,7 @@ func (f *File) ImportedSymbols() ([]string, error) {
 		}
 		ida = append(ida, dt)
 	}
-	// TODO(brainman): this needs to be rewritten
+	// TODO (brainman): this needs to be rewritten id:688 gh:689
 	//  ds.Data() return contets of .idata section. Why store in variable called "names"?
 	//  Why we are retrieving it second time? We already have it in "d", and it is not modified anywhere.
 	//  getString does not extracts a string from symbol string table (as getString doco says).
@@ -302,7 +302,7 @@ func (f *File) ImportedSymbols() ([]string, error) {
 					break
 				}
 				if va&0x8000000000000000 > 0 { // is Ordinal
-					// TODO add dynimport ordinal support.
+					// TODO add dynimport ordinal support. id:1113 gh:1121
 				} else {
 					fn, _ := getString(names, int(uint32(va)-ds.VirtualAddress+2))
 					all = append(all, fn+":"+dt.dll)
@@ -314,7 +314,7 @@ func (f *File) ImportedSymbols() ([]string, error) {
 					break
 				}
 				if va&0x80000000 > 0 { // is Ordinal
-					// TODO add dynimport ordinal support.
+					// TODO add dynimport ordinal support. id:592 gh:593
 					//ord := va&0x0000FFFF
 				} else {
 					fn, _ := getString(names, int(va-ds.VirtualAddress+2))
@@ -331,7 +331,7 @@ func (f *File) ImportedSymbols() ([]string, error) {
 // referred to by the binary f that are expected to be
 // linked with the binary at dynamic link time.
 func (f *File) ImportedLibraries() ([]string, error) {
-	// TODO
+	// TODO id:747 gh:748
 	// cgo -dynimport don't use this for windows PE, so just return.
 	return nil, nil
 }

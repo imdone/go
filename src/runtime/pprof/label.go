@@ -39,7 +39,7 @@ type labelMap map[string]string
 func WithLabels(ctx context.Context, labels LabelSet) context.Context {
 	childLabels := make(labelMap)
 	parentLabels := labelValue(ctx)
-	// TODO(matloob): replace the map implementation with something
+	// TODO (matloob): replace the map implementation with something id:1425 gh:1433
 	// more efficient so creating a child context WithLabels doesn't need
 	// to clone the map.
 	for k, v := range parentLabels {

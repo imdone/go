@@ -91,20 +91,20 @@ func allowedMismatchXed(text string, size int, inst *Inst, dec ExtInst) bool {
 	}
 
 	// 0F C7 30: xed says vmptrld qword ptr [eax]; we say rdrand eax.
-	// TODO(rsc): Fix, since we are probably wrong, but we don't have vmptrld in the manual.
+	// TODO (rsc): Fix, since we are probably wrong, but we don't have vmptrld in the manual. id:664 gh:665
 	if contains(text, "rdrand") && contains(dec.text, "vmptrld", "vmxon", "vmclear") {
 		return true
 	}
 
 	// F3 0F AE 00: we say 'rdfsbase dword ptr [eax]' but RDFSBASE needs a register.
 	// Also, this is a 64-bit only instruction.
-	// TODO(rsc): Fix to reject this encoding.
+	// TODO (rsc): Fix to reject this encoding. id:1007 gh:1015
 	if contains(text, "rdfsbase", "rdgsbase", "wrfsbase", "wrgsbase") && contains(dec.text, "ERROR") {
 		return true
 	}
 
 	// 0F 01 F8: we say swapgs but that's only valid in 64-bit mode.
-	// TODO(rsc): Fix.
+	// TODO (rsc): Fix. id:568 gh:569
 	if contains(text, "swapgs") {
 		return true
 	}
@@ -131,7 +131,7 @@ func allowedMismatchXed(text string, size int, inst *Inst, dec ExtInst) bool {
 	// (This encoding ignores the mod bits.) The decoder sees the non-register
 	// mod and reads farther ahead to decode the memory reference that
 	// isn't really there, causing the size to be too large.
-	// TODO(rsc): Fix.
+	// TODO (rsc): Fix. id:723 gh:724
 	if text == dec.text && size > dec.nenc && contains(text, " cr", " dr", " tr") {
 		return true
 	}

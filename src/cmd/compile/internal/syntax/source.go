@@ -106,7 +106,7 @@ redo:
 	// (invariant: s.buf[s.w] == utf8.RuneSelf)
 	if b := s.buf[s.r]; b < utf8.RuneSelf {
 		s.r++
-		// TODO(gri) Optimization: Instead of adjusting s.col for each character,
+		// TODO (gri) Optimization: Instead of adjusting s.col for each character, id:351 gh:352
 		// remember the line offset instead and then compute the offset as needed
 		// (which is less often).
 		s.col++

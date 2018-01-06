@@ -287,7 +287,7 @@ func nsec() int64 {
 	var scratch int64
 
 	r0, _, _ := Syscall(SYS_NSEC, uintptr(unsafe.Pointer(&scratch)), 0, 0)
-	// TODO(aram): remove hack after I fix _nsec in the pc64 kernel.
+	// TODO (aram): remove hack after I fix _nsec in the pc64 kernel. id:1076 gh:1083
 	if r0 == 0 {
 		return scratch
 	}

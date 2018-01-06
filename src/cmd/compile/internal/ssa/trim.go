@@ -15,7 +15,7 @@ func trim(f *Func) {
 			continue
 		}
 
-		// Splice b out of the graph. NOTE: `mergePhi` depends on the
+		// Splice b out of the graph. NOTE: `mergePhi` depends on the id:234 gh:235
 		// order, in which the predecessors edges are merged here.
 		p, i := b.Preds[0].b, b.Preds[0].i
 		s, j := b.Succs[0].b, b.Succs[0].i

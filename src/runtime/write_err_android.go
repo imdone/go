@@ -28,7 +28,7 @@ const (
 	unknown loggerType = iota
 	legacy
 	logd
-	// TODO(hakim): logging for emulator?
+	// TODO (hakim): logging for emulator? id:1441 gh:1449
 )
 
 var logger loggerType
@@ -122,7 +122,7 @@ func initLogd() {
 	if errno < 0 {
 		msg := []byte("runtime: cannot connect to /dev/socket/logdw\x00")
 		write(2, unsafe.Pointer(&msg[0]), int32(len(msg)))
-		// TODO(hakim): or should we just close fd and hope for better luck next time?
+		// TODO (hakim): or should we just close fd and hope for better luck next time? id:1412 gh:1420
 		exit(2)
 	}
 	writeFD = uintptr(fd)
@@ -148,7 +148,7 @@ func writeLogdHeader() int {
 	packUint32(hdr[3:7], uint32(sec))
 	packUint32(hdr[7:11], uint32(nsec))
 
-	// TODO(hakim):  hdr[1:2] = gettid?
+	// TODO (hakim):  hdr[1:2] = gettid? id:1065 gh:1073
 
 	return 11 + len(writeHeader)
 }

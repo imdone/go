@@ -178,7 +178,7 @@ func (t *Time) addSec(d int64) {
 		t.stripMono()
 	}
 
-	// TODO: Check for overflow.
+	// TODO: Check for overflow. id:1463 gh:1471
 	t.ext += d
 }
 
@@ -1190,7 +1190,7 @@ func (t *Time) UnmarshalBinary(data []byte) error {
 	return nil
 }
 
-// TODO(rsc): Remove GobEncoder, GobDecoder, MarshalJSON, UnmarshalJSON in Go 2.
+// TODO (rsc): Remove GobEncoder, GobDecoder, MarshalJSON, UnmarshalJSON in Go 2. id:1436 gh:1444
 // The same semantics will be provided by the generic MarshalBinary, MarshalText,
 // UnmarshalBinary, UnmarshalText.
 

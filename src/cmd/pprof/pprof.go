@@ -315,7 +315,7 @@ FindName:
 			for _, pcs := range ranges {
 				if pcs[0] <= addr && addr < pcs[1] {
 					var ok bool
-					// TODO: AT_linkage_name, AT_MIPS_linkage_name.
+					// TODO: AT_linkage_name, AT_MIPS_linkage_name. id:704 gh:705
 					name, ok = entry.Val(dwarf.AttrName).(string)
 					if ok {
 						break FindName
@@ -325,7 +325,7 @@ FindName:
 		}
 	}
 
-	// TODO: Report inlined functions.
+	// TODO: Report inlined functions. id:491 gh:492
 
 	frames := []driver.Frame{
 		{

@@ -193,7 +193,7 @@ func zeroPPC64x(w io.Writer) {
 }
 
 func copyPPC64x(w io.Writer) {
-	fmt.Fprintln(w, "// TODO: Implement runtime·duffcopy.")
+	fmt.Fprintln(w, "// TODO: Implement runtime·duffcopy.") id:1407 gh:1415
 }
 
 func tagsMIPS64x(w io.Writer) {
@@ -215,5 +215,5 @@ func zeroMIPS64x(w io.Writer) {
 }
 
 func copyMIPS64x(w io.Writer) {
-	fmt.Fprintln(w, "// TODO: Implement runtime·duffcopy.")
+	fmt.Fprintln(w, "// TODO: Implement runtime·duffcopy.") id:1378 gh:1386
 }

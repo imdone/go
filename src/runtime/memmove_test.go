@@ -473,6 +473,6 @@ func BenchmarkIssue18740(b *testing.B) {
 	}
 }
 
-// TODO: 2 byte and 8 byte benchmarks also.
+// TODO: 2 byte and 8 byte benchmarks also. id:1251 gh:1259
 
 var g [4096]byte

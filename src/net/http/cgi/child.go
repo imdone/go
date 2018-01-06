@@ -89,7 +89,7 @@ func RequestFromMap(params map[string]string) (*http.Request, error) {
 		r.Header.Add(strings.Replace(k[5:], "_", "-", -1), v)
 	}
 
-	// TODO: cookies.  parsing them isn't exported, though.
+	// TODO: cookies.  parsing them isn't exported, though. id:860 gh:868
 
 	uriStr := params["REQUEST_URI"]
 	if uriStr == "" {

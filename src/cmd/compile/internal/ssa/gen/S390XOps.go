@@ -499,7 +499,7 @@ func init() {
 		//   return (false, memory)
 		// }
 		// Note that these instructions also return the old value in arg1, but we ignore it.
-		// TODO: have these return flags instead of bool.  The current system generates:
+		// TODO: have these return flags instead of bool.  The current system generates: id:321 gh:322
 		//    CS ...
 		//    MOVD  $0, ret
 		//    BNE   2(PC)

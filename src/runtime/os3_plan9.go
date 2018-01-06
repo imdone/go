@@ -150,7 +150,7 @@ func setProcessCPUProfiler(hz int32) {
 }
 
 func setThreadCPUProfiler(hz int32) {
-	// TODO: Enable profiling interrupts.
+	// TODO: Enable profiling interrupts. id:1277 gh:1285
 	getg().m.profilehz = hz
 }
 

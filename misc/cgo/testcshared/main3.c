@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
     return 2;
   }
 
-  // TODO(hyangah): check that main.main can run.
+  // TODO (hyangah): check that main.main can run. id:10 gh:11
 
   printf("PASS\n");
   return 0;

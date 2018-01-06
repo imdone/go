@@ -154,7 +154,7 @@ func TestSpillMove2(t *testing.T) {
 	regalloc(f.f)
 	checkFunc(f.f)
 	// There should be a spill in loop1, and nowhere else.
-	// TODO: resurrect moving spills out of loops? We could put spills at the start of both exit1 and exit2.
+	// TODO: resurrect moving spills out of loops? We could put spills at the start of both exit1 and exit2. id:527 gh:528
 	if numSpills(f.blocks["loop1"]) != 1 {
 		t.Errorf("spill missing from loop1")
 	}

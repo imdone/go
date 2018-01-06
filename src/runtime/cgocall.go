@@ -308,7 +308,7 @@ func cgocallbackg1(ctxt uintptr) {
 	}
 
 	// Invoke callback.
-	// NOTE(rsc): passing nil for argtype means that the copying of the
+	// NOTE (rsc): passing nil for argtype means that the copying of the id:959 gh:967
 	// results back into cb.arg happens without any corresponding write barriers.
 	// For cgo, cb.arg points into a C stack frame and therefore doesn't
 	// hold any pointers that the GC can find anyway - the write barrier

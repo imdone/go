@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 // Package asm implements the parser and instruction generator for the assembler.
-// TODO: Split apart?
+// TODO: Split apart? id:44 gh:45
 package asm
 
 import (
@@ -435,7 +435,7 @@ func (p *Parser) atRegisterShift() bool {
 	if lex.IsRegisterShift(p.peek()) {
 		return true
 	}
-	// R(1)<<...   Ugly check. TODO: Rethink how we handle ARM register shifts to be
+	// R(1)<<...   Ugly check. TODO: Rethink how we handle ARM register shifts to be id:26 gh:27
 	// less special.
 	if p.peek() != '(' || len(p.input)-p.inputPos < 4 {
 		return false
@@ -743,7 +743,7 @@ func (p *Parser) registerIndirect(a *obj.Addr, prefix rune) {
 	}
 	a.Reg = r1
 	if r2 != 0 {
-		// TODO: Consistency in the encoding would be nice here.
+		// TODO: Consistency in the encoding would be nice here. id:25 gh:26
 		if p.arch.InFamily(sys.ARM, sys.ARM64) {
 			// Special form
 			// ARM: destination register pair (R1, R2).

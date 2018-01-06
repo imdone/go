@@ -12,7 +12,7 @@ import (
 	"unsafe"
 )
 
-// NOTE(rsc): Everything here could use cas if contention became an issue.
+// NOTE (rsc): Everything here could use cas if contention became an issue. id:998 gh:1006
 var proflock mutex
 
 // All memory allocations are local and do not escape outside of the profiler.
@@ -451,7 +451,7 @@ func mutexevent(cycles int64, skip int) {
 		cycles = 0
 	}
 	rate := int64(atomic.Load64(&mutexprofilerate))
-	// TODO(pjw): measure impact of always calling fastrand vs using something
+	// TODO (pjw): measure impact of always calling fastrand vs using something id:1269 gh:1277
 	// like malloc.go:nextSample()
 	if rate > 0 && int64(fastrand())%rate == 0 {
 		saveblockevent(cycles, skip+1, mutexProfile)

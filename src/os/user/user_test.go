@@ -44,7 +44,7 @@ func compare(t *testing.T, want, got *User) {
 	if want.Name != got.Name {
 		t.Errorf("got Name=%q; want %q", got.Name, want.Name)
 	}
-	// TODO(brainman): fix it once we know how.
+	// TODO (brainman): fix it once we know how. id:1359 gh:1367
 	if runtime.GOOS == "windows" {
 		t.Skip("skipping Gid and HomeDir comparisons")
 	}
@@ -67,7 +67,7 @@ func TestLookup(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Current: %v", err)
 	}
-	// TODO: Lookup() has a fast path that calls Current() and returns if the
+	// TODO: Lookup() has a fast path that calls Current() and returns if the id:1320 gh:1328
 	// usernames match, so this test does not exercise very much. It would be
 	// good to try and test finding a different user than the current user.
 	got, err := Lookup(want.Username)
@@ -110,7 +110,7 @@ func TestLookupGroup(t *testing.T) {
 
 	g1, err := LookupGroupId(user.Gid)
 	if err != nil {
-		// NOTE(rsc): Maybe the group isn't defined. That's fine.
+		// NOTE (rsc): Maybe the group isn't defined. That's fine. id:935 gh:943
 		// On my OS X laptop, rsc logs in with group 5000 even
 		// though there's no name for group 5000. Such is Unix.
 		t.Logf("LookupGroupId(%q): %v", user.Gid, err)

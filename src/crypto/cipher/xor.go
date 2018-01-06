@@ -59,7 +59,7 @@ func xorBytes(dst, a, b []byte) int {
 	if supportsUnaligned {
 		return fastXORBytes(dst, a, b)
 	} else {
-		// TODO(hanwen): if (dst, a, b) have common alignment
+		// TODO (hanwen): if (dst, a, b) have common alignment id:579 gh:580
 		// we could still try fastXORBytes. It is not clear
 		// how often this happens, and it's only worth it if
 		// the block encryption itself is hardware

@@ -19,7 +19,7 @@ type runtimeTimer struct {
 
 	when   int64
 	period int64
-	f      func(interface{}, uintptr) // NOTE: must not be closure
+	f      func(interface{}, uintptr) // NOTE: must not be closure id:1073 gh:1081
 	arg    interface{}
 	seq    uintptr
 }

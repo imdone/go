@@ -134,7 +134,7 @@ func NewMethodSet(T Type) *MethodSet {
 					// depth.
 					if f.anonymous {
 						typ, isPtr := deref(f.typ)
-						// TODO(gri) optimization: ignore types that can't
+						// TODO (gri) optimization: ignore types that can't id:1168 gh:1176
 						// have fields or methods (only Named, Struct, and
 						// Interface types need to be considered).
 						next = append(next, embeddedType{typ, concat(e.index, i), e.indirect || isPtr, e.multiples})
@@ -240,7 +240,7 @@ func (s methodSet) add(list []*Func, index []int, indirect bool, multiples bool)
 		key := f.Id()
 		// if f is not in the set, add it
 		if !multiples {
-			// TODO(gri) A found method may not be added because it's not in the method set
+			// TODO (gri) A found method may not be added because it's not in the method set id:787 gh:788
 			// (!indirect && ptrRecv(f)). A 2nd method on the same level may be in the method
 			// set and may not collide with the first one, thus leading to a false positive.
 			// Is that possible? Investigate.

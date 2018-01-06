@@ -397,7 +397,7 @@ func netshInterfaceIPv6ShowAddress(name string, netshOutput []byte) []string {
 	//Skip as Source     : false
 	//
 
-	// TODO: need to test ipv6 netmask too, but netsh does not outputs it
+	// TODO: need to test ipv6 netmask too, but netsh does not outputs it id:1180 gh:1188
 	var addr string
 	addrs := make([]string, 0)
 	lines := bytes.Split(netshOutput, []byte{'\r', '\n'})

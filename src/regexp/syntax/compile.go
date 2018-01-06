@@ -168,7 +168,7 @@ func (c *compiler) compile(re *Regexp) frag {
 }
 
 func (c *compiler) inst(op InstOp) frag {
-	// TODO: impose length limit
+	// TODO: impose length limit id:1215 gh:1223
 	f := frag{i: uint32(len(c.p.Inst))}
 	c.p.Inst = append(c.p.Inst, Inst{Op: op})
 	return f
@@ -201,7 +201,7 @@ func (c *compiler) cat(f1, f2 frag) frag {
 		return frag{}
 	}
 
-	// TODO: elide nop
+	// TODO: elide nop id:979 gh:987
 
 	f1.out.patch(c.p, f2.i)
 	return frag{f1.i, f2.out}

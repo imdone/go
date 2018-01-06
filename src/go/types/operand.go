@@ -194,7 +194,7 @@ func (x *operand) isNil() bool {
 	return x.mode == value && x.typ == Typ[UntypedNil]
 }
 
-// TODO(gri) The functions operand.assignableTo, checker.convertUntyped,
+// TODO (gri) The functions operand.assignableTo, checker.convertUntyped, id:816 gh:817
 //           checker.representable, and checker.assignment are
 //           overlapping in functionality. Need to simplify and clean up.
 
@@ -217,7 +217,7 @@ func (x *operand) assignableTo(conf *Config, T Type, reason *string) bool {
 	Tu := T.Underlying()
 
 	// x is an untyped value representable by a value of type T
-	// TODO(gri) This is borrowing from checker.convertUntyped and
+	// TODO (gri) This is borrowing from checker.convertUntyped and id:728 gh:729
 	//           checker.representable. Need to clean up.
 	if isUntyped(Vu) {
 		switch t := Tu.(type) {

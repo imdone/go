@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// TODO(gri) This file should probably become part of package types.
+// TODO (gri) This file should probably become part of package types. id:158 gh:159
 
 package gc
 
@@ -103,7 +103,7 @@ func lexinit() {
 	}
 
 	for _, s := range builtinFuncs {
-		// TODO(marvin): Fix Node.EType type union.
+		// TODO (marvin): Fix Node.EType type union. id:277 gh:278
 		s2 := builtinpkg.Lookup(s.name)
 		s2.Def = asTypesNode(newname(s2))
 		asNode(s2.Def).Etype = types.EType(s.op)
@@ -391,7 +391,7 @@ func lexinit1() {
 	// We create separate byte and rune types for better error messages
 	// rather than just creating type alias *types.Sym's for the uint8 and
 	// int32 types. Hence, (bytetype|runtype).Sym.isAlias() is false.
-	// TODO(gri) Should we get rid of this special case (at the cost
+	// TODO (gri) Should we get rid of this special case (at the cost id:499 gh:500
 	// of less informative error messages involving bytes and runes)?
 	// (Alternatively, we could introduce an OTALIAS node representing
 	// type aliases, albeit at the cost of having to deal with it everywhere).

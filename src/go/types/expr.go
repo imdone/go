@@ -479,7 +479,7 @@ func (check *Checker) convertUntyped(x *operand, target Type) {
 		return
 	}
 
-	// TODO(gri) Sloppy code - clean up. This function is central
+	// TODO (gri) Sloppy code - clean up. This function is central id:784 gh:785
 	//           to assignment and expression checking.
 
 	if isUntyped(target) {
@@ -969,7 +969,7 @@ func (check *Checker) rawExpr(x *operand, e ast.Expr, hint Type) exprKind {
 	kind := check.exprInternal(x, e, hint)
 
 	// convert x into a user-friendly set of values
-	// TODO(gri) this code can be simplified
+	// TODO (gri) this code can be simplified id:811 gh:812
 	var typ Type
 	var val constant.Value
 	switch x.mode {
@@ -1031,7 +1031,7 @@ func (check *Checker) exprInternal(x *operand, e ast.Expr, hint Type) exprKind {
 			// init expression/func declaration which contains
 			// them: use existing package-level declaration info.
 			//
-			// TODO(gri) We delay type-checking of regular (top-level)
+			// TODO (gri) We delay type-checking of regular (top-level) id:724 gh:725
 			//           function bodies until later. Why don't we do
 			//           it for closures of top-level expressions?
 			//           (We can't easily do it for local closures
@@ -1074,7 +1074,7 @@ func (check *Checker) exprInternal(x *operand, e ast.Expr, hint Type) exprKind {
 			base, _ = deref(typ.Underlying()) // *T implies &T{}
 
 		default:
-			// TODO(gri) provide better error messages depending on context
+			// TODO (gri) provide better error messages depending on context id:903 gh:911
 			check.error(e.Pos(), "missing type in composite literal")
 			goto Error
 		}

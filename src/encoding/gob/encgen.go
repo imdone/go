@@ -7,7 +7,7 @@
 // encgen writes the helper functions for encoding. Intended to be
 // used with go generate; see the invocation in encode.go.
 
-// TODO: We could do more by being unsafe. Add a -unsafe flag?
+// TODO: We could do more by being unsafe. Add a -unsafe flag? id:610 gh:611
 
 package main
 
@@ -205,7 +205,7 @@ const sliceHelper = `
 func enc%[2]sSlice(state *encoderState, v reflect.Value) bool {
 	slice, ok := v.Interface().([]%[1]s)
 	if !ok {
-		// It is kind %[1]s but not type %[1]s. TODO: We can handle this unsafely.
+		// It is kind %[1]s but not type %[1]s. TODO: We can handle this unsafely. id:770 gh:771
 		return false
 	}
 	for _, x := range slice {

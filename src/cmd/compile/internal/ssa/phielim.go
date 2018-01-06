@@ -12,7 +12,7 @@ package ssa
 //   v = phi(x,v,x,v)
 // We repeat this process to also catch situations like:
 //   v = phi(x, phi(x, x), phi(x, v))
-// TODO: Can we also simplify cases like:
+// TODO: Can we also simplify cases like: id:210 gh:211
 //   v = phi(v, w, x)
 //   w = phi(v, w, x)
 // and would that be useful?

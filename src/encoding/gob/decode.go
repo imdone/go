@@ -1116,7 +1116,7 @@ func (dec *Decoder) compileDec(remoteId typeId, ut *userTypeInfo) (engine *decEn
 		ovfl := overflow(wireField.Name)
 		// Find the field of the local type with the same name.
 		localField, present := srt.FieldByName(wireField.Name)
-		// TODO(r): anonymous names
+		// TODO (r): anonymous names id:663 gh:664
 		if !present || !isExported(wireField.Name) {
 			op := dec.decIgnoreOpFor(wireField.Id, make(map[typeId]*decOp))
 			engine.instr[fieldnum] = decInstr{*op, fieldnum, nil, ovfl}

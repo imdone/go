@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// TODO/NICETOHAVE:
+// TODO /NICETOHAVE: id:603 gh:604
 //   - eliminate DW_CLS_ if not used
 //   - package info in compilation units
 //   - assign global variables and types to their packages
@@ -1132,7 +1132,7 @@ func writelines(ctxt *Link, lib *sym.Library, textp []*sym.Symbol, ls *sym.Symbo
 	newattr(dwinfo, dwarf.DW_AT_stmt_list, dwarf.DW_CLS_PTR, ls.Size, ls)
 	// OS X linker requires compilation dir or absolute path in comp unit name to output debug info.
 	compDir := getCompilationDir()
-	// TODO: Make this be the actual compilation directory, not
+	// TODO: Make this be the actual compilation directory, not id:950 gh:958
 	// the linker directory. If we move CU construction into the
 	// compiler, this should happen naturally.
 	newattr(dwinfo, dwarf.DW_AT_comp_dir, dwarf.DW_CLS_STRING, int64(len(compDir)), compDir)
@@ -1432,7 +1432,7 @@ func writeframes(ctxt *Link, syms []*sym.Symbol) []*sym.Symbol {
 			}
 
 			if haslinkregister(ctxt) {
-				// TODO(bryanpkc): This is imprecise. In general, the instruction
+				// TODO (bryanpkc): This is imprecise. In general, the instruction id:480 gh:481
 				// that stores the return address to the stack frame is not the
 				// same one that allocates the frame.
 				if pcsp.value > 0 {

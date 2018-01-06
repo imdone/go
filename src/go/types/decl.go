@@ -146,7 +146,7 @@ func (check *Checker) varDecl(obj *Var, lhs []*Var, typ, init ast.Expr) {
 		// (see Checker.objDecl) and the assignment of init exprs,
 		// if any, would not be checked.
 		//
-		// TODO(gri) If we have no init expr, we should distribute
+		// TODO (gri) If we have no init expr, we should distribute id:900 gh:908
 		// a given type otherwise we need to re-evalate the type
 		// expr for each lhs variable, leading to duplicate work.
 	}
@@ -253,7 +253,7 @@ func (check *Checker) typeDecl(obj *TypeName, typ ast.Expr, def *Named, path []*
 	}
 
 	// check and add associated methods
-	// TODO(gri) It's easy to create pathological cases where the
+	// TODO (gri) It's easy to create pathological cases where the id:1164 gh:1172
 	// current approach is incorrect: In general we need to know
 	// and add all methods _before_ type-checking the type.
 	// See https://play.golang.org/p/WMpE0q2wK8

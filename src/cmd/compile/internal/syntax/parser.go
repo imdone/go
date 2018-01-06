@@ -66,7 +66,7 @@ func (p *parser) init(base *src.PosBase, r io.Reader, errh ErrorHandler, pragh P
 	p.indent = nil
 }
 
-const lineMax = 1<<24 - 1 // TODO(gri) this limit is defined for src.Pos - fix
+const lineMax = 1<<24 - 1 // TODO (gri) this limit is defined for src.Pos - fix id:239 gh:240
 
 func (p *parser) updateBase(line, col uint, text string) {
 	// Want to use LastIndexByte below but it's not defined in Go1.4 and bootstrap fails.
@@ -676,7 +676,7 @@ func (p *parser) unaryExpr() Expr {
 		return o
 	}
 
-	// TODO(mdempsky): We need parens here so we can report an
+	// TODO (mdempsky): We need parens here so we can report an id:391 gh:392
 	// error for "(x) := true". It should be possible to detect
 	// and reject that more efficiently though.
 	return p.pexpr(true)
@@ -1936,7 +1936,7 @@ func (p *parser) commClause() *CommClause {
 		//
 		// All these (and more) are recognized by simpleStmt and invalid
 		// syntax trees are flagged later, during type checking.
-		// TODO(gri) eventually may want to restrict valid syntax trees
+		// TODO (gri) eventually may want to restrict valid syntax trees id:532 gh:533
 		// here.
 
 	case _Default:

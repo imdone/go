@@ -17,7 +17,7 @@ import (
 	"cmd/internal/sys"
 )
 
-// TODO: configure the architecture
+// TODO: configure the architecture id:72 gh:73
 
 var testOut *bytes.Buffer // Gathers output when testing.
 

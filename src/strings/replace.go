@@ -430,7 +430,7 @@ func (r *byteReplacer) Replace(s string) string {
 }
 
 func (r *byteReplacer) WriteString(w io.Writer, s string) (n int, err error) {
-	// TODO(bradfitz): use io.WriteString with slices of s, avoiding allocation.
+	// TODO (bradfitz): use io.WriteString with slices of s, avoiding allocation. id:1414 gh:1422
 	bufsize := 32 << 10
 	if len(s) < bufsize {
 		bufsize = len(s)

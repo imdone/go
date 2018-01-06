@@ -752,7 +752,7 @@ func (db *DB) maxIdleConnsLocked() int {
 	n := db.maxIdle
 	switch {
 	case n == 0:
-		// TODO(bradfitz): ask driver, if supported, for its default preference
+		// TODO (bradfitz): ask driver, if supported, for its default preference id:739 gh:740
 		return defaultMaxIdleConns
 	case n < 0:
 		return 0
@@ -1294,7 +1294,7 @@ func (db *DB) Prepare(query string) (*Stmt, error) {
 }
 
 func (db *DB) prepare(ctx context.Context, query string, strategy connReuseStrategy) (*Stmt, error) {
-	// TODO: check if db.driver supports an optional
+	// TODO: check if db.driver supports an optional id:648 gh:649
 	// driver.Preparer interface and call that instead, if so,
 	// otherwise we make a prepared statement that's bound
 	// to a connection, and to execute this prepared statement
@@ -2950,13 +2950,13 @@ func (r *Row) Scan(dest ...interface{}) error {
 		return r.err
 	}
 
-	// TODO(bradfitz): for now we need to defensively clone all
+	// TODO (bradfitz): for now we need to defensively clone all id:682 gh:683
 	// []byte that the driver returned (not permitting
 	// *RawBytes in Rows.Scan), since we're about to close
 	// the Rows in our defer, when we return from this function.
 	// the contract with the driver.Next(...) interface is that it
 	// can return slices into read-only temporary memory that's
-	// only valid until the next Scan/Close. But the TODO is that
+	// only valid until the next Scan/Close. But the TODO is that id:1036 gh:1044
 	// for a lot of drivers, this copy will be unnecessary. We
 	// should provide an optional interface for drivers to
 	// implement to say, "don't worry, the []bytes that I return

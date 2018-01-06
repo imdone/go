@@ -145,7 +145,7 @@ func main() {
 			}
 			fmt.Fprintf(w, "}\n")
 		} else {
-			// TODO: clean up this duplication
+			// TODO: clean up this duplication id:149 gh:150
 			fmt.Fprintf(w, "var %s_data []itd%s = []itd%s{", s.name, s.sn, s.sn)
 			for _, i := range s.i {
 				for _, j := range s.i {

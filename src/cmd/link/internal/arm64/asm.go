@@ -141,7 +141,7 @@ func elfreloc1(ctxt *ld.Link, r *sym.Reloc, sectoff int64) bool {
 }
 
 func elfsetupplt(ctxt *ld.Link) {
-	// TODO(aram)
+	// TODO (aram) id:469 gh:470
 	return
 }
 
@@ -427,7 +427,7 @@ func asmb(ctxt *ld.Link) {
 	ld.Lcsize = 0
 	symo := uint32(0)
 	if !*ld.FlagS {
-		// TODO: rationalize
+		// TODO: rationalize id:601 gh:602
 		if ctxt.Debugvlog != 0 {
 			ctxt.Logf("%5.2f sym\n", ld.Cputime())
 		}

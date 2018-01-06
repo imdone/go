@@ -18,7 +18,7 @@
 // err is an operating system error describing the failure.
 // On most systems, that error has type syscall.Errno.
 //
-// NOTE: This package is locked down. Code outside the standard
+// NOTE: This package is locked down. Code outside the standard id:1307 gh:1315
 // Go repository should be migrated to use the corresponding
 // package in the golang.org/x/sys repository. That is also where updates
 // required by new systems or versions should be applied.

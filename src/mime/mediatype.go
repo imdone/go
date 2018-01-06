@@ -214,7 +214,7 @@ func decode2231Enc(v string) (string, bool) {
 	if len(sv) != 3 {
 		return "", false
 	}
-	// TODO: ignoring lang in sv[1] for now. If anybody needs it we'll
+	// TODO: ignoring lang in sv[1] for now. If anybody needs it we'll id:832 gh:833
 	// need to decide how to expose it in the API. But I'm not sure
 	// anybody uses it in practice.
 	charset := strings.ToLower(sv[0])
@@ -222,7 +222,7 @@ func decode2231Enc(v string) (string, bool) {
 		return "", false
 	}
 	if charset != "us-ascii" && charset != "utf-8" {
-		// TODO: unsupported encoding
+		// TODO: unsupported encoding id:1224 gh:1232
 		return "", false
 	}
 	encv, err := percentHexUnescape(sv[2])

@@ -565,7 +565,7 @@ func getargp(x int) uintptr {
 // Cannot split the stack because it needs to reliably
 // find the stack segment of its caller.
 //
-// TODO(rsc): Once we commit to CopyStackAlways,
+// TODO (rsc): Once we commit to CopyStackAlways, id:1294 gh:1302
 // this doesn't need to be nosplit.
 //go:nosplit
 func gorecover(argp uintptr) interface{} {

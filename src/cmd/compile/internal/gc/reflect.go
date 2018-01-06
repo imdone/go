@@ -493,7 +493,7 @@ func imethods(t *types.Type) []*Sig {
 			continue
 		}
 
-		// NOTE(rsc): Perhaps an oversight that
+		// NOTE (rsc): Perhaps an oversight that id:226 gh:227
 		// IfaceType.Method is not in the reflect data.
 		// Generate the method body, so that compiled
 		// code can refer to it.
@@ -1176,7 +1176,7 @@ func dtypesym(t *types.Type) *obj.LSym {
 		if tbase.Sym != nil && tbase.Sym.Pkg != localpkg {
 			return lsym
 		}
-		// TODO(mdempsky): Investigate whether this can happen.
+		// TODO (mdempsky): Investigate whether this can happen. id:350 gh:351
 		if isforw[tbase.Etype] {
 			return lsym
 		}

@@ -353,7 +353,7 @@ func (h *Handler) handleInternalRedirect(rw http.ResponseWriter, req *http.Reque
 		h.printf("cgi: error resolving local URI path %q: %v", path, err)
 		return
 	}
-	// TODO: RFC 3875 isn't clear if only GET is supported, but it
+	// TODO: RFC 3875 isn't clear if only GET is supported, but it id:1133 gh:1141
 	// suggests so: "Note that any message-body attached to the
 	// request (such as for a POST request) may not be available
 	// to the resource that is the target of the redirect."  We
@@ -388,7 +388,7 @@ func upperCaseAndUnderscore(r rune) rune {
 		// environment as a slice of "key=value" strings.
 		return '_'
 	}
-	// TODO: other transformations in spec or practice?
+	// TODO: other transformations in spec or practice? id:844 gh:845
 	return r
 }
 

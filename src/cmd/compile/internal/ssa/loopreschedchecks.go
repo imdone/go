@@ -42,7 +42,7 @@ func (r *rewrite) String() string {
 
 // insertLoopReschedChecks inserts rescheduling checks on loop backedges.
 func insertLoopReschedChecks(f *Func) {
-	// TODO: when split information is recorded in export data, insert checks only on backedges that can be reached on a split-call-free path.
+	// TODO: when split information is recorded in export data, insert checks only on backedges that can be reached on a split-call-free path. id:298 gh:299
 
 	// Loop reschedule checks compare the stack pointer with
 	// the per-g stack bound.  If the pointer appears invalid,
@@ -85,7 +85,7 @@ func insertLoopReschedChecks(f *Func) {
 
 	tofixBackedges := []edgeMem{}
 
-	for _, e := range backedges { // TODO: could filter here by calls in loops, if declared and inferred nosplit are recorded in export data.
+	for _, e := range backedges { // TODO: could filter here by calls in loops, if declared and inferred nosplit are recorded in export data. id:208 gh:209
 		tofixBackedges = append(tofixBackedges, edgeMem{e, nil})
 	}
 
@@ -351,7 +351,7 @@ func rewriteNewPhis(h, b *Block, f *Func, defsForUses []*Value, newphis map[*Blo
 	}
 
 	for c := sdom[b.ID].child; c != nil; c = sdom[c.ID].sibling {
-		rewriteNewPhis(h, c, f, defsForUses, newphis, dfPhiTargets, sdom) // TODO: convert to explicit stack from recursion.
+		rewriteNewPhis(h, c, f, defsForUses, newphis, dfPhiTargets, sdom) // TODO: convert to explicit stack from recursion. id:367 gh:368
 	}
 }
 
@@ -393,7 +393,7 @@ outer:
 		addDFphis(old, s, s, f, defForUses, newphis, sdom)  // the new definition may also create new phi functions.
 	}
 	for c := sdom[b.ID].child; c != nil; c = sdom[c.ID].sibling {
-		addDFphis(x, h, c, f, defForUses, newphis, sdom) // TODO: convert to explicit stack from recursion.
+		addDFphis(x, h, c, f, defForUses, newphis, sdom) // TODO: convert to explicit stack from recursion. id:522 gh:523
 	}
 }
 

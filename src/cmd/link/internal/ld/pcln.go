@@ -305,7 +305,7 @@ func (ctxt *Link) pclntab() {
 		off = int32(ftab.SetUint32(ctxt.Arch, int64(off), uint32(nameoff)))
 
 		// args int32
-		// TODO: Move into funcinfo.
+		// TODO: Move into funcinfo. id:388 gh:389
 		args := uint32(0)
 		if s.FuncInfo != nil {
 			args = uint32(s.FuncInfo.Args)
@@ -316,7 +316,7 @@ func (ctxt *Link) pclntab() {
 		// This has been removed (it was never set quite correctly anyway).
 		// Nothing should use it.
 		// Leave an obviously incorrect value.
-		// TODO: Remove entirely.
+		// TODO: Remove entirely. id:477 gh:478
 		off = int32(ftab.SetUint32(ctxt.Arch, int64(off), 0x1234567))
 
 		if pcln != &pclntabZpcln {
@@ -378,7 +378,7 @@ func (ctxt *Link) pclntab() {
 				if pcln.Funcdata[i] == nil {
 					ftab.SetUint(ctxt.Arch, int64(off)+int64(ctxt.Arch.PtrSize)*int64(i), uint64(pcln.Funcdataoff[i]))
 				} else {
-					// TODO: Dedup.
+					// TODO: Dedup. id:609 gh:610
 					funcdataBytes += pcln.Funcdata[i].Size
 
 					ftab.SetAddrPlus(ctxt.Arch, int64(off)+int64(ctxt.Arch.PtrSize)*int64(i), pcln.Funcdata[i], pcln.Funcdataoff[i])

@@ -205,7 +205,7 @@ func TestFiles(t *testing.T) {
 		t.Run(e.source, func(t *testing.T) {
 			t.Parallel()
 			check(t, source, golden, mode)
-			// TODO(gri) check that golden is idempotent
+			// TODO (gri) check that golden is idempotent id:1154 gh:1162
 			//check(t, golden, golden, e.mode)
 		})
 	}

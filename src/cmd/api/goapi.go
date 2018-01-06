@@ -412,7 +412,7 @@ func tagKey(dir string, context *build.Context, tags []string) string {
 	for _, tag := range context.BuildTags {
 		ctags[tag] = true
 	}
-	// TODO: ReleaseTags (need to load default)
+	// TODO: ReleaseTags (need to load default) id:41 gh:42
 	key := dir
 	for _, tag := range tags {
 		if ctags[tag] {
@@ -556,7 +556,7 @@ func (w *Walker) writeType(buf *bytes.Buffer, typ types.Type) {
 			s = "ideal-int"
 		case types.UntypedRune:
 			// "ideal-char" for compatibility with old tool
-			// TODO(gri) change to "ideal-rune"
+			// TODO (gri) change to "ideal-rune" id:22 gh:23
 			s = "ideal-char"
 		case types.UntypedFloat:
 			s = "ideal-float"

@@ -464,7 +464,7 @@ func TestReadTimeoutUnblocksRead(t *testing.T) {
 		go func() {
 			defer close(errc)
 			go func() {
-				// TODO: find a better way to wait
+				// TODO: find a better way to wait id:921 gh:929
 				// until we're blocked in the cs.Read
 				// call below. Sleep is lame.
 				time.Sleep(100 * time.Millisecond)

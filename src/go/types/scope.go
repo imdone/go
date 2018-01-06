@@ -15,7 +15,7 @@ import (
 	"strings"
 )
 
-// TODO(gri) Provide scopes with a name or other mechanism so that
+// TODO (gri) Provide scopes with a name or other mechanism so that id:790 gh:791
 //           objects can use that information for better printing.
 
 // A Scope maintains a set of objects and links to its containing

@@ -110,7 +110,7 @@ func Main(arch *sys.Arch, theArch Arch) {
 		}
 	}
 
-	// TODO(matloob): define these above and then check flag values here
+	// TODO (matloob): define these above and then check flag values here id:483 gh:484
 	if ctxt.Arch.Family == sys.AMD64 && objabi.GOOS == "plan9" {
 		flag.BoolVar(&Flag8, "8", false, "use 64-bit addresses in symbol table")
 	}

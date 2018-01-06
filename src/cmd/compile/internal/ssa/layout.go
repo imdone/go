@@ -24,7 +24,7 @@ func layout(f *Func) {
 		idToBlock[b.ID] = b
 		if b.Kind == BlockExit {
 			// exit blocks are always scheduled last
-			// TODO: also add blocks post-dominated by exit blocks
+			// TODO: also add blocks post-dominated by exit blocks id:288 gh:288
 			exit.add(b.ID)
 			continue
 		}
@@ -88,7 +88,7 @@ blockloop:
 		if bid != 0 {
 			continue
 		}
-		// TODO: improve this part
+		// TODO: improve this part id:292 gh:293
 		// No successor of the previously scheduled block works.
 		// Pick a zero-degree block if we can.
 		for zerodegree.size() > 0 {
@@ -107,7 +107,7 @@ blockloop:
 			}
 		}
 		// Pick any exit block.
-		// TODO: Order these to minimize jump distances?
+		// TODO: Order these to minimize jump distances? id:203 gh:204
 		for {
 			cid := exit.pop()
 			if !scheduled[cid] {

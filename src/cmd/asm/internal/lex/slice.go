@@ -58,7 +58,7 @@ func (s *Slice) Line() int {
 }
 
 func (s *Slice) Col() int {
-	// TODO: Col is only called when defining a macro and all it cares about is increasing
+	// TODO: Col is only called when defining a macro and all it cares about is increasing id:27 gh:28
 	// position to discover whether there is a blank before the parenthesis.
 	// We only get here if defining a macro inside a macro.
 	// This imperfect implementation means we cannot tell the difference between

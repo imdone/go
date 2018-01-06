@@ -35,7 +35,7 @@ type SymKind uint8
 
 // Defined SymKind values.
 //
-// TODO(rsc): Give idiomatic Go names.
+// TODO (rsc): Give idiomatic Go names. id:701 gh:702
 //go:generate stringer -type=SymKind
 const (
 	Sxxx SymKind = iota

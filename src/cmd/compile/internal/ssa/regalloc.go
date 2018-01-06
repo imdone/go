@@ -81,7 +81,7 @@
 // must be allocated to the same stack slot as the phi that uses them.
 // x is now a spilled value and a restore must appear before its first use.
 
-// TODO
+// TODO id:524 gh:525
 
 // Use an affinity graph to mark two values which should use the
 // same register. This affinity graph will be used to prefer certain
@@ -109,7 +109,7 @@
 // SSA form isn't needed after regalloc. We'll just leave the use
 // of x3 not dominated by the definition of x3, and the CX->BX copy
 // will have no use (so don't run deadcode after regalloc!).
-// TODO: maybe we should introduce these extra phis?
+// TODO: maybe we should introduce these extra phis? id:306 gh:307
 
 package ssa
 
@@ -387,9 +387,9 @@ func (s *regAllocState) allocReg(mask regMask, v *Value) register {
 
 	// Pick a value to spill. Spill the value with the
 	// farthest-in-the-future use.
-	// TODO: Prefer registers with already spilled Values?
-	// TODO: Modify preference using affinity graph.
-	// TODO: if a single value is in multiple registers, spill one of them
+	// TODO: Prefer registers with already spilled Values? id:309 gh:310
+	// TODO: Modify preference using affinity graph. id:215 gh:216
+	// TODO: if a single value is in multiple registers, spill one of them id:376 gh:377
 	// before spilling a value in just a single register.
 
 	// Find a register to spill. We spill the register containing the value
@@ -877,7 +877,7 @@ func (s *regAllocState) regalloc(f *Func) {
 
 			// Decide on registers for phi ops. Use the registers determined
 			// by the primary predecessor if we can.
-			// TODO: pick best of (already processed) predecessors?
+			// TODO: pick best of (already processed) predecessors? id:525 gh:526
 			// Majority vote? Deepest nesting level?
 			phiRegs = phiRegs[:0]
 			var phiUsed regMask
@@ -1027,7 +1027,7 @@ func (s *regAllocState) regalloc(f *Func) {
 		// we get the right behavior for a block which branches to itself.
 		for _, e := range b.Succs {
 			succ := e.b
-			// TODO: prioritize likely successor?
+			// TODO: prioritize likely successor? id:311 gh:312
 			for _, x := range s.startRegs[succ.ID] {
 				desired.add(x.v.ID, x.r)
 			}
@@ -1256,7 +1256,7 @@ func (s *regAllocState) regalloc(f *Func) {
 				if m == 0 {
 					// No free registers.  In this case we'll just clobber
 					// an input and future uses of that input must use a restore.
-					// TODO(khr): We should really do this like allocReg does it,
+					// TODO (khr): We should really do this like allocReg does it, id:313 gh:314
 					// spilling the value with the most distant next use.
 					goto ok
 				}
@@ -1444,7 +1444,7 @@ func (s *regAllocState) regalloc(f *Func) {
 				goto badloop
 			}
 
-			// TODO: sort by distance, pick the closest ones?
+			// TODO: sort by distance, pick the closest ones? id:220 gh:221
 			for _, live := range s.live[b.ID] {
 				if live.dist >= unlikelyDistance {
 					// Don't preload anything live after the loop.
@@ -1634,7 +1634,7 @@ func (s *regAllocState) placeSpills() {
 		// Walk down the dominator tree looking for a good place to
 		// put the spill of v.  At the start "best" is the best place
 		// we have found so far.
-		// TODO: find a way to make this O(1) without arbitrary cutoffs.
+		// TODO: find a way to make this O(1) without arbitrary cutoffs. id:378 gh:379
 		best := v.Block
 		bestArg := v
 		var bestDepth int16
@@ -2138,7 +2138,7 @@ func (e *edgeState) findRegFor(typ *types.Type) Location {
 	// 1) an unused register
 	// 2) a non-unique register not holding a final value
 	// 3) a non-unique register
-	// 4) TODO: a register holding a rematerializeable value
+	// 4) TODO: a register holding a rematerializeable value id:526 gh:527
 	x := m &^ e.usedRegs
 	if x != 0 {
 		return &e.s.registers[pickReg(x)]
@@ -2164,7 +2164,7 @@ func (e *edgeState) findRegFor(typ *types.Type) Location {
 					// The type of the slot is immaterial - it will not be live across
 					// any safepoint. Just use a type big enough to hold any register.
 					t := LocalSlot{N: e.s.f.fe.Auto(c.Pos, types.Int64), Type: types.Int64}
-					// TODO: reuse these slots. They'll need to be erased first.
+					// TODO: reuse these slots. They'll need to be erased first. id:315 gh:315
 					e.set(t, vid, x, false, c.Pos)
 					if e.s.f.pass.debug > regDebug {
 						fmt.Printf("  SPILL %s->%s %s\n", r, t, x.LongString())
@@ -2215,7 +2215,7 @@ type liveInfo struct {
 // to the next use of that value. The resulting map is stored in s.live.
 // computeLive also computes the desired register information at the end of each block.
 // This desired register information is stored in s.desired.
-// TODO: this could be quadratic if lots of variables are live across lots of
+// TODO: this could be quadratic if lots of variables are live across lots of id:317 gh:318
 // basic blocks. Figure out a way to make this function (or, more precisely, the user
 // of this function) require only linear size & time.
 func (s *regAllocState) computeLive() {
@@ -2233,7 +2233,7 @@ func (s *regAllocState) computeLive() {
 	// Instead of iterating over f.Blocks, iterate over their postordering.
 	// Liveness information flows backward, so starting at the end
 	// increases the probability that we will stabilize quickly.
-	// TODO: Do a better job yet. Here's one possibility:
+	// TODO: Do a better job yet. Here's one possibility: id:223 gh:224
 	// Calculate the dominator tree and locate all strongly connected components.
 	// If a value is live in one block of an SCC, it is live in all.
 	// Walk the dominator tree from end to beginning, just once, treating SCC
@@ -2288,7 +2288,7 @@ func (s *regAllocState) computeLive() {
 				v := b.Values[i]
 				prefs := desired.remove(v.ID)
 				if v.Op == OpPhi {
-					// TODO: if v is a phi, save desired register for phi inputs.
+					// TODO: if v is a phi, save desired register for phi inputs. id:380 gh:381
 					// For now, we just drop it and don't propagate
 					// desired registers back though phi nodes.
 					continue

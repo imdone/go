@@ -110,7 +110,7 @@ func (f *peFile) pcln() (textStart uint64, symtab, pclntab []byte, err error) {
 	}
 	if pclntab, err = loadPETable(f.pe, "runtime.pclntab", "runtime.epclntab"); err != nil {
 		// We didn't find the symbols, so look for the names used in 1.3 and earlier.
-		// TODO: Remove code looking for the old symbols when we no longer care about 1.3.
+		// TODO: Remove code looking for the old symbols when we no longer care about 1.3. id:372 gh:373
 		var err2 error
 		if pclntab, err2 = loadPETable(f.pe, "pclntab", "epclntab"); err2 != nil {
 			return 0, nil, nil, err

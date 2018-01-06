@@ -140,7 +140,7 @@ func (fd *FD) Read(p []byte) (int, error) {
 		// without trying (but after acquiring the readLock).
 		// Otherwise syscall.Read returns 0, nil which looks like
 		// io.EOF.
-		// TODO(bradfitz): make it wait for readability? (Issue 15735)
+		// TODO (bradfitz): make it wait for readability? (Issue 15735) id:858 gh:865
 		return 0, nil
 	}
 	if err := fd.pd.prepareRead(fd.isFile); err != nil {
@@ -226,7 +226,7 @@ func (fd *FD) ReadMsg(p []byte, oob []byte) (int, int, int, syscall.Sockaddr, er
 	for {
 		n, oobn, flags, sa, err := syscall.Recvmsg(fd.Sysfd, p, oob, 0)
 		if err != nil {
-			// TODO(dfc) should n and oobn be set to 0
+			// TODO (dfc) should n and oobn be set to 0 id:757 gh:758
 			if err == syscall.EAGAIN && fd.pd.pollable() {
 				if err = fd.pd.waitRead(fd.isFile); err == nil {
 					continue

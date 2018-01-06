@@ -184,7 +184,7 @@ func main() {
 
 func findMembers(rdr *dwarf.Reader) (map[string]bool, error) {
 	memberEmbedded := map[string]bool{}
-	// TODO(hyangah): define in debug/dwarf package
+	// TODO (hyangah): define in debug/dwarf package id:383 gh:384
 	const goEmbeddedStruct = dwarf.Attr(0x2903)
 	for entry, err := rdr.Next(); entry != nil; entry, err = rdr.Next() {
 		if err != nil {

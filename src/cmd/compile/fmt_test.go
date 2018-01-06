@@ -277,7 +277,7 @@ func collectPkgFormats(t *testing.T, pkg *build.Package) {
 	filenames = append(filenames, pkg.CgoFiles...)
 	filenames = append(filenames, pkg.TestGoFiles...)
 
-	// TODO(gri) verify _test files outside package
+	// TODO (gri) verify _test files outside package id:116 gh:117
 	for _, name := range pkg.XTestGoFiles {
 		// don't process this test itself
 		if name != "fmt_test.go" && testing.Verbose() {

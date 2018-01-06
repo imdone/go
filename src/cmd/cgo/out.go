@@ -494,7 +494,7 @@ func (p *Package) writeDefsFunc(fgo2 io.Writer, n *Name, callsMalloc *bool) {
 	conf.Fprint(fgo2, fset, d)
 	fmt.Fprint(fgo2, " {\n")
 
-	// NOTE: Using uintptr to hide from escape analysis.
+	// NOTE: Using uintptr to hide from escape analysis. id:34 gh:35
 	arg := "0"
 	if len(paramnames) > 0 {
 		arg = "uintptr(unsafe.Pointer(&p0))"
@@ -1254,7 +1254,7 @@ func (p *Package) cgoType(e ast.Expr) *Type {
 		return &Type{Size: p.PtrSize, Align: p.PtrSize, C: c("GoChan")}
 	case *ast.Ident:
 		// Look up the type in the top level declarations.
-		// TODO: Handle types defined within a function.
+		// TODO: Handle types defined within a function. id:56 gh:57
 		for _, d := range p.Decl {
 			gd, ok := d.(*ast.GenDecl)
 			if !ok || gd.Tok != token.TYPE {

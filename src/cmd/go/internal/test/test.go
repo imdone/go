@@ -495,7 +495,7 @@ var testMainDeps = []string{
 
 // testVetFlags is the list of flags to pass to vet when invoked automatically during go test.
 var testVetFlags = []string{
-	// TODO(rsc): Decide which tests are enabled by default.
+	// TODO (rsc): Decide which tests are enabled by default. id:555 gh:556
 	// See golang.org/issue/18085.
 	// "-asmdecl",
 	// "-assign",
@@ -996,7 +996,7 @@ func builderTest(b *work.Builder, p *load.Package) (buildAction, runAction, prin
 		// Strictly speaking, the rebuild is only necessary if the
 		// modifications to p change its export metadata, but
 		// determining that is a bit tricky, so we rebuild always.
-		// TODO(rsc): Once we get export metadata changes
+		// TODO (rsc): Once we get export metadata changes id:399 gh:400
 		// handled properly, look into the expense of dropping
 		// "&& localCover" above.
 		//

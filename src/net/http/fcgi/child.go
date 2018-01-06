@@ -207,7 +207,7 @@ func (c *child) handleRecord(rec *record) error {
 		c.mu.Unlock()
 		return nil
 	case typeParams:
-		// NOTE(eds): Technically a key-value pair can straddle the boundary
+		// NOTE (eds): Technically a key-value pair can straddle the boundary id:1137 gh:1145
 		// between two packets. We buffer until we've received all parameters.
 		if len(rec.content()) > 0 {
 			req.rawParams = append(req.rawParams, rec.content()...)
@@ -229,7 +229,7 @@ func (c *child) handleRecord(rec *record) error {
 			go c.serveRequest(req, body)
 		}
 		if len(content) > 0 {
-			// TODO(eds): This blocks until the handler reads from the pipe.
+			// TODO (eds): This blocks until the handler reads from the pipe. id:849 gh:850
 			// If the handler takes a long time, it might be a problem.
 			req.pw.Write(content)
 		} else if req.pw != nil {
@@ -299,7 +299,7 @@ func (c *child) serveRequest(req *request, body io.ReadCloser) {
 	// Consume the entire body, so the host isn't still writing to
 	// us when we close the socket below in the !keepConn case,
 	// otherwise we'd send a RST. (golang.org/issue/4183)
-	// TODO(bradfitz): also bound this copy in time. Or send
+	// TODO (bradfitz): also bound this copy in time. Or send id:1240 gh:1248
 	// some sort of abort request to the host, so the host
 	// can properly cut off the client sending all the data.
 	// For now just bound it a little and

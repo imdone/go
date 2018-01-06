@@ -293,7 +293,7 @@ func NewIdentifier(ident string) *IdentifierNode {
 
 // SetPos sets the position. NewIdentifier is a public method so we can't modify its signature.
 // Chained for convenience.
-// TODO: fix one day?
+// TODO: fix one day? id:1071 gh:1079
 func (i *IdentifierNode) SetPos(pos Pos) *IdentifierNode {
 	i.Pos = pos
 	return i
@@ -301,7 +301,7 @@ func (i *IdentifierNode) SetPos(pos Pos) *IdentifierNode {
 
 // SetTree sets the parent tree for the node. NewIdentifier is a public method so we can't modify its signature.
 // Chained for convenience.
-// TODO: fix one day?
+// TODO: fix one day? id:1461 gh:1469
 func (i *IdentifierNode) SetTree(t *Tree) *IdentifierNode {
 	i.tr = t
 	return i
@@ -364,7 +364,7 @@ func (t *Tree) newDot(pos Pos) *DotNode {
 
 func (d *DotNode) Type() NodeType {
 	// Override method on embedded NodeType for API compatibility.
-	// TODO: Not really a problem; could change API without effect but
+	// TODO: Not really a problem; could change API without effect but id:1434 gh:1442
 	// api tool complains.
 	return NodeDot
 }
@@ -394,7 +394,7 @@ func (t *Tree) newNil(pos Pos) *NilNode {
 
 func (n *NilNode) Type() NodeType {
 	// Override method on embedded NodeType for API compatibility.
-	// TODO: Not really a problem; could change API without effect but
+	// TODO: Not really a problem; could change API without effect but id:1086 gh:1094
 	// api tool complains.
 	return NodeNil
 }

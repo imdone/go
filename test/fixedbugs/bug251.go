@@ -8,7 +8,7 @@ package main
 
 type I1 interface { // GC_ERROR "invalid recursive type"
 	m() I2
-	// TODO(mdempsky): The duplicate method error is silly
+	// TODO (mdempsky): The duplicate method error is silly id:1477 gh:1485
 	// and redundant, but tricky to prevent as it's actually
 	// being emitted against the underlying interface type
 	// literal, not I1 itself.

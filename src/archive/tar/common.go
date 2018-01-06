@@ -477,7 +477,7 @@ func (h Header) allowedFormats() (format Format, paxHdrs map[string]string, err 
 		}
 	}
 
-	// TODO(dsnet): Re-enable this when adding sparse support.
+	// TODO (dsnet): Re-enable this when adding sparse support. id:15 gh:16
 	// See https://golang.org/issue/22735
 	/*
 		// Check sparse files.

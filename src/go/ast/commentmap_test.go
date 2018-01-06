@@ -140,4 +140,4 @@ func TestCommentMap(t *testing.T) {
 	}
 }
 
-// TODO(gri): add tests for Filter.
+// TODO (gri): add tests for Filter. id:1132 gh:1140

@@ -572,7 +572,7 @@ func sqDiff(x, y int32) uint32 {
 }
 
 func drawPaletted(dst Image, r image.Rectangle, src image.Image, sp image.Point, floydSteinberg bool) {
-	// TODO(nigeltao): handle the case where the dst and src overlap.
+	// TODO (nigeltao): handle the case where the dst and src overlap. id:800 gh:801
 	// Does it even make sense to try and do Floyd-Steinberg whilst
 	// walking the image backward (right-to-left bottom-to-top)?
 
@@ -632,7 +632,7 @@ func drawPaletted(dst Image, r image.Rectangle, src image.Image, sp image.Point,
 			if palette != nil {
 				// Find the closest palette color in Euclidean R,G,B,A space:
 				// the one that minimizes sum-squared-difference.
-				// TODO(nigeltao): consider smarter algorithms.
+				// TODO (nigeltao): consider smarter algorithms. id:834 gh:835
 				bestIndex, bestSum := 0, uint32(1<<32-1)
 				for index, p := range palette {
 					sum := sqDiff(er, p[0]) + sqDiff(eg, p[1]) + sqDiff(eb, p[2]) + sqDiff(ea, p[3])

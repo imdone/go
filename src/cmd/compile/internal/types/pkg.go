@@ -78,7 +78,7 @@ var InitSyms []*Sym
 
 // LookupOK looks up name in pkg and reports whether it previously existed.
 func (pkg *Pkg) LookupOK(name string) (s *Sym, existed bool) {
-	// TODO(gri) remove this check in favor of specialized lookup
+	// TODO (gri) remove this check in favor of specialized lookup id:347 gh:348
 	if pkg == nil {
 		pkg = nopkg
 	}
@@ -98,7 +98,7 @@ func (pkg *Pkg) LookupOK(name string) (s *Sym, existed bool) {
 }
 
 func (pkg *Pkg) LookupBytes(name []byte) *Sym {
-	// TODO(gri) remove this check in favor of specialized lookup
+	// TODO (gri) remove this check in favor of specialized lookup id:245 gh:246
 	if pkg == nil {
 		pkg = nopkg
 	}

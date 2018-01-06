@@ -144,7 +144,7 @@ func TestDynlink(t *testing.T) {
 	testenv.MustHaveGoBuild(t)
 
 	if os.Getenv("GOHOSTARCH") != "" {
-		// TODO: make this work? It was failing due to the
+		// TODO: make this work? It was failing due to the id:934 gh:942
 		// GOARCH= filtering above and skipping is easiest for
 		// now.
 		t.Skip("skipping when GOHOSTARCH is set")

@@ -225,7 +225,7 @@ func loadSystemRoots() (*CertPool, error) {
 	var untrustedData C.CFDataRef = 0
 	err := C.FetchPEMRoots(&data, &untrustedData)
 	if err == -1 {
-		// TODO: better error message
+		// TODO: better error message id:581 gh:582
 		return nil, errors.New("crypto/x509: failed to load darwin system roots with cgo")
 	}
 

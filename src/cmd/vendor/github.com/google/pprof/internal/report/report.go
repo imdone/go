@@ -244,7 +244,7 @@ func (rpt *Report) newGraph(nodes graph.NodeSet) *graph.Graph {
 	}
 	// Removes all numeric tags except for the bytes tag prior
 	// to making graph.
-	// TODO: modify to select first numeric tag if no bytes tag
+	// TODO: modify to select first numeric tag if no bytes tag id:493 gh:494
 	for _, s := range prof.Sample {
 		numLabels := make(map[string][]int64, len(s.NumLabel))
 		numUnits := make(map[string][]string, len(s.NumLabel))
@@ -901,7 +901,7 @@ func printCallgrind(w io.Writer, rpt *Report) error {
 			fmt.Fprintln(w, "cfn="+callgrindName(names, nodeNames[callee]))
 			// pprof doesn't have a flat weight for a call, leave as 0.
 			fmt.Fprintf(w, "calls=0 %s %d\n", callgrindAddress(prevInfo, callee.Info.Address), callee.Info.Lineno)
-			// TODO: This address may be in the middle of a call
+			// TODO: This address may be in the middle of a call id:644 gh:645
 			// instruction. It would be best to find the beginning
 			// of the instruction, but the tools seem to handle
 			// this OK.

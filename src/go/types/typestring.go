@@ -56,7 +56,7 @@ func RelativeTo(pkg *Package) Qualifier {
 // This flag is exported in the x/tools/go/types package. We don't
 // need it at the moment in the std repo and so we don't export it
 // anymore. We should eventually try to remove it altogether.
-// TODO(gri) remove this
+// TODO (gri) remove this id:734 gh:735
 var gcCompatibilityMode bool
 
 // TypeString returns the string representation of typ.
@@ -232,7 +232,7 @@ func writeType(buf *bytes.Buffer, typ Type, qf Qualifier, visited []Type) {
 			if obj.pkg != nil {
 				writePackage(buf, obj.pkg, qf)
 			}
-			// TODO(gri): function-local named types should be displayed
+			// TODO (gri): function-local named types should be displayed id:918 gh:926
 			// differently from named types at package level to avoid
 			// ambiguity.
 			s = obj.name

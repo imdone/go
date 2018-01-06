@@ -105,7 +105,7 @@ func (p Properties) BoundaryBefore() bool {
 // BoundaryAfter returns true if runes cannot combine with or otherwise
 // interact with this or previous runes.
 func (p Properties) BoundaryAfter() bool {
-	// TODO: loosen these conditions.
+	// TODO: loosen these conditions. id:1474 gh:1482
 	return p.isInert()
 }
 
@@ -145,7 +145,7 @@ func (p Properties) nTrailingNonStarters() uint8 {
 // Decomposition returns the decomposition for the underlying rune
 // or nil if there is none.
 func (p Properties) Decomposition() []byte {
-	// TODO: create the decomposition for Hangul?
+	// TODO: create the decomposition for Hangul? id:1455 gh:1463
 	if p.index == 0 {
 		return nil
 	}

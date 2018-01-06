@@ -189,7 +189,7 @@ window.onload = function() {
     var ssaElemClicked = function(elem, event, selections, selected) {
         event.stopPropagation()
 
-        // TODO: pushState with updated state and read it on page load,
+        // TODO: pushState with updated state and read it on page load, id:235 gh:236
         // so that state can survive across reloads
 
         // find all values with the same name
@@ -321,7 +321,7 @@ func (w *HTMLWriter) WriteFunc(title string, f *Func) {
 		return // avoid generating HTML just to discard it
 	}
 	w.WriteColumn(title, "", f.HTML())
-	// TODO: Add visual representation of f's CFG.
+	// TODO: Add visual representation of f's CFG. id:199 gh:200
 }
 
 // WriteColumn writes raw HTML in a column headed by title.
@@ -353,7 +353,7 @@ func (w *HTMLWriter) WriteString(s string) {
 }
 
 func (v *Value) HTML() string {
-	// TODO: Using the value ID as the class ignores the fact
+	// TODO: Using the value ID as the class ignores the fact id:326 gh:327
 	// that value IDs get recycled and that some values
 	// are transmuted into other values.
 	s := v.String()
@@ -361,7 +361,7 @@ func (v *Value) HTML() string {
 }
 
 func (v *Value) LongHTML() string {
-	// TODO: Any intra-value formatting?
+	// TODO: Any intra-value formatting? id:518 gh:519
 	// I'm wary of adding too much visual noise,
 	// but a little bit might be valuable.
 	// We already have visual noise in the form of punctuation
@@ -402,7 +402,7 @@ func (v *Value) LongHTML() string {
 }
 
 func (b *Block) HTML() string {
-	// TODO: Using the value ID as the class ignores the fact
+	// TODO: Using the value ID as the class ignores the fact id:284 gh:285
 	// that value IDs get recycled and that some values
 	// are transmuted into other values.
 	s := html.EscapeString(b.String())
@@ -410,7 +410,7 @@ func (b *Block) HTML() string {
 }
 
 func (b *Block) LongHTML() string {
-	// TODO: improve this for HTML?
+	// TODO: improve this for HTML? id:289 gh:290
 	s := fmt.Sprintf("<span class=\"%s ssa-block\">%s</span>", html.EscapeString(b.String()), html.EscapeString(b.Kind.String()))
 	if b.Aux != nil {
 		s += html.EscapeString(fmt.Sprintf(" {%v}", b.Aux))
@@ -432,7 +432,7 @@ func (b *Block) LongHTML() string {
 		s += " (likely)"
 	}
 	if b.Pos.IsKnown() {
-		// TODO does not begin to deal with the full complexity of line numbers.
+		// TODO does not begin to deal with the full complexity of line numbers. id:201 gh:202
 		// Maybe we want a string/slice instead, of outer-inner when inlining.
 		s += fmt.Sprintf(" (line %d)", b.Pos.Line())
 	}
@@ -445,7 +445,7 @@ func (f *Func) HTML() string {
 	p := htmlFuncPrinter{w: &buf}
 	fprintFunc(p, f)
 
-	// fprintFunc(&buf, f) // TODO: HTML, not text, <br /> for line breaks, etc.
+	// fprintFunc(&buf, f) // TODO: HTML, not text, <br /> for line breaks, etc. id:330 gh:331
 	fmt.Fprint(&buf, "</code>")
 	return buf.String()
 }
@@ -457,7 +457,7 @@ type htmlFuncPrinter struct {
 func (p htmlFuncPrinter) header(f *Func) {}
 
 func (p htmlFuncPrinter) startBlock(b *Block, reachable bool) {
-	// TODO: Make blocks collapsable?
+	// TODO: Make blocks collapsable? id:519 gh:520
 	var dead string
 	if !reachable {
 		dead = "dead-block"

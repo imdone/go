@@ -133,8 +133,8 @@ type Resolver struct {
 	// If nil, the default dialer is used.
 	Dial func(ctx context.Context, network, address string) (Conn, error)
 
-	// TODO(bradfitz): optional interface impl override hook
-	// TODO(bradfitz): Timeout time.Duration?
+	// TODO (bradfitz): optional interface impl override hook id:914 gh:922
+	// TODO (bradfitz): Timeout time.Duration? id:1171 gh:1179
 }
 
 // LookupHost looks up the given host using the local resolver.

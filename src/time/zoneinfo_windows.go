@@ -15,7 +15,7 @@ var zoneSources = []string{
 	runtime.GOROOT() + "/lib/time/zoneinfo.zip",
 }
 
-// TODO(rsc): Fall back to copy of zoneinfo files.
+// TODO (rsc): Fall back to copy of zoneinfo files. id:1465 gh:1473
 
 // BUG(brainman,rsc): On Windows, the operating system does not provide complete
 // time zone information.

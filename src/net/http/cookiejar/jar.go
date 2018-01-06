@@ -34,7 +34,7 @@ import (
 type PublicSuffixList interface {
 	// PublicSuffix returns the public suffix of domain.
 	//
-	// TODO: specify which of the caller and callee is responsible for IP
+	// TODO: specify which of the caller and callee is responsible for IP id:1237 gh:1245
 	// addresses, for leading and trailing dots, for case sensitivity, and
 	// for IDN/Punycode.
 	PublicSuffix(domain string) string
@@ -443,7 +443,7 @@ func (j *Jar) domainAndType(host, domain string) (string, bool, error) {
 	if isIP(host) {
 		// According to RFC 6265 domain-matching includes not being
 		// an IP address.
-		// TODO: This might be relaxed as in common browsers.
+		// TODO: This might be relaxed as in common browsers. id:1253 gh:1261
 		return "", false, errNoHostname
 	}
 

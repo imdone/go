@@ -317,7 +317,7 @@ func expandCgoFrames(pc uintptr) []Frame {
 	return frames
 }
 
-// NOTE: Func does not expose the actual unexported fields, because we return *Func
+// NOTE: Func does not expose the actual unexported fields, because we return *Func id:1408 gh:1416
 // values to users, and we want to keep them from being able to overwrite the data
 // with (say) *f = Func{}.
 // All code operating on a *Func must call raw() to get the *_func
@@ -542,7 +542,7 @@ func moduledataverify1(datap *moduledata) {
 	// ftab is lookup table for function by program counter.
 	nftab := len(datap.ftab) - 1
 	for i := 0; i < nftab; i++ {
-		// NOTE: ftab[nftab].entry is legal; it is the address beyond the final function.
+		// NOTE: ftab[nftab].entry is legal; it is the address beyond the final function. id:1061 gh:1069
 		if datap.ftab[i].entry > datap.ftab[i+1].entry {
 			f1 := funcInfo{(*_func)(unsafe.Pointer(&datap.pclntable[datap.ftab[i].funcoff])), datap}
 			f2 := funcInfo{(*_func)(unsafe.Pointer(&datap.pclntable[datap.ftab[i+1].funcoff])), datap}

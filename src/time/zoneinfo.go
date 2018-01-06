@@ -254,7 +254,7 @@ func (l *Location) lookupName(name string, unix int64) (offset int, ok bool) {
 	return
 }
 
-// NOTE(rsc): Eventually we will need to accept the POSIX TZ environment
+// NOTE (rsc): Eventually we will need to accept the POSIX TZ environment id:1088 gh:1096
 // syntax too, but I don't feel like implementing it today.
 
 var errLocation = errors.New("time: invalid location name")

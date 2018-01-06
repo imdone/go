@@ -177,7 +177,7 @@ func (check *Checker) funcType(sig *Signature, recvPar *ast.FieldList, ftyp *ast
 				if T.obj.pkg != check.pkg {
 					err = "type not defined in this package"
 				} else {
-					// TODO(gri) This is not correct if the underlying type is unknown yet.
+					// TODO (gri) This is not correct if the underlying type is unknown yet. id:1181 gh:1189
 					switch u := T.underlying.(type) {
 					case *Basic:
 						// unsafe.Pointer is treated like a regular pointer
@@ -496,7 +496,7 @@ func (check *Checker) interfaceType(iface *Interface, ityp *ast.InterfaceType, d
 			// Since we know the receiver, set it up now
 			// (required to avoid crash in ptrRecv; see
 			// e.g. test case for issue 6638).
-			// TODO(gri) Consider marking methods signatures
+			// TODO (gri) Consider marking methods signatures id:794 gh:795
 			// as incomplete, for better error messages. See
 			// also the T4 and T5 tests in testdata/cycles2.src.
 			sig := new(Signature)
@@ -572,12 +572,12 @@ func (check *Checker) interfaceType(iface *Interface, ityp *ast.InterfaceType, d
 		*old = *sig // update signature (don't replace it!)
 	}
 
-	// TODO(gri) The list of explicit methods is only sorted for now to
+	// TODO (gri) The list of explicit methods is only sorted for now to id:828 gh:829
 	// produce the same Interface as NewInterface. We may be able to
 	// claim source order in the future. Revisit.
 	sort.Sort(byUniqueMethodName(iface.methods))
 
-	// TODO(gri) The list of embedded types is only sorted for now to
+	// TODO (gri) The list of embedded types is only sorted for now to id:736 gh:737
 	// produce the same Interface as NewInterface. We may be able to
 	// claim source order in the future. Revisit.
 	sort.Sort(byUniqueTypeName(iface.embeddeds))

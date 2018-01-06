@@ -304,7 +304,7 @@ func (t *transferWriter) WriteHeader(w io.Writer) error {
 		}
 		if len(keys) > 0 {
 			sort.Strings(keys)
-			// TODO: could do better allocation-wise here, but trailers are rare,
+			// TODO: could do better allocation-wise here, but trailers are rare, id:1286 gh:1294
 			// so being lazy for now.
 			if _, err := io.WriteString(w, "Trailer: "+strings.Join(keys, ",")+"\r\n"); err != nil {
 				return err
@@ -557,7 +557,7 @@ func (t *transferReader) fixTransferEncoding() error {
 
 	encodings := strings.Split(raw[0], ",")
 	te := make([]string, 0, len(encodings))
-	// TODO: Even though we only support "identity" and "chunked"
+	// TODO: Even though we only support "identity" and "chunked" id:907 gh:915
 	// encodings, the loop below is designed with foresight. One
 	// invariant that must be maintained is that, if present,
 	// chunked encoding must always come first.

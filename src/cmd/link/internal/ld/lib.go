@@ -528,7 +528,7 @@ func (ctxt *Link) loadlib() {
 				if p := ctxt.findLibPath("libmingw32.a"); p != "none" {
 					hostArchive(ctxt, p)
 				}
-				// TODO: maybe do something similar to peimporteddlls to collect all lib names
+				// TODO: maybe do something similar to peimporteddlls to collect all lib names id:482 gh:483
 				// and try link them all to final exe just like libmingwex.a and libmingw32.a:
 				/*
 					for:
@@ -1747,7 +1747,7 @@ type chain struct {
 
 var morestack *sym.Symbol
 
-// TODO: Record enough information in new object files to
+// TODO: Record enough information in new object files to id:386 gh:387
 // allow stack checks here.
 
 func haslinkregister(ctxt *Link) bool {
@@ -1825,7 +1825,7 @@ func stkcheck(ctxt *Link, up *chain, depth int) int {
 		// external function.
 		// should never be called directly.
 		// onlyctxt.Diagnose the direct caller.
-		// TODO(mwhudson): actually think about this.
+		// TODO (mwhudson): actually think about this. id:475 gh:476
 		if depth == 1 && s.Type != sym.SXREF && !ctxt.DynlinkingGo() &&
 			ctxt.BuildMode != BuildModeCArchive && ctxt.BuildMode != BuildModePIE && ctxt.BuildMode != BuildModeCShared && ctxt.BuildMode != BuildModePlugin {
 
@@ -2093,7 +2093,7 @@ func genasmsym(ctxt *Link, put func(*Link, *sym.Symbol, string, SymbolType, int6
 		if s.FuncInfo != nil {
 			locals = s.FuncInfo.Locals
 		}
-		// NOTE(ality): acid can't produce a stack trace without .frame symbols
+		// NOTE (ality): acid can't produce a stack trace without .frame symbols id:607 gh:608
 		put(ctxt, nil, ".frame", FrameSym, int64(locals)+int64(ctxt.Arch.PtrSize), nil)
 
 		if s.FuncInfo == nil {
@@ -2189,7 +2189,7 @@ func undefsym(ctxt *Link, s *sym.Symbol) {
 		if r.Sym == nil { // happens for some external ARM relocs
 			continue
 		}
-		// TODO(mwhudson): the test of VisibilityHidden here probably doesn't make
+		// TODO (mwhudson): the test of VisibilityHidden here probably doesn't make id:956 gh:964
 		// sense and should be removed when someone has thought about it properly.
 		if (r.Sym.Type == sym.Sxxx || r.Sym.Type == sym.SXREF) && !r.Sym.Attr.VisibilityHidden() {
 			Errorf(s, "undefined: %q", r.Sym.Name)

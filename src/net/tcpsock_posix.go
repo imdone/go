@@ -111,7 +111,7 @@ func selfConnect(fd *netFD, err error) bool {
 	// Since this code (selfConnect) is already trying to work around
 	// a problem, we make sure if this happens we recognize trouble and
 	// ask the DialTCP routine to try again.
-	// TODO: try to understand what's really going on.
+	// TODO: try to understand what's really going on. id:945 gh:953
 	if fd.laddr == nil || fd.raddr == nil {
 		return true
 	}

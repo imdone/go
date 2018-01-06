@@ -32,7 +32,7 @@ func fuse(f *Func) {
 //   switch n {
 //     case 1,2,3: return 4
 //   }
-// TODO: If ss doesn't contain any OpPhis, are s0 and s1 dead code anyway.
+// TODO: If ss doesn't contain any OpPhis, are s0 and s1 dead code anyway. id:515 gh:516
 func fuseBlockIf(b *Block) bool {
 	if b.Kind != BlockIf {
 		return false

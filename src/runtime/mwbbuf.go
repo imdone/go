@@ -64,7 +64,7 @@ const (
 	// latency of flushing. Higher values also increase the cache
 	// footprint of the buffer.
 	//
-	// TODO: What is the latency cost of this? Tune this value.
+	// TODO: What is the latency cost of this? Tune this value. id:1409 gh:1417
 	wbBufEntries = 256
 
 	// wbBufEntryPointers is the number of pointers added to the
@@ -147,7 +147,7 @@ func (b *wbBuf) putFast(old, new uintptr) bool {
 // a GC safe point between the write barrier test in the caller and
 // flushing the buffer.
 //
-// TODO: A "go:nosplitrec" annotation would be perfect for this.
+// TODO: A "go:nosplitrec" annotation would be perfect for this. id:1380 gh:1388
 //
 //go:nowritebarrierrec
 //go:nosplit
@@ -212,7 +212,7 @@ func wbBufFlush1(_p_ *p) {
 	// pointers we greyed. We use the buffer itself to temporarily
 	// record greyed pointers.
 	//
-	// TODO: Should scanobject/scanblock just stuff pointers into
+	// TODO: Should scanobject/scanblock just stuff pointers into id:1003 gh:1011
 	// the wbBuf? Then this would become the sole greying path.
 	gcw := &_p_.gcw
 	pos := 0
@@ -223,11 +223,11 @@ func wbBufFlush1(_p_ *p) {
 			// for the "old" values. Filter out these and
 			// other "obvious" non-heap pointers ASAP.
 			//
-			// TODO: Should we filter out nils in the fast
+			// TODO: Should we filter out nils in the fast id:1273 gh:1281
 			// path to reduce the rate of flushes?
 			continue
 		}
-		// TODO: This doesn't use hbits, so calling
+		// TODO: This doesn't use hbits, so calling id:1025 gh:1033
 		// heapBitsForObject seems a little silly. We could
 		// easily separate this out since heapBitsForObject
 		// just calls heapBitsForAddr(obj) to get hbits.
@@ -235,7 +235,7 @@ func wbBufFlush1(_p_ *p) {
 		if obj == 0 {
 			continue
 		}
-		// TODO: Consider making two passes where the first
+		// TODO: Consider making two passes where the first id:1411 gh:1419
 		// just prefetches the mark bits.
 		mbits := span.markBitsForIndex(objIndex)
 		if mbits.isMarked() {

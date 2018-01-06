@@ -181,7 +181,7 @@ func (p *Profile) Boundaries(src []byte) (boundaries []Boundary) {
 		return b
 	}
 
-	line, col := 1, 2 // TODO: Why is this 2?
+	line, col := 1, 2 // TODO: Why is this 2? id:365 gh:366
 	for si, bi := 0, 0; si < len(src) && bi < len(p.Blocks); {
 		b := p.Blocks[bi]
 		if b.StartLine == line && b.StartCol == col {

@@ -230,7 +230,7 @@ func benchmarkDecodeSlice(b *testing.B, a interface{}) {
 	b.ResetTimer()
 
 	b.RunParallel(func(pb *testing.PB) {
-		// TODO(#19025): Move per-thread allocation before ResetTimer.
+		// TODO (#19025): Move per-thread allocation before ResetTimer. id:612 gh:613
 		rp := reflect.New(rt)
 		rp.Elem().Set(reflect.MakeSlice(rt, ra.Len(), ra.Cap()))
 		p := rp.Interface()

@@ -88,7 +88,7 @@ func ints() {
 func floats() {
 	assert(f0 == c0, "f0")
 	assert(f1 == c1, "f1")
-	// TODO(gri): exp/ssa/interp constant folding is incorrect.
+	// TODO (gri): exp/ssa/interp constant folding is incorrect. id:1476 gh:1484
 	if os.Getenv("GOSSAINTERP") == "" {
 		assert(fhuge == fhuge_1, "fhuge") // float64 can't distinguish fhuge, fhuge_1.
 	}

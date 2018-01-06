@@ -37,7 +37,7 @@ func TestGolden(t *testing.T) {
 			continue
 		}
 
-		// TODO(gri) remove extra pkg directory eventually
+		// TODO (gri) remove extra pkg directory eventually id:23 gh:24
 		goldenFile := filepath.Join("testdata", "src", "pkg", fi.Name(), "golden.txt")
 		w := NewWalker(nil, "testdata/src/pkg")
 		pkg, _ := w.Import(fi.Name())

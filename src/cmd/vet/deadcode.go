@@ -30,7 +30,7 @@ type deadState struct {
 
 // checkUnreachable checks a function body for dead code.
 //
-// TODO(adonovan): use the new cfg package, which is more precise.
+// TODO (adonovan): use the new cfg package, which is more precise. id:570 gh:571
 func checkUnreachable(f *File, node ast.Node) {
 	var body *ast.BlockStmt
 	switch n := node.(type) {
@@ -202,7 +202,7 @@ func (d *deadState) findDead(stmt ast.Stmt) {
 		case token.BREAK, token.GOTO, token.FALLTHROUGH:
 			d.reachable = false
 		case token.CONTINUE:
-			// NOTE: We accept "continue" statements as terminating.
+			// NOTE: We accept "continue" statements as terminating. id:725 gh:726
 			// They are not necessary in the spec definition of terminating,
 			// because a continue statement cannot be the final statement
 			// before a return. But for the more general problem of syntactically
@@ -248,7 +248,7 @@ func (d *deadState) findDead(stmt ast.Stmt) {
 		d.reachable = false
 
 	case *ast.SelectStmt:
-		// NOTE: Unlike switch and type switch below, we don't care
+		// NOTE: Unlike switch and type switch below, we don't care id:631 gh:632
 		// whether a select has a default, because a select without a
 		// default blocks until one of the cases can run. That's different
 		// from a switch without a default, which behaves like it has
