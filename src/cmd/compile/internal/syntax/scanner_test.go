@@ -351,7 +351,7 @@ func TestScanErrors(t *testing.T) {
 					t.Errorf("%q: got col = %d; want %d", test.src, col, test.col+colbase)
 				}
 			} else if nerrors > 1 {
-				// TODO(gri) make this use position info
+				// TODO (gri) make this use position info id:4
 				t.Errorf("%q: got unexpected %q at line = %d", test.src, msg, line)
 			}
 		}, nil)

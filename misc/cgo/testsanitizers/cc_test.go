@@ -112,9 +112,9 @@ func cc(args ...string) (*exec.Cmd, error) {
 	// Split GOGCCFLAGS, respecting quoting.
 	//
 	// TODO (bcmills): This code also appears in id:9 gh:10
-	// misc/cgo/testcarchive/carchive_test.go, and perhaps ought to go in
-	// src/cmd/dist/test.go as well. Figure out where to put it so that it can be
-	// shared.
+// misc/cgo/testcarchive/carchive_test.go, and perhaps ought to go in
+// src/cmd/dist/test.go as well. Figure out where to put it so that it can be
+// shared.
 	var flags []string
 	quote := '\000'
 	start := 0

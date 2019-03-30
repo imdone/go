@@ -7,22 +7,27 @@
   "code": {
     "include_lists": [
       "TODO",
+      "DOING",
+      "DONE",
+      "PLANNING",
       "FIXME",
+      "ARCHIVE",
       "HACK",
       "CHANGED",
       "XXX",
       "IDEA",
       "NOTE",
       "REVIEW",
-      "TODO",
-      "NOTE",
-      "FIXME",
-      "XXX",
-      "HACK",
-      "SNG"
+      "MARK",
+      "SNG",
+      "HELP"
     ]
   },
   "lists": [
+    {
+      "name": "HELP",
+      "hidden": false
+    },
     {
       "name": "TODO",
       "hidden": false
@@ -60,5 +65,6 @@
     "id": "5a514a81a6822e6922c7aee7",
     "name": "imdone/go",
     "useImdoneioForPriority": true
-  }
+  },
+  "noHelp": true
 }

@@ -9,7 +9,7 @@ package cgotest
 
 /*
 // NOTE: Must use hex, or else a shortcut for decimals id:7 gh:8
-// in cgo avoids trying to pass this to clang.
+in cgo avoids trying to pass this to clang.
 #define X 0x1
 */
 import "C"

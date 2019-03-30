@@ -478,7 +478,7 @@ func (h Header) allowedFormats() (format Format, paxHdrs map[string]string, err 
 	}
 
 	// TODO (dsnet): Re-enable this when adding sparse support. id:15 gh:16
-	// See https://golang.org/issue/22735
+ // See https://golang.org/issue/22735
 	/*
 		// Check sparse files.
 		if len(h.SparseHoles) > 0 || h.Typeflag == TypeGNUSparse {

@@ -369,7 +369,7 @@ func TestReader(t *testing.T) {
 			continue
 		}
 
-		// Compare the two, in SNG format, line by line.
+		// Compare the two, in SNG format, line by line. id:11
 		for {
 			pdone := !pb.Scan()
 			sdone := !sb.Scan()

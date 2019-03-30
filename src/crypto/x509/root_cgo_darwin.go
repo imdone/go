@@ -153,7 +153,7 @@ int FetchPEMRoots(CFDataRef *pemRoots, CFDataRef *untrustedPemRoots) {
 					if (CFDictionaryGetValueIfPresent(tSetting, policy, (const void**)&cfNum)){
 						SInt32 result = 0;
 						CFNumberGetValue(cfNum, kCFNumberSInt32Type, &result);
-						// TODO: The rest of the dictionary specifies conditions for evaluation.
+						// TODO: The rest of the dictionary specifies conditions for evaluation. id:16
 						if (result == kSecTrustSettingsResultDeny) {
 							untrusted = 1;
 						} else if (result == kSecTrustSettingsResultTrustAsRoot) {

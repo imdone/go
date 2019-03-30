@@ -120,7 +120,7 @@ func (tw *Writer) writePAXHeader(hdr *Header, paxHdrs map[string]string) error {
 	realName, realSize := hdr.Name, hdr.Size
 
 	// TODO (dsnet): Re-enable this when adding sparse support. id:14 gh:15
-	// See https://golang.org/issue/22735
+ // See https://golang.org/issue/22735
 	/*
 		// Handle sparse files.
 		var spd sparseDatas
@@ -247,7 +247,7 @@ func (tw *Writer) writeGNUHeader(hdr *Header) error {
 		f.formatNumeric(blk.GNU().ChangeTime(), hdr.ChangeTime.Unix())
 	}
 	// TODO (dsnet): Re-enable this when adding sparse support. id:18 gh:19
-	// See https://golang.org/issue/22735
+ // See https://golang.org/issue/22735
 	/*
 		if hdr.Typeflag == TypeGNUSparse {
 			sph := append([]sparseEntry{}, hdr.SparseHoles...) // Copy sparse map

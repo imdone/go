@@ -21,7 +21,7 @@ type Buffer struct {
 	lastRead  readOp   // last read operation, so that Unread* can work correctly.
 
 	// FIXME: it would be advisable to align Buffer to cachelines to avoid false id:20 gh:21
-	// sharing.
+ // sharing.
 }
 
 // The readOp constants describe the last action performed on

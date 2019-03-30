@@ -1853,7 +1853,7 @@ func TestGoListCmdOnlyShowsCommands(t *testing.T) {
 func TestGoListDedupsPackages(t *testing.T) {
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:14
 	tg.setenv("GOPATH", filepath.Join(tg.pwd(), "testdata"))
 	tg.run("list", "xtestonly", "./testdata/src/xtestonly/...")
 	got := strings.TrimSpace(tg.getStdout())
@@ -2072,7 +2072,7 @@ func TestGoTestCpuprofileLeavesBinaryBehind(t *testing.T) {
 	tooSlow(t)
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:6
 	tg.makeTempdir()
 	tg.cd(tg.path("."))
 	tg.run("test", "-cpuprofile", "errors.prof", "errors")
@@ -2083,7 +2083,7 @@ func TestGoTestCpuprofileDashOControlsBinaryLocation(t *testing.T) {
 	tooSlow(t)
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:5
 	tg.makeTempdir()
 	tg.cd(tg.path("."))
 	tg.run("test", "-cpuprofile", "errors.prof", "-o", "myerrors.test"+exeSuffix, "errors")
@@ -2094,7 +2094,7 @@ func TestGoTestMutexprofileLeavesBinaryBehind(t *testing.T) {
 	tooSlow(t)
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:19
 	tg.makeTempdir()
 	tg.cd(tg.path("."))
 	tg.run("test", "-mutexprofile", "errors.prof", "errors")
@@ -2105,7 +2105,7 @@ func TestGoTestMutexprofileDashOControlsBinaryLocation(t *testing.T) {
 	tooSlow(t)
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:9
 	tg.makeTempdir()
 	tg.cd(tg.path("."))
 	tg.run("test", "-mutexprofile", "errors.prof", "-o", "myerrors.test"+exeSuffix, "errors")
@@ -2115,7 +2115,7 @@ func TestGoTestMutexprofileDashOControlsBinaryLocation(t *testing.T) {
 func TestGoBuildNonMain(t *testing.T) {
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:15
 	tg.setenv("GOPATH", filepath.Join(tg.pwd(), "testdata"))
 	tg.runFail("build", "-buildmode=exe", "-o", "not_main"+exeSuffix, "not_main")
 	tg.grepStderr("-buildmode=exe requires exactly one main package", "go build with -o and -buildmode=exe should on a non-main package should throw an error")
@@ -2163,7 +2163,7 @@ func TestSymlinksList(t *testing.T) {
 
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:8
 	tg.tempDir("src")
 	tg.must(os.Symlink(tg.path("."), tg.path("src/dir1")))
 	tg.tempFile("src/dir1/p.go", "package p")
@@ -2181,7 +2181,7 @@ func TestSymlinksVendor(t *testing.T) {
 
 	tg := testgo(t)
 	defer tg.cleanup()
-	// TODO: tg.parallel()
+	// TODO: tg.parallel() id:7
 	tg.tempDir("gopath/src/dir1/vendor/v")
 	tg.tempFile("gopath/src/dir1/p.go", "package main\nimport _ `v`\nfunc main(){}")
 	tg.tempFile("gopath/src/dir1/vendor/v/v.go", "package v")

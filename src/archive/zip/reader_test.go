@@ -684,11 +684,11 @@ func returnCorruptNotStreamedZip() (r io.ReaderAt, size int64) {
 		b[0x9d]++
 
 		// TODO (bradfitz): add a new test that only corrupts id:17 gh:18
-		// one of these values, and verify that that's also an
-		// error. Currently, the reader code doesn't verify the
-		// fileheader and TOC's crc32 match if they're both
-		// non-zero and only the second line above, the TOC,
-		// is what matters.
+  // one of these values, and verify that that's also an
+  // error. Currently, the reader code doesn't verify the
+  // fileheader and TOC's crc32 match if they're both
+  // non-zero and only the second line above, the TOC,
+  // is what matters.
 	})
 }
 
